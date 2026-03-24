@@ -1,0 +1,2359 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lanzarote 2026 — Guida di Viaggio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ===== DESIGN TOKENS ===== */
+:root, [data-theme="light"] {
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+  --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+  --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+  --text-3xl: clamp(2.5rem, 1rem + 4vw, 5rem);
+
+  --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem;
+  --space-4: 1rem; --space-5: 1.25rem; --space-6: 1.5rem;
+  --space-8: 2rem; --space-10: 2.5rem; --space-12: 3rem;
+  --space-16: 4rem; --space-20: 5rem; --space-24: 6rem;
+
+  --color-bg: #f5f0e8;
+  --color-surface: #faf7f2;
+  --color-surface-2: #fff;
+  --color-surface-offset: #ede8df;
+  --color-divider: #d9d2c5;
+  --color-border: #ccc5b5;
+  --color-text: #1e1a12;
+  --color-text-muted: #6b6355;
+  --color-text-faint: #aaa090;
+  --color-text-inverse: #faf7f0;
+  --color-primary: #c45a20;
+  --color-primary-hover: #a3481a;
+  --color-primary-light: #f5e6da;
+  --color-accent: #2e6b6e;
+  --color-accent-light: #daeced;
+  --color-gold: #b08000;
+  --color-gold-light: #f5eccc;
+
+  --radius-sm: 0.375rem; --radius-md: 0.5rem;
+  --radius-lg: 0.75rem; --radius-xl: 1rem; --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+  --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  --shadow-sm: 0 1px 3px oklch(0.15 0.02 50 / 0.08);
+  --shadow-md: 0 4px 16px oklch(0.15 0.02 50 / 0.1);
+  --shadow-lg: 0 12px 40px oklch(0.15 0.02 50 / 0.14);
+
+  --content-default: 960px;
+  --content-wide: 1200px;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', 'Helvetica Neue', sans-serif;
+
+  --nav-height: 60px;
+}
+
+[data-theme="dark"] {
+  --color-bg: #161210;
+  --color-surface: #1d1915;
+  --color-surface-2: #231f1b;
+  --color-surface-offset: #1a1714;
+  --color-divider: #302b26;
+  --color-border: #3d3730;
+  --color-text: #e8e0d3;
+  --color-text-muted: #9a9080;
+  --color-text-faint: #5a5245;
+  --color-text-inverse: #1e1a12;
+  --color-primary: #e07840;
+  --color-primary-hover: #f08d55;
+  --color-primary-light: #3a2518;
+  --color-accent: #4fa8ab;
+  --color-accent-light: #1a3435;
+  --color-gold: #d4a820;
+  --color-gold-light: #3a3010;
+  --shadow-sm: 0 1px 3px oklch(0 0 0 / 0.25);
+  --shadow-md: 0 4px 16px oklch(0 0 0 / 0.35);
+  --shadow-lg: 0 12px 40px oklch(0 0 0 / 0.45);
+}
+
+/* ===== BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-height) + 16px);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+body {
+  min-height: 100dvh;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.65;
+}
+img { display: block; max-width: 100%; height: auto; }
+ul { list-style: none; }
+h1,h2,h3,h4,h5 { font-family: var(--font-display); line-height: 1.2; text-wrap: balance; }
+p, li { text-wrap: pretty; }
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; border: none; background: none; font: inherit; color: inherit; }
+table { border-collapse: collapse; width: 100%; }
+::selection { background: oklch(from var(--color-primary) l c h / 0.2); }
+:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; border-radius: var(--radius-sm); }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ===== STICKY NAV ===== */
+.site-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: var(--nav-height);
+  background: oklch(from var(--color-surface) l c h / 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-divider);
+  display: flex; align-items: center;
+  transition: background var(--transition), border-color var(--transition);
+}
+.nav-inner {
+  max-width: var(--content-wide);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+  width: 100%;
+  display: flex; align-items: center; gap: var(--space-4);
+}
+.nav-logo {
+  display: flex; align-items: center; gap: var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--color-primary);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.nav-links {
+  display: flex; gap: var(--space-1); overflow-x: auto;
+  scrollbar-width: none; flex: 1;
+}
+.nav-links::-webkit-scrollbar { display: none; }
+.nav-link {
+  font-size: var(--text-xs);
+  font-weight: 500;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  color: var(--color-text-muted);
+  transition: color var(--transition), background var(--transition);
+}
+.nav-link:hover, .nav-link.active {
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+}
+.nav-right { display: flex; align-items: center; gap: var(--space-2); margin-left: auto; flex-shrink: 0; }
+.theme-toggle {
+  width: 36px; height: 36px; border-radius: var(--radius-full);
+  display: grid; place-items: center;
+  color: var(--color-text-muted);
+  transition: background var(--transition), color var(--transition);
+}
+.theme-toggle:hover { background: var(--color-surface-offset); color: var(--color-text); }
+
+/* ===== HERO ===== */
+.hero {
+  margin-top: var(--nav-height);
+  min-height: 90vh;
+  background:
+    linear-gradient(to bottom, oklch(0.1 0.05 30 / 0.6) 0%, oklch(0.1 0.05 30 / 0.3) 60%, oklch(0.1 0.05 30 / 0.8) 100%),
+    url('https://images.unsplash.com/photo-1557129604-01bd5cb6e0e2?w=1600&auto=format&fit=crop') center/cover no-repeat;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: var(--space-16) var(--space-8);
+  position: relative;
+  overflow: hidden;
+}
+.hero-content {
+  max-width: var(--content-wide);
+  margin-inline: auto;
+  width: 100%;
+}
+.hero-tag {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  background: oklch(from var(--color-primary) l c h / 0.9);
+  color: #fff;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-6);
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: var(--space-4);
+  text-shadow: 0 2px 20px oklch(0 0 0 / 0.4);
+}
+.hero-title em { font-style: italic; color: oklch(0.85 0.08 60); }
+.hero-subtitle {
+  font-size: var(--text-lg);
+  color: oklch(1 0 0 / 0.8);
+  max-width: 56ch;
+  margin-bottom: var(--space-8);
+}
+.hero-pills {
+  display: flex; flex-wrap: wrap; gap: var(--space-2);
+}
+.hero-pill {
+  background: oklch(1 0 0 / 0.12);
+  border: 1px solid oklch(1 0 0 / 0.25);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  font-size: var(--text-xs);
+  font-weight: 500;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+}
+.hero-scroll {
+  position: absolute; bottom: var(--space-6); right: var(--space-8);
+  display: flex; flex-direction: column; align-items: center; gap: var(--space-1);
+  color: oklch(1 0 0 / 0.5);
+  font-size: var(--text-xs);
+  animation: bounce 2s ease-in-out infinite;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+/* ===== LAYOUT ===== */
+.container {
+  max-width: var(--content-default);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+}
+.container-wide {
+  max-width: var(--content-wide);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+}
+.section {
+  padding-block: clamp(var(--space-12), 6vw, var(--space-20));
+}
+.section-alt {
+  background: var(--color-surface);
+}
+.section-header {
+  margin-bottom: var(--space-10);
+}
+.section-label {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: var(--space-3);
+}
+.section-label::before {
+  content: '';
+  width: 24px; height: 2px;
+  background: var(--color-primary);
+  border-radius: 2px;
+}
+.section-title {
+  font-size: var(--text-xl);
+  color: var(--color-text);
+  margin-bottom: var(--space-3);
+}
+.section-desc {
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  max-width: 60ch;
+}
+
+/* ===== CARDS ===== */
+.card {
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.card:hover { box-shadow: var(--shadow-md); }
+.card-body { padding: var(--space-6); }
+.card-title {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.card-text { font-size: var(--text-sm); color: var(--color-text-muted); }
+
+/* ===== BADGE ===== */
+.badge {
+  display: inline-flex; align-items: center; gap: var(--space-1);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+}
+.badge-primary { background: var(--color-primary-light); color: var(--color-primary); }
+.badge-accent { background: var(--color-accent-light); color: var(--color-accent); }
+.badge-gold { background: var(--color-gold-light); color: var(--color-gold); }
+.badge-green { background: #e8f5e0; color: #3a7a10; }
+[data-theme="dark"] .badge-green { background: #1a3010; color: #6daa45; }
+
+/* ===== VOLO CARDS ===== */
+.flight-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: var(--space-5);
+}
+.flight-card {
+  background: var(--color-surface-2);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  position: relative;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.flight-card:hover { box-shadow: var(--shadow-md); }
+.flight-card.recommended {
+  border-color: var(--color-primary);
+  background: linear-gradient(135deg, var(--color-surface-2) 80%, var(--color-primary-light) 100%);
+}
+.flight-card-label {
+  position: absolute; top: -1px; right: var(--space-4);
+  background: var(--color-primary);
+  color: #fff;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  padding: var(--space-1) var(--space-3);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+}
+.flight-name {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-1);
+}
+.flight-airline {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-4);
+}
+.flight-price {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: var(--space-4);
+}
+.flight-price span { font-size: var(--text-sm); font-weight: 400; color: var(--color-text-muted); }
+.flight-detail {
+  display: flex; flex-direction: column; gap: var(--space-2);
+}
+.flight-row {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-size: var(--text-sm);
+  padding-block: var(--space-2);
+  border-bottom: 1px solid var(--color-divider);
+}
+.flight-row:last-child { border-bottom: none; }
+.flight-row-label { color: var(--color-text-muted); }
+.flight-row-value { font-weight: 500; text-align: right; }
+.pros-cons {
+  margin-top: var(--space-4);
+  display: flex; flex-direction: column; gap: var(--space-2);
+}
+.pro, .con {
+  font-size: var(--text-xs);
+  display: flex; gap: var(--space-2); align-items: flex-start;
+}
+.pro::before { content: '✓'; color: #3a7a10; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+.con::before { content: '✗'; color: #a03030; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+/* ===== METEO ===== */
+.meteo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr));
+  gap: var(--space-4);
+}
+.meteo-stat {
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+  text-align: center;
+  transition: box-shadow var(--transition);
+}
+.meteo-stat:hover { box-shadow: var(--shadow-sm); }
+.meteo-icon {
+  font-size: 2rem;
+  margin-bottom: var(--space-2);
+  display: block;
+}
+.meteo-value {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-primary);
+  display: block;
+  margin-bottom: var(--space-1);
+}
+.meteo-label {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  display: block;
+}
+
+/* ===== ITINERARY TIMELINE ===== */
+.timeline {
+  position: relative;
+  display: flex; flex-direction: column; gap: 0;
+}
+.timeline::before {
+  content: '';
+  position: absolute; left: 28px; top: 48px; bottom: 48px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--color-primary), var(--color-accent));
+  border-radius: 2px;
+}
+.timeline-day {
+  display: flex; gap: var(--space-5);
+  padding-block: var(--space-3);
+  position: relative;
+  cursor: pointer;
+}
+.timeline-dot {
+  width: 56px; height: 56px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  color: #fff;
+  display: grid; place-items: center;
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  position: relative; z-index: 1;
+  box-shadow: 0 0 0 4px var(--color-bg), var(--shadow-sm);
+  transition: transform var(--transition), background var(--transition);
+}
+.timeline-day:hover .timeline-dot { transform: scale(1.08); background: var(--color-primary-hover); }
+.timeline-content {
+  flex: 1;
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  transition: box-shadow var(--transition);
+  margin-block: var(--space-1);
+}
+.timeline-day:hover .timeline-content { box-shadow: var(--shadow-md); }
+.timeline-header {
+  padding: var(--space-4) var(--space-5);
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: var(--space-3);
+}
+.timeline-date {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: var(--space-1);
+}
+.timeline-title {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 700;
+}
+.timeline-expand-btn {
+  flex-shrink: 0;
+  width: 28px; height: 28px;
+  border-radius: var(--radius-full);
+  background: var(--color-surface-offset);
+  color: var(--color-text-muted);
+  display: grid; place-items: center;
+  transition: background var(--transition), transform var(--transition);
+  margin-top: var(--space-1);
+}
+.timeline-day.open .timeline-expand-btn { transform: rotate(180deg); background: var(--color-primary-light); color: var(--color-primary); }
+.timeline-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.timeline-day.open .timeline-body { max-height: 2000px; }
+.timeline-body-inner {
+  padding: 0 var(--space-5) var(--space-5);
+  display: flex; flex-direction: column; gap: var(--space-4);
+  border-top: 1px solid var(--color-divider);
+  padding-top: var(--space-4);
+}
+.timeline-schedule {
+  display: flex; flex-direction: column; gap: var(--space-2);
+}
+.schedule-row {
+  display: flex; gap: var(--space-3); align-items: baseline;
+  font-size: var(--text-sm);
+}
+.schedule-time {
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: var(--text-xs);
+  white-space: nowrap;
+  min-width: 50px;
+}
+.schedule-activity { flex: 1; }
+.highlight-box {
+  background: var(--color-primary-light);
+  border-left: 3px solid var(--color-primary);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--text-sm);
+}
+.highlight-box strong { color: var(--color-primary); }
+[data-theme="dark"] .highlight-box {
+  background: var(--color-primary-light);
+}
+.warning-box {
+  background: var(--color-gold-light);
+  border-left: 3px solid var(--color-gold);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--text-sm);
+}
+.info-box {
+  background: var(--color-accent-light);
+  border-left: 3px solid var(--color-accent);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--text-sm);
+}
+.day-pills {
+  display: flex; flex-wrap: wrap; gap: var(--space-2);
+}
+
+/* ===== ATTRAZIONI ===== */
+.attractions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+  gap: var(--space-5);
+}
+.attraction-card {
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.attraction-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.attraction-image {
+  height: 120px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+.attraction-body { padding: var(--space-4) var(--space-5); }
+.attraction-name {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 700;
+  margin-bottom: var(--space-1);
+}
+.attraction-desc {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-3);
+  min-height: 3em;
+}
+.attraction-meta {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: var(--text-xs);
+}
+.attraction-price {
+  font-weight: 700;
+  color: var(--color-primary);
+}
+.booking-tag {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+}
+.booking-required { background: #fde8e8; color: #9a2020; }
+[data-theme="dark"] .booking-required { background: #3a1010; color: #e06060; }
+.booking-recommended { background: var(--color-gold-light); color: var(--color-gold); }
+.booking-optional { background: #e8f5e0; color: #3a7a10; }
+[data-theme="dark"] .booking-optional { background: #1a3010; color: #6daa45; }
+
+/* ===== RISTORANTI ===== */
+.restaurants-filter {
+  display: flex; flex-wrap: wrap; gap: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+.filter-btn {
+  font-size: var(--text-xs);
+  font-weight: 500;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-2);
+  color: var(--color-text-muted);
+  transition: all var(--transition);
+}
+.filter-btn:hover, .filter-btn.active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+.restaurants-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+  gap: var(--space-5);
+}
+.restaurant-card {
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+  transition: box-shadow var(--transition);
+}
+.restaurant-card:hover { box-shadow: var(--shadow-md); }
+.restaurant-card[data-hidden="true"] { display: none; }
+.restaurant-name {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 700;
+  margin-bottom: var(--space-1);
+}
+.restaurant-meta {
+  display: flex; flex-wrap: wrap; gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+.restaurant-rating {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--color-gold);
+}
+.restaurant-price {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+.restaurant-cuisine {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+.restaurant-desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-3);
+}
+.michelin-badge {
+  display: inline-flex; align-items: center; gap: var(--space-1);
+  font-size: 10px;
+  font-weight: 700;
+  background: #e8001d;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+/* ===== ALLOGGI ===== */
+.accommodation-tabs {
+  display: flex; gap: var(--space-2); flex-wrap: wrap;
+  margin-bottom: var(--space-6);
+}
+.acc-tab {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-2);
+  color: var(--color-text-muted);
+  transition: all var(--transition);
+}
+.acc-tab.active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+.acc-panel { display: none; }
+.acc-panel.active { display: block; }
+.accommodation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+  gap: var(--space-5);
+}
+.acc-card {
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+  position: relative;
+  transition: box-shadow var(--transition);
+}
+.acc-card:hover { box-shadow: var(--shadow-md); }
+.acc-card.top-pick { border-color: var(--color-primary); }
+.acc-card-badge {
+  position: absolute; top: var(--space-3); right: var(--space-3);
+}
+.acc-name {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 700;
+  margin-bottom: var(--space-1);
+  padding-right: var(--space-16);
+}
+.acc-location {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-3);
+}
+.acc-specs {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+.acc-spec {
+  display: flex; flex-direction: column;
+  font-size: var(--text-xs);
+}
+.acc-spec-label { color: var(--color-text-muted); }
+.acc-spec-value { font-weight: 600; }
+.acc-desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  border-top: 1px solid var(--color-divider);
+  padding-top: var(--space-3);
+}
+
+/* ===== BUDGET ===== */
+.budget-scenarios {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: var(--space-5);
+  margin-bottom: var(--space-8);
+}
+.budget-card {
+  background: var(--color-surface-2);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+}
+.budget-card.best { border-color: var(--color-primary); }
+.budget-scenario { font-size: var(--text-xs); font-weight: 600; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: var(--space-2); }
+.budget-total {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: var(--space-4);
+}
+.budget-line {
+  display: flex; justify-content: space-between;
+  padding-block: var(--space-2);
+  border-bottom: 1px solid var(--color-divider);
+  font-size: var(--text-sm);
+}
+.budget-line:last-child { border-bottom: none; }
+.budget-line-label { color: var(--color-text-muted); }
+.budget-line-value { font-weight: 600; }
+
+/* ===== ATTIVITÀ ===== */
+.activities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+  gap: var(--space-4);
+}
+.activity-card {
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+  display: flex; flex-direction: column; gap: var(--space-3);
+  transition: box-shadow var(--transition);
+}
+.activity-card:hover { box-shadow: var(--shadow-md); }
+.activity-icon { font-size: 2rem; }
+.activity-name {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 700;
+}
+.activity-price {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+.activity-desc { font-size: var(--text-sm); color: var(--color-text-muted); }
+
+/* ===== CHECKLIST ===== */
+.checklist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+  gap: var(--space-5);
+}
+.checklist-group {
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+}
+.checklist-group-title {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 700;
+  margin-bottom: var(--space-4);
+  display: flex; align-items: center; gap: var(--space-2);
+}
+.checklist-item {
+  display: flex; align-items: flex-start; gap: var(--space-3);
+  padding-block: var(--space-2);
+  border-bottom: 1px solid var(--color-divider);
+  font-size: var(--text-sm);
+  cursor: pointer;
+  transition: opacity var(--transition);
+}
+.checklist-item:last-child { border-bottom: none; }
+.checklist-item.checked { opacity: 0.5; text-decoration: line-through; }
+.check-box {
+  width: 18px; height: 18px; border-radius: var(--radius-sm);
+  border: 2px solid var(--color-border);
+  flex-shrink: 0;
+  display: grid; place-items: center;
+  margin-top: 1px;
+  transition: all var(--transition);
+}
+.checklist-item.checked .check-box {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+.check-box svg { display: none; }
+.checklist-item.checked .check-box svg { display: block; }
+
+/* ===== NUMERI UTILI ===== */
+.numbers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr));
+  gap: var(--space-4);
+}
+.number-card {
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-4) var(--space-5);
+  display: flex; align-items: center; gap: var(--space-4);
+}
+.number-icon {
+  width: 44px; height: 44px; border-radius: var(--radius-full);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  display: grid; place-items: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+.number-info { min-width: 0; }
+.number-service { font-size: var(--text-xs); color: var(--color-text-muted); }
+.number-value { font-weight: 700; font-size: var(--text-sm); }
+
+/* ===== INFO BANNER ===== */
+.info-banner {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5) var(--space-6);
+  display: flex; gap: var(--space-4); align-items: flex-start;
+  margin-bottom: var(--space-6);
+}
+.info-banner-icon {
+  font-size: 1.5rem; flex-shrink: 0;
+  margin-top: 2px;
+}
+.info-banner-content { flex: 1; }
+.info-banner-title { font-weight: 700; margin-bottom: var(--space-1); font-size: var(--text-sm); }
+.info-banner-text { font-size: var(--text-sm); color: var(--color-text-muted); }
+
+/* ===== DATA TABLE ===== */
+.data-table-wrap {
+  overflow-x: auto;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  margin-bottom: var(--space-6);
+}
+.data-table {
+  font-size: var(--text-sm);
+}
+.data-table th {
+  background: var(--color-surface-offset);
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+.data-table td {
+  padding: var(--space-3) var(--space-4);
+  border-top: 1px solid var(--color-divider);
+  vertical-align: top;
+}
+.data-table tr:hover td { background: var(--color-surface-offset); }
+
+/* ===== PROGRESS BAR ===== */
+.priority-list { display: flex; flex-direction: column; gap: var(--space-3); }
+.priority-item {
+  display: flex; align-items: center; gap: var(--space-4);
+  font-size: var(--text-sm);
+}
+.priority-num {
+  width: 28px; height: 28px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: var(--text-xs);
+  display: grid; place-items: center;
+  flex-shrink: 0;
+}
+.priority-name { flex: 1; font-weight: 500; }
+.priority-urgency {
+  font-size: var(--text-xs);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+.urgency-critical { background: #fde8e8; color: #9a2020; }
+.urgency-high { background: var(--color-primary-light); color: var(--color-primary); }
+.urgency-medium { background: var(--color-gold-light); color: var(--color-gold); }
+[data-theme="dark"] .urgency-critical { background: #3a1010; color: #e06060; }
+[data-theme="dark"] .urgency-high { background: var(--color-primary-light); color: var(--color-primary); }
+[data-theme="dark"] .urgency-medium { background: var(--color-gold-light); color: var(--color-gold); }
+
+/* ===== CUCINA ===== */
+.food-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
+  gap: var(--space-4);
+}
+.food-card {
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-4);
+  display: flex; flex-direction: column; gap: var(--space-2);
+  text-align: center;
+  transition: box-shadow var(--transition);
+}
+.food-card:hover { box-shadow: var(--shadow-sm); }
+.food-emoji { font-size: 2rem; }
+.food-name { font-weight: 700; font-size: var(--text-sm); }
+.food-desc { font-size: var(--text-xs); color: var(--color-text-muted); }
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--color-text);
+  color: var(--color-text-inverse);
+  padding: var(--space-12) var(--space-6);
+  text-align: center;
+}
+footer .footer-title {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+  color: oklch(from var(--color-primary) l c h / 0.9);
+}
+footer p { font-size: var(--text-xs); color: oklch(1 0 0 / 0.5); max-width: 60ch; margin-inline: auto; }
+
+/* ===== FADE IN ===== */
+.fade-in { opacity: 0; }
+@supports (animation-timeline: scroll()) {
+  .fade-in {
+    animation: reveal-fade linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 80%;
+  }
+}
+@keyframes reveal-fade { to { opacity: 1; } }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .timeline::before { left: 20px; }
+  .timeline-dot { width: 40px; height: 40px; font-size: var(--text-xs); }
+  .hero { padding: var(--space-12) var(--space-5); }
+  .hero-title { font-size: clamp(2rem, 8vw, 4rem); }
+}
+@media (max-width: 480px) {
+  .nav-links { display: none; }
+  .timeline-date { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav class="site-nav" role="navigation" aria-label="Navigazione principale">
+  <div class="nav-inner">
+    <a href="#top" class="nav-logo" aria-label="Torna all'inizio">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+        <circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M7 20.5c0-1 2.24-1.5 5-1.5s5 .5 5 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      Lanzarote 2026
+    </a>
+    <div class="nav-links" role="list">
+      <a href="#voli" class="nav-link" role="listitem">✈ Voli</a>
+      <a href="#meteo" class="nav-link" role="listitem">🌤 Meteo</a>
+      <a href="#auto" class="nav-link" role="listitem">🚗 Auto</a>
+      <a href="#alloggi" class="nav-link" role="listitem">🏠 Alloggi</a>
+      <a href="#attrazioni" class="nav-link" role="listitem">🏔 Attrazioni</a>
+      <a href="#itinerario" class="nav-link" role="listitem">📅 Itinerario</a>
+      <a href="#ristoranti" class="nav-link" role="listitem">🍽 Ristoranti</a>
+      <a href="#attivita" class="nav-link" role="listitem">🤿 Attività</a>
+      <a href="#budget" class="nav-link" role="listitem">💶 Budget</a>
+      <a href="#consigli" class="nav-link" role="listitem">📋 Consigli</a>
+    </div>
+    <div class="nav-right">
+      <button class="theme-toggle" data-theme-toggle aria-label="Cambia tema" title="Modalità chiara/scura">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero" id="top">
+  <div class="hero-content">
+    <div class="hero-tag">🌋 Guida Completa · Primavera 2026</div>
+    <h1 class="hero-title">Lanzarote,<br><em>l'isola di lava</em></h1>
+    <p class="hero-subtitle">Due persone, auto a noleggio, l'isola di César Manrique. Dove la lava nera incontra l'Atlantico e il vento degli alisei non smette mai di raccontare storie.</p>
+    <div class="hero-pills">
+      <span class="hero-pill">26 apr – 5/6 mag</span>
+      <span class="hero-pill">9–11 notti</span>
+      <span class="hero-pill">€3.200 – €3.800 per 2</span>
+      <span class="hero-pill">Dati verificati 24 mar 2026</span>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    Scorri
+  </div>
+</header>
+
+<!-- ===== VOLI ===== -->
+<section class="section" id="voli">
+  <div class="container">
+    <header class="section-header">
+      <div class="section-label">Trasporti</div>
+      <h2 class="section-title">Tre Scenari di Volo a Confronto</h2>
+      <p class="section-desc">Tutti i prezzi verificati direttamente sui siti delle compagnie aeree il 24 marzo 2026. Non esistono altre alternative dirette da Italia.</p>
+    </header>
+
+    <div class="info-banner fade-in">
+      <div class="info-banner-icon">⚠️</div>
+      <div class="info-banner-content">
+        <div class="info-banner-title">Aeroporto di riferimento: Arrecife (ACE)</div>
+        <div class="info-banner-text">Ryanair da Bergamo Orio al Serio (BGY) · easyJet da Milano Malpensa (MXP). Nessun volo diretto da altri aeroporti italiani in queste date.</div>
+      </div>
+    </div>
+
+    <div class="flight-grid">
+      <!-- Scenario A -->
+      <div class="flight-card fade-in">
+        <div class="flight-name">Scenario A</div>
+        <div class="flight-airline">Ryanair puro — il più economico</div>
+        <div class="flight-price">~€416 <span>per 2 persone</span></div>
+        <div class="flight-detail">
+          <div class="flight-row"><span class="flight-row-label">Andata</span><span class="flight-row-value">FR4001 BGY 14:40 → ACE 17:50<br><small>Dom 26 aprile</small></span></div>
+          <div class="flight-row"><span class="flight-row-label">Ritorno</span><span class="flight-row-value">FR4000 ACE 07:10 → BGY 12:00<br><small>Mar 5 maggio</small></span></div>
+          <div class="flight-row"><span class="flight-row-label">Durata</span><span class="flight-row-value">9 notti</span></div>
+          <div class="flight-row"><span class="flight-row-label">Sveglia ritorno</span><span class="flight-row-value" style="color:var(--color-primary)">04:00 ⚠️</span></div>
+          <div class="flight-row"><span class="flight-row-label">Bagaglio incluso</span><span class="flight-row-value">Borsa personale 40×20×25</span></div>
+        </div>
+        <div class="pros-cons">
+          <div class="pro">Prezzo più basso in assoluto</div>
+          <div class="pro">Stesso aeroporto A/R</div>
+          <div class="con">Sveglia alle 04:00 il 5 maggio</div>
+          <div class="con">Ultimo giorno di vacanza sacrificato</div>
+        </div>
+      </div>
+
+      <!-- Scenario B -->
+      <div class="flight-card fade-in">
+        <div class="flight-name">Scenario B</div>
+        <div class="flight-airline">easyJet puro — il più comodo</div>
+        <div class="flight-price">~€495 <span>per 2 persone</span></div>
+        <div class="flight-detail">
+          <div class="flight-row"><span class="flight-row-label">Andata</span><span class="flight-row-value">EJU3759 MXP 17:25 → ACE 20:40<br><small>Ven 25 aprile</small></span></div>
+          <div class="flight-row"><span class="flight-row-label">Ritorno</span><span class="flight-row-value">EJU3760 ACE 15:15 → MXP 20:05<br><small>Mer 6 maggio</small></span></div>
+          <div class="flight-row"><span class="flight-row-label">Durata</span><span class="flight-row-value">11 notti (+2)</span></div>
+          <div class="flight-row"><span class="flight-row-label">Sveglia ritorno</span><span class="flight-row-value" style="color:#3a7a10">Nessuna ✓</span></div>
+          <div class="flight-row"><span class="flight-row-label">Bagaglio incluso</span><span class="flight-row-value">Small cabin 45×36×20</span></div>
+        </div>
+        <div class="pros-cons">
+          <div class="pro">2 notti in più incluse</div>
+          <div class="pro">Ritorno comodissimo (15:15)</div>
+          <div class="con">~€80 in più rispetto allo Scenario A</div>
+          <div class="con">Due notti in più di alloggio da aggiungere</div>
+        </div>
+      </div>
+
+      <!-- Scenario C -->
+      <div class="flight-card recommended fade-in">
+        <div class="flight-card-label">CONSIGLIATO</div>
+        <div class="flight-name">Scenario C</div>
+        <div class="flight-airline">Combinato — il meglio dei due mondi</div>
+        <div class="flight-price">~€428 <span>per 2 persone</span></div>
+        <div class="flight-detail">
+          <div class="flight-row"><span class="flight-row-label">Andata</span><span class="flight-row-value">FR4001 BGY 14:40 → ACE 17:50<br><small>Dom 26 aprile · Ryanair</small></span></div>
+          <div class="flight-row"><span class="flight-row-label">Ritorno</span><span class="flight-row-value">EJU3760 ACE 15:15 → MXP 20:05<br><small>Mer 6 maggio · easyJet</small></span></div>
+          <div class="flight-row"><span class="flight-row-label">Durata</span><span class="flight-row-value">10 notti (+1)</span></div>
+          <div class="flight-row"><span class="flight-row-label">Sveglia ritorno</span><span class="flight-row-value" style="color:#3a7a10">Nessuna ✓</span></div>
+          <div class="flight-row"><span class="flight-row-label">Aeroporti</span><span class="flight-row-value">BGY andata · MXP ritorno</span></div>
+        </div>
+        <div class="pros-cons">
+          <div class="pro">Stesso prezzo del Ryanair puro</div>
+          <div class="pro">Ritorno comodo + 1 giorno extra</div>
+          <div class="con">Aeroporti diversi A/R (BGY → MXP)</div>
+          <div class="con">Bagaglio con due compagnie diverse</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Procedura rientro 5 maggio -->
+    <div class="info-banner fade-in" style="margin-top:var(--space-8); border-color:var(--color-primary);">
+      <div class="info-banner-icon">⏰</div>
+      <div class="info-banner-content">
+        <div class="info-banner-title">Sopravvivere al Rientro del 5 Maggio (Scenario A)</div>
+        <div class="info-banner-text">
+          22:00 a letto · 03:50 sveglia, caffè, ultimo controllo · 04:15 partenza (PDC→ACE in 10 min) · 04:40 arrivo aeroporto, riconsegna auto (pieno obbligatorio) · 05:00 ingresso terminal · 05:30 gate · 07:10 decollo · 12:00 atterraggio Bergamo.
+          <br><strong>Consiglio:</strong> la sera del 4 maggio: cena presto (19:30), passeggiata, a letto entro le 22:00.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== METEO ===== -->
+<section class="section section-alt" id="meteo">
+  <div class="container">
+    <header class="section-header">
+      <div class="section-label">Clima</div>
+      <h2 class="section-title">Meteo — Fine Aprile / Inizio Maggio</h2>
+      <p class="section-desc">Il periodo perfetto dell'anno. Dati ufficiali AEMET (1981–2010, stazione Lanzarote Aeroporto).</p>
+    </header>
+
+    <div class="meteo-grid fade-in">
+      <div class="meteo-stat"><span class="meteo-icon">🌡️</span><span class="meteo-value">23–25°C</span><span class="meteo-label">Temp. massima media</span></div>
+      <div class="meteo-stat"><span class="meteo-icon">🌙</span><span class="meteo-value">15–17°C</span><span class="meteo-label">Temp. minima (portare felpa)</span></div>
+      <div class="meteo-stat"><span class="meteo-icon">🌊</span><span class="meteo-value">18–21°C</span><span class="meteo-label">Temperatura mare</span></div>
+      <div class="meteo-stat"><span class="meteo-icon">☀️</span><span class="meteo-value">8–9,5 h</span><span class="meteo-label">Ore di sole al giorno</span></div>
+      <div class="meteo-stat"><span class="meteo-icon">🌧️</span><span class="meteo-value">0–1,3</span><span class="meteo-label">Giorni di pioggia/mese</span></div>
+      <div class="meteo-stat"><span class="meteo-icon">💨</span><span class="meteo-value">22–25 km/h</span><span class="meteo-label">Vento medio (NE Alisei)</span></div>
+      <div class="meteo-stat"><span class="meteo-icon">🔆</span><span class="meteo-value">UV 9–10</span><span class="meteo-label">Indice UV (SPF 50+ sempre)</span></div>
+      <div class="meteo-stat"><span class="meteo-icon">💧</span><span class="meteo-value">66–69%</span><span class="meteo-label">Umidità relativa</span></div>
+    </div>
+
+    <!-- Vento -->
+    <div style="display:grid; grid-template-columns: repeat(auto-fit,minmax(min(280px,100%),1fr)); gap:var(--space-5); margin-top:var(--space-8);">
+      <div class="info-box fade-in" style="border-radius:var(--radius-xl); padding:var(--space-5);">
+        <strong>💨 Vento Alisei</strong><br>
+        Lanzarote è l'isola più ventosa delle Canarie. Il NE alisei soffia quasi ogni giorno, più forte nel pomeriggio. Non è fastidioso — è la colonna sonora del viaggio.<br><br>
+        <strong>Spiagge protette</strong> (Papagayo, Playa Chica): godibili tutto il giorno.<br>
+        <strong>Spiagge esposte</strong> (Famara, Las Conchas): perfette per surf e passeggiate.
+      </div>
+      <div class="warning-box fade-in" style="border-radius:var(--radius-xl); padding:var(--space-5);">
+        <strong>🟡 Calima (Polvere del Sahara)</strong><br>
+        In maggio il rischio è al <strong>minimo annuale (DAI 0,56)</strong>. Se arriva (cielo giallastro, aria secca), attivare piano B al chiuso:<br><br>
+        Cueva de los Verdes · Jameos del Agua · Fondazione Manrique · Bodegas La Geria · LagOmar · MIAC Castillo San José<br><br>
+        <small>Monitoraggio: <strong>calimacanarias.com</strong> · App IQAir · AEMET allerte</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AUTO ===== -->
+<section class="section" id="auto">
+  <div class="container">
+    <header class="section-header">
+      <div class="section-label">Trasporti</div>
+      <h2 class="section-title">Noleggio Auto</h2>
+      <p class="section-desc">€11–18/giorno con operatori locali. Molto meno di quanto stimato nelle guide generiche. Assicurazione completa zero franchigia inclusa.</p>
+    </header>
+    <div class="info-banner fade-in">
+      <div class="info-banner-icon">⛽</div>
+      <div class="info-banner-content">
+        <div class="info-banner-title">Regime fiscale speciale Canarie</div>
+        <div class="info-banner-text">Benzina ~€1,20–1,30/litro (20% in meno della penisola). Per ~800 km stimati: €70–80 di carburante. Politica carburante: <strong>pieno per pieno</strong>. Penale ~€50 se si riconsegna senza pieno.</div>
+      </div>
+    </div>
+    <div class="data-table-wrap fade-in">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Operatore</th>
+            <th>Prezzo 9 gg</th>
+            <th>Copertura</th>
+            <th>2° conducente</th>
+            <th>Deposito</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>AutoReisen</strong></td><td>€100–170</td><td>Zero franchigia</td><td>Gratuito</td><td>Nessuno</td></tr>
+          <tr><td><strong>CICAR</strong></td><td>€120–225</td><td>Zero franchigia</td><td>Gratuito</td><td>Nessuno</td></tr>
+          <tr><td><strong>Cabrera Medina</strong></td><td>€150–250</td><td>Zero franchigia</td><td>Gratuito</td><td>Nessuno</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="highlight-box fade-in">
+      <strong>Consiglio:</strong> Prenotare 4–6 settimane prima. Evitare le catene internazionali (Hertz, Europcar, Sixt) — gli operatori locali offrono lo stesso servizio con assicurazione completa già inclusa e prezzi inferiori.
+    </div>
+  </div>
+</section>
+
+<!-- ===== ALLOGGI ===== -->
+<section class="section section-alt" id="alloggi">
+  <div class="container">
+    <header class="section-header">
+      <div class="section-label">Dove Dormire</div>
+      <h2 class="section-title">Il Concetto della Doppia Base</h2>
+      <p class="section-desc">Tre strategie per vivere al meglio Lanzarote — dalla comodità turistica di Puerto del Carmen all'autenticità vulcanica dell'entroterra.</p>
+    </header>
+
+    <div class="accommodation-tabs" role="tablist">
+      <button class="acc-tab active" role="tab" onclick="showAccTab('pdc')" aria-selected="true">🏖 Strategia 1 — Puerto del Carmen</button>
+      <button class="acc-tab" role="tab" onclick="showAccTab('authentic')" aria-selected="false">🌋 Strategia 2 — Zona Autentica</button>
+      <button class="acc-tab" role="tab" onclick="showAccTab('combined')" aria-selected="false">⭐ Strategia 3 — Metà e Metà (Consigliata)</button>
+    </div>
+
+    <div class="acc-panel active" id="acc-pdc">
+      <div class="info-banner" style="margin-bottom:var(--space-5);">
+        <div class="info-banner-icon">📍</div>
+        <div class="info-banner-content">
+          <div class="info-banner-title">La scelta classica</div>
+          <div class="info-banner-text">Puerto del Carmen: vicina all'aeroporto (10 min), piena di ristoranti, spiagge accessibili, tutti i servizi. Perfetta per chi non vuole pensare alla logistica.</div>
+        </div>
+      </div>
+      <div class="accommodation-grid">
+        <div class="acc-card top-pick fade-in">
+          <div class="acc-card-badge"><span class="badge badge-primary">⭐ Top Pick</span></div>
+          <div class="acc-name">Club Oceano</div>
+          <div class="acc-location">📍 Puerto del Carmen — sopra Playa Grande</div>
+          <div class="acc-specs">
+            <div class="acc-spec"><span class="acc-spec-label">Prezzo 9 notti</span><span class="acc-spec-value">~€900–1.100</span></div>
+            <div class="acc-spec"><span class="acc-spec-label">Voto</span><span class="acc-spec-value">9.6/10 (1.594 rec.)</span></div>
+            <div class="acc-spec"><span class="acc-spec-label">Piscine</span><span class="acc-spec-value">2 infinity + jacuzzi</span></div>
+            <div class="acc-spec"><span class="acc-spec-label">Parcheggio</span><span class="acc-spec-value">Incluso</span></div>
+          </div>
+          <div class="acc-desc">Cucina completa (frigo, forno, congelatore), bar a bordo piscina, supermercato a 50 m. Fidelizzazione altissima degli ospiti. Niente A/C — a Lanzarote non serve.</div>
+        </div>
+        <div class="acc-card fade-in">
+          <div class="acc-name">ILUNION Costa Sal</div>
+          <div class="acc-location">📍 Matagorda (PDC)</div>
+          <div class="acc-specs">
+            <div class="acc-spec"><span class="acc-spec-label">Prezzo 9 notti</span><span class="acc-spec-value">~€1.200–1.700</span></div>
+            <div class="acc-spec"><span class="acc-spec-label">Voto</span><span class="acc-spec-value">9.2/10 Vrbo</span></div>
+            <div class="acc-spec"><span class="acc-spec-label">Servizi</span><span class="acc-spec-value">2 piscine + spa</span></div>
+            <div class="acc-spec"><span class="acc-spec-label">Cucina</span><span class="acc-spec-value">Completa + lavastoviglie</span></div>
+          </div>
+          <div class="acc-desc">Appartamenti ben attrezzati con spa. Ideale per chi cerca maggiore comfort.</div>
+        </div>
+        <div class="acc-card fade-in">
+          <div class="acc-name">HG Lomo Blanco</div>
+          <div class="acc-location">📍 Posizione centrale PDC</div>
+          <div class="acc-specs">
+            <div class="acc-spec"><span class="acc-spec-label">Prezzo 9 notti</span><span class="acc-spec-value">~€700–950</span></div>
+            <div class="acc-spec"><span class="acc-spec-label">Piscine</span><span class="acc-spec-value">3 piscine</span></div>
+          </div>
+          <div class="acc-desc">Il miglior rapporto qualità/prezzo di Puerto del Carmen.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-panel" id="acc-authentic">
+      <div class="info-banner" style="margin-bottom:var(--space-5);">
+        <div class="info-banner-icon">🌋</div>
+        <div class="info-banner-content">
+          <div class="info-banner-title">Lanzarote vera</div>
+          <div class="info-banner-text">Silenzi vulcanici, villaggi dove il turismo non è ancora arrivato, tramonti senza altri turisti. L'auto rende tutto raggiungibile.</div>
+        </div>
+      </div>
+      <div class="accommodation-grid">
+        <div class="acc-card top-pick fade-in">
+          <div class="acc-card-badge"><span class="badge badge-primary">Guest Fav.</span></div>
+          <div class="acc-name">Villa Las Breñas</div>
+          <div class="acc-location">📍 Las Breñas — sud-est, lontano dal turismo</div>
+          <div class="acc-specs">
+            <div class="acc-spec"><span class="acc-spec-label">Prezzo 9 notti</span><span class="acc-spec-value">~€1.100</span></div>
+            <div class="acc-spec"><span class="acc-spec-label">Voto</span><span class="acc-spec-value">4.93/5 (174 rec.)</span></div>
+            <div class="acc-spec"><span class="acc-spec-label">Piscina</span><span class="acc-spec-value">Privata</span></div>
+            <div class="acc-spec"><span class="acc-spec-label">Giardino</span><span class="acc-spec-value">1.500 mq</span></div>
+          </div>
+          <div class="acc-desc">Casa canaria tradizionale con piscina privata nascosta tra muri di pietra vulcanica. A 15 min da Papagayo. Superhost Annette, 11 anni su Airbnb.</div>
+        </div>
+        <div class="acc-card top-pick fade-in">
+          <div class="acc-card-badge"><span class="badge badge-gold">5.0/5</span></div>
+          <div class="acc-name">Casa Lancelot</div>
+          <div class="acc-location">📍 Tinajo — cuore dell'isola</div>
+          <div class="acc-specs">
+            <div class="acc-spec"><span class="acc-spec-label">Prezzo 9 notti</span><span class="acc-spec-value">~€1.180</span></div>
+            <div class="acc-spec"><span class="acc-spec-label">Voto</span><span class="acc-spec-value">5.0/5 (punteggio perfetto)</span></div>
+            <div class="acc-spec"><span class="acc-spec-label">Piscina</span><span class="acc-spec-value">Privata</span></div>
+            <div class="acc-spec"><span class="acc-spec-label">Extra</span><span class="acc-spec-value">Frigo pieno all'arrivo</span></div>
+          </div>
+          <div class="acc-desc">Casa canaria autentica, 2 terrazze, vista mare e montagna. Posizione strategica per Timanfaya, La Geria e Famara (15–20 min).</div>
+        </div>
+        <div class="acc-card fade-in">
+          <div class="acc-card-badge"><span class="badge badge-accent">Rare Find</span></div>
+          <div class="acc-name">Finca Chibusque</div>
+          <div class="acc-location">📍 Tinajo — casale XIX secolo</div>
+          <div class="acc-specs">
+            <div class="acc-spec"><span class="acc-spec-label">Prezzo 9 notti</span><span class="acc-spec-value">~€880</span></div>
+            <div class="acc-spec"><span class="acc-spec-label">Voto</span><span class="acc-spec-value">4.82/5</span></div>
+            <div class="acc-spec"><span class="acc-spec-label">Piscina</span><span class="acc-spec-value">Condivisa</span></div>
+          </div>
+          <div class="acc-desc">Loft in casale del 1800 restaurato. Architettura storica canaria, muri spessi. Il prezzo più basso tra le opzioni con piscina.</div>
+        </div>
+        <div class="acc-card fade-in">
+          <div class="acc-name">Bungalow Arrieta</div>
+          <div class="acc-location">📍 Arrieta — villaggio di pescatori nord</div>
+          <div class="acc-specs">
+            <div class="acc-spec"><span class="acc-spec-label">Prezzo 9 notti</span><span class="acc-spec-value">~€1.030</span></div>
+            <div class="acc-spec"><span class="acc-spec-label">Voto</span><span class="acc-spec-value">5.0/5</span></div>
+            <div class="acc-spec"><span class="acc-spec-label">Piscine</span><span class="acc-spec-value">2 condivise</span></div>
+          </div>
+          <div class="acc-desc">Bungalow terrazza vista oceano. A 5 min da Jameos del Agua e Cueva de los Verdes. Borgo marinaro autentico.</div>
+        </div>
+        <div class="acc-card fade-in">
+          <div class="acc-name">Villa Güime</div>
+          <div class="acc-location">📍 Güime — vicino aeroporto</div>
+          <div class="acc-specs">
+            <div class="acc-spec"><span class="acc-spec-label">Prezzo 9 notti</span><span class="acc-spec-value">~€1.200</span></div>
+            <div class="acc-spec"><span class="acc-spec-label">Voto</span><span class="acc-spec-value">4.91/5 (44 rec.)</span></div>
+            <div class="acc-spec"><span class="acc-spec-label">Piscina</span><span class="acc-spec-value">Privata</span></div>
+            <div class="acc-spec"><span class="acc-spec-label">Extra</span><span class="acc-spec-value">Vista oceano spettacolare</span></div>
+          </div>
+          <div class="acc-desc">Villa spaziosa 3 camere, A/C, lavatrice, 4 km dall'aeroporto. Vista oceano che toglie il respiro.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-panel" id="acc-combined">
+      <div class="info-banner" style="margin-bottom:var(--space-5); border-color:var(--color-primary);">
+        <div class="info-banner-icon">⭐</div>
+        <div class="info-banner-content">
+          <div class="info-banner-title">La formula magica — Consigliata</div>
+          <div class="info-banner-text">Dividere le notti: prime 4–5 notti a Puerto del Carmen (arrivo facile, base per sud e centro), ultime 4–5 notti in zona autentica (nord, La Graciosa, Famara).</div>
+        </div>
+      </div>
+      <div class="data-table-wrap fade-in">
+        <table class="data-table">
+          <thead>
+            <tr><th>Prima base (PDC)</th><th>Seconda base</th><th>Notti</th><th>Ideale per</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Club Oceano (4 notti)</td><td>Casa Lancelot, Tinajo</td><td>4+5</td><td>Chi vuole il cuore dell'isola</td></tr>
+            <tr><td>Club Oceano (5 notti)</td><td>Bungalow Arrieta</td><td>5+4</td><td>Chi ama mare e villaggi</td></tr>
+            <tr><td>Club Oceano (4 notti)</td><td>Villa Las Breñas</td><td>4+5</td><td>Chi cerca relax e privacy</td></tr>
+            <tr><td>Club Oceano (4 notti)</td><td>Finca Chibusque, Tinajo</td><td>4+5</td><td>Chi vuole risparmiare sull'alloggio</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="highlight-box fade-in">
+        <strong>Esempio Scenario C (10 notti):</strong> Notti 1–4 (26–30 apr): Club Oceano, PDC → Giorno 5 (30 apr): cambio alloggio durante la giornata Timanfaya/La Geria → Notti 5–10 (30 apr – 6 mag): Casa Lancelot, Tinajo.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ATTRAZIONI ===== -->
+<section class="section" id="attrazioni">
+  <div class="container-wide">
+    <div class="container">
+      <header class="section-header">
+        <div class="section-label">Centri CACT</div>
+        <h2 class="section-title">Attrazioni — Prezzi e Prenotazioni</h2>
+        <p class="section-desc">I Centri de Arte, Cultura y Turismo gestiti dai CACT. Il pass combinato non esiste più — biglietti singoli per ogni centro.</p>
+      </header>
+    </div>
+    <div class="container-wide">
+      <div class="warning-box fade-in" style="border-radius:var(--radius-xl); padding:var(--space-4) var(--space-5); margin-bottom:var(--space-6);">
+        <strong>⚠️ Attenzione critica:</strong> Per la <strong>Cueva de los Verdes non esiste biglietteria fisica</strong>. Se non prenotate online, non entrate. Timanfaya: presentarsi entro le 13:00 per evitare code.
+      </div>
+    </div>
+    <div class="container-wide">
+      <div class="attractions-grid">
+        <div class="attraction-card fade-in">
+          <div class="attraction-image" style="background:linear-gradient(135deg,#8b0000,#cc4400)">🌋</div>
+          <div class="attraction-body">
+            <div class="attraction-name">Timanfaya — Montañas del Fuego</div>
+            <div class="attraction-desc">Il parco nazionale vulcanico più spettacolare delle Canarie. Bus panoramico, geyser geotermici a 450°C. Paesaggio marziano.</div>
+            <div class="attraction-meta">
+              <span class="attraction-price">€30,00</span>
+              <span class="booking-tag booking-recommended">Online consigliata</span>
+            </div>
+            <div style="margin-top:var(--space-2);font-size:var(--text-xs);color:var(--color-text-muted)">⏱ ~90 min · 9:30–17:00</div>
+          </div>
+        </div>
+        <div class="attraction-card fade-in">
+          <div class="attraction-image" style="background:linear-gradient(135deg,#1a3a5c,#2e6b8e)">🦀</div>
+          <div class="attraction-body">
+            <div class="attraction-name">Cueva de los Verdes</div>
+            <div class="attraction-desc">6 km di gallerie laviche da 23.000 anni fa. L'illusione ottica finale lascia i visitatori senza parole. Temp. costante 18°C.</div>
+            <div class="attraction-meta">
+              <span class="attraction-price">€17,00</span>
+              <span class="booking-tag booking-required">⚠ SOLO online</span>
+            </div>
+            <div style="margin-top:var(--space-2);font-size:var(--text-xs);color:var(--color-text-muted)">⏱ 50 min · 9:30–17:15 · Slot orario</div>
+          </div>
+        </div>
+        <div class="attraction-card fade-in">
+          <div class="attraction-image" style="background:linear-gradient(135deg,#0a5c4a,#1a8c6c)">🏊</div>
+          <div class="attraction-body">
+            <div class="attraction-name">Jameos del Agua</div>
+            <div class="attraction-desc">Prima opera di Manrique (1968). Granchi bianchi ciechi endemici, piscina turchese riservata al Re di Spagna, auditorium da 550 posti.</div>
+            <div class="attraction-meta">
+              <span class="attraction-price">€15,00</span>
+              <span class="booking-tag booking-recommended">Online consigliata</span>
+            </div>
+            <div style="margin-top:var(--space-2);font-size:var(--text-xs);color:var(--color-text-muted)">⏱ 1–2 ore · 10:00–18:00</div>
+          </div>
+        </div>
+        <div class="attraction-card fade-in">
+          <div class="attraction-image" style="background:linear-gradient(135deg,#4a3a1a,#7a6030)">🏛</div>
+          <div class="attraction-body">
+            <div class="attraction-name">Fondazione César Manrique</div>
+            <div class="attraction-desc">Casa-studio su colata lavica del 1730. Cinque bolle vulcaniche trasformate in stanze — una con piscina turchese nel basalto.</div>
+            <div class="attraction-meta">
+              <span class="attraction-price">€10,00</span>
+              <span class="booking-tag booking-optional">Online o in loco</span>
+            </div>
+            <div style="margin-top:var(--space-2);font-size:var(--text-xs);color:var(--color-text-muted)">⏱ 1,5 ore · 10:00–17:30</div>
+          </div>
+        </div>
+        <div class="attraction-card fade-in">
+          <div class="attraction-image" style="background:linear-gradient(135deg,#2a5a20,#4a8a30)">🌵</div>
+          <div class="attraction-body">
+            <div class="attraction-name">Jardín de Cactus</div>
+            <div class="attraction-desc">4.500 cactus di 450 specie in una cava vulcanica restaurata. Un anfiteatro naturale tra i capolavori di Manrique.</div>
+            <div class="attraction-meta">
+              <span class="attraction-price">€9,00</span>
+              <span class="booking-tag booking-optional">Online o in loco</span>
+            </div>
+            <div style="margin-top:var(--space-2);font-size:var(--text-xs);color:var(--color-text-muted)">⏱ ~1 ora · 10:00–16:30</div>
+          </div>
+        </div>
+        <div class="attraction-card fade-in">
+          <div class="attraction-image" style="background:linear-gradient(135deg,#1a3c6a,#3060a0)">🔭</div>
+          <div class="attraction-body">
+            <div class="attraction-name">Mirador del Río</div>
+            <div class="attraction-desc">Belvedere a 479 m scavato nella scogliera. Vista su La Graciosa e gli isolotti. Progettato da Manrique. Il caffè è un momento di contemplazione pura.</div>
+            <div class="attraction-meta">
+              <span class="attraction-price">€8,50</span>
+              <span class="booking-tag booking-optional">Online o in loco</span>
+            </div>
+            <div style="margin-top:var(--space-2);font-size:var(--text-xs);color:var(--color-text-muted)">⏱ ~45 min · 10:00–17:00</div>
+          </div>
+        </div>
+        <div class="attraction-card fade-in">
+          <div class="attraction-image" style="background:linear-gradient(135deg,#5a1a3a,#9a3060)">🎨</div>
+          <div class="attraction-body">
+            <div class="attraction-name">MIAC Castillo de San José</div>
+            <div class="attraction-desc">Picasso e Miró in un castello del '700. Interno restaurato da Manrique, vetrate panoramiche sul porto. Museo d'arte contemporanea.</div>
+            <div class="attraction-meta">
+              <span class="attraction-price">€5,20</span>
+              <span class="booking-tag booking-optional">Online o in loco</span>
+            </div>
+            <div style="margin-top:var(--space-2);font-size:var(--text-xs);color:var(--color-text-muted)">⏱ ~45 min · 11:00–18:00</div>
+          </div>
+        </div>
+        <div class="attraction-card fade-in">
+          <div class="attraction-image" style="background:linear-gradient(135deg,#5a4a1a,#9a8030)">🌾</div>
+          <div class="attraction-body">
+            <div class="attraction-name">Casa Museo del Campesino</div>
+            <div class="attraction-desc">Omaggio alla vita contadina canaria. Scultura monumentale di Manrique al centro dell'isola.</div>
+            <div class="attraction-meta">
+              <span class="attraction-price">Gratuito</span>
+              <span class="booking-tag booking-optional">Nessuna prenotazione</span>
+            </div>
+            <div style="margin-top:var(--space-2);font-size:var(--text-xs);color:var(--color-text-muted)">⏱ &lt;1 ora · 10:00–18:00</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ITINERARIO ===== -->
+<section class="section section-alt" id="itinerario">
+  <div class="container">
+    <header class="section-header">
+      <div class="section-label">Pianificazione</div>
+      <h2 class="section-title">Itinerario Giorno per Giorno</h2>
+      <p class="section-desc">Costruito per lo Scenario A (9 notti, 26 apr – 5 mag). Clicca su ogni giornata per espandere i dettagli.</p>
+    </header>
+
+    <div class="timeline">
+      <!-- G1 -->
+      <div class="timeline-day" onclick="toggleDay(this)">
+        <div class="timeline-dot">G1</div>
+        <div class="timeline-content">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-date">Dom 26 Aprile</div>
+              <div class="timeline-title">Arrivo e primo tramonto canario</div>
+            </div>
+            <button class="timeline-expand-btn" aria-label="Espandi giornata">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+          </div>
+          <div class="timeline-body">
+            <div class="timeline-body-inner">
+              <div class="timeline-schedule">
+                <div class="schedule-row"><span class="schedule-time">17:50</span><span class="schedule-activity">Atterraggio ad Arrecife. Ritiro auto a noleggio (~10 min)</span></div>
+                <div class="schedule-row"><span class="schedule-time">~18:30</span><span class="schedule-activity">Arrivo a Puerto del Carmen, check-in</span></div>
+                <div class="schedule-row"><span class="schedule-time">Sera</span><span class="schedule-activity">Passeggiata sul lungomare. Tramonto ~20:15</span></div>
+              </div>
+              <div class="day-pills">
+                <span class="badge badge-primary">🍽 Taberna de Niño Pintxos</span>
+                <span class="badge badge-accent">🥩 Lomo Alto (alternativa)</span>
+              </div>
+              <div class="info-box">Scenario B (easyJet): arrivo il 25 aprile alle 20:40. Sera libera — cena semplice, riposo. Il 26 aprile diventa il primo giorno pieno.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- G2 -->
+      <div class="timeline-day" onclick="toggleDay(this)">
+        <div class="timeline-dot">G2</div>
+        <div class="timeline-content">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-date">Lun 27 Aprile</div>
+              <div class="timeline-title">Costa Sud — Papagayo, El Golfo e le Saline</div>
+            </div>
+            <button class="timeline-expand-btn" aria-label="Espandi giornata">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+          </div>
+          <div class="timeline-body">
+            <div class="timeline-body-inner">
+              <div class="timeline-schedule">
+                <div class="schedule-row"><span class="schedule-time">09:00</span><span class="schedule-activity">Partenza verso sud</span></div>
+                <div class="schedule-row"><span class="schedule-time">09:40</span><span class="schedule-activity"><strong>Spiagge di Papagayo</strong> — 5 calette turchesi, snorkeling, kayak (€30/2h tandem). Accesso via sterrata €3/persona</span></div>
+                <div class="schedule-row"><span class="schedule-time">13:00</span><span class="schedule-activity">Pranzo a Playa Blanca — Ristorante Sergio (4.8/5)</span></div>
+                <div class="schedule-row"><span class="schedule-time">15:30</span><span class="schedule-activity">Rientro via costa ovest: <strong>El Golfo</strong> (lago verde vulcanico) + <strong>Salinas del Janubio</strong></span></div>
+                <div class="schedule-row"><span class="schedule-time">Sera</span><span class="schedule-activity">Cena al Mardeleva — churros de pescado, pesce fresco, porto vecchio PDC</span></div>
+              </div>
+              <div class="highlight-box"><strong>El Golfo:</strong> cratere semisommerso con acqua color smeraldo per le alghe, incastonato in parete di cenere nera. Foto obbligatoria.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- G3 -->
+      <div class="timeline-day" onclick="toggleDay(this)">
+        <div class="timeline-dot">G3</div>
+        <div class="timeline-content">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-date">Mar 28 Aprile</div>
+              <div class="timeline-title">César Manrique e Arrecife</div>
+            </div>
+            <button class="timeline-expand-btn" aria-label="Espandi giornata">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+          </div>
+          <div class="timeline-body">
+            <div class="timeline-body-inner">
+              <div class="timeline-schedule">
+                <div class="schedule-row"><span class="schedule-time">10:00</span><span class="schedule-activity"><strong>Fondazione César Manrique</strong> a Tahíche — €10. Cinque bolle vulcaniche trasformate in stanze di vita</span></div>
+                <div class="schedule-row"><span class="schedule-time">12:00</span><span class="schedule-activity">Guida ad Arrecife. Pranzo al Charco de San Ginés — Bar Andalucía 1960 (gestito da Massimo, italiano). 4.7/5, €</span></div>
+                <div class="schedule-row"><span class="schedule-time">14:30</span><span class="schedule-activity"><strong>MIAC Castillo de San José</strong> — €5,20. Picasso e Miró in un castello del '700</span></div>
+                <div class="schedule-row"><span class="schedule-time">Sera</span><span class="schedule-activity">Asian Home Restaurant (4.9/5, #1 a PDC) oppure Vino+ Lanzarote (wine bar Malvasía)</span></div>
+              </div>
+              <div class="highlight-box"><strong>💡 Giornata perfetta anche in caso di calima o pioggia</strong> — quasi tutta al chiuso.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- G4 -->
+      <div class="timeline-day" onclick="toggleDay(this)">
+        <div class="timeline-dot">G4</div>
+        <div class="timeline-content">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-date">Mer 29 Aprile</div>
+              <div class="timeline-title">Le Grotte e il Nord</div>
+            </div>
+            <button class="timeline-expand-btn" aria-label="Espandi giornata">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+          </div>
+          <div class="timeline-body">
+            <div class="timeline-body-inner">
+              <div class="info-box" style="margin-bottom:var(--space-3)">Due versioni: <strong>Opzione A</strong> (energici): Grotte + Mirador del Río. <strong>Opzione B</strong> (ritmo giusto): solo grotte + pranzo ad Arrieta.</div>
+              <div class="timeline-schedule">
+                <div class="schedule-row"><span class="schedule-time">09:30</span><span class="schedule-activity"><strong>Cueva de los Verdes</strong> — €17. SLOT PRENOTATO. Illusione ottica finale con il riflesso della pozza</span></div>
+                <div class="schedule-row"><span class="schedule-time">10:40</span><span class="schedule-activity"><strong>Jameos del Agua</strong> — €15. Granchi bianchi ciechi (*Munidopsis polymorpha*), piscina del Re</span></div>
+                <div class="schedule-row"><span class="schedule-time">12:15</span><span class="schedule-activity">Pranzo ad <strong>Arrieta</strong> — pesce fresco, atmosfera di villaggio (Op. B: piscine naturali + relax)</span></div>
+                <div class="schedule-row"><span class="schedule-time">13:25</span><span class="schedule-activity"><strong>Mirador del Río</strong> — €8,50 (Op. A). Vista mozzafiato su La Graciosa a 479 m</span></div>
+                <div class="schedule-row"><span class="schedule-time">Sera</span><span class="schedule-activity">La Carmencita del Puerto — tapas, #3 su TripAdvisor PDC. <strong>Prenotazione INDISPENSABILE</strong></span></div>
+              </div>
+              <div class="warning-box"><strong>La Carmencita:</strong> solo ~12 tavoli, lun–ven 19:00–23:00 (chiuso sab-dom). Tel: +34 928 29 11 69. Non andarci senza prenotazione.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- G5 -->
+      <div class="timeline-day" onclick="toggleDay(this)">
+        <div class="timeline-dot">G5</div>
+        <div class="timeline-content">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-date">Gio 30 Aprile</div>
+              <div class="timeline-title">Vulcani e Vini — Timanfaya e La Geria</div>
+            </div>
+            <button class="timeline-expand-btn" aria-label="Espandi giornata">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+          </div>
+          <div class="timeline-body">
+            <div class="timeline-body-inner">
+              <div class="timeline-schedule">
+                <div class="schedule-row"><span class="schedule-time">09:30</span><span class="schedule-activity"><strong>Timanfaya</strong> — €30. Ruta de los Volcanes in bus (35 min) + dimostrazioni geotermiche</span></div>
+                <div class="schedule-row"><span class="schedule-time">12:00</span><span class="schedule-activity"><strong>Pranzo al Ristorante El Diablo</strong> — il vulcano cuoce a 450°C. Pollo vulcanico €17,50. No prenotazioni</span></div>
+                <div class="schedule-row"><span class="schedule-time">13:15</span><span class="schedule-activity">Opzione: <strong>Giro in dromedario</strong> €11/persona (20 min) — Echadero de los Camellos</span></div>
+                <div class="schedule-row"><span class="schedule-time">14:30</span><span class="schedule-activity"><strong>La Geria</strong> — Bodegas: Rubicón (gratuito, da €1/calice) + El Grifo (Wine Lovers €50, 2h, 6 vini)</span></div>
+                <div class="schedule-row"><span class="schedule-time">17:00</span><span class="schedule-activity">Rientro/check-in nuova base (Strategia 3)</span></div>
+              </div>
+              <div class="highlight-box"><strong>El Grifo (1775):</strong> la più antica cantina delle Canarie. Alcune viti hanno oltre 200 anni — sfuggirono alla filossera dell'Ottocento. Prenotare!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- G6 -->
+      <div class="timeline-day" onclick="toggleDay(this)">
+        <div class="timeline-dot">G6</div>
+        <div class="timeline-content">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-date">Ven 1 Maggio — Festivo</div>
+              <div class="timeline-title">Noches de Jameos del Agua 🌙</div>
+            </div>
+            <button class="timeline-expand-btn" aria-label="Espandi giornata">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+          </div>
+          <div class="timeline-body">
+            <div class="timeline-body-inner">
+              <div class="warning-box" style="margin-bottom:var(--space-3)"><strong>1° Maggio festivo:</strong> CACT aperte. Mercadona chiusa — fare scorta il 30 aprile. Ristoranti turistici aperti.</div>
+              <div class="timeline-schedule">
+                <div class="schedule-row"><span class="schedule-time">Mattina</span><span class="schedule-activity">Relax: spiaggia o Jardín de Cactus (€9) + Casa Museo del Campesino (gratuito)</span></div>
+                <div class="schedule-row"><span class="schedule-time">18:30</span><span class="schedule-activity"><strong>Noches de Jameos del Agua</strong> — ingresso + visita grotta al crepuscolo</span></div>
+                <div class="schedule-row"><span class="schedule-time">18:30–21:00</span><span class="schedule-activity">Cena gourmet nel tubo di lava con vini Lanzarote inclusi</span></div>
+                <div class="schedule-row"><span class="schedule-time">22:30</span><span class="schedule-activity">Concerto Quartetto Toñín Corujo (timple, percussioni, sax, chitarra) — 550 posti nell'auditorium di basalto</span></div>
+                <div class="schedule-row"><span class="schedule-time">~24:00</span><span class="schedule-activity">DJ set e chiusura</span></div>
+              </div>
+              <div class="highlight-box">
+                <strong>Noches de Jameos:</strong> €98/persona (menu standard) · €88 vegano · €49 bambini 7–12.<br>
+                Prenotazione obbligatoria online — posti limitati. <strong>Il 1° maggio è venerdì: è il venerdì giusto.</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- G7 -->
+      <div class="timeline-day" onclick="toggleDay(this)">
+        <div class="timeline-dot">G7</div>
+        <div class="timeline-content">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-date">Sab 2 Maggio</div>
+              <div class="timeline-title">La Graciosa — L'ottava isola 🏝</div>
+            </div>
+            <button class="timeline-expand-btn" aria-label="Espandi giornata">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+          </div>
+          <div class="timeline-body">
+            <div class="timeline-body-inner">
+              <div class="timeline-schedule">
+                <div class="schedule-row"><span class="schedule-time">07:30</span><span class="schedule-activity">Partenza verso Órzola (da PDC ~45 min, da Arrieta ~20 min)</span></div>
+                <div class="schedule-row"><span class="schedule-time">08:30</span><span class="schedule-activity">Traghetto Órzola → Caleta del Sebo — €29 A/R/persona (25 min traversata)</span></div>
+                <div class="schedule-row"><span class="schedule-time">09:00–16:00</span><span class="schedule-activity"><strong>La Graciosa:</strong> niente asfalto, niente auto. Bici ~€15/gg → Playa de Las Conchas (600 m sabbia bianca) o Tour jeep Yotomu €55/persona</span></div>
+                <div class="schedule-row"><span class="schedule-time">16:30</span><span class="schedule-activity">Traghetto ritorno</span></div>
+              </div>
+              <div class="warning-box">
+                <strong>Rischio mare mosso:</strong> controllare Windguru Orzola 48h prima. Tariffa rimborsabile (cancellazione gratuita 24h). Prendere il traghetto del mattino — alisei ancora deboli.
+                <br><strong>Piano B:</strong> LagOmar a Nazaret (il palazzo di Omar Sharif), museo e bar nella caverna.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- G8 -->
+      <div class="timeline-day" onclick="toggleDay(this)">
+        <div class="timeline-dot">G8</div>
+        <div class="timeline-content">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-date">Dom 3 Maggio</div>
+              <div class="timeline-title">Mercato di Teguise + Famara 🏄</div>
+            </div>
+            <button class="timeline-expand-btn" aria-label="Espandi giornata">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+          </div>
+          <div class="timeline-body">
+            <div class="timeline-body-inner">
+              <div class="timeline-schedule">
+                <div class="schedule-row"><span class="schedule-time">09:00</span><span class="schedule-activity"><strong>Mercato di Teguise</strong> — 400+ bancarelle, musica folk, artigianato (Malvasía, mojo, calado). Parcheggio €2</span></div>
+                <div class="schedule-row"><span class="schedule-time">12:30</span><span class="schedule-activity">Arrivo a <strong>Famara</strong></span></div>
+                <div class="schedule-row"><span class="schedule-time">13:00</span><span class="schedule-activity"><strong>Pranzo a El Risco</strong> — Bib Gourmand Michelin. Pesce km0, vista Playa de Famara + La Graciosa. <strong>PRENOTARE: +34 928 52 85 50</strong></span></div>
+                <div class="schedule-row"><span class="schedule-time">14:30</span><span class="schedule-activity"><strong>Playa de Famara</strong> — 7 km di spiaggia selvaggia ai piedi del Risco. Surf, lezione con Calima Surf o Red Star (~€50/2h)</span></div>
+              </div>
+              <div class="highlight-box">
+                <strong>Alternativa pranzo:</strong> Palacio Ico a Teguise — fine dining in palazzo del 1690. Chef formato da Berasategui. Menu €75–95. Sommelier #11 in Spagna 2024. Michelin Recommended 2025.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- G9 -->
+      <div class="timeline-day" onclick="toggleDay(this)">
+        <div class="timeline-dot">G9</div>
+        <div class="timeline-content">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-date">Lun 4 Maggio</div>
+              <div class="timeline-title">Giornata Jolly — Scegli tu 🎲</div>
+            </div>
+            <button class="timeline-expand-btn" aria-label="Espandi giornata">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+          </div>
+          <div class="timeline-body">
+            <div class="timeline-body-inner">
+              <div class="day-pills" style="margin-bottom:var(--space-3)">
+                <span class="badge badge-primary">🏝 La Graciosa (se non fatta)</span>
+                <span class="badge badge-accent">🤿 Museo Atlántico subacqueo</span>
+                <span class="badge badge-gold">⛵ Catamarano tramonto €50–70</span>
+                <span class="badge badge-primary">🍷 Tornare al posto preferito</span>
+                <span class="badge badge-accent">🏰 LagOmar + Relax</span>
+              </div>
+              <div class="info-box" style="margin-bottom:var(--space-3)">
+                <strong>Museo Atlántico (Playa Blanca):</strong> 300+ sculture di Jason deCaires Taylor a 12–14 m di profondità. Primo museo d'arte sottomarino in Europa. Discover Scuba + museo €148 · certificati ~€65. Prenotare 2–3 settimane prima.
+              </div>
+              <div class="highlight-box">
+                <strong>🍽 Cena finale — La Cocina de Colacho</strong> (Playa Blanca): 8 tavoli, chef Nicolás Machín, menu degustazione 8–10 portate a €95–105/persona. Michelin "Good Cooking" 2026. <strong>Prenotazione obbligatoria: +34 928 51 96 91.</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- G10 -->
+      <div class="timeline-day" onclick="toggleDay(this)">
+        <div class="timeline-dot">G10</div>
+        <div class="timeline-content">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-date">Mar 5 Maggio (Sc. A) · 5–6 Mag (Sc. B/C)</div>
+              <div class="timeline-title">Rientro o Giorni Bonus ✈️</div>
+            </div>
+            <button class="timeline-expand-btn" aria-label="Espandi giornata">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+          </div>
+          <div class="timeline-body">
+            <div class="timeline-body-inner">
+              <div class="info-box" style="margin-bottom:var(--space-3)"><strong>Scenario A:</strong> Sveglia 03:50 → 07:10 FR4000 → 12:00 Bergamo</div>
+              <div class="highlight-box" style="margin-bottom:var(--space-3)"><strong>Scenario C (10 notti):</strong> Mattina libera (Papagayo, Famara, piscina) → 12:30 check-out → 13:00 riconsegna auto → 15:15 EJU3760 → 20:05 Malpensa</div>
+              <div class="info-box"><strong>Scenario B (11 notti):</strong> Giorno 10 libero (LagOmar, Papagayo, surf, relax) → Giorno 11: stessa procedura Scenario C. Usate le 2 notti extra per ripetere le esperienze preferite.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RISTORANTI ===== -->
+<section class="section" id="ristoranti">
+  <div class="container">
+    <header class="section-header">
+      <div class="section-label">Gastronomia</div>
+      <h2 class="section-title">Ristoranti — Guida Completa</h2>
+      <p class="section-desc">Da Michelin a trattorie di villaggio. Legenda prezzi: € = fino €15 · €€ = €15–30 · €€€ = €30–50 · €€€€ = €50+</p>
+    </header>
+
+    <div class="restaurants-filter">
+      <button class="filter-btn active" onclick="filterRestaurants(this, 'all')">Tutti</button>
+      <button class="filter-btn" onclick="filterRestaurants(this, 'pdc')">Puerto del Carmen</button>
+      <button class="filter-btn" onclick="filterRestaurants(this, 'fuori')">Fuori PDC</button>
+      <button class="filter-btn" onclick="filterRestaurants(this, 'michelin')">🔴 Michelin</button>
+      <button class="filter-btn" onclick="filterRestaurants(this, 'book')">Prenotazione obbligatoria</button>
+    </div>
+
+    <div class="restaurants-grid">
+      <div class="restaurant-card fade-in" data-zone="fuori" data-michelin="yes" data-book="yes">
+        <div class="restaurant-name">La Cocina de Colacho <span class="michelin-badge">🔴 Michelin Good Cooking</span></div>
+        <div class="restaurant-meta">
+          <span class="restaurant-rating">★ 4.7/5</span>
+          <span class="restaurant-price">€€€€</span>
+          <span class="restaurant-cuisine">Tasting menu canario</span>
+        </div>
+        <div class="restaurant-desc">8 tavoli, chef Nicolás Machín a vista. Menu degustazione 8–10 portate. Cherne con patate al timo, soufflé al cioccolato. Il migliore dell'isola secondo molti.</div>
+        <div style="font-size:var(--text-xs);color:var(--color-text-muted)">📍 Playa Blanca · €95–105/persona · Lun–Gio 18:00–22:30 · <strong>Tel: +34 928 51 96 91</strong></div>
+      </div>
+
+      <div class="restaurant-card fade-in" data-zone="fuori" data-michelin="yes" data-book="yes">
+        <div class="restaurant-name">El Risco <span class="michelin-badge">🔴 Bib Gourmand</span></div>
+        <div class="restaurant-meta">
+          <span class="restaurant-rating">★ 4.1/5</span>
+          <span class="restaurant-price">€€–€€€</span>
+          <span class="restaurant-cuisine">Pesce km0</span>
+        </div>
+        <div class="restaurant-desc">Casa di Manrique per suo fratello. Carabineros, vongole, ricci di mare, murena fritta. Vista Playa de Famara + La Graciosa — tra le più belle dell'isola.</div>
+        <div style="font-size:var(--text-xs);color:var(--color-text-muted)">📍 Famara · Tutti i giorni 13:00–21:30 · <strong>Tel: +34 928 52 85 50</strong></div>
+      </div>
+
+      <div class="restaurant-card fade-in" data-zone="fuori" data-michelin="yes" data-book="yes">
+        <div class="restaurant-name">Palacio Ico <span class="michelin-badge">🔴 Michelin Recommended</span></div>
+        <div class="restaurant-meta">
+          <span class="restaurant-rating">★ 4.5/5</span>
+          <span class="restaurant-price">€€€€</span>
+          <span class="restaurant-cuisine">Fine dining</span>
+        </div>
+        <div class="restaurant-desc">Palazzo del 1690 a Teguise. Chef Victor Valverde (Berasategui + Arola). Sommelier #11 Spagna 2024. Menu €75/corto – €95/lungo. Ideale il giorno del mercato.</div>
+        <div style="font-size:var(--text-xs);color:var(--color-text-muted)">📍 Teguise · Dom 13:15–16:00 e 18:30–23:00 · <strong>Tel: +34 928 59 49 42</strong></div>
+      </div>
+
+      <div class="restaurant-card fade-in" data-zone="pdc" data-michelin="no" data-book="no">
+        <div class="restaurant-name">Asian Home Restaurant</div>
+        <div class="restaurant-meta">
+          <span class="restaurant-rating">★ 4.9/5 (1.412 rec.)</span>
+          <span class="restaurant-price">€€</span>
+          <span class="restaurant-cuisine">Sushi / Asian fusion</span>
+        </div>
+        <div class="restaurant-desc">Il ristorante meglio recensito di PDC. Sushi, curry thailandese, gestione familiare asiatica. Porzioni generose, servizio rapido.</div>
+        <div style="font-size:var(--text-xs);color:var(--color-text-muted)">📍 Puerto del Carmen</div>
+      </div>
+
+      <div class="restaurant-card fade-in" data-zone="pdc" data-michelin="no" data-book="yes">
+        <div class="restaurant-name">La Carmencita del Puerto</div>
+        <div class="restaurant-meta">
+          <span class="restaurant-rating">★ 4.8/5 (2.300+ rec.)</span>
+          <span class="restaurant-price">€€</span>
+          <span class="restaurant-cuisine">Tapas canarie</span>
+        </div>
+        <div class="restaurant-desc">#3 di 301 ristoranti a PDC. Squadra tutta femminile. Merluzzo su tosta, polpette iberiche, guance al jerez, tonno rosso, bienmesabe. Sangria fatta in casa.</div>
+        <div style="font-size:var(--text-xs);color:var(--color-text-muted)">📍 Matagorda, PDC · Lun–Ven 19:00–23:00 (chiuso sab-dom) · <strong>Tel: +34 928 29 11 69</strong></div>
+      </div>
+
+      <div class="restaurant-card fade-in" data-zone="pdc" data-michelin="no" data-book="yes">
+        <div class="restaurant-name">Kaori Fusion — Hotel Fariones</div>
+        <div class="restaurant-meta">
+          <span class="restaurant-rating">★ 4.7/5</span>
+          <span class="restaurant-price">€€€€</span>
+          <span class="restaurant-cuisine">Asian fusion fine dining</span>
+        </div>
+        <div class="restaurant-desc">Il miglior fine dining di PDC. Menù degustazione asian fusion ~€85/persona. Chef Victor Planas. Alternativa di lusso alle Noches de Jameos.</div>
+        <div style="font-size:var(--text-xs);color:var(--color-text-muted)">📍 Hotel Fariones, PDC</div>
+      </div>
+
+      <div class="restaurant-card fade-in" data-zone="pdc" data-michelin="no" data-book="yes">
+        <div class="restaurant-name">Lomo Alto</div>
+        <div class="restaurant-meta">
+          <span class="restaurant-rating">★ 4.7/5</span>
+          <span class="restaurant-price">€€</span>
+          <span class="restaurant-cuisine">Steakhouse</span>
+        </div>
+        <div class="restaurant-desc">Terrazza vista oceano, carne alla brace, rapporto qualità/prezzo che sorprende. Anche il pesce non delude. Sera del primo giorno.</div>
+        <div style="font-size:var(--text-xs);color:var(--color-text-muted)">📍 Puerto del Carmen</div>
+      </div>
+
+      <div class="restaurant-card fade-in" data-zone="pdc" data-michelin="no" data-book="yes">
+        <div class="restaurant-name">Mardeleva</div>
+        <div class="restaurant-meta">
+          <span class="restaurant-rating">★ 4.5/5</span>
+          <span class="restaurant-price">€€</span>
+          <span class="restaurant-cuisine">Pesce / Mare</span>
+        </div>
+        <div class="restaurant-desc">Terrazza sul vecchio porto di PDC. Churros de pescado da non perdere. Atmosfera marittima autentica, prezzi onesti.</div>
+        <div style="font-size:var(--text-xs);color:var(--color-text-muted)">📍 Porto vecchio, PDC</div>
+      </div>
+
+      <div class="restaurant-card fade-in" data-zone="pdc" data-michelin="no" data-book="no">
+        <div class="restaurant-name">Taberna de Niño Pintxos</div>
+        <div class="restaurant-meta">
+          <span class="restaurant-rating">★ 4.4/5</span>
+          <span class="restaurant-price">€€</span>
+          <span class="restaurant-cuisine">Pintxos baschi</span>
+        </div>
+        <div class="restaurant-desc">Un angolo di Paese Basco sul porto vecchio. Pintxos elaborati, tapas basche, vista sulle barche da pesca. ~€70 per 2 con vino.</div>
+        <div style="font-size:var(--text-xs);color:var(--color-text-muted)">📍 Porto vecchio, PDC</div>
+      </div>
+
+      <div class="restaurant-card fade-in" data-zone="fuori" data-michelin="no" data-book="no">
+        <div class="restaurant-name">El Diablo (Timanfaya)</div>
+        <div class="restaurant-meta">
+          <span class="restaurant-rating">★ 4.2/5</span>
+          <span class="restaurant-price">€€</span>
+          <span class="restaurant-cuisine">BBQ vulcanico</span>
+        </div>
+        <div class="restaurant-desc">Cucina alimentata dal calore geotermico a 450°C — zero gas, zero carbone. Il ristorante più geologicamente straordinario del mondo. NO prenotazioni.</div>
+        <div style="font-size:var(--text-xs);color:var(--color-text-muted)">📍 Parco Timanfaya · Solo pranzo 12:00–16:00 · Accesso solo col bus del parco</div>
+      </div>
+
+      <div class="restaurant-card fade-in" data-zone="fuori" data-michelin="no" data-book="no">
+        <div class="restaurant-name">Bar Andalucía 1960</div>
+        <div class="restaurant-meta">
+          <span class="restaurant-rating">★ 4.7/5</span>
+          <span class="restaurant-price">€</span>
+          <span class="restaurant-cuisine">Tapas + pasta fresca</span>
+        </div>
+        <div class="restaurant-desc">Gestito da Massimo (italiano) e sua moglie. 12 posti a sedere. Tapas spagnole e pasta fresca fatta in casa. Prezzi bassissimi. Prenotare (obbligatorio per lo spazio).</div>
+        <div style="font-size:var(--text-xs);color:var(--color-text-muted)">📍 Arrecife, Charco de San Ginés</div>
+      </div>
+
+      <div class="restaurant-card fade-in" data-zone="fuori" data-michelin="no" data-book="yes">
+        <div class="restaurant-name">Sergio</div>
+        <div class="restaurant-meta">
+          <span class="restaurant-rating">★ 4.8/5</span>
+          <span class="restaurant-price">€€</span>
+          <span class="restaurant-cuisine">Pesce creativo</span>
+        </div>
+        <div class="restaurant-desc">Affacciato sulla passeggiata di Playa Blanca. Piatti curati con ingredienti locali, servizio attento. Ottimo rapporto qualità/prezzo.</div>
+        <div style="font-size:var(--text-xs);color:var(--color-text-muted)">📍 Playa Blanca</div>
+      </div>
+    </div>
+
+    <!-- Cucina canaria -->
+    <div style="margin-top:var(--space-10)">
+      <h3 style="font-family:var(--font-display);font-size:var(--text-lg);margin-bottom:var(--space-5);">🍴 Cucina Canaria — Cosa Ordinare</h3>
+      <div class="food-grid">
+        <div class="food-card fade-in"><div class="food-emoji">🥔</div><div class="food-name">Papas arrugadas</div><div class="food-desc">Con mojo rojo e mojo verde — il piatto identitario</div></div>
+        <div class="food-card fade-in"><div class="food-emoji">🐟</div><div class="food-name">Cherne</div><div class="food-desc">Cernia atlantica — il pesce più pregiato dell'isola</div></div>
+        <div class="food-card fade-in"><div class="food-emoji">🐚</div><div class="food-name">Lapas</div><div class="food-desc">Patelle grigliate con burro e limone</div></div>
+        <div class="food-card fade-in"><div class="food-emoji">🥩</div><div class="food-name">Ropa vieja</div><div class="food-desc">Stufato di carne sfilacciata con ceci</div></div>
+        <div class="food-card fade-in"><div class="food-emoji">🍮</div><div class="food-name">Bienmesabe</div><div class="food-desc">Crema di mandorle e miele — dessert tradizionale</div></div>
+        <div class="food-card fade-in"><div class="food-emoji">🌾</div><div class="food-name">Gofio</div><div class="food-desc">Farina di grano/mais tostato, base di molte ricette</div></div>
+        <div class="food-card fade-in"><div class="food-emoji">🍷</div><div class="food-name">Malvasía Volcánica</div><div class="food-desc">Vino bianco D.O. Lanzarote — da non perdere</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ATTIVITÀ ===== -->
+<section class="section section-alt" id="attivita">
+  <div class="container">
+    <header class="section-header">
+      <div class="section-label">Esperienze</div>
+      <h2 class="section-title">Tour e Attività</h2>
+      <p class="section-desc">Dalle grotte sottomarine alle bodegas millenarie. Tutte le esperienze dell'isola, prezzi e link diretti.</p>
+    </header>
+
+    <div class="activities-grid">
+      <div class="activity-card fade-in">
+        <div class="activity-icon">🏝</div>
+        <div class="activity-name">Escursione La Graciosa</div>
+        <div class="activity-price">€29/persona (traghetto A/R)</div>
+        <div class="activity-desc">Biosfera Express o Líneas Romero (fino a 16 corse/die). Noleggio bici €10–20/gg. Tour jeep Yotomu €55/pers. Spiagge top: Las Conchas, Francesa, Cocina.</div>
+      </div>
+      <div class="activity-card fade-in">
+        <div class="activity-icon">🏄</div>
+        <div class="activity-name">Surf a Famara</div>
+        <div class="activity-price">€50/persona (2 ore)</div>
+        <div class="activity-desc">Red Star Surf (€50, no pickup) o Calima Surf (€50, pickup gratuito da PDC). Onde costanti, break per tutti i livelli.</div>
+      </div>
+      <div class="activity-card fade-in">
+        <div class="activity-icon">🤿</div>
+        <div class="activity-name">Museo Atlántico Subacqueo</div>
+        <div class="activity-price">€65–148/persona</div>
+        <div class="activity-desc">300+ sculture di Jason deCaires Taylor a 12–14 m. Discover Scuba €148 · certificati ~€65. Prenotare 2–3 settimane prima su underwatermuseumlanzarote.com</div>
+      </div>
+      <div class="activity-card fade-in">
+        <div class="activity-icon">🍷</div>
+        <div class="activity-name">Wine Lovers — El Grifo (1775)</div>
+        <div class="activity-price">€50/persona (2 ore)</div>
+        <div class="activity-desc">Passeggiata vigneti di lava, torchio del 1775, biblioteca Nobel Saramago, 6 vini + formaggi canari. Max 12 persone. Lun–Ven 10:00–17:15. Prenotazione obbligatoria.</div>
+      </div>
+      <div class="activity-card fade-in">
+        <div class="activity-icon">🎶</div>
+        <div class="activity-name">Noches de Jameos</div>
+        <div class="activity-price">€98/persona</div>
+        <div class="activity-desc">Ogni venerdì sera. Cena nel tubo di lava + concerto timple nell'auditorium di basalto. Il 1° maggio è venerdì — perfetto. Prenotare online con largo anticipo.</div>
+      </div>
+      <div class="activity-card fade-in">
+        <div class="activity-icon">🛶</div>
+        <div class="activity-name">Kayak a Papagayo</div>
+        <div class="activity-price">€30/2h (tandem)</div>
+        <div class="activity-desc">kayaklanzarote.com. Esplorazione delle calette dal mare, snorkeling incluso. Tra le esperienze più belle dell'isola a costi contenuti.</div>
+      </div>
+      <div class="activity-card fade-in">
+        <div class="activity-icon">🐪</div>
+        <div class="activity-name">Giro in Dromedario</div>
+        <div class="activity-price">€11/persona (20 min)</div>
+        <div class="activity-desc">Echadero de los Camellos, sulla strada di uscita da Timanfaya. Orari 9:30–15:00. Da abbinare alla giornata Timanfaya.</div>
+      </div>
+      <div class="activity-card fade-in">
+        <div class="activity-icon">⛵</div>
+        <div class="activity-name">Catamarano al Tramonto</div>
+        <div class="activity-price">€50–70/persona (2–3h)</div>
+        <div class="activity-desc">Da Puerto del Carmen. Prosecco + snack inclusi. Tramonto sull'Atlantico. Opzione perfetta per la giornata jolly o la sera prima del rientro.</div>
+      </div>
+    </div>
+
+    <!-- Wine Bodegas -->
+    <div style="margin-top:var(--space-10)">
+      <h3 style="font-family:var(--font-display);font-size:var(--text-lg);margin-bottom:var(--space-4);">🍇 Bodegas a La Geria</h3>
+      <div class="data-table-wrap fade-in">
+        <table class="data-table">
+          <thead><tr><th>Bodega</th><th>Esperienza</th><th>Prezzo</th><th>Note</th></tr></thead>
+          <tbody>
+            <tr><td><strong>El Grifo (1775)</strong></td><td>Wine Lovers — 2h, 6 vini + formaggi</td><td>€50/pers.</td><td>La più antica cantina, max 12 persone</td></tr>
+            <tr><td><strong>Bodegas Rubicón</strong></td><td>Libera + calice</td><td>da €1/calice</td><td>Ingresso gratuito — la più accessibile</td></tr>
+            <tr><td><strong>Bodega La Geria</strong></td><td>Tour + 3 vini</td><td>€15/pers.</td><td>La più turistica</td></tr>
+            <tr><td><strong>Los Bermejos</strong></td><td>Degustazione + formaggio</td><td>€21/pers.</td><td>Biologico, molto autentica</td></tr>
+            <tr><td><strong>Stratvs</strong></td><td>Tour + degustazione + ristorante</td><td>~€20/pers.</td><td>Moderna e ben attrezzata</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BUDGET ===== -->
+<section class="section" id="budget">
+  <div class="container">
+    <header class="section-header">
+      <div class="section-label">Finanze</div>
+      <h2 class="section-title">Budget Dettagliato — 3 Scenari</h2>
+      <p class="section-desc">Stime realistiche per 2 persone, base singola Puerto del Carmen. Alloggio: Club Oceano.</p>
+    </header>
+
+    <div class="budget-scenarios">
+      <div class="budget-card fade-in">
+        <div class="budget-scenario">Scenario A — Ryanair puro · 9 notti</div>
+        <div class="budget-total">~€3.237</div>
+        <div class="budget-line"><span class="budget-line-label">Voli A/R Ryanair</span><span class="budget-line-value">€416</span></div>
+        <div class="budget-line"><span class="budget-line-label">Alloggio 9 notti</span><span class="budget-line-value">€1.000</span></div>
+        <div class="budget-line"><span class="budget-line-label">Auto a noleggio (9 gg)</span><span class="budget-line-value">€170</span></div>
+        <div class="budget-line"><span class="budget-line-label">Carburante (~800 km)</span><span class="budget-line-value">€70</span></div>
+        <div class="budget-line"><span class="budget-line-label">Ingressi CACT + Manrique (×2)</span><span class="budget-line-value">€189</span></div>
+        <div class="budget-line"><span class="budget-line-label">Pasti (9 gg × €90/gg)</span><span class="budget-line-value">€810</span></div>
+        <div class="budget-line"><span class="budget-line-label">La Graciosa</span><span class="budget-line-value">€88</span></div>
+        <div class="budget-line"><span class="budget-line-label">Attività extra</span><span class="budget-line-value">€200</span></div>
+        <div class="budget-line"><span class="budget-line-label">Contingenze 10%</span><span class="budget-line-value">€294</span></div>
+      </div>
+
+      <div class="budget-card fade-in">
+        <div class="budget-scenario">Scenario B — easyJet · 11 notti</div>
+        <div class="budget-total">~€3.776</div>
+        <div class="budget-line"><span class="budget-line-label">Voli (+€79 vs A)</span><span class="budget-line-value">€495</span></div>
+        <div class="budget-line"><span class="budget-line-label">Alloggio 11 notti (+€220)</span><span class="budget-line-value">€1.220</span></div>
+        <div class="budget-line"><span class="budget-line-label">Auto 11 gg (+€30)</span><span class="budget-line-value">€200</span></div>
+        <div class="budget-line"><span class="budget-line-label">Pasti (+€180)</span><span class="budget-line-value">€990</span></div>
+        <div class="budget-line"><span class="budget-line-label">Resto uguale a Sc. A</span><span class="budget-line-value">—</span></div>
+      </div>
+
+      <div class="budget-card best fade-in">
+        <div class="budget-scenario">Scenario C — Combinato · 10 notti ⭐</div>
+        <div class="budget-total">~€3.464</div>
+        <div class="budget-line"><span class="budget-line-label">Voli (+€12 vs A)</span><span class="budget-line-value">€428</span></div>
+        <div class="budget-line"><span class="budget-line-label">Alloggio 10 notti (+€110)</span><span class="budget-line-value">€1.110</span></div>
+        <div class="budget-line"><span class="budget-line-label">Auto 10 gg (+€15)</span><span class="budget-line-value">€185</span></div>
+        <div class="budget-line"><span class="budget-line-label">Pasti (+€90)</span><span class="budget-line-value">€900</span></div>
+        <div class="budget-line"><span class="budget-line-label">Resto uguale a Sc. A</span><span class="budget-line-value">—</span></div>
+      </div>
+    </div>
+
+    <!-- Upgrade Full Experience -->
+    <div style="margin-top:var(--space-6)">
+      <div class="highlight-box fade-in">
+        <strong>🌟 Upgrade "Full Experience" (aggiungere a qualsiasi scenario)</strong><br>
+        + Priority & 2 Cabin Bags Ryanair: €80 · + Noches de Jameos: €196 · + Wine Lovers El Grifo: €100 · + Cena La Cocina de Colacho: €210<br>
+        <strong>Totale upgrade: ~€586</strong>
+      </div>
+    </div>
+
+    <!-- Dettaglio CACT -->
+    <div style="margin-top:var(--space-8)">
+      <h3 style="font-family:var(--font-display);font-size:var(--text-lg);margin-bottom:var(--space-4);">🎟 Dettaglio Ingressi CACT (×2 persone)</h3>
+      <div class="data-table-wrap fade-in">
+        <table class="data-table">
+          <thead><tr><th>Attrazione</th><th>Prezzo</th><th>× 2</th><th>Subtotale</th></tr></thead>
+          <tbody>
+            <tr><td>Timanfaya (Montañas del Fuego)</td><td>€30,00</td><td>×2</td><td>€60,00</td></tr>
+            <tr><td>Cueva de los Verdes</td><td>€17,00</td><td>×2</td><td>€34,00</td></tr>
+            <tr><td>Jameos del Agua</td><td>€15,00</td><td>×2</td><td>€30,00</td></tr>
+            <tr><td>Fondazione César Manrique</td><td>€10,00</td><td>×2</td><td>€20,00</td></tr>
+            <tr><td>Jardín de Cactus</td><td>€9,00</td><td>×2</td><td>€18,00</td></tr>
+            <tr><td>Mirador del Río</td><td>€8,50</td><td>×2</td><td>€17,00</td></tr>
+            <tr><td>MIAC Castillo de San José</td><td>€5,20</td><td>×2</td><td>€10,40</td></tr>
+            <tr style="background:var(--color-surface-offset)"><td colspan="3"><strong>TOTALE INGRESSI</strong></td><td><strong>€189,40</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONSIGLI OPERATIVI ===== -->
+<section class="section section-alt" id="consigli">
+  <div class="container">
+    <header class="section-header">
+      <div class="section-label">Operatività</div>
+      <h2 class="section-title">Consigli Pratici</h2>
+      <p class="section-desc">Cosa prenotare subito, documenti, app essenziali, souvenir autentici e numeri utili.</p>
+    </header>
+
+    <!-- Priorità prenotazioni -->
+    <h3 style="font-family:var(--font-display);font-size:var(--text-lg);margin-bottom:var(--space-5);">📅 Da Prenotare Subito (ordine di priorità)</h3>
+    <div class="priority-list" style="margin-bottom:var(--space-10)">
+      <div class="priority-item fade-in"><div class="priority-num">1</div><span class="priority-name">Alloggio (Club Oceano o Airbnb autentici)</span><span class="priority-urgency urgency-critical">Critico</span></div>
+      <div class="priority-item fade-in"><div class="priority-num">2</div><span class="priority-name">Cueva de los Verdes — biglietto online con slot orario</span><span class="priority-urgency urgency-critical">Critico — si esaurisce</span></div>
+      <div class="priority-item fade-in"><div class="priority-num">3</div><span class="priority-name">Timanfaya — online fortemente consigliato</span><span class="priority-urgency urgency-high">Alta priorità</span></div>
+      <div class="priority-item fade-in"><div class="priority-num">4</div><span class="priority-name">Auto a noleggio (prezzi salgono avvicinandosi)</span><span class="priority-urgency urgency-high">Alta priorità</span></div>
+      <div class="priority-item fade-in"><div class="priority-num">5</div><span class="priority-name">La Carmencita del Puerto — il più richiesto PDC</span><span class="priority-urgency urgency-high">Alta priorità</span></div>
+      <div class="priority-item fade-in"><div class="priority-num">6</div><span class="priority-name">Noches de Jameos — posti limitati</span><span class="priority-urgency urgency-high">Alta priorità</span></div>
+      <div class="priority-item fade-in"><div class="priority-num">7</div><span class="priority-name">La Cocina de Colacho — solo 8 tavoli</span><span class="priority-urgency urgency-high">Alta priorità</span></div>
+      <div class="priority-item fade-in"><div class="priority-num">8</div><span class="priority-name">Palacio Ico — per la domenica del mercato</span><span class="priority-urgency urgency-medium">Media priorità</span></div>
+      <div class="priority-item fade-in"><div class="priority-num">9</div><span class="priority-name">El Grifo Wine Lovers — max 12 persone</span><span class="priority-urgency urgency-medium">Media priorità</span></div>
+      <div class="priority-item fade-in"><div class="priority-num">10</div><span class="priority-name">El Risco — tel +34 928 52 85 50</span><span class="priority-urgency urgency-medium">Media priorità</span></div>
+    </div>
+
+    <!-- Checklist -->
+    <h3 style="font-family:var(--font-display);font-size:var(--text-lg);margin-bottom:var(--space-5);">✅ Checklist Documenti e Zaino</h3>
+    <div class="checklist-grid">
+      <div class="checklist-group fade-in">
+        <div class="checklist-group-title">📄 Documenti</div>
+        <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>Carta d'identità o passaporto (Spagna = UE)</div>
+        <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>Patente di guida italiana (valida)</div>
+        <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>Prenotazione alloggio stampata</div>
+        <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>Check-in online fatto (Ryanair: obbligatorio entro 2h)</div>
+      </div>
+      <div class="checklist-group fade-in">
+        <div class="checklist-group-title">📱 App Essenziali</div>
+        <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>App Ryanair / App easyJet (carta d'imbarco)</div>
+        <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>Google Maps offline (scaricata)</div>
+        <div class="checklist-item" onclick="toggleCheck(
+this)"><div class="check-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>App AEMET (meteo ufficiale spagnolo)</div>
+        <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>IQAir (qualità aria, monitoraggio calima)</div>
+        <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>Booking / Airbnb (prenotazioni)</div>
+      </div>
+      <div class="checklist-group fade-in">
+        <div class="checklist-group-title">👕 Nello Zaino</div>
+        <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>Crema solare SPF 50+ (UV index 9–10!)</div>
+        <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>Felpa leggera (serate 15–17°C)</div>
+        <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>Scarpe chiuse per le grotte (Cueva de los Verdes)</div>
+        <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>Giacca a vento leggera (traghetto, Mirador)</div>
+        <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>Costume e telo (sempre in auto)</div>
+        <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>Cash €50–100 (La Graciosa, parcheggi)</div>
+      </div>
+      <div class="checklist-group fade-in">
+        <div class="checklist-group-title">🛍 Souvenir Autentici</div>
+        <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>Vino Malvasía (in bodega: €8–15/bottiglia)</div>
+        <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>Mojo picón + mojo verde (al mercato di Teguise)</div>
+        <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>Formaggio di capra (Finca de Uga)</div>
+        <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>Sale di Janubio (artigianale, elegante)</div>
+        <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>Calado (ricamo tradizionale canario)</div>
+      </div>
+    </div>
+
+    <!-- Workflow meteo -->
+    <div style="margin-top:var(--space-10)">
+      <h3 style="font-family:var(--font-display);font-size:var(--text-lg);margin-bottom:var(--space-4);">🌡 Workflow Meteo Quotidiano</h3>
+      <div class="info-box fade-in" style="border-radius:var(--radius-xl); padding:var(--space-5);">
+        <strong>Ogni sera, prima di pianificare il giorno dopo:</strong><br><br>
+        1. <strong>AEMET</strong> → controllare allerte (vento, onde, calima) — aemet.es<br>
+        2. <strong>Windguru Orzola</strong> → se pianificate La Graciosa — windguru.cz/483101<br>
+        3. <strong>Calima Canarias</strong> → livello polvere sahariana — calimacanarias.com
+      </div>
+    </div>
+
+    <!-- Numeri utili -->
+    <div style="margin-top:var(--space-10)">
+      <h3 style="font-family:var(--font-display);font-size:var(--text-lg);margin-bottom:var(--space-5);">📞 Numeri Utili</h3>
+      <div class="numbers-grid">
+        <div class="number-card fade-in">
+          <div class="number-icon">🚨</div>
+          <div class="number-info">
+            <div class="number-service">Emergenze (Spagna)</div>
+            <div class="number-value">112</div>
+          </div>
+        </div>
+        <div class="number-card fade-in">
+          <div class="number-icon">👮</div>
+          <div class="number-info">
+            <div class="number-service">Guardia Civil Lanzarote</div>
+            <div class="number-value">+34 928 811 100</div>
+          </div>
+        </div>
+        <div class="number-card fade-in">
+          <div class="number-icon">🏥</div>
+          <div class="number-info">
+            <div class="number-service">Ospedale Dr. José Molina Orosa</div>
+            <div class="number-value">+34 928 595 000</div>
+          </div>
+        </div>
+        <div class="number-card fade-in">
+          <div class="number-icon">🇮🇹</div>
+          <div class="number-info">
+            <div class="number-service">Consolato Italiano Las Palmas</div>
+            <div class="number-value">+34 928 292 614</div>
+          </div>
+        </div>
+        <div class="number-card fade-in">
+          <div class="number-icon">✈️</div>
+          <div class="number-info">
+            <div class="number-service">Aeroporto ACE Info</div>
+            <div class="number-value">+34 913 211 000</div>
+          </div>
+        </div>
+        <div class="number-card fade-in">
+          <div class="number-icon">🚗</div>
+          <div class="number-info">
+            <div class="number-service">CICAR Assistenza Stradale</div>
+            <div class="number-value">+34 928 822 900</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Eventi -->
+    <div style="margin-top:var(--space-10)">
+      <h3 style="font-family:var(--font-display);font-size:var(--text-lg);margin-bottom:var(--space-4);">📆 Eventi nel Periodo</h3>
+      <div class="data-table-wrap fade-in">
+        <table class="data-table">
+          <thead><tr><th>Evento</th><th>Quando</th><th>Dove</th><th>Note</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Mercato di Teguise</strong></td><td>Ogni domenica 9:00–14:00</td><td>Centro storico Teguise</td><td>400+ bancarelle, artigianato, musica folk</td></tr>
+            <tr><td><strong>Noches de Jameos</strong></td><td>Ogni venerdì sera</td><td>Jameos del Agua</td><td>Cena + concerto, €98/persona</td></tr>
+            <tr><td><strong>ESCENA Festival</strong></td><td>Fino al 9 maggio 2026</td><td>Auditorium Jameos + altri spazi</td><td>Arti sceniche e spettacoli</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <p class="footer-title">🌋 Lanzarote 2026</p>
+  <p>Guida verificata al 24 marzo 2026. Fonti: CACT Lanzarote · AEMET · Fondazione César Manrique · CICAR · AutoReisen · TripAdvisor · Guida Michelin Canarie · Turismo Lanzarote · El Grifo · Biosfera Express · Museo Atlántico · Ryanair · easyJet</p>
+</footer>
+
+<script>
+// ===== DARK MODE =====
+(function(){
+  const t = document.querySelector('[data-theme-toggle]');
+  const r = document.documentElement;
+  let d = matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+  r.setAttribute('data-theme', d);
+  function updateIcon() {
+    if (!t) return;
+    t.innerHTML = d === 'dark'
+      ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+      : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  }
+  updateIcon();
+  if (t) t.addEventListener('click', () => {
+    d = d === 'dark' ? 'light' : 'dark';
+    r.setAttribute('data-theme', d);
+    updateIcon();
+  });
+})();
+
+// ===== ACTIVE NAV =====
+(function() {
+  const sections = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('.nav-link');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3, rootMargin: '-80px 0px -60% 0px' });
+  sections.forEach(s => observer.observe(s));
+})();
+
+// ===== TIMELINE TOGGLE =====
+function toggleDay(el) {
+  el.classList.toggle('open');
+}
+
+// ===== ACCOMMODATION TABS =====
+function showAccTab(tabId) {
+  document.querySelectorAll('.acc-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.acc-tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+  document.getElementById('acc-' + tabId).classList.add('active');
+  event.target.classList.add('active');
+  event.target.setAttribute('aria-selected','true');
+}
+
+// ===== RESTAURANT FILTER =====
+function filterRestaurants(btn, filter) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.restaurant-card').forEach(card => {
+    if (filter === 'all') {
+      card.removeAttribute('data-hidden');
+    } else if (filter === 'pdc') {
+      card.dataset.hidden = card.dataset.zone !== 'pdc' ? 'true' : 'false';
+    } else if (filter === 'fuori') {
+      card.dataset.hidden = card.dataset.zone !== 'fuori' ? 'true' : 'false';
+    } else if (filter === 'michelin') {
+      card.dataset.hidden = card.dataset.michelin !== 'yes' ? 'true' : 'false';
+    } else if (filter === 'book') {
+      card.dataset.hidden = card.dataset.book !== 'yes' ? 'true' : 'false';
+    }
+  });
+}
+
+// ===== CHECKLIST =====
+function toggleCheck(item) {
+  item.classList.toggle('checked');
+}
+
+// ===== SCROLL FADE FALLBACK =====
+(function() {
+  if (CSS.supports('animation-timeline', 'scroll()')) return;
+  const els = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transition = 'opacity 0.6s ease';
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  els.forEach(el => observer.observe(el));
+})();
+</script>
+</body>
+</html>
