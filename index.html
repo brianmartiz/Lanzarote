@@ -145,6 +145,10 @@
         .info-box .check{color:var(--accent-teal);font-weight:700;flex-shrink:0;}
         /* MOBILE OPTIMIZATION */
         .mobile-nav{display:none;}
+        .mobile-nav a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.2rem;color:var(--text-secondary);text-decoration:none;font-size:.68rem;font-weight:600;min-width:0;}
+        .mobile-nav a i{font-size:1.05rem;}
+        .mobile-nav a span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;}
+        .mobile-nav a:hover,.mobile-nav a:focus-visible{color:var(--accent-blue);}
         .maps-directory{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;}
         .maps-group{background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:12px;padding:1rem;box-shadow:var(--shadow-sm);}
         .maps-group h3{font-size:1rem;font-weight:700;color:var(--text-primary);margin-bottom:.75rem;}
@@ -158,6 +162,14 @@
             body{padding-bottom:82px;}
             .hero h1{font-size:1.75rem;}
             .navbar-nav{display:none;}
+            .mobile-nav{
+                position:fixed;left:0;right:0;bottom:0;height:70px;
+                display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:center;
+                background:var(--navbar-bg);backdrop-filter:blur(12px);
+                border-top:1px solid var(--border-color);z-index:1000;
+                box-shadow:0 -4px 18px rgba(0,0,0,.12);
+                padding-bottom:env(safe-area-inset-bottom,0);
+            }
             .cards-grid{grid-template-columns:1fr;}
             .nearby-sidebar{width:100%;right:-100%;}
             main{padding:4.75rem 1rem 2rem;}
@@ -1053,7 +1065,7 @@
     let map=null,userMarker=null,userPos=null,watchId=null,geoActive=false,currentFilter='all',toastTmr=null;
 
     document.addEventListener('DOMContentLoaded',()=>{
-        initMap(); initEvents(); populateMap();
+        initMap(); initEvents(); populateMap(); renderGoogleMapsDirectory();
         const saved=localStorage.getItem('lztheme');
         if(saved) setTheme(saved);
         else if(window.matchMedia('(prefers-color-scheme:dark)').matches) setTheme('dark');
