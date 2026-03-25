@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<!-- Ripristinato automaticamente dal branch work -->
+<html lang="it" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Lanzarote 2026 • Brian &amp; Federica</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        :root {
+            --bg-primary:#fafafa;--bg-secondary:#ffffff;--bg-accent:#f5f7fa;
+            --text-primary:#1a1a1a;--text-secondary:#4a5568;--text-muted:#718096;
+            --accent-blue:#3b82f6;--accent-teal:#14b8a6;--accent-orange:#f59e0b;--accent-red:#ef4444;
+            --border-color:#e2e8f0;
+            --shadow-sm:0 1px 3px rgba(0,0,0,0.08);--shadow-md:0 4px 12px rgba(0,0,0,0.1);--shadow-lg:0 8px 24px rgba(0,0,0,0.12);
+            --navbar-bg:rgba(255,255,255,0.95);
+        }
+        [data-theme="dark"] {
+            --bg-primary:#0f1117;--bg-secondary:#1a1d27;--bg-accent:#222533;
+            --text-primary:#f0f4f8;--text-secondary:#a0aec0;--text-muted:#718096;
+            --accent-blue:#60a5fa;--accent-teal:#2dd4bf;--accent-orange:#fbbf24;--accent-red:#f87171;
+            --border-color:#2d3748;
+            --shadow-sm:0 1px 3px rgba(0,0,0,0.3);--shadow-md:0 4px 12px rgba(0,0,0,0.4);--shadow-lg:0 8px 24px rgba(0,0,0,0.5);
+            --navbar-bg:rgba(15,17,23,0.97);
+        }
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg-primary);color:var(--text-primary);line-height:1.6;overflow-x:hidden;transition:background .3s,color .3s;}
+        /* NAVBAR */
+        .navbar{position:fixed;top:0;width:100%;background:var(--navbar-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-color);z-index:1000;box-shadow:var(--shadow-sm);transition:background .3s,border-color .3s;}
+        .navbar-content{max-width:1200px;margin:0 auto;padding:.65rem 1.1rem;display:flex;justify-content:space-between;align-items:center;}
+        .navbar-title{display:flex;align-items:center;gap:.75rem;}
+        .navbar-title h1{font-size:1.125rem;font-weight:700;color:var(--text-primary);letter-spacing:-.02em;}
+        .navbar-title .dates{font-size:.8125rem;color:var(--text-secondary);font-weight:500;}
+        .navbar-nav{display:flex;gap:.375rem;align-items:center;}
+        .nav-link{padding:.28rem .62rem;font-size:.78rem;font-weight:500;color:var(--text-secondary);text-decoration:none;border-radius:6px;transition:all .2s;}
+        .nav-link:hover{background:var(--bg-accent);color:var(--accent-blue);}
+        /* THEME TOGGLE */
+        .theme-toggle{width:36px;height:36px;border-radius:8px;background:var(--bg-accent);border:1px solid var(--border-color);color:var(--text-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:all .2s;margin-left:.5rem;}
+        .theme-toggle:hover{background:var(--accent-blue);color:white;border-color:var(--accent-blue);}
+        /* GPS BUTTON */
+        .gps-toggle{position:fixed;bottom:1.4rem;right:1.4rem;width:52px;height:52px;border-radius:50%;background:var(--accent-blue);color:white;border:none;font-size:1.25rem;cursor:pointer;box-shadow:var(--shadow-lg);z-index:999;transition:all .3s;display:flex;align-items:center;justify-content:center;}
+        .gps-toggle:hover{transform:scale(1.05);box-shadow:0 8px 28px rgba(59,130,246,.4);}
+        .gps-toggle.active{background:var(--accent-teal);}
+        /* MAIN */
+        main{max-width:1200px;margin:0 auto;padding:4.9rem 1.1rem 2rem;}
+        /* HERO */
+        .hero{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white;padding:1.75rem 1.4rem;border-radius:14px;margin-bottom:2rem;box-shadow:var(--shadow-lg);}
+        .hero h1{font-size:2rem;font-weight:700;margin-bottom:.5rem;letter-spacing:-.03em;}
+        .hero p{font-size:1.0625rem;opacity:.95;max-width:600px;}
+        /* SECTIONS */
+        section{margin-bottom:2rem;scroll-margin-top:82px;}
+        .section-header{margin-bottom:1rem;}
+        .section-header h2{font-size:1.625rem;font-weight:700;color:var(--text-primary);margin-bottom:.375rem;letter-spacing:-.02em;}
+        .section-header p{color:var(--text-secondary);font-size:.9375rem;}
+        /* CARDS */
+        .cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:.9rem;}
+        .card{background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:12px;padding:1rem;box-shadow:var(--shadow-sm);transition:all .3s;}
+        .card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--accent-blue);}
+        .card-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1rem;}
+        .card-title{font-size:1.0625rem;font-weight:600;color:var(--text-primary);margin-bottom:.25rem;}
+        .card-subtitle{font-size:.8125rem;color:var(--text-secondary);}
+        .card-icon{width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.125rem;flex-shrink:0;}
+        .icon-blue{background:rgba(59,130,246,.12);color:var(--accent-blue);}
+        .icon-teal{background:rgba(20,184,166,.12);color:var(--accent-teal);}
+        .icon-orange{background:rgba(245,158,11,.12);color:var(--accent-orange);}
+        .icon-red{background:rgba(239,68,68,.12);color:var(--accent-red);}
+        .card-content{color:var(--text-secondary);font-size:.9rem;line-height:1.6;}
+        .card-content ul{list-style:none;padding-left:0;}
+        .card-content li{padding:.3rem 0;display:flex;align-items:flex-start;gap:.5rem;}
+        .card-content li::before{content:'•';color:var(--accent-blue);font-weight:700;}
+        .card-badge{display:inline-block;padding:.2rem .65rem;border-radius:5px;font-size:.7rem;font-weight:600;margin-bottom:.4rem;}
+        .badge-blue{background:rgba(59,130,246,.12);color:var(--accent-blue);}
+        .badge-teal{background:rgba(20,184,166,.12);color:var(--accent-teal);}
+        .badge-orange{background:rgba(245,158,11,.12);color:var(--accent-orange);}
+        .badge-red{background:rgba(239,68,68,.12);color:var(--accent-red);}
+        .badge-purple{background:rgba(139,92,246,.12);color:#8b5cf6;}
+        /* TABLE */
+        .table-responsive{overflow-x:auto;border-radius:9px;border:1px solid var(--border-color);background:var(--bg-secondary);}
+        table{width:100%;border-collapse:collapse;}
+        th,td{padding:.62rem .75rem;text-align:left;border-bottom:1px solid var(--border-color);}
+        th{background:var(--bg-accent);font-weight:600;color:var(--text-primary);font-size:.8125rem;text-transform:uppercase;letter-spacing:.025em;}
+        td{color:var(--text-secondary);font-size:.9rem;}
+        tr:last-child td{border-bottom:none;}
+        /* ALERT */
+        .alert{padding:.68rem .85rem;border-radius:8px;margin-bottom:.75rem;display:flex;gap:.6rem;align-items:flex-start;}
+        .alert-icon{font-size:1.125rem;flex-shrink:0;margin-top:.05rem;}
+        .alert-info{background:rgba(59,130,246,.08);border-left:3px solid var(--accent-blue);color:var(--text-primary);}
+        .alert-warning{background:rgba(245,158,11,.08);border-left:3px solid var(--accent-orange);color:var(--text-primary);}
+        .alert-success{background:rgba(20,184,166,.08);border-left:3px solid var(--accent-teal);color:var(--text-primary);}
+        /* MAPPA */
+        #mapContainer{width:100%;height:440px;border-radius:12px;overflow:hidden;border:1px solid var(--border-color);box-shadow:var(--shadow-md);margin-bottom:1.2rem;}
+        /* SIDEBAR */
+        .nearby-sidebar{position:fixed;top:0;right:-420px;width:420px;height:100vh;background:var(--bg-secondary);border-left:1px solid var(--border-color);box-shadow:-4px 0 24px rgba(0,0,0,.15);z-index:1001;transition:right .3s ease;overflow-y:auto;}
+        .nearby-sidebar.open{right:0;}
+        .nearby-header{padding:1rem 1.2rem;border-bottom:1px solid var(--border-color);position:sticky;top:0;background:var(--bg-secondary);z-index:10;}
+        .nearby-header h3{font-size:1.125rem;font-weight:700;margin-bottom:.25rem;}
+        .close-sidebar{position:absolute;top:1rem;right:1rem;width:30px;height:30px;border:none;background:var(--bg-accent);border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text-secondary);transition:all .2s;}
+        .close-sidebar:hover{background:var(--accent-red);color:white;}
+        .nearby-content{padding:1rem 1.1rem;}
+        .filter-chips{display:flex;gap:.375rem;flex-wrap:wrap;margin-bottom:1.25rem;}
+        .filter-chip{padding:.375rem .875rem;border-radius:20px;border:1px solid var(--border-color);background:var(--bg-secondary);color:var(--text-secondary);font-size:.8rem;font-weight:500;cursor:pointer;transition:all .2s;}
+        .filter-chip:hover,.filter-chip.active{background:var(--accent-blue);color:white;border-color:var(--accent-blue);}
+        .nearby-place{background:var(--bg-accent);border-radius:10px;padding:1rem;margin-bottom:.875rem;border:1px solid var(--border-color);transition:all .2s;}
+        .nearby-place:hover{border-color:var(--accent-blue);box-shadow:var(--shadow-sm);}
+        .nearby-place-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.4rem;}
+        .nearby-place-name{font-weight:600;color:var(--text-primary);font-size:.9rem;}
+        .nearby-distance{font-weight:700;color:var(--accent-blue);font-size:.8125rem;white-space:nowrap;margin-left:.5rem;}
+        .nearby-place-desc{font-size:.8125rem;color:var(--text-secondary);margin-bottom:.625rem;line-height:1.5;}
+        .navigate-btn{width:100%;padding:.5rem;background:var(--accent-blue);color:white;border:none;border-radius:6px;font-weight:600;font-size:.8125rem;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:.4rem;}
+        .navigate-btn:hover{background:#2563eb;}
+        /* TOAST */
+        .toast{position:fixed;top:5rem;right:1.5rem;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:8px;padding:.875rem 1.125rem;box-shadow:var(--shadow-lg);z-index:10000;animation:slideIn .3s ease;max-width:300px;color:var(--text-primary);font-size:.875rem;}
+        .toast.success{border-left:3px solid var(--accent-teal);}
+        .toast.error{border-left:3px solid var(--accent-red);}
+        @keyframes slideIn{from{transform:translateX(400px);opacity:0}to{transform:translateX(0);opacity:1}}
+        /* TIMELINE */
+        .timeline{position:relative;padding-left:2rem;}
+        .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--border-color);}
+        .timeline-item{position:relative;margin-bottom:1.2rem;padding-left:1.1rem;}
+        .timeline-item::before{content:'';position:absolute;left:-2.5rem;top:.25rem;width:11px;height:11px;border-radius:50%;background:var(--accent-blue);border:2px solid var(--bg-secondary);}
+        .timeline-day{font-weight:700;color:var(--accent-blue);font-size:.9375rem;margin-bottom:.4rem;}
+        .timeline-content{background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:8px;padding:.82rem;}
+        .timeline-content h4{font-size:.9375rem;font-weight:600;margin-bottom:.4rem;color:var(--text-primary);}
+        .timeline-content p{font-size:.875rem;color:var(--text-secondary);line-height:1.6;margin-bottom:.25rem;}
+        .timeline-content ul{list-style:none;padding:0;}
+        .timeline-content li{font-size:.875rem;color:var(--text-secondary);padding:.2rem 0;display:flex;gap:.4rem;}
+        .timeline-content li::before{content:'→';color:var(--accent-blue);flex-shrink:0;}
+        /* PRICE TAG */
+        .price-tag{display:inline-block;padding:.4rem .875rem;background:linear-gradient(135deg,var(--accent-teal),var(--accent-blue));color:white;border-radius:7px;font-weight:700;font-size:1.0625rem;}
+        /* BUTTONS */
+        .btn{display:inline-flex;align-items:center;gap:.35rem;padding:.42rem .92rem;background:var(--accent-blue);color:white;text-decoration:none;border-radius:6px;font-weight:600;font-size:.79rem;transition:all .2s;border:none;cursor:pointer;}
+        .btn:hover{background:#2563eb;transform:translateY(-1px);}
+        .btn-teal{background:var(--accent-teal);}.btn-teal:hover{background:#0d9488;}
+        .btn-orange{background:var(--accent-orange);}.btn-orange:hover{background:#d97706;}
+        .btn-secondary{background:var(--bg-accent);color:var(--text-primary);border:1px solid var(--border-color);}.btn-secondary:hover{background:var(--border-color);transform:none;}
+        .btn-ghost{background:rgba(255,255,255,.2);backdrop-filter:blur(10px);color:white;}.btn-ghost:hover{background:rgba(255,255,255,.35);transform:none;}
+        /* INFO BOX */
+        .info-box{background:var(--bg-accent);border-radius:12px;padding:1rem;margin-bottom:1rem;border:1px solid var(--border-color);}
+        .info-box h3{font-size:1.0625rem;font-weight:600;margin-bottom:.875rem;color:var(--text-primary);}
+        .info-box ul{list-style:none;padding:0;}
+        .info-box li{padding:.4rem 0;display:flex;gap:.5rem;font-size:.9rem;color:var(--text-secondary);border-bottom:1px solid var(--border-color);}
+        .info-box li:last-child{border-bottom:none;}
+        .info-box .check{color:var(--accent-teal);font-weight:700;flex-shrink:0;}
+        /* MOBILE OPTIMIZATION */
+        .mobile-nav{display:none;}
+        .maps-directory{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.75rem;}
+        .maps-group{background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:12px;padding:.75rem;box-shadow:var(--shadow-sm);}
+        .maps-group h3{font-size:1rem;font-weight:700;color:var(--text-primary);margin-bottom:.75rem;}
+        .maps-links{display:flex;flex-direction:column;gap:.5rem;}
+        .maps-link{display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding:.5rem .65rem;background:var(--bg-accent);border:1px solid var(--border-color);border-radius:10px;text-decoration:none;color:var(--text-primary);font-size:.84rem;transition:all .2s;}
+        .maps-link:hover{border-color:var(--accent-blue);transform:translateY(-1px);box-shadow:var(--shadow-sm);}
+        .maps-link small{color:var(--text-secondary);display:block;margin-top:.15rem;}
+        .maps-link span:last-child{color:var(--accent-blue);font-weight:700;white-space:nowrap;}
+        /* RESPONSIVE */
+        .mobile-nav{position:fixed;left:0;right:0;bottom:0;background:var(--navbar-bg);backdrop-filter:blur(10px);border-top:1px solid var(--border-color);z-index:1002;padding:.45rem .25rem;}
+        .mobile-nav a{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text-secondary);text-decoration:none;font-size:.68rem;font-weight:600;gap:.15rem;padding:.25rem .1rem;}
+        .mobile-nav a i{font-size:1rem;}
+        .mobile-nav a:hover{color:var(--accent-blue);}
+        @media(max-width:900px){
+            .navbar-nav a[href="#logica"],
+            .navbar-nav a[href="#auto"],
+            .navbar-nav a[href="#lavoro"],
+            .navbar-nav a[href="#spesa"],
+            .navbar-nav a[href="#meteo"],
+            .navbar-nav a[href="#checklist"],
+            .navbar-nav a[href="#gmaps"]{display:none;}
+        }
+        @media(max-width:768px){
+            body{padding-bottom:82px;}
+            .hero h1{font-size:1.75rem;}
+            .navbar-nav{display:none;}
+            .cards-grid{grid-template-columns:1fr;}
+            .nearby-sidebar{width:100%;right:-100%;}
+            main{padding:4.5rem .85rem 1.5rem;}
+            .gps-toggle{width:50px;height:50px;bottom:1.5rem;right:1.5rem;}
+            .mobile-nav{display:flex;}
+        }
+        /* LEAFLET */
+        .custom-marker{background:none!important;border:none!important;}
+        .marker-emoji{font-size:22px;line-height:1;filter:drop-shadow(0 2px 3px rgba(0,0,0,.3));}
+        [data-theme="dark"] .leaflet-popup-content-wrapper{background:var(--bg-secondary);color:var(--text-primary);border:1px solid var(--border-color);}
+        [data-theme="dark"] .leaflet-popup-tip{background:var(--bg-secondary);}
+        [data-theme="dark"] .leaflet-control-zoom a{background:var(--bg-secondary);color:var(--text-primary);border-color:var(--border-color);}
+        [data-theme="dark"] .leaflet-control-attribution{background:var(--bg-secondary);color:var(--text-muted);}
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="navbar-title">
+                <h1>🌋 Lanzarote 2026</h1>
+                <span class="dates">25 Apr – 6 Mag • Brian &amp; Federica</span>
+            </div>
+            <div class="navbar-nav">
+                <a href="#logica" class="nav-link">🧭 Logica</a>
+                <a href="#voli" class="nav-link">✈️ Voli</a>
+                <a href="#alloggi" class="nav-link">🏠 Alloggi</a>
+                <a href="#auto" class="nav-link">🚗 Auto</a>
+                <a href="#lavoro" class="nav-link">💻 Lavoro</a>
+                <a href="#spesa" class="nav-link">🛒 Spesa</a>
+                <a href="#meteo" class="nav-link">☀️ Meteo</a>
+                <a href="#attrazioni" class="nav-link">🎨 Attrazioni</a>
+                <a href="#itinerario" class="nav-link">📅 Itinerario</a>
+                <a href="#ristoranti" class="nav-link">🍴 Ristoranti</a>
+                <a href="#budget" class="nav-link">💰 Budget</a>
+                <a href="#checklist" class="nav-link">✅ Checklist</a>
+                <a href="#mappa" class="nav-link">🗺️ Mappa</a>
+                <a href="#gmaps" class="nav-link">📍 Maps</a>
+                <button class="theme-toggle" id="themeToggle" title="Cambia tema chiaro/scuro">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- GPS BUTTON -->
+    <button class="gps-toggle" id="gpsToggle" title="Attiva GPS – Vicino a Voi">
+        <i class="fas fa-location-crosshairs"></i>
+    </button>
+
+    <!-- SIDEBAR VICINO A NOI -->
+    <div class="nearby-sidebar" id="nearbySidebar">
+        <div class="nearby-header">
+            <h3>📍 Vicino a Voi</h3>
+            <button class="close-sidebar" id="closeSidebar"><i class="fas fa-times"></i></button>
+            <p style="color:var(--text-muted);font-size:.8125rem;margin-top:.2rem;" id="userPosition">Attivando GPS...</p>
+        </div>
+        <div class="nearby-content">
+            <div class="filter-chips">
+                <button class="filter-chip active" data-filter="all">Tutti</button>
+                <button class="filter-chip" data-filter="ristorante">🍴 Ristoranti</button>
+                <button class="filter-chip" data-filter="attrazione">🎨 Attrazioni</button>
+                <button class="filter-chip" data-filter="spiaggia">🏖️ Spiagge</button>
+                <button class="filter-chip" data-filter="supermercato">🛒 Market</button>
+                <button class="filter-chip" data-filter="bodega">🍷 Bodegas</button>
+                <button class="filter-chip" data-filter="alloggio">🏨 Alloggi</button>
+            </div>
+            <div id="nearbyList"></div>
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <main>
+        <div class="hero">
+            <h1>🌋 Guida Definitiva Lanzarote — Primavera 2026</h1>
+            <p>Versione aggiornata: doppia base vera, due giorni di lavoro remoto reali, AutoReisen già decisa e itinerario modulare costruito sulla vacanza vera.</p>
+            <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem;">
+                <a href="#logica" class="btn btn-ghost">🧭 Logica</a>
+                <a href="#alloggi" class="btn btn-ghost">🏠 Doppia base</a>
+                <a href="#lavoro" class="btn btn-ghost">💻 Lavoro 27/28</a>
+                <a href="#itinerario" class="btn btn-ghost">📅 Giorno per giorno</a>
+                <a href="#checklist" class="btn btn-ghost">✅ Piano operativo</a>
+            </div>
+        </div>
+
+        <section id="logica">
+                      <div class="section-header">
+                <h2>🧭 La logica giusta del viaggio</h2>
+                <p>La vacanza è progettata per ridurre attrito, non per riempire ogni ora.</p>
+            </div>
+            <div class="alert alert-info">
+                <i class="fas fa-lightbulb alert-icon" style="color:var(--accent-blue);"></i>
+                <div><strong>Struttura confermata:</strong> prima metà sud/sud-ovest, seconda metà in area diversa (centro-nord o nord-est), cambio base il 30 aprile oppure 1° maggio.</div>
+            </div>
+            <div class="cards-grid">
+                <div class="card"><div class="card-header"><div class="card-title">Perché doppia base</div></div><div class="card-content"><ul><li>Due Lanzarote diverse in una sola vacanza</li><li>Meno zig-zag inutili in auto</li><li>Maggiore qualità delle giornate finali</li><li>Logistica più robusta con meteo variabile</li></ul></div></div>
+                <div class="card"><div class="card-header"><div class="card-title">Filosofia operativa</div></div><div class="card-content"><ul><li>Meno giornate gonfiate artificialmente</li><li>Più energia su esperienze davvero forti</li><li>Spesa e cucina usate in modo strategico</li><li>Giorno jolly reale per assorbire imprevisti</li></ul></div></div>
+            </div>
+        </section>
+
+        <section id="voli">
+            <div class="section-header"><h2>✈️ Scenari volo sensati</h2><p>Confronto pulito tra comfort e rapporto qualità/prezzo.</p></div>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-header"><div><span class="card-badge badge-blue">Scenario 1 — EasyJet puro</span><div class="card-title">25 Apr → 6 Mag • 11 notti</div><div class="card-subtitle">MXP ↔ ACE</div></div></div>
+                    <div class="card-content"><p><strong>Costo totale 2 persone:</strong> ~€495</p><ul><li>Più comodo, stesso aeroporto A/R</li><li>Un giorno in più di vacanza</li><li>Nessun rientro all’alba</li><li>Contro: costo leggermente più alto</li></ul></div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><div><span class="card-badge badge-teal">Scenario 2 — Combinato</span><div class="card-title">26 Apr → 6 Mag • 10 notti</div><div class="card-subtitle">BGY → ACE / ACE → MXP</div></div></div>
+                    <div class="card-content"><p><strong>Costo totale 2 persone:</strong> ~€428</p><ul><li>Rapporto qualità/prezzo molto forte</li><li>Ritorno comodo invariato</li><li>Contro: aeroporti diversi e un giorno in meno</li><li>Gestione bagaglio più ibrida</li></ul></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="auto">
+            <div class="section-header"><h2>🚗 Auto a noleggio — decisione chiusa</h2><p>Tema concluso: niente confronto infinito.</p></div>
+            <div class="alert alert-success"><i class="fas fa-check-circle alert-icon" style="color:var(--accent-teal);"></i><div><strong>Decisione definitiva:</strong> AutoReisen • <strong>€150</strong> • <strong>11 giorni</strong> • prenotazione subito dopo i voli.</div></div>
+            <div class="info-box">
+                <h3>Sequenza corretta prenotazioni</h3>
+                <ul>
+                    <li><span class="check">1</span><span>Scelta voli</span></li>
+                    <li><span class="check">2</span><span><strong>Prenotazione AutoReisen</strong></span></li>
+                    <li><span class="check">3</span><span>Blocco prima base</span></li>
+                    <li><span class="check">4</span><span>Blocco seconda base</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="alloggi">
+            <div class="section-header"><h2>🏠 Struttura alloggi e combinazioni</h2><p>Scelte aggiornate e gerarchizzate in modo netto.</p></div>
+            <h3 style="margin:0 0 .75rem;">Prima metà (sud/sud-ovest)</h3>
+            <div class="cards-grid">
+                <div class="card"><div class="card-header"><div><span class="card-badge badge-blue">Scelta intelligente</span><div class="card-title">Club Oceano</div></div></div><div class="card-content"><ul><li>Perfetto per i due giorni di lavoro remoto</li><li>Cucina, piscine riscaldate, servizi a portata</li><li>Frizione mentale minima il 27/28 aprile</li></ul></div></div>
+                <div class="card"><div class="card-header"><div><span class="card-badge badge-purple">Scelta affascinante</span><div class="card-title">Villa NaJoSa</div></div></div><div class="card-content"><ul><li>Atmosfera più intima e privata</li><li>Sud-ovest autentico e silenzioso</li><li>Meno efficiente di Club Oceano nei giorni lavoro</li></ul></div></div>
+            </div>
+            <h3 style="margin:1rem 0 .75rem;">Seconda metà (zona diversa)</h3>
+            <div class="cards-grid">
+                <div class="card"><div class="card-header"><div><span class="card-badge badge-teal">Più bilanciata</span><div class="card-title">Casa Lancelot</div></div></div><div class="card-content"><ul><li>Versatile per nord/centro/Famara/Geria</li><li>Autenticità senza isolamento eccessivo</li><li>Miglior equilibrio complessivo</li></ul></div></div>
+                <div class="card"><div class="card-header"><div><span class="card-badge badge-orange">Più poetica</span><div class="card-title">Bungalow Arrieta</div></div></div><div class="card-content"><ul><li>Nord-est marinaro più caratterizzato</li><li>Grotte e La Graciosa più naturali da gestire</li><li>Base più “schierata”, meno universale</li></ul></div></div>
+            </div>
+            <div class="alert alert-info" style="margin-top:1rem;"><i class="fas fa-star alert-icon" style="color:var(--accent-blue);"></i><div><strong>Combo consigliata #1:</strong> <strong>Club Oceano + Casa Lancelot</strong>. Miglior robustezza logistica e migliore qualità reale del viaggio.</div></div>
+            <div class="table-responsive" style="margin-top:.9rem;">
+                <table>
+                    <thead><tr><th>Combo</th><th>Carattere</th><th>Quando sceglierla</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Club Oceano + Casa Lancelot</strong></td><td>La più forte in assoluto</td><td>Massima fluidità su lavoro remoto + seconda metà bilanciata</td></tr>
+                        <tr><td><strong>Villa NaJoSa + Casa Lancelot</strong></td><td>La più affascinante</td><td>Più atmosfera nella prima metà, con un filo di attrito in più</td></tr>
+                        <tr><td><strong>Club Oceano + Bungalow Arrieta</strong></td><td>Più nordica/marina</td><td>Se volete grotte + nord-est molto centrali</td></tr>
+                        <tr><td><strong>Villa NaJoSa + Bungalow Arrieta</strong></td><td>Romantica ma meno robusta</td><td>Solo con convinzione logistica alta</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="lavoro">
+            <div class="section-header"><h2>💻 Giorni lavoro remoto (27–28 aprile)</h2><p>Finalmente trattati come giorni ibridi veri.</p></div>
+            <div class="cards-grid">
+                <div class="card"><div class="card-header"><div class="card-title">Blocco fisso</div></div><div class="card-content"><p><strong>09:00 → 15:30/16:00</strong> in alloggio.</p><ul><li>Lavoro reale, non escursioni compresse</li><li>Pausa piscina breve e pranzo in casa</li><li>Uscita solo dal tardo pomeriggio</li></ul></div></div>
+                <div class="card"><div class="card-header"><div class="card-title">Cosa NON fare</div></div><div class="card-content"><ul><li>Slot rigidi in attrazioni lontane</li><li>Trasferimenti lunghi post-lavoro</li><li>Cene complesse con rientro tardi</li><li>“Recuperare la giornata” in modalità corsa</li></ul></div></div>
+            </div>
+        </section>
+
+        <section id="spesa">
+            <div class="section-header"><h2>🛒 Spesa e cucina — leva strategica</h2><p>Due basi con cucina: la spesa diventa parte della qualità vacanza.</p></div>
+            <div class="info-box"><h3>Sequenza giusta</h3><ul><li><span class="check">✓</span><span>Spesa grossa entrando nella prima base</span></li><li><span class="check">✓</span><span>Rabbocco leggero il 28/29 aprile</span></li><li><span class="check">✓</span><span>Spesa grossa entrando nella seconda base</span></li><li><span class="check">✓</span><span>Top-up piccoli locali nei giorni finali</span></li></ul></div>
+            <div class="cards-grid">
+                <div class="card"><div class="card-header"><div class="card-title">Zona Puerto del Carmen</div></div><div class="card-content"><ul><li>Mercadona per spesa principale</li><li>HiperDino Express per rabbocchi rapidi</li><li>Perfetto per i giorni lavoro remoto</li></ul></div></div>
+                <div class="card"><div class="card-header"><div class="card-title">Zona Tinajo/Arrieta</div></div><div class="card-content"><ul><li>Tinajo: spesa più strutturata nel giorno cambio</li><li>Arrieta: integrazioni quotidiane locali</li><li>Evitare micro-spese giornaliere dispersive</li></ul></div></div>
+            </div>
+            <div class="alert alert-warning" style="margin-top:.9rem;">
+                <i class="fas fa-cart-shopping alert-icon" style="color:var(--accent-orange);"></i>
+                <div><strong>Regola d’oro:</strong> la spesa grossa va fatta all’ingresso di ogni base. Non rimandarla ai giorni centrali: è una delle principali fonti di attrito evitabile.</div>
+            </div>
+        </section>
+
+        <section id="meteo">
+            <div class="section-header"><h2>☀️ Meteo reale del periodo</h2><p>Fine aprile-inizio maggio: fase ottima, con vento da gestire con intelligenza.</p></div>
+            <div class="cards-grid">
+                <div class="card"><div class="card-header"><div class="card-title">Condizioni attese</div></div><div class="card-content"><ul><li>22–25°C di giorno</li><li>Sere più fresche</li><li>Pioggia rara, sole forte</li><li>Vento quasi sempre presente</li></ul></div></div>
+                <div class="card"><div class="card-header"><div class="card-title">Regole pratiche</div></div><div class="card-content"><ul><li>Papagayo più protetta</li><li>Famara più paesaggio/surf che ombrellone statico</li><li>La Graciosa solo con meteo sensato</li><li>Se calima: grotte, musei, bodegas</li></ul></div></div>
+            </div>
+        </section>
+
+        <section id="itinerario">
+            <div class="section-header"><h2>📅 Itinerario realistico e modulare</h2><p>Adattabile al cambio base il 30 aprile oppure 1° maggio.</p></div>
+            <div class="timeline">
+                <div class="timeline-item"><div class="timeline-day">Giorno 1 — Arrivo</div><div class="timeline-content"><p>Ritiro auto, check-in prima base, spesa leggera, cena semplice. Primo giorno da assorbire, non da ottimizzare.</p></div></div>
+                <div class="timeline-item"><div class="timeline-day">Giorno 2 — Lun 27 Apr</div><div class="timeline-content"><p>Lavoro 09:00–16:00, pausa piscina, uscita breve serale e cena comoda.</p></div></div>
+                <div class="timeline-item"><div class="timeline-day">Giorno 3 — Mar 28 Apr</div><div class="timeline-content"><p>Replica ibrida: lavoro + rabbocco spesa + serata locale senza stress.</p></div></div>
+                <div class="timeline-item"><div class="timeline-day">Giorno 4 — Mer 29 Apr</div><div class="timeline-content"><p>Primo giorno pieno: <strong>Opzione A</strong> Papagayo/El Golfo/Janubio oppure <strong>Opzione B</strong> Timanfaya + La Geria.</p></div></div>
+                <div class="timeline-item"><div class="timeline-day">Giorno 5 — Gio 30 Apr</div><div class="timeline-content"><p><strong>Se cambio base:</strong> check-out → transizione lineare → spesa grossa nuova base. <strong>Se non cambio:</strong> blocco nord (Cueva + Jameos + Arrieta).</p></div></div>
+                <div class="timeline-item"><div class="timeline-day">Giorno 6 — Ven 1 Mag</div><div class="timeline-content"><p>Seconda variante di cambio base, oppure giornata morbida di ambientamento + eventuale serata speciale (Noches de Jameos).</p></div></div>
+                <div class="timeline-item"><div class="timeline-day">Giorno 7 — Sab 2 Mag</div><div class="timeline-content"><p>Nord forte o La Graciosa solo con meteo favorevole.</p></div></div>
+                <div class="timeline-item"><div class="timeline-day">Giorno 8 — Dom 3 Mag</div><div class="timeline-content"><p>Teguise mattina + pranzo forte + Famara pomeriggio.</p></div></div>
+                <div class="timeline-item"><div class="timeline-day">Giorno 9 — Lun 4 Mag</div><div class="timeline-content"><p>Giorno jolly vero: recuperi meteo, bis posto preferito o giornata lenta.</p></div></div>
+                <div class="timeline-item"><div class="timeline-day">Giorno 10 — Mar 5 Mag</div><div class="timeline-content"><p>Penultimo giorno elegante: mezza giornata forte + relax + cena finale scelta bene.</p></div></div>
+                <div class="timeline-item"><div class="timeline-day">Giorno 11 — Mer 6 Mag</div><div class="timeline-content"><p>Rientro pulito: check-out ordinato, riconsegna auto, aeroporto senza corsa.</p></div></div>
+            </div>
+            <div class="cards-grid" style="margin-top:1rem;">
+                <div class="card"><div class="card-header"><div class="card-title">Cambio base: regole pratiche</div></div><div class="card-content"><ul><li>La sera prima: valigie quasi pronte, frigo alleggerito</li><li>Giorno cambio: massimo una visita lineare</li><li>Spesa grossa seconda base dopo trasferimento</li><li>Cena semplice: no maratone logistiche</li></ul></div></div>
+                <div class="card"><div class="card-header"><div class="card-title">Giorno jolly (4 maggio)</div></div><div class="card-content"><ul><li>Recupero La Graciosa se meteo buono</li><li>Bis del posto preferito (Papagayo/Famara)</li><li>LagOmar o bodega se c’è vento/calima</li><li>Mezza giornata lenta in casa: scelta legittima</li></ul></div></div>
+            </div>
+        </section>
+
+        <section id="attrazioni">
+            <div class="section-header"><h2>🎨 Attrazioni: priorità vere</h2><p>Distinzione tra essenziale, molto forte e opzionale intelligente.</p></div>
+            <div class="cards-grid">
+                <div class="card"><div class="card-header"><div class="card-title">Imperdibili veri</div></div><div class="card-content"><ul><li>Timanfaya</li><li>Cueva de los Verdes (slot online)</li><li>Jameos del Agua</li><li>Un blocco forte César Manrique</li></ul></div></div>
+                <div class="card"><div class="card-header"><div class="card-title">Molto forti</div></div><div class="card-content"><ul><li>Fundación César Manrique</li><li>Mirador del Río</li><li>Jardín de Cactus</li><li>MIAC Castillo de San José</li></ul></div></div>
+                <div class="card"><div class="card-header"><div class="card-title">Ottimi se ritmo lo consente</div></div><div class="card-content"><ul><li>Casa Museo del Campesino</li><li>LagOmar</li><li>Bodega in La Geria</li><li>Museo Atlántico (se davvero interessa)</li></ul></div></div>
+            </div>
+            <div class="info-box" style="margin-top:1rem;">
+                <h3>🎟️ Prenotazioni ad alta frizione</h3>
+                <ul>
+                    <li><span class="check">✓</span><span><strong>Cueva de los Verdes</strong>: slot online da prenotare per tempo</span></li>
+                    <li><span class="check">✓</span><span><strong>Timanfaya</strong>: meglio fascia oraria sensata per ridurre code</span></li>
+                    <li><span class="check">✓</span><span><strong>Noches de Jameos</strong>: solo se scelta con anticipo reale</span></li>
+                </ul>
+            </div>
+            <div class="cards-grid">
+                <div class="card"><div class="card-header"><div class="card-title">La Graciosa: farla bene o no</div></div><div class="card-content"><ul><li>Sì: meteo/vento sensati e energia alta</li><li>No: mare mosso o stanchezza accumulata</li><li>Meglio non farla che farla nervosi</li></ul></div></div>
+                <div class="card"><div class="card-header"><div class="card-title">Famara: aspettative corrette</div></div><div class="card-content"><ul><li>Perfetta per paesaggio, surf, camminata</li><li>Meno adatta a “telo statico” classico</li><li>Top in combo con Teguise domenica</li></ul></div></div>
+                <div class="card"><div class="card-header"><div class="card-title">Timanfaya + La Geria</div></div><div class="card-content"><ul><li>Accoppiata più coerente del viaggio</li><li>Ideale vicino al giorno di trasferimento</li><li>Un solo stop vino ben fatto > maratona degustazioni</li></ul></div></div>
+            </div>
+        </section>
+
+        <section id="ristoranti">
+            <div class="section-header"><h2>🍴 Ristoranti: usarli con cervello</h2><p>Regola d’oro: un momento gastronomico forte al giorno è più che sufficiente.</p></div>
+            <div class="cards-grid">
+                <div class="card"><div class="card-header"><div class="card-title">Giorni lavoro remoto</div></div><div class="card-content"><ul><li>Taberna de Niño Pintxos</li><li>Lomo Alto</li><li>Mardeleva</li><li>Asian Home Restaurant</li><li>Cena in casa ben organizzata</li></ul></div></div>
+                <div class="card"><div class="card-header"><div class="card-title">Serata importante</div></div><div class="card-content"><ul><li>La Cocina de Colacho</li><li>Palacio Ico</li><li>Lani’s Gourmet</li><li>Noches de Jameos (se decisa)</li></ul></div></div>
+                <div class="card"><div class="card-header"><div class="card-title">Teguise/Famara</div></div><div class="card-content"><ul><li>El Risco</li><li>Ikarus</li><li>Costa Famara</li><li>Dunas de Famara</li></ul></div></div>
+            </div>
+            <div class="table-responsive" style="margin-top:1rem;">
+                <table>
+                    <thead><tr><th>Contesto</th><th>Scelte consigliate</th><th>Nota</th></tr></thead>
+                    <tbody>
+                        <tr><td>Puerto del Carmen</td><td>Taberna de Niño Pintxos, Lomo Alto, Mardeleva, Asian Home</td><td>Perfetti nei giorni 27/28 aprile</td></tr>
+                        <tr><td>Playa Blanca / Sud</td><td>Sergio, La Cocina de Colacho, La Casa Roja</td><td>Ideali dopo blocco Papagayo/sud</td></tr>
+                        <tr><td>Arrecife urbano</td><td>Bar Andalucía 1960, Malecon</td><td>Da integrare in giornata culturale</td></tr>
+                        <tr><td>Teguise / Famara</td><td>El Risco, Palacio Ico, Ikarus, Costa Famara</td><td>Scegliere un solo pranzo “forte”</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="budget">
+            <div class="section-header"><h2>💰 Budget aggiornato</h2><p>Lettura onesta con auto già fissata a €150.</p></div>
+            <div class="cards-grid">
+                <div class="card"><div class="card-header"><div class="card-title">Scenario 1 — 11 notti</div></div><div class="card-content"><ul><li>Voli: ~€495</li><li>AutoReisen: €150</li><li>Alloggi (2 basi): variabile per combo scelta</li><li>Spesa+cene in casa: leva principale di controllo</li><li>Ristoranti premium: selezionare 3–4 momenti chiave</li></ul></div></div>
+                <div class="card"><div class="card-header"><div class="card-title">Scenario 2 — 10 notti</div></div><div class="card-content"><ul><li>Voli: ~€428</li><li>AutoReisen: confermata come scelta operativa</li><li>Stessa logica di doppia base</li><li>Più efficiente lato costo totale</li></ul></div></div>
+            </div>
+            <div class="alert alert-info" style="margin-top:.9rem;"><i class="fas fa-scale-balanced alert-icon" style="color:var(--accent-blue);"></i><div><strong>Lettura onesta:</strong> non conviene fare i tirchi su alloggio che regge lavoro remoto o su 1–2 esperienze davvero memorabili; conviene invece evitare doppio pasto forte nello stesso giorno e micro-spese disordinate.</div></div>
+        </section>
+
+        <section id="checklist">
+            <div class="section-header"><h2>✅ Checklist operativa finale</h2><p>Ordine esecutivo per evitare caos pre-partenza e durante il cambio base.</p></div>
+            <div class="info-box">
+                <h3>Prima della partenza</h3>
+                <ul>
+                    <li><span class="check">✓</span><span>Scelta voli</span></li>
+                    <li><span class="check">✓</span><span>Prenotazione AutoReisen</span></li>
+                    <li><span class="check">✓</span><span>Conferma due alloggi + giorno cambio</span></li>
+                    <li><span class="check">✓</span><span>Prenotazione Cueva de los Verdes (+ Timanfaya se fissato)</span></li>
+                    <li><span class="check">✓</span><span>Prenotazione 3–4 ristoranti prioritari</span></li>
+                </ul>
+            </div>
+            <div class="info-box">
+                <h3>Durante il viaggio</h3>
+                <ul>
+                    <li><span class="check">✓</span><span>Spesa grossa all’ingresso di ogni base</span></li>
+                    <li><span class="check">✓</span><span>27–28 aprile protetti come giorni ibridi lavoro</span></li>
+                    <li><span class="check">✓</span><span>Giorno cambio non sovraccaricato</span></li>
+                    <li><span class="check">✓</span><span>Ultimi due giorni con finale elegante, non compulsivo</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="mappa">
+            <div class="section-header"><h2>🗺️ Mappa interattiva</h2><p>Luoghi utili per itinerario, basi, attrazioni e ristoranti.</p></div>
+            <div class="alert alert-info"><i class="fas fa-shield-alt alert-icon" style="color:var(--accent-blue);"></i><div><strong>Privacy:</strong> geolocalizzazione usata solo localmente nel browser.</div></div>
+            <div id="mapContainer"></div>
+        </section>
+
+        <section id="gmaps">
+            <div class="section-header"><h2>📍 Directory Google Maps</h2><p>Lista rapida generata dai luoghi guida, utile da mobile.</p></div>
+            <div id="googleMapsDirectory" class="maps-directory"></div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js"></script>
+    <script>
+    const LUOGHI = [
+        {nome:"La Cocina de Colacho",lat:28.8635,lng:-13.8325,cat:"ristorante",desc:"Michelin Good Cooking 2026. €95–105/persona. Solo 8 tavoli. PRENOTARE!",tel:"+34 928 51 96 91",orari:"Lun–Gio 18:00–22:30"},
+        {nome:"El Risco",lat:29.1125,lng:-13.5535,cat:"ristorante",desc:"Michelin Bib Gourmand 2026. Pesce km0, vista Famara. PRENOTARE!",tel:"+34 928 52 85 50",orari:"Lun–Dom 13:00–22:00"},
+        {nome:"La Carmencita del Puerto",lat:28.9247,lng:-13.6541,cat:"ristorante",desc:"Tapas autentiche 4.85/5. €25–35. PRENOTAZIONE INDISPENSABILE",tel:"+34 928 29 11 69",orari:"Lun–Ven 19:00–23:00"},
+        {nome:"Asian Home Restaurant",lat:28.9235,lng:-13.6582,cat:"ristorante",desc:"Sushi + fusion asiatica. 4.95/5 · 1.412 rec.",orari:"Mar–Dom 18:00–23:00"},
+        {nome:"Bar Andalucía 1960",lat:28.9625,lng:-13.5485,cat:"ristorante",desc:"Tapas + pasta fresca. Gestito da italiano. 12 posti — prenotare!",orari:"Lun–Ven 12:00–15:00, 19:00–23:00"},
+        {nome:"Mardeleva",lat:28.9208,lng:-13.6615,cat:"ristorante",desc:"Churros de pescado. Terrazza porto vecchio. €20–30",orari:"Lun–Dom 12:00–23:00"},
+        {nome:"El Diablo (Timanfaya)",lat:29.0326,lng:-13.7686,cat:"ristorante",desc:"BBQ vulcanico 450°C geotermici. NO prenotazioni",orari:"Lun–Dom 12:00–16:00"},
+        {nome:"Ristorante Sergio",lat:28.8618,lng:-13.8310,cat:"ristorante",desc:"Pesce creativo Playa Blanca. 4.85/5",orari:"Mar–Dom 13:00–23:00"},
+        {nome:"Palacio Ico",lat:29.0596,lng:-13.5609,cat:"ristorante",desc:"Teguise storico. Cena/pranzo raffinato, da prenotare",orari:"Mer–Dom 13:00–23:00"},
+        {nome:"Lani’s Gourmet",lat:28.9218,lng:-13.6531,cat:"ristorante",desc:"Esperienza premium fronte mare a Puerto del Carmen",orari:"Lun–Dom 18:30–23:00"},
+        {nome:"Ikarus",lat:29.1133,lng:-13.5529,cat:"ristorante",desc:"Famara, cucina curata con vista oceano",orari:"Lun–Dom 13:00–22:30"},
+        {nome:"Costa Famara",lat:29.1140,lng:-13.5536,cat:"ristorante",desc:"Pranzo vista spiaggia, ideale dopo Teguise",orari:"Lun–Dom 12:30–22:00"},
+        {nome:"Dunas de Famara",lat:29.1138,lng:-13.5530,cat:"ristorante",desc:"Locale sul fronte Famara, perfetto per giorno vento",orari:"Lun–Dom 13:00–22:00"},
+        {nome:"Malecon",lat:28.9616,lng:-13.5489,cat:"ristorante",desc:"Arrecife, ottimo in giornata urbana/culturale",orari:"Mar–Dom 13:00–23:00"},
+        {nome:"Parco Nazionale Timanfaya",lat:29.0224,lng:-13.7930,cat:"attrazione",desc:"Montañas del Fuego €30. Ruta de los Volcanes in bus",orari:"09:30–17:00",link:"https://ventaonline.cactlanzarote.com"},
+        {nome:"Cueva de los Verdes",lat:29.1611,lng:-13.4389,cat:"attrazione",desc:"€17. Tubo lavico + illusione ottica. SLOT ORARIO OBBLIGATORIO",orari:"09:30–16:15",link:"https://cactlanzarote.com"},
+        {nome:"Jameos del Agua",lat:29.1572,lng:-13.4305,cat:"attrazione",desc:"€15. Opera Manrique 1968. Granchi bianchi ciechi",orari:"10:00–18:00"},
+        {nome:"Fundación César Manrique",lat:29.0237,lng:-13.5668,cat:"attrazione",desc:"€10. Casa-studio Manrique. 5 bolle vulcaniche",orari:"10:00–17:30",link:"https://fcmanrique.org"},
+        {nome:"Mirador del Río",lat:29.2283,lng:-13.4783,cat:"attrazione",desc:"€8.50. Belvedere 479m. Vista su La Graciosa",orari:"10:00–17:00"},
+        {nome:"Jardín de Cactus",lat:29.1188,lng:-13.4645,cat:"attrazione",desc:"€9. 4.500 cactus 450 specie. Mulino storico",orari:"10:00–16:30"},
+        {nome:"MIAC Castillo San José",lat:28.9528,lng:-13.5358,cat:"attrazione",desc:"€5.20. Arte contemporanea in castello settecentesco",orari:"11:00–18:00"},
+        {nome:"LagOmar",lat:29.0208,lng:-13.5825,cat:"attrazione",desc:"€6–10. Labirinto vulcanico Manrique",orari:"10:00–18:00",link:"https://www.lagomar.com"},
+        {nome:"Casa Museo del Campesino",lat:29.0017,lng:-13.6348,cat:"attrazione",desc:"Spazio culturale manriquiano, perfetto in giornata morbida",orari:"10:00–18:00"},
+        {nome:"El Golfo – Lago Verde",lat:28.9767,lng:-13.8277,cat:"attrazione",desc:"Gratuito. Cratere con lago smeraldo. Spiaggia nera",orari:"Sempre"},
+        {nome:"Salinas del Janubio",lat:28.9385,lng:-13.8018,cat:"attrazione",desc:"Gratuito. Saline più grandi Canarie. Vista dalla strada",orari:"Sempre"},
+        {nome:"Museo Atlántico",lat:28.8590,lng:-13.8290,cat:"attrazione",desc:"€65–148. Primo museo sottomarino Europa. 300 sculture",orari:"Solo su prenotazione",link:"https://www.museoatlantico.com"},
+        {nome:"Playa de Papagayo",lat:28.8538,lng:-13.7948,cat:"spiaggia",desc:"5 calette paradiso. Mare turchese. Ingresso €3",orari:"Sempre"},
+        {nome:"Playa de Famara",lat:29.1105,lng:-13.5528,cat:"spiaggia",desc:"7 km di spiaggia. Surf mondiale. Scogliere Risco",orari:"Sempre"},
+        {nome:"Playa Grande (PDC)",lat:28.9245,lng:-13.6565,cat:"spiaggia",desc:"Spiaggia principale Puerto del Carmen. Lungomare",orari:"Sempre"},
+        {nome:"Playa Chica (PDC)",lat:28.9205,lng:-13.6625,cat:"spiaggia",desc:"Caletta protetta ideale per snorkeling",orari:"Sempre"},
+        {nome:"Mercadona Puerto del Carmen",lat:28.9240,lng:-13.6555,cat:"supermercato",desc:"⚠️ Chiuso 1 maggio (festivo). Fare scorta il 30 aprile",orari:"Lun–Sab 09:00–21:30"},
+        {nome:"HiperDino Arrecife",lat:28.9545,lng:-13.5525,cat:"supermercato",desc:"Catena canaria locale. Ampia scelta",orari:"Lun–Sab 09:00–22:00, Dom 09:00–15:00"},
+        {nome:"Spar PDC Matagorda",lat:28.9252,lng:-13.6538,cat:"supermercato",desc:"Vicino Club Oceano. Aperto anche festivi",orari:"Lun–Dom 08:00–22:00"},
+        {nome:"Unide Tinajo",lat:29.0666,lng:-13.6750,cat:"supermercato",desc:"Riferimento pratico per seconda base a Tinajo",orari:"Lun–Sab 09:00–21:00"},
+        {nome:"Macour Supermercado Arrieta",lat:29.1360,lng:-13.4654,cat:"supermercato",desc:"Top-up quotidiani rapidi in zona Arrieta",orari:"Lun–Dom 09:00–21:00"},
+        {nome:"Bodega El Grifo",lat:29.0082,lng:-13.6428,cat:"bodega",desc:"Cantina più antica Canarie 1775. Wine Lovers €50/2h",orari:"Lun–Ven 10:00–17:15",link:"https://elgrifo.com"},
+        {nome:"Bodegas Rubicón",lat:29.0095,lng:-13.6515,cat:"bodega",desc:"Ingresso gratuito, degustazione €1/calice",orari:"Lun–Dom 10:00–18:00"},
+        {nome:"Bodega La Geria",lat:29.0105,lng:-13.6485,cat:"bodega",desc:"Tour 3 vini €15. Ben organizzata",orari:"Lun–Dom 10:00–18:00"},
+        {nome:"Club Oceano (PDC)",lat:28.9245,lng:-13.6568,cat:"alloggio",desc:"€880/10 notti. 9.6/10. 2 piscine infinity riscaldate",link:"https://www.oceanclubholidays.com"},
+        {nome:"Villa NaJoSa (Las Breñas)",lat:28.9350,lng:-13.7850,cat:"alloggio",desc:"€1.530/10 notti. 4.93/5. Piscina salata privata, vista Timanfaya"},
+        {nome:"Casa Mery (Tías)",lat:28.9680,lng:-13.6420,cat:"alloggio",desc:"€1.400/10 notti. 4.97/5. AC + 3 bagni, piscina privata"},
+        {nome:"Casa Lancelot (Tinajo)",lat:29.0650,lng:-13.6380,cat:"alloggio",desc:"€1.425/10 notti. 5.0/5. Frigo rifornito, vista mare"},
+        {nome:"Finca Chibusque (Tinajo)",lat:29.0640,lng:-13.6370,cat:"alloggio",desc:"€1.070/10 notti. 4.82/5. Casale storico XIX sec."},
+        {nome:"Bungalow Arrieta",lat:29.1340,lng:-13.4950,cat:"alloggio",desc:"€1.257/10 notti. 5.0/5. Vista oceano, 2 piscine, vicino grotte"},
+        {nome:"Villa Guime",lat:28.9520,lng:-13.5920,cat:"alloggio",desc:"€1.451/10 notti. 4.91/5. Piscina privata, AC, 4km aeroporto"},
+        {nome:"Órzola – Porto La Graciosa",lat:29.2219,lng:-13.4525,cat:"trasporto",desc:"Traghetto Biosfera Express €29 A/R, 25 min",orari:"08:00–18:00",link:"https://www.ferryhopper.com/en/ferry-operators/biosfera-express"},
+        {nome:"Aeroporto ACE",lat:28.9455,lng:-13.6052,cat:"trasporto",desc:"Aeroporto Arrecife. 10 min da Puerto del Carmen",orari:"24h"},
+        {nome:"Pastelería El Mak",lat:28.9228,lng:-13.6575,cat:"colazione",desc:"Pastéis de nata, dolci canari, caffè eccellente",orari:"Lun–Sab 07:00–21:00"},
+        {nome:"Panadería Herrera",lat:28.9242,lng:-13.6562,cat:"colazione",desc:"Forno tradizionale. Pane fresco, bocadillos da €1.20",orari:"Lun–Sab 07:00–14:00"}
+    ];
+
+    const CAT_ICONS = {ristorante:'🍴',attrazione:'🎨',spiaggia:'🏖️',supermercato:'🛒',bodega:'🍷',mercato:'🛍️',trasporto:'✈️',alloggio:'🏨',colazione:'☕'};
+    const CATEGORY_LABELS = {ristorante:'Ristoranti e locali',attrazione:'Attrazioni',spiaggia:'Spiagge',supermercato:'Supermercati',bodega:'Bodegas',mercato:'Mercati',trasporto:'Trasporti',alloggio:'Alloggi',colazione:'Colazioni e bakery'};
+          const googleMapsUrl = (lat,lng,nome='') => `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+    const getIcon = c => CAT_ICONS[c] || '📍';
+    const escapeHtml = (value='') => String(value)
+        .replace(/&/g,'&amp;')
+        .replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;')
+        .replace(/'/g,'&#39;');
+
+    let map=null,userMarker=null,userPos=null,watchId=null,geoActive=false,currentFilter='all',toastTmr=null;
+
+    document.addEventListener('DOMContentLoaded',()=>{
+        initMap(); initEvents(); populateMap();
+        renderGoogleMapsDirectory();
+        const saved=localStorage.getItem('lztheme');
+        if(saved) setTheme(saved);
+        else if(window.matchMedia('(prefers-color-scheme:dark)').matches) setTheme('dark');
+    });
+
+    function setTheme(t){
+        document.documentElement.setAttribute('data-theme',t);
+        document.getElementById('themeIcon').className = t==='dark'?'fas fa-sun':'fas fa-moon';
+        localStorage.setItem('lztheme',t);
+    }
+    function toggleTheme(){
+        const c=document.documentElement.getAttribute('data-theme')||'light';
+        setTheme(c==='dark'?'light':'dark');
+    }
+
+    function initMap(){
+        map=L.map('mapContainer').setView([29.0469,-13.5900],10);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap',maxZoom:18}).addTo(map);
+    }
+
+    function populateMap(){
+        LUOGHI.forEach(p=>{
+            const icon=L.divIcon({html:`<div class="marker-emoji">${getIcon(p.cat)}</div>`,className:'custom-marker',iconSize:[32,32],iconAnchor:[16,28]});
+            const m=L.marker([p.lat,p.lng],{icon}).addTo(map);
+            let pop=`<div style="min-width:200px;font-family:Inter,sans-serif;">
+                <strong style="font-size:13px;">${escapeHtml(p.nome)}</strong><br>
+                <small style="color:#718096;text-transform:capitalize;">${escapeHtml(p.cat)}</small>
+                <p style="margin:6px 0 0;font-size:12px;color:#4a5568;">${escapeHtml(p.desc)}</p>`;
+            if(p.orari) pop+=`<p style="font-size:11px;color:#718096;margin:4px 0 0;">🕐 ${escapeHtml(p.orari)}</p>`;
+            if(p.tel){
+                const phoneHref = `tel:${String(p.tel).replace(/[^+\d]/g,'')}`;
+                pop+=`<p style="font-size:11px;color:#3b82f6;margin:4px 0 0;">📞 <a href="${phoneHref}">${escapeHtml(p.tel)}</a></p>`;
+            }
+            if(p.link)  pop+=`<p style="margin:6px 0 0;"><a href="${p.link}" target="_blank" rel="noopener noreferrer" style="font-size:11px;color:#3b82f6;">🔗 Sito →</a></p>`;
+            pop+=`<p style="margin:6px 0 0;"><a href="${googleMapsUrl(p.lat,p.lng,p.nome)}" target="_blank" rel="noopener noreferrer" style="font-size:11px;color:#14b8a6;">📍 Google Maps →</a></p>`;
+            pop+=`</div>`;
+            m.bindPopup(pop);
+        });
+    }
+
+    function initEvents(){
+        document.getElementById('gpsToggle').addEventListener('click',toggleGPS);
+        document.getElementById('closeSidebar').addEventListener('click',closeSidebar);
+        document.getElementById('themeToggle').addEventListener('click',toggleTheme);
+        document.querySelectorAll('.filter-chip').forEach(chip=>{
+            chip.addEventListener('click',function(){
+                document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
+                this.classList.add('active'); currentFilter=this.dataset.filter; updateNearby();
+            });
+        });
+        document.querySelectorAll('a[href^="#"]').forEach(a=>{
+            a.addEventListener('click',e=>{
+                e.preventDefault();
+                const el=document.getElementById(a.getAttribute('href').slice(1));
+                if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+            });
+        });
+    }
+
+    function toggleGPS(){ geoActive?stopGPS():startGPS(); }
+
+    function startGPS(){
+        if(!navigator.geolocation){showToast('Geolocalizzazione non supportata','error');return;}
+        const btn=document.getElementById('gpsToggle');
+        btn.classList.add('active'); btn.innerHTML='<i class="fas fa-spinner fa-spin"></i>'; geoActive=true;
+        watchId=navigator.geolocation.watchPosition(pos=>{
+            userPos={lat:pos.coords.latitude,lng:pos.coords.longitude,acc:pos.coords.accuracy};
+            updateUserMarker(userPos.lat,userPos.lng); updateNearby();
+            if(btn.querySelector('.fa-spinner')){
+                btn.innerHTML='<i class="fas fa-location-dot"></i>';
+                showToast('📍 GPS attivato!','success'); openSidebar();
+            }
+            document.getElementById('userPosition').textContent=
+                `${userPos.lat.toFixed(5)}, ${userPos.lng.toFixed(5)} (±${Math.round(userPos.acc)}m)`;
+        },err=>{showToast('GPS: '+err.message,'error');stopGPS();},
+        {enableHighAccuracy:true,maximumAge:10000,timeout:15000});
+    }
+
+    function stopGPS(){
+        if(watchId!==null){navigator.geolocation.clearWatch(watchId);watchId=null;}
+        const btn=document.getElementById('gpsToggle');
+        btn.classList.remove('active'); btn.innerHTML='<i class="fas fa-location-crosshairs"></i>'; geoActive=false;
+        if(userMarker){map.removeLayer(userMarker);userMarker=null;}
+        closeSidebar(); showToast('GPS disattivato','success');
+    }
+
+    function updateUserMarker(lat,lng){
+        if(!map) return;
+        if(userMarker) userMarker.setLatLng([lat,lng]);
+        else{
+            const icon=L.divIcon({html:'<div style="font-size:26px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.4))">📍</div>',className:'custom-marker',iconSize:[32,32],iconAnchor:[16,28]});
+            userMarker=L.marker([lat,lng],{icon}).addTo(map);
+            userMarker.bindPopup('<strong>📍 Tu sei qui!</strong>');
+            map.setView([lat,lng],13);
+        }
+    }
+
+    function haversine(la1,lo1,la2,lo2){
+        const R=6371,r=x=>x*Math.PI/180;
+        const dL=r(la2-la1),dO=r(lo2-lo1);
+        const a=Math.sin(dL/2)**2+Math.cos(r(la1))*Math.cos(r(la2))*Math.sin(dO/2)**2;
+        return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+    }
+
+    function updateNearby(){
+        if(!userPos){
+            document.getElementById('nearbyList').innerHTML='<p style="color:var(--text-muted);text-align:center;padding:1rem;">Attiva il GPS per vedere i luoghi vicini</p>';
+            return;
+        }
+        let list=LUOGHI.map(p=>({...p,dist:haversine(userPos.lat,userPos.lng,p.lat,p.lng)}));
+        if(currentFilter!=='all') list=list.filter(p=>p.cat===currentFilter);
+        list=list.filter(p=>p.dist<=60).sort((a,b)=>a.dist-b.dist).slice(0,12);
+        if(!list.length){
+            document.getElementById('nearbyList').innerHTML='<p style="color:var(--text-muted);text-align:center;padding:1rem;">Nessun luogo nelle vicinanze</p>';
+            return;
+        }
+        document.getElementById('nearbyList').innerHTML=list.map(p=>{
+            const wm=Math.round((p.dist/5)*60),cm=Math.round((p.dist/50)*60);
+            return `<div class="nearby-place">
+                <div class="nearby-place-header">
+                    <div class="nearby-place-name">${getIcon(p.cat)} ${escapeHtml(p.nome)}</div>
+                    <div class="nearby-distance">${p.dist.toFixed(2)} km</div>
+                </div>
+                <p class="nearby-place-desc">${escapeHtml(p.desc)}</p>
+                ${p.orari?`<p style="font-size:.8rem;color:var(--text-muted);margin-bottom:.5rem;">🕐 ${escapeHtml(p.orari)}</p>`:''}
+                <div style="display:flex;gap:.75rem;margin-bottom:.625rem;font-size:.8rem;color:var(--text-secondary);">
+                    <span>🚶 ${wm} min</span><span>🚗 ${cm} min</span>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr;gap:.5rem;">
+                    <button class="navigate-btn" onclick="goTo(${p.lat},${p.lng},'${p.nome.replace(/'/g,"\\'")}')">
+                        <i class="fas fa-location-arrow"></i> Naviga subito
+                    </button>
+                    <a class="navigate-btn" href="${googleMapsUrl(p.lat,p.lng,p.nome)}" target="_blank" rel="noopener noreferrer" style="background:var(--accent-teal);text-decoration:none;">
+                        <i class="fab fa-google"></i> Apri in Google Maps
+                    </a>
+                </div>
+            </div>`;
+        }).join('');
+    }
+
+    function renderGoogleMapsDirectory(){
+        const container = document.getElementById('googleMapsDirectory');
+        if(!container) return;
+        const order = ['ristorante','colazione','attrazione','spiaggia','bodega','supermercato','alloggio','trasporto'];
+        const grouped = order.filter(cat => LUOGHI.some(p => p.cat === cat)).map(cat => ({
+            cat,
+            label: CATEGORY_LABELS[cat] || cat,
+            icon: getIcon(cat),
+            items: LUOGHI.filter(p => p.cat === cat).sort((a,b)=>a.nome.localeCompare(b.nome,'it'))
+        }));
+        container.innerHTML = grouped.map(group => `
+            <div class="maps-group">
+                <h3>${group.icon} ${group.label}</h3>
+                <div class="maps-links">
+                    ${group.items.map(p => `
+                        <a class="maps-link" href="${googleMapsUrl(p.lat,p.lng,p.nome)}" target="_blank" rel="noopener noreferrer">
+                            <span>
+                                <strong>${escapeHtml(p.nome)}</strong>
+                                <small>${escapeHtml(p.desc)}</small>
+                            </span>
+                            <span>Apri</span>
+                        </a>
+                    `).join('')}
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function goTo(lat,lng,nome){
+        const isIOS=/iP(hone|ad|od)/.test(navigator.userAgent);
+        const url=isIOS
+            ?`https://maps.apple.com/?q=${encodeURIComponent(nome)}&ll=${lat},${lng}`
+            :`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+        window.open(url,'_blank');
+        showToast(`Navigazione → ${nome}`,'success');
+    }
+
+    function openSidebar(){document.getElementById('nearbySidebar').classList.add('open');}
+    function closeSidebar(){document.getElementById('nearbySidebar').classList.remove('open');}
+
+    function showToast(msg,type='success'){
+        if(toastTmr){clearTimeout(toastTmr);document.querySelector('.toast')?.remove();}
+        const t=document.createElement('div');
+        t.className=`toast ${type}`; t.textContent=msg; document.body.appendChild(t);
+        toastTmr=setTimeout(()=>{t.style.opacity='0';t.style.transition='opacity .3s';setTimeout(()=>t.remove(),300);toastTmr=null;},3000);
+    }
+    </script>
+    <nav class="mobile-nav" aria-label="Navigazione mobile">
+        <a href="#logica"><i class="fas fa-compass"></i><span>Logica</span></a>
+        <a href="#alloggi"><i class="fas fa-house"></i><span>Basi</span></a>
+        <a href="#itinerario"><i class="fas fa-calendar-days"></i><span>Piano</span></a>
+        <a href="#lavoro"><i class="fas fa-laptop"></i><span>Lavoro</span></a>
+        <a href="#mappa"><i class="fas fa-map"></i><span>Mappa</span></a>
+        <a href="#checklist"><i class="fas fa-list-check"></i><span>Check</span></a>
+    </nav>
+</body>
+</html>
