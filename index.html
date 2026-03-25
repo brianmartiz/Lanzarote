@@ -525,7 +525,7 @@
 
     const CAT_ICONS = {ristorante:'🍴',attrazione:'🎨',spiaggia:'🏖️',supermercato:'🛒',bodega:'🍷',mercato:'🛍️',trasporto:'✈️',alloggio:'🏨',colazione:'☕'};
     const CATEGORY_LABELS = {ristorante:'Ristoranti e locali',attrazione:'Attrazioni',spiaggia:'Spiagge',supermercato:'Supermercati',bodega:'Bodegas',mercato:'Mercati',trasporto:'Trasporti',alloggio:'Alloggi',colazione:'Colazioni e bakery'};
-    const googleMapsUrl = (lat,lng,nome='') => `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+          const googleMapsUrl = (lat,lng,nome='') => `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
     const getIcon = c => CAT_ICONS[c] || '📍';
     const escapeHtml = (value='') => String(value)
         .replace(/&/g,'&amp;')
