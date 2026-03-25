@@ -1,0 +1,2306 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#2c2420">
+    <title>🌋 Lanzarote 2026 - Brian & Federica</title>
+    
+    <!-- Leaflet per mappe -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ===== DESIGN SYSTEM LANZAROTE ===== */
+        :root {
+            /* Colori vulcanici */
+            --volcanic-black: #2c2420;
+            --lava-brown: #8b6f47;
+            --ocean-blue: #4a90a4;
+            --ocean-deep: #2d5f73;
+            --sand-beige: #e8dcc7;
+            --sand-white: #faf7f0;
+            --cactus-green: #6b8e23;
+            --sunset-coral: #d88373;
+            --text-dark: #3a3330;
+            --text-light: #5a504a;
+            --accent-neon: #38bdf8;
+            --warning-orange: #e67e22;
+            --success-green: #27ae60;
+            --error-red: #e74c3c;
+            
+            /* Spacing */
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 2rem;
+            --space-xl: 3rem;
+            
+            /* Shadows */
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.2);
+            
+            /* Border radius */
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-full: 9999px;
+            
+            /* Transitions */
+            --transition-fast: 0.2s ease;
+            --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --sand-white: #1a1816;
+                --sand-beige: #2c2420;
+                --text-dark: #e8dcc7;
+                --text-light: #c4b8a7;
+            }
+        }
+
+        /* ===== RESET E BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--sand-white) 0%, var(--sand-beige) 100%);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            padding-bottom: 80px;
+        }
+
+        /* ===== HEADER FISSO ===== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(44, 36, 32, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: var(--space-sm) var(--space-md);
+            box-shadow: var(--shadow-md);
+            border-bottom: 3px solid var(--lava-brown);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-title {
+            color: var(--sand-white);
+        }
+
+        .header-title h1 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin: 0;
+        }
+
+        .header-title .subtitle {
+            font-size: 0.85rem;
+            color: var(--sand-beige);
+            margin-top: 0.2rem;
+        }
+
+        .countdown-widget {
+            background: linear-gradient(135deg, var(--ocean-blue), var(--ocean-deep));
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-md);
+            text-align: right;
+            box-shadow: 0 0 20px rgba(74, 144, 164, 0.4);
+            animation: pulse 3s infinite;
+        }
+
+        .countdown-widget .label {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .countdown-widget .value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(74, 144, 164, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(74, 144, 164, 0.7); }
+        }
+
+        /* ===== NAVIGATION TABS ===== */
+        .nav-tabs {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background: rgba(250, 247, 240, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 999;
+            display: flex;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 0 var(--space-sm);
+            box-shadow: var(--shadow-sm);
+            scrollbar-width: none;
+        }
+
+        .nav-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-tab {
+            flex-shrink: 0;
+            padding: var(--space-sm) var(--space-md);
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            white-space: nowrap;
+        }
+
+        .nav-tab.active {
+            color: var(--ocean-blue);
+            border-bottom-color: var(--ocean-blue);
+        }
+
+        .nav-tab i {
+            margin-right: 0.5rem;
+        }
+
+        /* ===== MAIN CONTAINER ===== */
+        main {
+            margin-top: 150px;
+            padding: 0 var(--space-sm);
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== CARDS ===== */
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+            margin-bottom: var(--space-md);
+            border: 2px solid var(--lava-brown);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-normal);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--ocean-blue);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-sm);
+            padding-bottom: var(--space-sm);
+            border-bottom: 2px solid var(--sand-beige);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--volcanic-black);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .badge-categoria {
+            background: rgba(139, 111, 71, 0.2);
+            color: var(--lava-brown);
+        }
+
+        .badge-prenotazione {
+            background: rgba(231, 76, 60, 0.2);
+            color: var(--error-red);
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .badge-aperto {
+            background: rgba(39, 174, 96, 0.2);
+            color: var(--success-green);
+        }
+
+        .badge-chiuso {
+            background: rgba(189, 195, 199, 0.3);
+            color: #7f8c8d;
+        }
+
+        /* ===== PROSSIMA TAPPA ===== */
+        .next-stop-card {
+            background: linear-gradient(135deg, rgba(107, 142, 35, 0.15), rgba(127, 168, 48, 0.1));
+            border: 3px solid var(--cactus-green);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+            margin-bottom: var(--space-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .next-stop-card::before {
+            content: '🎯';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 8rem;
+            opacity: 0.1;
+        }
+
+        .next-stop-card .day {
+            font-size: 0.85rem;
+            color: var(--cactus-green);
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .next-stop-card h3 {
+            font-size: 1.5rem;
+            color: var(--volcanic-black);
+            margin-bottom: var(--space-sm);
+        }
+
+        .next-stop-card .description {
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin-bottom: var(--space-sm);
+        }
+
+        .next-stop-card .distance-info {
+            display: flex;
+            gap: var(--space-md);
+            margin-top: var(--space-sm);
+        }
+
+        .distance-info .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* ===== TIMELINE ITINERARIO ===== */
+        .timeline {
+            position: relative;
+            padding-left: var(--space-lg);
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--ocean-blue), var(--cactus-green));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: var(--space-lg);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 12px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--ocean-blue);
+            border: 3px solid var(--sand-white);
+            box-shadow: 0 0 0 3px var(--ocean-blue);
+            z-index: 2;
+        }
+
+        .timeline-item.completed::before {
+            background: var(--success-green);
+            box-shadow: 0 0 0 3px var(--success-green);
+        }
+
+        .timeline-item.current::before {
+            background: var(--cactus-green);
+            box-shadow: 0 0 0 3px var(--cactus-green);
+            animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+
+        @keyframes ping {
+            0% { box-shadow: 0 0 0 0 rgba(107, 142, 35, 0.7); }
+            75%, 100% { box-shadow: 0 0 0 15px rgba(107, 142, 35, 0); }
+        }
+
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-sm);
+        }
+
+        .day-number {
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: var(--ocean-blue);
+            text-transform: uppercase;
+        }
+
+        .day-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--volcanic-black);
+            margin-bottom: var(--space-xs);
+        }
+
+        .activity {
+            background: rgba(74, 144, 164, 0.05);
+            border-left: 3px solid var(--ocean-blue);
+            padding: var(--space-sm);
+            margin-bottom: var(--space-sm);
+            border-radius: var(--radius-sm);
+        }
+
+        .activity-time {
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: var(--ocean-blue);
+            margin-bottom: 0.3rem;
+        }
+
+        .activity-name {
+            font-weight: 600;
+            color: var(--volcanic-black);
+            margin-bottom: 0.3rem;
+        }
+
+        .activity-details {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        /* ===== LISTA LUOGHI ===== */
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--space-md);
+        }
+
+        .place-card {
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid var(--lava-brown);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .place-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--ocean-blue), var(--cactus-green));
+            transform: scaleX(0);
+            transition: transform var(--transition-normal);
+        }
+
+        .place-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .place-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--ocean-blue);
+        }
+
+        .place-distance {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            background: rgba(74, 144, 164, 0.1);
+            padding: 0.3rem 0.6rem;
+            border-radius: var(--radius-full);
+            font-size: 0.85rem;
+            color: var(--ocean-deep);
+            font-weight: bold;
+            margin-bottom: var(--space-sm);
+        }
+
+        .place-orari {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin: var(--space-xs) 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* ===== BOTTONI ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: var(--space-sm) var(--space-md);
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--ocean-blue), var(--ocean-deep));
+            color: white;
+            box-shadow: 0 4px 15px rgba(74, 144, 164, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(74, 144, 164, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(139, 111, 71, 0.15);
+            color: var(--lava-brown);
+            border: 2px solid var(--lava-brown);
+        }
+
+        .btn-secondary:hover {
+            background: var(--lava-brown);
+            color: white;
+        }
+
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+        }
+
+        .btn-block {
+            width: 100%;
+            margin-top: var(--space-sm);
+        }
+
+        /* ===== FLOATING GPS BUTTON ===== */
+        .gps-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--ocean-blue), var(--ocean-deep));
+            border: 3px solid var(--lava-brown);
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 1001;
+            box-shadow: 0 6px 25px rgba(74, 144, 164, 0.4);
+            transition: all var(--transition-normal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gps-button:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.9);
+        }
+
+        .gps-button.active {
+            background: linear-gradient(135deg, var(--cactus-green), #2ecc71);
+            animation: spinPulse 3s infinite;
+        }
+
+        @keyframes spinPulse {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.05); }
+        }
+
+        .gps-button .badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--cactus-green);
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+            box-shadow: 0 0 15px var(--cactus-green);
+        }
+
+        .gps-button.active .badge {
+            display: flex;
+        }
+
+        /* ===== OVERLAY VICINI ===== */
+        .nearby-overlay {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 450px;
+            height: 100vh;
+            background: rgba(250, 247, 240, 0.98);
+            backdrop-filter: blur(20px);
+            border-left: 4px solid var(--lava-brown);
+            box-shadow: -10px 0 30px rgba(139, 111, 71, 0.3);
+            z-index: 1002;
+            transition: right 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            overflow-y: auto;
+            padding: var(--space-lg);
+        }
+
+        .nearby-overlay.open {
+            right: 0;
+        }
+
+        .nearby-overlay .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--error-red);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-fast);
+        }
+
+        .nearby-overlay .close-btn:hover {
+            transform: rotate(90deg);
+            background: var(--warning-orange);
+        }
+
+        .filter-bar {
+            display: flex;
+            gap: 0.5rem;
+            margin: var(--space-md) 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: rgba(74, 144, 164, 0.15);
+            border: 2px solid var(--ocean-blue);
+            color: var(--ocean-deep);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all var(--transition-fast);
+            font-weight: 500;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--ocean-blue);
+            color: white;
+            box-shadow: 0 3px 12px rgba(74, 144, 164, 0.4);
+        }
+
+        .nearby-place {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid var(--lava-brown);
+            border-radius: var(--radius-md);
+            padding: var(--space-sm);
+            margin-bottom: var(--space-sm);
+            transition: all var(--transition-normal);
+        }
+
+        .nearby-place:hover {
+            transform: translateY(-3px);
+            border-color: var(--ocean-blue);
+            box-shadow: 0 6px 20px rgba(74, 144, 164, 0.3);
+        }
+
+        /* ===== MAPPA ===== */
+        #mapContainer {
+            width: 100%;
+            height: 500px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 3px solid var(--lava-brown);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--space-md);
+        }
+
+        /* ===== COLLAPSIBLE SECTIONS ===== */
+        .collapsible {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .collapsible-content.open {
+            max-height: 2000px;
+        }
+
+        .toggle-icon {
+            transition: transform var(--transition-fast);
+        }
+
+        .collapsible.open .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        /* ===== TABELLE ===== */
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--space-sm) 0;
+        }
+
+        .info-table th,
+        .info-table td {
+            padding: var(--space-sm);
+            text-align: left;
+            border-bottom: 1px solid var(--sand-beige);
+        }
+
+        .info-table th {
+            background: rgba(139, 111, 71, 0.1);
+            color: var(--volcanic-black);
+            font-weight: bold;
+        }
+
+        .info-table tr:hover {
+            background: rgba(74, 144, 164, 0.05);
+        }
+
+        /* ===== TOAST NOTIFICATIONS ===== */
+        .toast {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: rgba(250, 247, 240, 0.98);
+            border: 2px solid var(--ocean-blue);
+            border-radius: var(--radius-md);
+            padding: var(--space-sm) var(--space-md);
+            color: var(--text-dark);
+            z-index: 10000;
+            box-shadow: 0 6px 25px rgba(74, 144, 164, 0.4);
+            animation: slideInRight 0.4s ease;
+            max-width: 350px;
+        }
+
+        .toast.success {
+            border-color: var(--success-green);
+            background: rgba(232, 240, 220, 0.98);
+        }
+
+        .toast.error {
+            border-color: var(--error-red);
+            background: rgba(250, 235, 230, 0.98);
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(500px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .header-title h1 {
+                font-size: 1.2rem;
+            }
+
+            .countdown-widget .value {
+                font-size: 1rem;
+            }
+
+            main {
+                margin-top: 140px;
+                padding: 0 var(--space-xs);
+            }
+
+            .places-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gps-button {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .nearby-overlay {
+                width: 100%;
+                right: -100%;
+            }
+
+            #mapContainer {
+                height: 400px;
+            }
+        }
+
+        /* ===== LOADING SPINNER ===== */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ===== PRIVACY NOTE ===== */
+        .privacy-note {
+            background: rgba(139, 111, 71, 0.1);
+            border-left: 4px solid var(--lava-brown);
+            padding: var(--space-sm);
+            border-radius: var(--radius-sm);
+            margin: var(--space-sm) 0;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+        }
+
+        /* ===== PROGRESS BAR ===== */
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(139, 111, 71, 0.2);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+            margin: var(--space-sm) 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--ocean-blue), var(--cactus-green));
+            border-radius: var(--radius-full);
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ===== CHECKLIST ===== */
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-sm);
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: var(--radius-sm);
+            margin-bottom: var(--space-xs);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .checklist-item:hover {
+            background: rgba(74, 144, 164, 0.1);
+        }
+
+        .checklist-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .checklist-item.checked {
+            opacity: 0.6;
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-title">
+                <h1>🌋 Lanzarote 2026</h1>
+                <div class="subtitle">Brian & Federica - Geoloc Live</div>
+            </div>
+            <div class="countdown-widget">
+                <div class="label">Partenza tra</div>
+                <div class="value" id="countdown">--</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- NAVIGATION TABS -->
+    <nav class="nav-tabs">
+        <button class="nav-tab active" data-section="itinerario">
+            <i class="fas fa-route"></i> Itinerario
+        </button>
+        <button class="nav-tab" data-section="mappa">
+            <i class="fas fa-map-marked-alt"></i> Mappa
+        </button>
+        <button class="nav-tab" data-section="luoghi">
+            <i class="fas fa-map-pin"></i> Luoghi
+        </button>
+        <button class="nav-tab" data-section="info">
+            <i class="fas fa-info-circle"></i> Info
+        </button>
+        <button class="nav-tab" data-section="checklist">
+            <i class="fas fa-tasks"></i> Checklist
+        </button>
+    </nav>
+
+    <!-- GPS BUTTON -->
+    <button class="gps-button" id="gpsButton" onclick="toggleGPS()">
+        <i class="fas fa-location-arrow"></i>
+        <span class="badge">ON</span>
+    </button>
+
+    <!-- OVERLAY LUOGHI VICINI -->
+    <div class="nearby-overlay" id="nearbyOverlay">
+        <button class="close-btn" onclick="closeOverlay()">×</button>
+        <h3 style="color: var(--accent-neon); text-shadow: 0 0 15px var(--accent-neon); margin-bottom: 1.5rem;">
+            📍 Vicino a Voi
+        </h3>
+
+        <div style="background: linear-gradient(135deg, rgba(107, 142, 35, 0.15), rgba(127, 168, 48, 0.1)); border: 2px solid var(--cactus-green); border-radius: 15px; padding: 1rem; margin-bottom: 1.5rem;">
+            <h4 style="color: var(--cactus-green); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                <i class="fas fa-map-marker-alt"></i> Posizione Attuale
+            </h4>
+            <p id="coordsDisplay" style="font-size: 0.9rem; color: var(--text-dark); font-family: 'Courier New', monospace;">
+                In attesa GPS...
+            </p>
+            <p id="accuracyDisplay" style="font-size: 0.85rem; color: var(--text-light); margin-top: 0.3rem;"></p>
+        </div>
+
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all">Tutti</button>
+            <button class="filter-btn" data-filter="ristorante">🍽️ Ristoranti</button>
+            <button class="filter-btn" data-filter="attrazione">🎭 Attrazioni</button>
+            <button class="filter-btn" data-filter="spiaggia">🏖️ Spiagge</button>
+        </div>
+
+        <div id="nearbyList">
+            <p style="color: #aaa; text-align: center;">Attiva GPS per vedere i luoghi vicini</p>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- SEZIONE ITINERARIO -->
+        <section class="section active" id="itinerario">
+            <div class="next-stop-card">
+                <div class="day">🎯 Prossima Tappa</div>
+                <h3 id="nextStopName">Giorno 1 - Arrivo</h3>
+                <p class="description" id="nextStopDesc">Atterraggio a Lanzarote e prima passeggiata sul lungomare</p>
+                <div class="distance-info" id="nextStopDistance"></div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2 style="color: var(--volcanic-black); font-size: 1.8rem; margin: 0;">📅 Itinerario Completo</h2>
+                    <div style="text-align: right;">
+                        <div style="font-size: 0.85rem; color: var(--text-light);">Progresso viaggio</div>
+                        <div style="font-size: 1.5rem; font-weight: bold; color: var(--ocean-blue);" id="tripProgress">0%</div>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+                </div>
+            </div>
+
+            <div class="timeline">
+                <!-- Giorno 1 -->
+                <div class="timeline-item" data-day="1">
+                    <div class="card">
+                        <div class="day-header">
+                            <div class="day-number">Giorno 1</div>
+                            <div class="card-badge badge-categoria">26 Apr - Dom</div>
+                        </div>
+                        <h3 class="day-title">🛬 Arrivo e Primo Tramonto</h3>
+                        
+                        <div class="activity">
+                            <div class="activity-time">17:50</div>
+                            <div class="activity-name">Atterraggio Arrecife (ACE)</div>
+                            <div class="activity-details">Ritiro auto a noleggio - 10 min per le pratiche</div>
+                        </div>
+
+                        <div class="activity">
+                            <div class="activity-time">18:30</div>
+                            <div class="activity-name">Arrivo Puerto del Carmen</div>
+                            <div class="activity-details">Check-in Club Oceano - 10 min dall'aeroporto</div>
+                        </div>
+
+                        <div class="activity">
+                            <div class="activity-time">20:00</div>
+                            <div class="activity-name">🌅 Passeggiata Lungomare</div>
+                            <div class="activity-details">Prima serata - tramonto alle 20:15. Atmosfera perfetta!</div>
+                        </div>
+
+                        <div class="activity">
+                            <div class="activity-time">21:00</div>
+                            <div class="activity-name">🍽️ Cena - Taberna de Niño o Lomo Alto</div>
+                            <div class="activity-details">Pintxos baschi o steakhouse vista oceano - 25-35€/p</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Giorno 2 -->
+                <div class="timeline-item" data-day="2">
+                    <div class="card">
+                        <div class="day-header">
+                            <div class="day-number">Giorno 2</div>
+                            <div class="card-badge badge-categoria">27 Apr - Lun</div>
+                        </div>
+                        <h3 class="day-title">🏖️ Costa Sud - Papagayo & El Golfo</h3>
+                        
+                        <div class="activity">
+                            <div class="activity-time">09:40</div>
+                            <div class="activity-name">Spiagge di Papagayo</div>
+                            <div class="activity-details">
+                                5 calette paradisiache sabbia dorata. Mare turchese protetto.<br>
+                                💰 Accesso: 3€/persona via pista sterrata<br>
+                                🏖️ Bar/ristorante sulla scogliera - arrivare presto per luce migliore
+                            </div>
+                        </div>
+
+                        <div class="activity">
+                            <div class="activity-time">13:00</div>
+                            <div class="activity-name">🍽️ Pranzo a Playa Blanca - Ristorante Sergio</div>
+                            <div class="activity-details">Pesce creativo, voto 4.8/5 - fascia €€</div>
+                        </div>
+
+                        <div class="activity">
+                            <div class="activity-time">15:30</div>
+                            <div class="activity-name">📸 El Golfo - Lago Verde</div>
+                            <div class="activity-details">Cratere vulcanico con lago smeraldo - foto obbligatoria!</div>
+                        </div>
+
+                        <div class="activity">
+                            <div class="activity-time">16:00</div>
+                            <div class="activity-name">Salinas del Janubio</div>
+                            <div class="activity-details">Saline panoramiche - mosaico rosa e bianco visibile dalla strada</div>
+                        </div>
+
+                        <div class="activity">
+                            <div class="activity-time">19:30</div>
+                            <div class="activity-name">🍽️ Cena - Mardeleva</div>
+                            <div class="activity-details">Churros de pescado leggendari - terrazza porto vecchio - 20-30€/p</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Giorno 3 -->
+                <div class="timeline-item" data-day="3">
+                    <div class="card">
+                        <div class="day-header">
+                            <div class="day-number">Giorno 3</div>
+                            <div class="card-badge badge-categoria">28 Apr - Mar</div>
+                        </div>
+                        <h3 class="day-title">🎨 Manrique & Arrecife</h3>
+                        
+                        <div class="activity">
+                            <div class="activity-time">10:00</div>
+                            <div class="activity-name">🏛️ Fundación César Manrique</div>
+                            <div class="activity-details">
+                                💰 10€/p - Casa-studio nelle bolle vulcaniche<br>
+                                ⏱️ Durata: 1.5-2 ore - IMPERDIBILE!<br>
+                                5 stanze sotterranee nella lava solidificata
+                            </div>
+                        </div>
+
+                        <div class="activity">
+                            <div class="activity-time">12:30</div>
+                            <div class="activity-name">🍽️ Pranzo Charco de San Ginés</div>
+                            <div class="activity-details">
+                                <strong>Bar Andalucía 1960</strong> - Gestito da italiano Massimo<br>
+                                12 posti - PRENOTAZIONE OBBLIGATORIA - Tapas + pasta fresca - €
+                            </div>
+                        </div>
+
+                        <div class="activity">
+                            <div class="activity-time">14:30</div>
+                            <div class="activity-name">🏰 MIAC - Castillo de San José</div>
+                            <div class="activity-details">💰 5.20€ - Arte contemporanea (Picasso, Miró) in castello 700esco</div>
+                        </div>
+
+                        <div class="activity">
+                            <div class="activity-time">19:30</div>
+                            <div class="activity-name">🍽️ Cena - Asian Home o Vino Lanzarote</div>
+                            <div class="activity-details">
+                                Asian Home: Miglior voto PDC 4.9/5 (1.412 rec.) - Sushi fusion 25-30€<br>
+                                Vino Lanzarote: Wine bar Malvasía vulcanica + tapas canarie
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Giorno 4 -->
+                <div class="timeline-item" data-day="4">
+                    <div class="card">
+                        <div class="day-header">
+                            <div class="day-number">Giorno 4</div>
+                            <div class="card-badge badge-prenotazione">⚠️ SLOT PRENOTATO</div>
+                        </div>
+                        <h3 class="day-title">🕳️ Grotte & Nord - Cueva & Jameos</h3>
+                        
+                        <div class="activity">
+                            <div class="activity-time">09:30</div>
+                            <div class="activity-name">🎫 Cueva de los Verdes - SLOT ONLINE</div>
+                            <div class="activity-details">
+                                💰 17€/p - Tubo lavico 6 km con illusione ottica finale<br>
+                                ⏱️ 50 min - Temperatura 18°C costante<br>
+                                ⚠️ PRENOTAZIONE OBBLIGATORIA - no biglietteria fisica!
+                            </div>
+                        </div>
+
+                        <div class="activity">
+                            <div class="activity-time">10:40</div>
+                            <div class="activity-name">🦀 Jameos del Agua</div>
+                            <div class="activity-details">
+                                💰 15€/p - Opera Manrique 1968: granchi bianchi ciechi + auditorium + piscina turchese<br>
+                                🚫 Vietato lanciare monete nel lago!
+                            </div>
+                        </div>
+
+                        <div class="activity">
+                            <div class="activity-time">13:15</div>
+                            <div class="activity-name">🍽️ Pranzo veloce Arrieta o Punta Mujeres</div>
+                            <div class="activity-details">Pesce fresco in trattoria di villaggio - portare cash</div>
+                        </div>
+
+                        <div class="activity">
+                            <div class="activity-time">20:00</div>
+                            <div class="activity-name">🍽️ La Carmencita del Puerto - PRENOTARE!</div>
+                            <div class="activity-details">
+                                ⭐ 3° di 301 ristoranti PDC - Tapas autentiche canarie<br>
+                                📞 +34 928 29 11 69 - Solo 12 tavoli - 25-35€/p<br>
+                                Lun-Ven 19-23, chiuso sab-dom
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Giorno 5 -->
+                <div class="timeline-item" data-day="5">
+                    <div class="card">
+                        <div class="day-header">
+                            <div class="day-number">Giorno 5</div>
+                            <div class="card-badge badge-categoria">30 Apr - Gio</div>
+                        </div>
+                        <h3 class="day-title">🌋 Vulcani & Vini - Timanfaya + La Geria</h3>
+                        
+                        <div class="activity">
+                            <div class="activity-time">09:30</div>
+                            <div class="activity-name">🔥 Parco Nazionale Timanfaya</div>
+                            <div class="activity-details">
+                                💰 30€/p - PRENOTAZIONE ONLINE fortemente consigliata<br>
+                                🚌 Ruta de los Volcanes in bus + dimostrazioni geotermiche (geyser 450°C!)<br>
+                                ⏱️ 90 min totali
+                            </div>
+                        </div>
+
+                        <div class="activity">
+                            <div class="activity-time">12:00</div>
+                            <div class="activity-name">🍽️ Ristorante El Diablo - BBQ VULCANICO</div>
+                            <div class="activity-details">
+                                🔥 Griglia a 450°C geotermici - costruzione Manrique 1970<br>
+                                💰 Pollo 17.50€, entrecôte 22€ - NO prenotazioni (coda veloce)<br>
+                                Accessibile solo col bus del parco
+                            </div>
+                        </div>
+
+                        <div class="activity">
+                            <div class="activity-time">13:15</div>
+                            <div class="activity-name">🐫 Opzionale: Giro dromedario</div>
+                            <div class="activity-details">11€/p - 20 min - Echadero de los Camellos sulla strada di uscita</div>
+                        </div>
+
+                        <div class="activity">
+                            <div class="activity-time">14:30</div>
+                            <div class="activity-name">🍷 Bodegas La Geria</div>
+                            <div class="activity-details">
+                                Paesaggio vinicolo più surreale del pianeta - viti nei crateri di lava<br>
+                                <strong>Bodegas Rubicón</strong>: ingresso gratuito, degustazione da 1€/calice<br>
+                                <strong>El Grifo</strong>: Wine Lovers 50€/p - tour 2h, 6 vini + formaggi (PRENOTARE)
+                            </div>
+                        </div>
+
+                        <div class="activity">
+                            <div class="activity-time">17:00</div>
+                            <div class="activity-name">🏠 Check-in nuova base (se Strategia 3)</div>
+                            <div class="activity-details">Cambio alloggio - da PDC verso centro/nord isola</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Giorno 6 -->
+                <div class="timeline-item" data-day="6">
+                    <div class="card">
+                        <div class="day-header">
+                            <div class="day-number">Giorno 6</div>
+                            <div class="card-badge badge-prenotazione">🎉 EVENTO SPECIALE</div>
+                        </div>
+                        <h3 class="day-title">🎵 Festa del Lavoro + Noches de Jameos</h3>
+                        
+                        <div class="activity">
+                            <div class="activity-time">09:00-14:00</div>
+                            <div class="activity-name">🏖️ Relax Mattinata</div>
+                            <div class="activity-details">
+                                ⚠️ Festivo nazionale - Mercadona CHIUSO (fare scorta il 30 apr!)<br>
+                                Opzioni: spiaggia, piscina, Jardín de Cactus (9€/p)
+                            </div>
+                        </div>
+
+                        <div class="activity">
+                            <div class="activity-time">18:30-00:00</div>
+                            <div class="activity-name">🎶 NOCHES DE JAMEOS DEL AGUA - L'EVENTO!</div>
+                            <div class="activity-details">
+                                💰 98€/persona - Cena gourmet + concerto timple + DJ set<br>
+                                📅 1830 apertura, 1830-2100 cena, 2230-2315 concerto<br>
+                                🎫 PRENOTAZIONE OBBLIGATORIA online - posti limitati!<br>
+                                🔗 <a href="https://cactlanzarote.com/en/tickets/jameos-night-dinner-concert" target="_blank" style="color: var(--accent-neon);">Prenota qui</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Giorno 7 -->
+                <div class="timeline-item" data-day="7">
+                    <div class="card">
+                        <div class="day-header">
+                            <div class="day-number">Giorno 7</div>
+                            <div class="card-badge badge-categoria">2 Mag - Sab</div>
+                        </div>
+                        <h3 class="day-title">🏝️ La Graciosa - L'Ottava Isola</h3>
+                        
+                        <div class="activity">
+                            <div class="activity-time">08:30</div>
+                            <div class="activity-name">⛴️ Traghetto Órzola → Caleta del Sebo</div>
+                            <div class="activity-details">
+                                💰 29€ A/R - 25 min traversata<br>
+                                Biosfera Express - fino a 16 corse/giorno
+                            </div>
+                        </div>
+
+                        <div class="activity">
+                            <div class="activity-time">09:00-16:00</div>
+                            <div class="activity-name">🚴 Esplorazione La Graciosa</div>
+                            <div class="activity-details">
+                                🚲 Noleggio bici 10-20€/giorno<br>
+                                📍 Playa de Las Conchas (spettacolare!), Playa Francesa, Montaña Amarilla<br>
+                                ⚠️ Controllare Windguru 48h prima - se mare mosso, traghetto può essere cancellato
+                            </div>
+                        </div>
+
+                        <div class="activity">
+                            <div class="activity-time">13:00</div>
+                            <div class="activity-name">🍽️ Pranzo Caleta del Sebo</div>
+                            <div class="activity-details">Pesce fresco - PORTARE CASH (bancomat limitati)</div>
+                        </div>
+
+                        <div class="activity">
+                            <div class="activity-time">16:30</div>
+                            <div class="activity-name">⛴️ Traghetto ritorno</div>
+                            <div class="activity-details">Piano B se mare mosso: controllare Windguru 48h prima → LagOmar</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Giorno 8 -->
+                <div class="timeline-item" data-day="8">
+                    <div class="card">
+                        <div class="day-header">
+                            <div class="day-number">Giorno 8</div>
+                            <div class="card-badge badge-categoria">3 Mag - Dom</div>
+                        </div>
+                        <h3 class="day-title">🛍️ Teguise & Famara</h3>
+                        
+                        <div class="activity">
+                            <div class="activity-time">09:00</div>
+                            <div class="activity-name">🎪 Mercato di Teguise</div>
+                            <div class="activity-details">
+                                Solo Domenica 9-14 - 400 bancarelle artigianato + musica folk live<br>
+                                Arrivare prima delle 9:30 per parcheggio (2€)
+                            </div>
+                        </div>
+
+                        <div class="activity">
+                            <div class="activity-time">13:00</div>
+                            <div class="activity-name">🍽️ El Risco - Famara ⭐ Michelin Bib Gourmand</div>
+                            <div class="activity-details">
+                                🌟 Pesce km0, farm-to-table - Vista Famara + La Graciosa<br>
+                                📞 PRENOTAZIONE OBBLIGATORIA: +34 928 52 85 50<br>
+                                Edificio Manrique, cucina stellare
+                            </div>
+                        </div>
+
+                        <div class="activity">
+                            <div class="activity-time">14:30</div>
+                            <div class="activity-name">🏖️ Playa de Famara</div>
+                            <div class="activity-details">
+                                7 km di spiaggia, surf mondiale, scogliere Risco 600m<br>
+                                Vento forte - perfetta per passeggiate spettacolari<br>
+                                Opzionale: lezione surf Calima Surf 50€/2h
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Giorno 9 -->
+                <div class="timeline-item" data-day="9">
+                    <div class="card">
+                        <div class="day-header">
+                            <div class="day-number">Giorno 9</div>
+                            <div class="card-badge badge-categoria">4 Mag - Lun</div>
+                        </div>
+                        <h3 class="day-title">🌴 Giornata Libera - Relax</h3>
+                        
+                        <div class="activity">
+                            <div class="activity-time">Tutto il giorno</div>
+                            <div class="activity-name">🎯 Opzioni a scelta:</div>
+                            <div class="activity-details">
+                                ✅ Relax in alloggio/piscina<br>
+                                ✅ Completare attrazioni rimaste fuori<br>
+                                ✅ Seconda visita a Papagayo o Famara<br>
+                                ✅ Shopping a Puerto del Carmen<br>
+                                ✅ LagOmar (6-10€) - Labirinto vulcanico Manrique
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Giorno 10 -->
+                <div class="timeline-item" data-day="10">
+                    <div class="card">
+                        <div class="day-header">
+                            <div class="day-number">Giorno 10</div>
+                            <div class="card-badge badge-prenotazione">🍽️ CENA FINALE</div>
+                        </div>
+                        <h3 class="day-title">🎊 Relax & Gran Finale</h3>
+                        
+                        <div class="activity">
+                            <div class="activity-time">09:00-17:00</div>
+                            <div class="activity-name">🏖️ Ultimi bagni e relax</div>
+                            <div class="activity-details">Piscina, spiaggia, preparazione bagagli</div>
+                        </div>
+
+                        <div class="activity">
+                            <div class="activity-time">19:30</div>
+                            <div class="activity-name">🌟 LA COCINA DE COLACHO - CENA FINALE</div>
+                            <div class="activity-details">
+                                ⭐ Michelin Good Cooking 2026 - IL MIGLIORE!<br>
+                                👨‍🍳 Chef Colacho - Menu degustazione 8-10 portate con orto proprio<br>
+                                💰 95-105€/persona - Solo 8 tavoli<br>
+                                📞 PRENOTAZIONE OBBLIGATORIA: +34 928 51 96 91 / +34 676 76 38 14<br>
+                                📍 Playa Blanca - Calle Velázquez 15, Castillo de Aguila
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Giorno 11 -->
+                <div class="timeline-item" data-day="11">
+                    <div class="card">
+                        <div class="day-header">
+                            <div class="day-number">Giorno 11</div>
+                            <div class="card-badge badge-categoria">6 Mag - Mer</div>
+                        </div>
+                        <h3 class="day-title">✈️ Partenza</h3>
+                        
+                        <div class="activity">
+                            <div class="activity-time">Mattina libera</div>
+                            <div class="activity-name">🏖️ Ultima mattinata fino a 12:00</div>
+                            <div class="activity-details">Goditi gli ultimi momenti di Lanzarote!</div>
+                        </div>
+
+                        <div class="activity">
+                            <div class="activity-time">12:00</div>
+                            <div class="activity-name">🚗 Riconsegna auto</div>
+                            <div class="activity-details">Aeroporto - pieno per pieno</div>
+                        </div>
+
+                        <div class="activity">
+                            <div class="activity-time">15:15</div>
+                            <div class="activity-name">✈️ Volo ACE → MXP</div>
+                            <div class="activity-details">EJU3760 - Arrivo 20:05 Milano Malpensa</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEZIONE MAPPA -->
+        <section class="section" id="mappa">
+            <div class="card">
+                <h2 style="color: var(--volcanic-black); font-size: 1.8rem; margin-bottom: 1rem;">
+                    🗺️ Mappa Interattiva Lanzarote
+                </h2>
+                
+                <div class="privacy-note">
+                    <strong>🔒 Privacy:</strong> La tua posizione è usata SOLO localmente nel browser per calcolare distanze. 
+                    Zero tracking, zero server esterni. Solo per Lanzarote!
+                </div>
+
+                <div id="mapContainer"></div>
+
+                <div style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                    <span class="card-badge badge-categoria">🍽️ Ristoranti</span>
+                    <span class="card-badge badge-aperto">🎭 Attrazioni CACT</span>
+                    <span class="card-badge" style="background: rgba(216, 131, 115, 0.2); color: var(--sunset-coral);">🏖️ Spiagge</span>
+                    <span class="card-badge" style="background: rgba(107, 142, 35, 0.2); color: var(--cactus-green);">🍷 Bodegas</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEZIONE LUOGHI -->
+        <section class="section" id="luoghi">
+            <div class="card">
+                <h2 style="color: var(--volcanic-black); font-size: 1.8rem; margin-bottom: 1rem;">
+                    📍 Tutti i Luoghi della Guida
+                </h2>
+                
+                <div class="filter-bar" style="margin-bottom: 1.5rem;">
+                    <button class="filter-btn active" data-filter-category="all">Tutti</button>
+                    <button class="filter-btn" data-filter-category="ristorante">🍽️ Ristoranti</button>
+                    <button class="filter-btn" data-filter-category="attrazione">🎭 Attrazioni</button>
+                    <button class="filter-btn" data-filter-category="spiaggia">🏖️ Spiagge</button>
+                    <button class="filter-btn" data-filter-category="bodega">🍷 Bodegas</button>
+                </div>
+
+                <div class="places-grid" id="placesGrid">
+                    <!-- Popolato dinamicamente -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SEZIONE INFO -->
+        <section class="section" id="info">
+            <!-- VOLI -->
+            <div class="card">
+                <div class="card-header collapsible" onclick="toggleCollapsible(this)">
+                    <h2 class="card-title">
+                        ✈️ Info Voli
+                    </h2>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="collapsible-content open">
+                    <table class="info-table">
+                        <tr>
+                            <th>Tratta</th>
+                            <th>Orario</th>
+                            <th>Volo</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Andata</strong></td>
+                            <td>BGY 14:40 → ACE 17:50</td>
+                            <td>Ryanair FR4001</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ritorno</strong></td>
+                            <td>ACE 15:15 → MXP 20:05</td>
+                            <td>easyJet EJU3760</td>
+                        </tr>
+                        <tr style="background: rgba(107, 142, 35, 0.1);">
+                            <td colspan="3"><strong>Costo totale:</strong> 428€ per 2 persone</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- AUTO -->
+            <div class="card">
+                <div class="card-header collapsible" onclick="toggleCollapsible(this)">
+                    <h2 class="card-title">
+                        🚗 Noleggio Auto
+                    </h2>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="collapsible-content">
+                    <p style="margin-bottom: 1rem;">
+                        <strong>Operatori locali consigliati</strong> - zero franchigia inclusa:
+                    </p>
+                    <table class="info-table">
+                        <tr>
+                            <th>Operatore</th>
+                            <th>Prezzo 9-10gg</th>
+                            <th>Link</th>
+                        </tr>
+                        <tr>
+                            <td>AutoReisen</td>
+                            <td>100-170€</td>
+                            <td><a href="https://www.autoreisen.com" target="_blank" style="color: var(--ocean-blue);">autoreisen.com</a></td>
+                        </tr>
+                        <tr>
+                            <td>CICAR</td>
+                            <td>120-225€</td>
+                            <td><a href="https://www.cicar.com" target="_blank" style="color: var(--ocean-blue);">cicar.com</a></td>
+                        </tr>
+                        <tr>
+                            <td>Cabrera Medina</td>
+                            <td>150-250€</td>
+                            <td><a href="https://www.cabreramedina.com" target="_blank" style="color: var(--ocean-blue);">cabreramedina.com</a></td>
+                        </tr>
+                    </table>
+                    <div class="privacy-note" style="margin-top: 1rem;">
+                        <strong>⛽ Benzina:</strong> 1.20-1.30€/litro (20% meno della penisola). Stimati 800 km = 70-80€ totali.
+                    </div>
+                </div>
+            </div>
+
+            <!-- INGRESSI -->
+            <div class="card">
+                <div class="card-header collapsible" onclick="toggleCollapsible(this)">
+                    <h2 class="card-title">
+                        🎫 Ingressi CACT Manrique
+                    </h2>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="collapsible-content">
+                    <table class="info-table">
+                        <tr>
+                            <th>Attrazione</th>
+                            <th>Prezzo</th>
+                            <th>Prenotazione</th>
+                        </tr>
+                        <tr>
+                            <td>Timanfaya</td>
+                            <td>30€</td>
+                            <td><span class="badge-prenotazione" style="font-size: 0.75rem;">Online consigliata</span></td>
+                        </tr>
+                        <tr>
+                            <td>Cueva de los Verdes</td>
+                            <td>17€</td>
+                            <td><span class="badge-prenotazione" style="font-size: 0.75rem;">OBBLIGATORIA slot</span></td>
+                        </tr>
+                        <tr>
+                            <td>Jameos del Agua</td>
+                            <td>15€</td>
+                            <td>Online (no slot)</td>
+                        </tr>
+                        <tr>
+                            <td>Fundación Manrique</td>
+                            <td>10€</td>
+                            <td>Online o in loco</td>
+                        </tr>
+                        <tr>
+                            <td>Jardín de Cactus</td>
+                            <td>9€</td>
+                            <td>Online o in loco</td>
+                        </tr>
+                        <tr>
+                            <td>Mirador del Río</td>
+                            <td>8.50€</td>
+                            <td>Online o in loco</td>
+                        </tr>
+                        <tr>
+                            <td>MIAC Castillo</td>
+                            <td>5.20€</td>
+                            <td>Online o in loco</td>
+                        </tr>
+                        <tr style="background: rgba(107, 142, 35, 0.1); font-weight: bold;">
+                            <td>TOTALE 2 persone</td>
+                            <td colspan="2">189.40€</td>
+                        </tr>
+                    </table>
+                    <div class="privacy-note" style="margin-top: 1rem;">
+                        🔗 <a href="https://ventaonline.cactlanzarote.com" target="_blank" style="color: var(--ocean-blue);">ventaonline.cactlanzarote.com</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- METEO -->
+            <div class="card">
+                <div class="card-header collapsible" onclick="toggleCollapsible(this)">
+                    <h2 class="card-title">
+                        🌤️ Meteo Aprile-Maggio
+                    </h2>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="collapsible-content">
+                    <table class="info-table">
+                        <tr>
+                            <th>Parametro</th>
+                            <th>Valore</th>
+                        </tr>
+                        <tr>
+                            <td>Temperature Max</td>
+                            <td>23-25°C</td>
+                        </tr>
+                        <tr>
+                            <td>Temperature Min</td>
+                            <td>15-17°C</td>
+                        </tr>
+                        <tr>
+                            <td>Mare</td>
+                            <td>18-20°C (fresco, serve muta)</td>
+                        </tr>
+                        <tr>
+                            <td>Vento Aliseo</td>
+                            <td>22-25 km/h da NE</td>
+                        </tr>
+                        <tr>
+                            <td>Pioggia</td>
+                            <td>~1 giorno/mese (quasi nulla)</td>
+                        </tr>
+                        <tr>
+                            <td>Sole</td>
+                            <td>9-10 ore/giorno</td>
+                        </tr>
+                        <tr style="background: rgba(231, 76, 60, 0.1);">
+                            <td>Indice UV</td>
+                            <td><strong>9-10 MOLTO ALTO</strong> - SPF 50!</td>
+                        </tr>
+                    </table>
+                    <div class="privacy-note" style="margin-top: 1rem;">
+                        <strong>📊 Calima:</strong> Maggio ha l'indice più basso dell'anno (DAI 0.56). Rischio calima intensa molto basso.
+                    </div>
+                </div>
+            </div>
+
+            <!-- BUDGET -->
+            <div class="card">
+                <div class="card-header collapsible" onclick="toggleCollapsible(this)">
+                    <h2 class="card-title">
+                        💰 Budget Totale
+                    </h2>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="collapsible-content">
+                    <table class="info-table">
+                        <tr>
+                            <th>Voce</th>
+                            <th>Importo</th>
+                        </tr>
+                        <tr>
+                            <td>Voli Ryanair + easyJet</td>
+                            <td>428€</td>
+                        </tr>
+                        <tr>
+                            <td>Alloggio 10 notti Club Oceano</td>
+                            <td>880€</td>
+                        </tr>
+                        <tr>
+                            <td>Auto 10 gg operatore locale</td>
+                            <td>185€</td>
+                        </tr>
+                        <tr>
+                            <td>Carburante 800 km</td>
+                            <td>75€</td>
+                        </tr>
+                        <tr>
+                            <td>Ingressi CACT Manrique 2 pers.</td>
+                            <td>189.40€</td>
+                        </tr>
+                        <tr>
+                            <td>Pasti 10 gg (~90€/gg)</td>
+                            <td>900€</td>
+                        </tr>
+                        <tr>
+                            <td>La Graciosa (traghetto + bici)</td>
+                            <td>88€</td>
+                        </tr>
+                        <tr>
+                            <td>Noches de Jameos 2 pers.</td>
+                            <td>196€</td>
+                        </tr>
+                        <tr>
+                            <td>Attività extra (surf, kayak, ecc.)</td>
+                            <td>200€</td>
+                        </tr>
+                        <tr>
+                            <td>Contingenze 10%</td>
+                            <td>295€</td>
+                        </tr>
+                        <tr style="background: linear-gradient(135deg, rgba(74, 144, 164, 0.2), rgba(107, 142, 35, 0.2)); font-weight: bold; font-size: 1.1rem;">
+                            <td>TOTALE BASE</td>
+                            <td>3.240€</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEZIONE CHECKLIST -->
+        <section class="section" id="checklist">
+            <div class="card">
+                <h2 style="color: var(--volcanic-black); font-size: 1.8rem; margin-bottom: 1rem;">
+                    ✅ Checklist Pre-Partenza
+                </h2>
+                
+                <div style="margin-bottom: 2rem;">
+                    <h3 style="color: var(--ocean-blue); margin-bottom: 1rem;">🎫 Prenotazioni Obbligatorie</h3>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check-1">
+                        <label for="check-1">Cueva de los Verdes - slot online (OBBLIGATORIO)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check-2">
+                        <label for="check-2">Timanfaya - prenotazione online (fortemente consigliata)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check-3">
+                        <label for="check-3">La Carmencita del Puerto - Tel +34 928 29 11 69</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check-4">
+                        <label for="check-4">El Risco Famara - Tel +34 928 52 85 50 (Michelin Bib Gourmand)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check-5">
+                        <label for="check-5">La Cocina de Colacho - Tel +34 928 51 96 91 (Cena finale)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check-6">
+                        <label for="check-6">Noches de Jameos del Agua - 98€/p online</label>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 2rem;">
+                    <h3 style="color: var(--ocean-blue); margin-bottom: 1rem;">🎒 Da Portare</h3>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check-7">
+                        <label for="check-7">Crema solare SPF 50+ (UV 9-10!)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check-8">
+                        <label for="check-8">Felpa leggera (serate fresche 15-17°C)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check-9">
+                        <label for="check-9">Scarpe antiscivolo (grotte Cueva de los Verdes)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check-10">
+                        <label for="check-10">Muta (mare 18-20°C se volete nuotare a lungo)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check-11">
+                        <label for="check-11">Cash per La Graciosa (bancomat limitati)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check-12">
+                        <label for="check-12">Maschera snorkeling (Playa Chica PDC)</label>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 style="color: var(--ocean-blue); margin-bottom: 1rem;">📱 Prima di Partire</h3>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check-13">
+                        <label for="check-13">Check-in online voli (Ryanair + easyJet)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check-14">
+                        <label for="check-14">Scaricare mappe offline (Google Maps)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check-15">
+                        <label for="check-15">Salvare questa guida come app (tasto "Aggiungi a Home")</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check-16">
+                        <label for="check-16">Controllare meteo e calima (calimacanarias.com)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check-17">
+                        <label for="check-17">Fare scorta supermercato prima del 1° Maggio (festivo!)</label>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- LIBRERIE JS -->
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js"></script>
+
+    <script>
+        // ===== DATASET LUOGHI =====
+        const LUOGHI_LANZAROTE = [
+            // RISTORANTI
+            {nome: "La Carmencita del Puerto", lat: 28.9247, lng: -13.6541, categoria: "ristorante", indirizzo: "Matagorda, Puerto del Carmen", orari: "Lun-Ven 19:00-23:00, chiuso Sab-Dom", link: "https://www.tripadvisor.com/Restaurant_Review-g662290-d10276447", telefono: "+34 928 29 11 69", descrizione: "⭐ 3° di 301 ristoranti PDC. Tapas canarie autentiche. PRENOTAZIONE INDISPENSABILE. 25-35€/p"},
+            {nome: "Asian Home Restaurant", lat: 28.9235, lng: -13.6582, categoria: "ristorante", indirizzo: "Puerto del Carmen", orari: "Mar-Dom 18:00-23:00", link: "https://www.tripadvisor.com/Restaurant_Review-g662290-d23892517", telefono: "", descrizione: "Sushi/asiatica 4.9/5 (1.412 rec.) - Miglior voto PDC. 25-30€/p"},
+            {nome: "Mardeleva", lat: 28.9208, lng: -13.6615, categoria: "ristorante", indirizzo: "Puerto del Carmen, vecchio porto", orari: "Lun-Dom 12:00-23:00", link: "https://www.tripadvisor.com/Restaurant_Review-g662290-d1672392", telefono: "", descrizione: "Churros de pescado leggendari, terrazza sul porto. 20-30€/p"},
+            {nome: "Lomo Alto", lat: 28.9225, lng: -13.6595, categoria: "ristorante", indirizzo: "Puerto del Carmen", orari: "Lun-Dom 19:00-23:00", link: "https://www.tripadvisor.com/Restaurant_Review-g662290-d6577682", telefono: "", descrizione: "Steakhouse terrazza vista oceano. Carne alla brace. 25-35€/p"},
+            {nome: "La Cocina de Colacho", lat: 28.8635, lng: -13.8325, categoria: "ristorante", indirizzo: "Calle Velázquez 15, Playa Blanca", orari: "Lun-Gio 18:00-22:30, chiuso Ven-Dom", link: "https://www.lacocinadecolacho.com", telefono: "+34 928 51 96 91", descrizione: "⭐ Michelin Good Cooking 2026. Menu degustazione 95-105€/p. Solo 8 tavoli. PRENOTAZIONE OBBLIGATORIA"},
+            {nome: "El Risco", lat: 29.1125, lng: -13.5535, categoria: "ristorante", indirizzo: "Calle Chirimoya 13, Famara", orari: "Lun-Dom 13:00-22:00", link: "http://www.restauranteelrisco.com", telefono: "+34 928 52 85 50", descrizione: "⭐ Michelin Bib Gourmand 2026. Pesce km0, vista Famara + La Graciosa. PRENOTAZIONE OBBLIGATORIA"},
+            {nome: "Ristorante El Diablo", lat: 29.0326, lng: -13.7686, categoria: "ristorante", indirizzo: "Timanfaya, Islote de Hilario", orari: "Lun-Dom 12:00-16:00", link: "https://cactlanzarote.com/en/menus/el-diablo-restaurant", telefono: "", descrizione: "🔥 BBQ vulcanico a 450°C geotermici! Pollo 17.50€, entrecôte 22€. NO prenotazioni"},
+            {nome: "Bar Andalucía 1960", lat: 28.9625, lng: -13.5485, categoria: "ristorante", indirizzo: "Arrecife, Charco de San Ginés", orari: "Lun-Ven 12:00-15:00, 19:00-23:00", link: "https://www.tripadvisor.com/Restaurant_Review-g187478-d6649047", telefono: "", descrizione: "Gestito da italiano Massimo. 12 posti - prenotazione obbligatoria. Tapas + pasta fresca €"},
+            
+            // ATTRAZIONI
+            {nome: "Parco Nazionale Timanfaya", lat: 29.0224, lng: -13.7930, categoria: "attrazione", indirizzo: "LZ-67, Yaiza", orari: "Lun-Dom 09:30-17:00", link: "https://ventaonline.cactlanzarote.com/en/tickets/montanas-del-fuego-timanfaya-ticket", telefono: "", descrizione: "🌋 Montañas del Fuego - 30€. Ruta de los Volcanes + dimostrazioni geotermiche. Prenotazione online consigliata"},
+            {nome: "Cueva de los Verdes", lat: 29.1611, lng: -13.4389, categoria: "attrazione", indirizzo: "LZ-204, Haría", orari: "Lun-Dom 09:30-16:15", link: "https://cactlanzarote.com/en/centre/cueva-de-los-verdes", telefono: "", descrizione: "🕳️ 17€. Tubo lavico 6 km con illusione ottica finale. PRENOTAZIONE ONLINE OBBLIGATORIA slot"},
+            {nome: "Jameos del Agua", lat: 29.1572, lng: -13.4305, categoria: "attrazione", indirizzo: "Carretera Arrieta - Órzola SN", orari: "Lun-Dom 10:00-18:00", link: "https://cactlanzarote.com/en/centre/jameos-del-agua", telefono: "", descrizione: "🦀 15€. Opera Manrique 1968: granchi bianchi ciechi + auditorium + piscina turchese"},
+            {nome: "Fundación César Manrique", lat: 29.0237, lng: -13.5668, categoria: "attrazione", indirizzo: "Tahíche", orari: "Lun-Dom 10:00-17:30", link: "https://fcmanrique.org/en/casas-museo-visitas", telefono: "", descrizione: "🎨 10€. Casa-studio in 5 bolle vulcaniche sotterranee. Durata 1.5-2 ore. IMPERDIBILE!"},
+            {nome: "Jardín de Cactus", lat: 29.1188, lng: -13.4645, categoria: "attrazione", indirizzo: "Guatiza", orari: "Lun-Dom 10:00-16:30", link: "https://cactlanzarote.com/en/centre/jardin-de-cactus", telefono: "", descrizione: "🌵 9€. 4.500 cactus di 450 specie in cava restaurata da Manrique"},
+            {nome: "Mirador del Río", lat: 29.2283, lng: -13.4783, categoria: "attrazione", indirizzo: "Risco de Famara, Nord", orari: "Lun-Dom 10:00-17:00", link: "https://cactlanzarote.com/en/centre/mirador-del-rio", telefono: "", descrizione: "👁️ 8.50€. Belvedere Manrique a 479m, vista su La Graciosa"},
+            {nome: "LagOmar", lat: 29.0208, lng: -13.5825, categoria: "attrazione", indirizzo: "Nazaret", orari: "Lun-Dom 10:00-18:00", link: "https://lanzaroteinformation.co.uk/lagomar/museum", telefono: "", descrizione: "🏛️ 6-10€. Labirinto vulcanico Manrique + Soto. Leggenda Omar Sharif"},
+            
+            // SPIAGGE
+            {nome: "Playa de Papagayo", lat: 28.8538, lng: -13.7948, categoria: "spiaggia", indirizzo: "Yaiza, Sud", orari: "Sempre aperta", link: "https://lanzaroteinformation.co.uk/papagayo", telefono: "", descrizione: "🏖️ 5 calette sabbia dorata, mare turchese protetto. Accesso 3€/p via pista sterrata"},
+            {nome: "Playa de Famara", lat: 29.1105, lng: -13.5528, categoria: "spiaggia", indirizzo: "Caleta de Famara", orari: "Sempre aperta", link: "https://lanzaroteinformation.co.uk/famara", telefono: "", descrizione: "🌊 Spiaggia 7 km con surf mondiale. Scogliere Risco 600m. Vento forte - perfetta per passeggiate"},
+            {nome: "Playa Grande PDC", lat: 28.9245, lng: -13.6565, categoria: "spiaggia", indirizzo: "Puerto del Carmen", orari: "Sempre aperta", link: "", telefono: "", descrizione: "🏖️ Spiaggia principale PDC. Sabbia dorata, lungomare con ristoranti"},
+            
+            // BODEGAS
+            {nome: "Bodegas Rubicón", lat: 29.0095, lng: -13.6515, categoria: "bodega", indirizzo: "La Geria", orari: "Lun-Dom 10:00-18:00", link: "https://www.bodegasrubicon.com", telefono: "", descrizione: "🍷 Ingresso gratuito, degustazione da 1€/calice. La più autentica. Ottima Malvasía"},
+            {nome: "Bodega El Grifo", lat: 29.0082, lng: -13.6428, categoria: "bodega", indirizzo: "La Geria", orari: "Lun-Ven 10:00-17:15", link: "https://elgrifo.com/en/pages/experiencias", telefono: "", descrizione: "🍷 Cantina più antica Canarie (1775). Wine Lovers 50€/p 2h tour + 6 vini. PRENOTAZIONE OBBLIGATORIA"},
+            
+            // LUOGHI SPECIALI
+            {nome: "El Golfo - Lago Verde", lat: 28.9767, lng: -13.8277, categoria: "attrazione", indirizzo: "Av. Marítima, Yaiza", orari: "Sempre accessibile", link: "", telefono: "", descrizione: "💚 Cratere vulcanico con lago smeraldo (alghe + zolfo). Spiaggia nera - foto spettacolare"},
+            {nome: "Mercato di Teguise", lat: 29.0598, lng: -13.5583, categoria: "mercato", indirizzo: "Teguise centro storico", orari: "Solo Domenica 09:00-14:00", link: "https://www.turismolanzarote.com/en/lanzarote/shopping/markets/teguise-market", telefono: "", descrizione: "🎪 400 bancarelle artigianato canario + musica folk. Arrivare prima 9:30 per parcheggio 2€"},
+            {nome: "La Graciosa - Órzola", lat: 29.2219, lng: -13.4525, categoria: "isola", indirizzo: "Órzola porto", orari: "Traghetti 08:00-18:00 ogni ora", link: "https://www.biosferaexpress.com", telefono: "", descrizione: "⛴️ L'ottava isola Canarie. Traghetto 29€ A/R, 25 min. Bici 10-20€/gg"}
+        ];
+
+        // ===== STATO GLOBALE =====
+        let userPosition = null;
+        let geoWatchId = null;
+        let isGeoActive = false;
+        let map = null;
+        let userMarker = null;
+        let placesMarkers = [];
+        let currentFilter = 'all';
+        let currentCategoryFilter = 'all';
+
+        // ===== COUNTDOWN =====
+        const tripStartDate = new Date('2026-04-26T14:40:00');
+        
+        function updateCountdown() {
+            const now = new Date();
+            const diff = tripStartDate - now;
+            
+            if (diff <= 0) {
+                document.getElementById('countdown').textContent = '🎉 In viaggio!';
+                return;
+            }
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            
+            document.getElementById('countdown').textContent = `${days}g ${hours}h`;
+        }
+        
+        updateCountdown();
+        setInterval(updateCountdown, 60000); // Update ogni minuto
+
+        // ===== PROGRESS ITINERARIO =====
+        function updateTripProgress() {
+            const now = new Date();
+            const tripEnd = new Date('2026-05-06T20:05:00');
+            
+            if (now < tripStartDate) {
+                document.getElementById('tripProgress').textContent = '0%';
+                document.getElementById('progressFill').style.width = '0%';
+                return;
+            }
+            
+            if (now > tripEnd) {
+                document.getElementById('tripProgress').textContent = '100%';
+                document.getElementById('progressFill').style.width = '100%';
+                return;
+            }
+            
+            const totalDuration = tripEnd - tripStartDate;
+            const elapsed = now - tripStartDate;
+            const progress = Math.round((elapsed / totalDuration) * 100);
+            
+            document.getElementById('tripProgress').textContent = `${progress}%`;
+            document.getElementById('progressFill').style.width = `${progress}%`;
+            
+            // Marca giorni completati nella timeline
+            const daysSinceStart = Math.floor(elapsed / (1000 * 60 * 60 * 24));
+            document.querySelectorAll('.timeline-item').forEach((item, index) => {
+                if (index < daysSinceStart) {
+                    item.classList.add('completed');
+                } else if (index === daysSinceStart) {
+                    item.classList.add('current');
+                }
+            });
+        }
+        
+        updateTripProgress();
+        setInterval(updateTripProgress, 300000); // Update ogni 5 min
+
+        // ===== NAVIGATION TABS =====
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active from all
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+                
+                // Add active to clicked
+                tab.classList.add('active');
+                const sectionId = tab.dataset.section;
+                document.getElementById(sectionId).classList.add('active');
+                
+                // Init mappa se necessario
+                if (sectionId === 'mappa' && !map) {
+                    initMap();
+                }
+            });
+        });
+
+        // ===== COLLAPSIBLE SECTIONS =====
+        function toggleCollapsible(element) {
+            element.classList.toggle('open');
+            const content = element.nextElementSibling;
+            content.classList.toggle('open');
+        }
+
+        // ===== MAPPA LEAFLET =====
+        function initMap() {
+            if (map) return;
+            
+            map = L.map('mapContainer').setView([29.0469, -13.5900], 10);
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors',
+                maxZoom: 18
+            }).addTo(map);
+            
+            // Aggiungi markers per tutti i luoghi
+            LUOGHI_LANZAROTE.forEach(place => {
+                const iconHtml = getCategoryIcon(place.categoria);
+                const icon = L.divIcon({
+                    html: iconHtml,
+                    className: 'custom-marker',
+                    iconSize: [30, 30]
+                });
+                
+                const marker = L.marker([place.lat, place.lng], { icon }).addTo(map);
+                marker.bindPopup(`
+                    <strong>${place.nome}</strong><br>
+                    <small>${place.categoria}</small><br>
+                    ${place.descrizione}
+                `);
+                
+                placesMarkers.push({ marker, place });
+            });
+        }
+
+        function getCategoryIcon(categoria) {
+            const icons = {
+                'ristorante': '🍽️',
+                'attrazione': '🎭',
+                'spiaggia': '🏖️',
+                'bodega': '🍷',
+                'mercato': '🎪',
+                'isola': '⛴️'
+            };
+            return `<span style="font-size: 24px;">${icons[categoria] || '📍'}</span>`;
+        }
+
+        // ===== HAVERSINE DISTANCE =====
+        function haversineDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371; // Raggio Terra in km
+            const toRad = angle => angle * Math.PI / 180;
+            
+            const dLat = toRad(lat2 - lat1);
+            const dLon = toRad(lon2 - lon1);
+            
+            const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                      Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+                      Math.sin(dLon/2) * Math.sin(dLon/2);
+            
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            return R * c;
+        }
+
+        // ===== CALCOLO TEMPO VIAGGIO =====
+        function calculateTravelTime(distanceKm) {
+            const walkTime = (distanceKm / 5) * 60; // 5 km/h
+            const carTime = (distanceKm / 50) * 60; // 50 km/h
+            return {
+                walk: Math.round(walkTime),
+                car: Math.round(carTime)
+            };
+        }
+
+        // ===== TOAST NOTIFICATIONS =====
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            // Vibrazione mobile se supportato
+            if (navigator.vibrate) {
+                navigator.vibrate(type === 'error' ? [200, 100, 200] : 200);
+            }
+            
+            setTimeout(() => {
+                toast.style.animation = 'slideInRight 0.4s ease reverse';
+                setTimeout(() => toast.remove(), 400);
+            }, 3000);
+        }
+
+        // ===== GPS FUNCTIONS =====
+        function toggleGPS() {
+            if (isGeoActive) {
+                stopGPS();
+            } else {
+                startGPS();
+            }
+        }
+
+        function startGPS() {
+            if (!navigator.geolocation) {
+                showToast('❌ Geolocalizzazione non supportata', 'error');
+                return;
+            }
+            
+            const btn = document.getElementById('gpsButton');
+            btn.classList.add('active');
+            btn.innerHTML = '<div class="spinner"></div><span class="badge">ON</span>';
+            isGeoActive = true;
+            
+            geoWatchId = navigator.geolocation.watchPosition(
+                position => {
+                    userPosition = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude,
+                        accuracy: position.coords.accuracy
+                    };
+                    
+                    updateUserInterface();
+                    showToast('📍 GPS attivo!', 'success');
+                    
+                    btn.innerHTML = '<i class="fas fa-location-arrow"></i><span class="badge">ON</span>';
+                },
+                error => {
+                    console.error('GPS Error:', error);
+                    showToast('❌ Errore GPS: ' + error.message, 'error');
+                    stopGPS();
+                },
+                {
+                    enableHighAccuracy: true,
+                    maximumAge: 10000,
+                    timeout: 15000
+                }
+            );
+        }
+
+        function stopGPS() {
+            if (geoWatchId) {
+                navigator.geolocation.clearWatch(geoWatchId);
+                geoWatchId = null;
+            }
+            
+            const btn = document.getElementById('gpsButton');
+            btn.classList.remove('active');
+            btn.innerHTML = '<i class="fas fa-location-arrow"></i><span class="badge">ON</span>';
+            isGeoActive = false;
+            
+            showToast('GPS disattivato', 'success');
+        }
+
+        function updateUserInterface() {
+            if (!userPosition) return;
+            
+            // Aggiorna display coordinate
+            document.getElementById('coordsDisplay').textContent = 
+                `${userPosition.lat.toFixed(4)}, ${userPosition.lng.toFixed(4)}`;
+            document.getElementById('accuracyDisplay').textContent = 
+                `Precisione: ±${Math.round(userPosition.accuracy)}m`;
+            
+            // Aggiorna marker sulla mappa
+            if (map) {
+                updateUserMarker(userPosition.lat, userPosition.lng);
+            }
+            
+            // Aggiorna lista luoghi vicini
+            updateNearbyList();
+            
+            // Aggiorna prossima tappa
+            updateNextStop();
+        }
+
+        function updateUserMarker(lat, lng) {
+            if (!map) return;
+            
+            if (userMarker) {
+                userMarker.setLatLng([lat, lng]);
+            } else {
+                const icon = L.divIcon({
+                    html: '📍',
+                    className: 'user-marker',
+                    iconSize: [40, 40]
+                });
+                userMarker = L.marker([lat, lng], { icon }).addTo(map);
+                userMarker.bindPopup('<strong>📍 Voi siete qui!</strong>');
+            }
+            
+            // Centra mappa su utente
+            map.setView([lat, lng], 12);
+        }
+
+        function updateNearbyList() {
+            if (!userPosition) {
+                document.getElementById('nearbyList').innerHTML = 
+                    '<p style="color: #aaa; text-align: center;">Attiva GPS per vedere i luoghi vicini</p>';
+                return;
+            }
+            
+            // Calcola distanze
+            const luoghiConDistanza = LUOGHI_LANZAROTE.map(place => ({
+                ...place,
+                distanza: haversineDistance(userPosition.lat, userPosition.lng, place.lat, place.lng)
+            }));
+            
+            // Filtra per categoria
+            let filtrati = currentFilter === 'all' 
+                ? luoghiConDistanza 
+                : luoghiConDistanza.filter(p => p.categoria === currentFilter);
+            
+            // Filtra entro 50km (tutta Lanzarote) e ordina
+            filtrati = filtrati.filter(p => p.distanza <= 50).sort((a, b) => a.distanza - b.distanza);
+            
+            const top10 = filtrati.slice(0, 10);
+            
+            const html = top10.map(place => {
+                const times = calculateTravelTime(place.distanza);
+                return `
+                    <div class="nearby-place">
+                        <div class="card-badge badge-categoria">${getCategoryIcon(place.categoria)} ${place.categoria}</div>
+                        <div style="font-size: 1.1rem; font-weight: bold; color: var(--volcanic-black); margin-bottom: 0.5rem;">
+                            ${place.nome}
+                        </div>
+                        <div style="font-size: 1.2rem; color: var(--ocean-deep); font-weight: bold; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.3rem;">
+                            <i class="fas fa-route"></i> ${place.distanza.toFixed(2)} km
+                        </div>
+                        <div style="font-size: 0.85rem; color: var(--text-light); display: flex; gap: 1rem; margin-bottom: 0.5rem;">
+                            <span>🚶 ${times.walk} min</span>
+                            <span>🚗 ${times.car} min</span>
+                        </div>
+                        <p style="font-size: 0.85rem; color: var(--text-dark); margin: 0.5rem 0;">
+                            ${place.descrizione.substring(0, 100)}...
+                        </p>
+                        ${place.orari ? `<p style="font-size: 0.8rem; color: var(--warning-orange); margin: 0.3rem 0;"><i class="fas fa-clock"></i> ${place.orari}</p>` : ''}
+                        <button class="btn btn-primary btn-sm btn-block" onclick="navigateTo(${place.lat}, ${place.lng}, '${place.nome.replace(/'/g, "\\'")}')">
+                            <i class="fas fa-location-arrow"></i> Naviga con Apple Maps
+                        </button>
+                    </div>
+                `;
+            }).join('');
+            
+            document.getElementById('nearbyList').innerHTML = html || 
+                '<p style="color: #aaa; text-align: center;">Nessun luogo trovato nel raggio di 50 km</p>';
+        }
+
+        function updateNextStop() {
+            // Logica semplificata - prima tappa sempre Giorno 1
+            const nextStop = {
+                name: "Giorno 1 - Arrivo a Lanzarote",
+                desc: "Atterraggio ACE ore 17:50, ritiro auto, check-in Puerto del Carmen",
+                lat: 28.9245,
+                lng: -13.6565
+            };
+            
+            document.getElementById('nextStopName').textContent = nextStop.name;
+            document.getElementById('nextStopDesc').textContent = nextStop.desc;
+            
+            if (userPosition) {
+                const dist = haversineDistance(userPosition.lat, userPosition.lng, nextStop.lat, nextStop.lng);
+                const times = calculateTravelTime(dist);
+                document.getElementById('nextStopDistance').innerHTML = `
+                    <div class="info-item">
+                        <i class="fas fa-route"></i> ${dist.toFixed(2)} km
+                    </div>
+                    <div class="info-item">
+                        🚗 ${times.car} min
+                    </div>
+                `;
+            }
+        }
+
+        // ===== NAVIGAZIONE APPLE MAPS =====
+        function navigateTo(lat, lng, nome) {
+            const url = `https://maps.apple.com/?q=${encodeURIComponent(nome)}&ll=${lat},${lng}`;
+            window.open(url, '_blank');
+            
+            if (navigator.vibrate) {
+                navigator.vibrate([100, 50, 100]);
+            }
+            
+            showToast(`🧭 Apertura navigazione verso ${nome}...`, 'success');
+        }
+
+        // ===== OVERLAY VICINI =====
+        function closeOverlay() {
+            document.getElementById('nearbyOverlay').classList.remove('open');
+        }
+
+        // Click su GPS button apre overlay
+        document.getElementById('gpsButton').addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (!isGeoActive) {
+                startGPS();
+            }
+            document.getElementById('nearbyOverlay').classList.add('open');
+        });
+
+        // ===== FILTRI OVERLAY =====
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                updateNearbyList();
+            });
+        });
+
+        // ===== FILTRI SEZIONE LUOGHI =====
+        document.querySelectorAll('[data-filter-category]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('[data-filter-category]').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentCategoryFilter = btn.dataset.filterCategory;
+                renderPlacesGrid();
+            });
+        });
+
+        // ===== RENDER LUOGHI GRID =====
+        function renderPlacesGrid() {
+            let luoghi = currentCategoryFilter === 'all' 
+                ? LUOGHI_LANZAROTE 
+                : LUOGHI_LANZAROTE.filter(p => p.categoria === currentCategoryFilter);
+            
+            // Aggiungi distanza se GPS attivo
+            if (userPosition) {
+                luoghi = luoghi.map(place => ({
+                    ...place,
+                    distanza: haversineDistance(userPosition.lat, userPosition.lng, place.lat, place.lng)
+                })).sort((a, b) => a.distanza - b.distanza);
+            }
+            
+            const html = luoghi.map(place => `
+                <div class="place-card">
+                    ${place.distanza ? `<div class="place-distance"><i class="fas fa-route"></i> ${place.distanza.toFixed(2)} km</div>` : ''}
+                    <div class="card-badge badge-categoria">${getCategoryIcon(place.categoria)} ${place.categoria}</div>
+                    <h4 style="color: var(--volcanic-black); margin: 0.5rem 0; font-size: 1.2rem;">
+                        ${place.nome}
+                    </h4>
+                    <p style="font-size: 0.9rem; color: var(--text-dark); line-height: 1.5; margin-bottom: 0.5rem;">
+                        ${place.descrizione}
+                    </p>
+                    ${place.orari ? `<p class="place-orari"><i class="fas fa-clock"></i> ${place.orari}</p>` : ''}
+                    ${place.telefono ? `<p class="place-orari"><i class="fas fa-phone"></i> ${place.telefono}</p>` : ''}
+                    ${place.link ? `<a href="${place.link}" target="_blank" class="btn btn-sm btn-secondary" style="margin-top: 0.5rem;"><i class="fas fa-external-link-alt"></i> Dettagli</a>` : ''}
+                    <button class="btn btn-primary btn-sm btn-block" onclick="navigateTo(${place.lat}, ${place.lng}, '${place.nome.replace(/'/g, "\\'")}')">
+                        <i class="fas fa-location-arrow"></i> Naviga
+                    </button>
+                </div>
+            `).join('');
+            
+            document.getElementById('placesGrid').innerHTML = html;
+        }
+
+        // Init render luoghi
+        renderPlacesGrid();
+
+        // ===== CHECKLIST PERSISTENCE =====
+        document.querySelectorAll('.checklist-item input[type="checkbox"]').forEach(checkbox => {
+            // Load stato da localStorage
+            const id = checkbox.id;
+            const saved = localStorage.getItem(id);
+            if (saved === 'true') {
+                checkbox.checked = true;
+                checkbox.parentElement.classList.add('checked');
+            }
+            
+            // Save su change
+            checkbox.addEventListener('change', () => {
+                localStorage.setItem(id, checkbox.checked);
+                if (checkbox.checked) {
+                    checkbox.parentElement.classList.add('checked');
+                } else {
+                    checkbox.parentElement.classList.remove('checked');
+                }
+            });
+        });
+
+        // ===== AUTO-START GPS SE PERMESSO =====
+        window.addEventListener('load', () => {
+            if (navigator.permissions) {
+                navigator.permissions.query({ name: 'geolocation' }).then(result => {
+                    if (result.state === 'granted') {
+                        // Auto-start GPS se permesso già concesso
+                        setTimeout(() => startGPS(), 1000);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
