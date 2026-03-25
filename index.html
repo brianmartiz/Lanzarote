@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- Ripristinato automaticamente dal branch work -->
 <html lang="it" data-theme="light">
 <head>
     <meta charset="UTF-8">
@@ -30,34 +29,34 @@
         body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg-primary);color:var(--text-primary);line-height:1.6;overflow-x:hidden;transition:background .3s,color .3s;}
         /* NAVBAR */
         .navbar{position:fixed;top:0;width:100%;background:var(--navbar-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-color);z-index:1000;box-shadow:var(--shadow-sm);transition:background .3s,border-color .3s;}
-        .navbar-content{max-width:1200px;margin:0 auto;padding:.65rem 1.1rem;display:flex;justify-content:space-between;align-items:center;}
+        .navbar-content{max-width:1200px;margin:0 auto;padding:.875rem 1.5rem;display:flex;justify-content:space-between;align-items:center;}
         .navbar-title{display:flex;align-items:center;gap:.75rem;}
         .navbar-title h1{font-size:1.125rem;font-weight:700;color:var(--text-primary);letter-spacing:-.02em;}
         .navbar-title .dates{font-size:.8125rem;color:var(--text-secondary);font-weight:500;}
         .navbar-nav{display:flex;gap:.375rem;align-items:center;}
-        .nav-link{padding:.28rem .62rem;font-size:.78rem;font-weight:500;color:var(--text-secondary);text-decoration:none;border-radius:6px;transition:all .2s;}
+        .nav-link{padding:.4rem .875rem;font-size:.8125rem;font-weight:500;color:var(--text-secondary);text-decoration:none;border-radius:6px;transition:all .2s;}
         .nav-link:hover{background:var(--bg-accent);color:var(--accent-blue);}
         /* THEME TOGGLE */
         .theme-toggle{width:36px;height:36px;border-radius:8px;background:var(--bg-accent);border:1px solid var(--border-color);color:var(--text-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:all .2s;margin-left:.5rem;}
         .theme-toggle:hover{background:var(--accent-blue);color:white;border-color:var(--accent-blue);}
         /* GPS BUTTON */
-        .gps-toggle{position:fixed;bottom:1.4rem;right:1.4rem;width:52px;height:52px;border-radius:50%;background:var(--accent-blue);color:white;border:none;font-size:1.25rem;cursor:pointer;box-shadow:var(--shadow-lg);z-index:999;transition:all .3s;display:flex;align-items:center;justify-content:center;}
+        .gps-toggle{position:fixed;bottom:2rem;right:2rem;width:56px;height:56px;border-radius:50%;background:var(--accent-blue);color:white;border:none;font-size:1.375rem;cursor:pointer;box-shadow:var(--shadow-lg);z-index:999;transition:all .3s;display:flex;align-items:center;justify-content:center;}
         .gps-toggle:hover{transform:scale(1.05);box-shadow:0 8px 28px rgba(59,130,246,.4);}
         .gps-toggle.active{background:var(--accent-teal);}
         /* MAIN */
-        main{max-width:1200px;margin:0 auto;padding:4.9rem 1.1rem 2rem;}
+        main{max-width:1200px;margin:0 auto;padding:5.5rem 1.5rem 3rem;}
         /* HERO */
-        .hero{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white;padding:1.75rem 1.4rem;border-radius:14px;margin-bottom:2rem;box-shadow:var(--shadow-lg);}
-        .hero h1{font-size:2rem;font-weight:700;margin-bottom:.5rem;letter-spacing:-.03em;}
+        .hero{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white;padding:2.5rem 2rem;border-radius:16px;margin-bottom:3rem;box-shadow:var(--shadow-lg);}
+        .hero h1{font-size:2.25rem;font-weight:700;margin-bottom:.75rem;letter-spacing:-.03em;}
         .hero p{font-size:1.0625rem;opacity:.95;max-width:600px;}
         /* SECTIONS */
-        section{margin-bottom:2rem;scroll-margin-top:82px;}
-        .section-header{margin-bottom:1rem;}
+        section{margin-bottom:3rem;scroll-margin-top:90px;}
+        .section-header{margin-bottom:1.5rem;}
         .section-header h2{font-size:1.625rem;font-weight:700;color:var(--text-primary);margin-bottom:.375rem;letter-spacing:-.02em;}
         .section-header p{color:var(--text-secondary);font-size:.9375rem;}
         /* CARDS */
-        .cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:.9rem;}
-        .card{background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:12px;padding:1rem;box-shadow:var(--shadow-sm);transition:all .3s;}
+        .cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem;}
+        .card{background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:12px;padding:1.375rem;box-shadow:var(--shadow-sm);transition:all .3s;}
         .card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--accent-blue);}
         .card-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1rem;}
         .card-title{font-size:1.0625rem;font-weight:600;color:var(--text-primary);margin-bottom:.25rem;}
@@ -78,28 +77,28 @@
         .badge-red{background:rgba(239,68,68,.12);color:var(--accent-red);}
         .badge-purple{background:rgba(139,92,246,.12);color:#8b5cf6;}
         /* TABLE */
-        .table-responsive{overflow-x:auto;border-radius:9px;border:1px solid var(--border-color);background:var(--bg-secondary);}
+        .table-responsive{overflow-x:auto;border-radius:10px;border:1px solid var(--border-color);background:var(--bg-secondary);}
         table{width:100%;border-collapse:collapse;}
-        th,td{padding:.62rem .75rem;text-align:left;border-bottom:1px solid var(--border-color);}
+        th,td{padding:.875rem 1rem;text-align:left;border-bottom:1px solid var(--border-color);}
         th{background:var(--bg-accent);font-weight:600;color:var(--text-primary);font-size:.8125rem;text-transform:uppercase;letter-spacing:.025em;}
         td{color:var(--text-secondary);font-size:.9rem;}
         tr:last-child td{border-bottom:none;}
         /* ALERT */
-        .alert{padding:.68rem .85rem;border-radius:8px;margin-bottom:.75rem;display:flex;gap:.6rem;align-items:flex-start;}
+        .alert{padding:.875rem 1.125rem;border-radius:8px;margin-bottom:1rem;display:flex;gap:.75rem;align-items:flex-start;}
         .alert-icon{font-size:1.125rem;flex-shrink:0;margin-top:.05rem;}
         .alert-info{background:rgba(59,130,246,.08);border-left:3px solid var(--accent-blue);color:var(--text-primary);}
         .alert-warning{background:rgba(245,158,11,.08);border-left:3px solid var(--accent-orange);color:var(--text-primary);}
         .alert-success{background:rgba(20,184,166,.08);border-left:3px solid var(--accent-teal);color:var(--text-primary);}
         /* MAPPA */
-        #mapContainer{width:100%;height:440px;border-radius:12px;overflow:hidden;border:1px solid var(--border-color);box-shadow:var(--shadow-md);margin-bottom:1.2rem;}
+        #mapContainer{width:100%;height:500px;border-radius:12px;overflow:hidden;border:1px solid var(--border-color);box-shadow:var(--shadow-md);margin-bottom:2rem;}
         /* SIDEBAR */
         .nearby-sidebar{position:fixed;top:0;right:-420px;width:420px;height:100vh;background:var(--bg-secondary);border-left:1px solid var(--border-color);box-shadow:-4px 0 24px rgba(0,0,0,.15);z-index:1001;transition:right .3s ease;overflow-y:auto;}
         .nearby-sidebar.open{right:0;}
-        .nearby-header{padding:1rem 1.2rem;border-bottom:1px solid var(--border-color);position:sticky;top:0;background:var(--bg-secondary);z-index:10;}
+        .nearby-header{padding:1.25rem 1.5rem;border-bottom:1px solid var(--border-color);position:sticky;top:0;background:var(--bg-secondary);z-index:10;}
         .nearby-header h3{font-size:1.125rem;font-weight:700;margin-bottom:.25rem;}
         .close-sidebar{position:absolute;top:1rem;right:1rem;width:30px;height:30px;border:none;background:var(--bg-accent);border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text-secondary);transition:all .2s;}
         .close-sidebar:hover{background:var(--accent-red);color:white;}
-        .nearby-content{padding:1rem 1.1rem;}
+        .nearby-content{padding:1.25rem 1.5rem;}
         .filter-chips{display:flex;gap:.375rem;flex-wrap:wrap;margin-bottom:1.25rem;}
         .filter-chip{padding:.375rem .875rem;border-radius:20px;border:1px solid var(--border-color);background:var(--bg-secondary);color:var(--text-secondary);font-size:.8rem;font-weight:500;cursor:pointer;transition:all .2s;}
         .filter-chip:hover,.filter-chip.active{background:var(--accent-blue);color:white;border-color:var(--accent-blue);}
@@ -119,10 +118,10 @@
         /* TIMELINE */
         .timeline{position:relative;padding-left:2rem;}
         .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--border-color);}
-        .timeline-item{position:relative;margin-bottom:1.2rem;padding-left:1.1rem;}
+        .timeline-item{position:relative;margin-bottom:1.875rem;padding-left:1.5rem;}
         .timeline-item::before{content:'';position:absolute;left:-2.5rem;top:.25rem;width:11px;height:11px;border-radius:50%;background:var(--accent-blue);border:2px solid var(--bg-secondary);}
         .timeline-day{font-weight:700;color:var(--accent-blue);font-size:.9375rem;margin-bottom:.4rem;}
-        .timeline-content{background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:8px;padding:.82rem;}
+        .timeline-content{background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:8px;padding:1rem;}
         .timeline-content h4{font-size:.9375rem;font-weight:600;margin-bottom:.4rem;color:var(--text-primary);}
         .timeline-content p{font-size:.875rem;color:var(--text-secondary);line-height:1.6;margin-bottom:.25rem;}
         .timeline-content ul{list-style:none;padding:0;}
@@ -131,14 +130,14 @@
         /* PRICE TAG */
         .price-tag{display:inline-block;padding:.4rem .875rem;background:linear-gradient(135deg,var(--accent-teal),var(--accent-blue));color:white;border-radius:7px;font-weight:700;font-size:1.0625rem;}
         /* BUTTONS */
-        .btn{display:inline-flex;align-items:center;gap:.35rem;padding:.42rem .92rem;background:var(--accent-blue);color:white;text-decoration:none;border-radius:6px;font-weight:600;font-size:.79rem;transition:all .2s;border:none;cursor:pointer;}
+        .btn{display:inline-flex;align-items:center;gap:.375rem;padding:.5rem 1.125rem;background:var(--accent-blue);color:white;text-decoration:none;border-radius:6px;font-weight:600;font-size:.8125rem;transition:all .2s;border:none;cursor:pointer;}
         .btn:hover{background:#2563eb;transform:translateY(-1px);}
         .btn-teal{background:var(--accent-teal);}.btn-teal:hover{background:#0d9488;}
         .btn-orange{background:var(--accent-orange);}.btn-orange:hover{background:#d97706;}
         .btn-secondary{background:var(--bg-accent);color:var(--text-primary);border:1px solid var(--border-color);}.btn-secondary:hover{background:var(--border-color);transform:none;}
         .btn-ghost{background:rgba(255,255,255,.2);backdrop-filter:blur(10px);color:white;}.btn-ghost:hover{background:rgba(255,255,255,.35);transform:none;}
         /* INFO BOX */
-        .info-box{background:var(--bg-accent);border-radius:12px;padding:1rem;margin-bottom:1rem;border:1px solid var(--border-color);}
+        .info-box{background:var(--bg-accent);border-radius:12px;padding:1.375rem;margin-bottom:1.5rem;border:1px solid var(--border-color);}
         .info-box h3{font-size:1.0625rem;font-weight:600;margin-bottom:.875rem;color:var(--text-primary);}
         .info-box ul{list-style:none;padding:0;}
         .info-box li{padding:.4rem 0;display:flex;gap:.5rem;font-size:.9rem;color:var(--text-secondary);border-bottom:1px solid var(--border-color);}
@@ -146,37 +145,23 @@
         .info-box .check{color:var(--accent-teal);font-weight:700;flex-shrink:0;}
         /* MOBILE OPTIMIZATION */
         .mobile-nav{display:none;}
-        .maps-directory{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.75rem;}
-        .maps-group{background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:12px;padding:.75rem;box-shadow:var(--shadow-sm);}
+        .maps-directory{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;}
+        .maps-group{background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:12px;padding:1rem;box-shadow:var(--shadow-sm);}
         .maps-group h3{font-size:1rem;font-weight:700;color:var(--text-primary);margin-bottom:.75rem;}
         .maps-links{display:flex;flex-direction:column;gap:.5rem;}
-        .maps-link{display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding:.5rem .65rem;background:var(--bg-accent);border:1px solid var(--border-color);border-radius:10px;text-decoration:none;color:var(--text-primary);font-size:.84rem;transition:all .2s;}
+        .maps-link{display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:.65rem .8rem;background:var(--bg-accent);border:1px solid var(--border-color);border-radius:10px;text-decoration:none;color:var(--text-primary);font-size:.88rem;transition:all .2s;}
         .maps-link:hover{border-color:var(--accent-blue);transform:translateY(-1px);box-shadow:var(--shadow-sm);}
         .maps-link small{color:var(--text-secondary);display:block;margin-top:.15rem;}
         .maps-link span:last-child{color:var(--accent-blue);font-weight:700;white-space:nowrap;}
         /* RESPONSIVE */
-        .mobile-nav{position:fixed;left:0;right:0;bottom:0;background:var(--navbar-bg);backdrop-filter:blur(10px);border-top:1px solid var(--border-color);z-index:1002;padding:.45rem .25rem;}
-        .mobile-nav a{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text-secondary);text-decoration:none;font-size:.68rem;font-weight:600;gap:.15rem;padding:.25rem .1rem;}
-        .mobile-nav a i{font-size:1rem;}
-        .mobile-nav a:hover{color:var(--accent-blue);}
-        @media(max-width:900px){
-            .navbar-nav a[href="#logica"],
-            .navbar-nav a[href="#auto"],
-            .navbar-nav a[href="#lavoro"],
-            .navbar-nav a[href="#spesa"],
-            .navbar-nav a[href="#meteo"],
-            .navbar-nav a[href="#checklist"],
-            .navbar-nav a[href="#gmaps"]{display:none;}
-        }
         @media(max-width:768px){
             body{padding-bottom:82px;}
             .hero h1{font-size:1.75rem;}
             .navbar-nav{display:none;}
             .cards-grid{grid-template-columns:1fr;}
             .nearby-sidebar{width:100%;right:-100%;}
-            main{padding:4.5rem .85rem 1.5rem;}
+            main{padding:4.75rem 1rem 2rem;}
             .gps-toggle{width:50px;height:50px;bottom:1.5rem;right:1.5rem;}
-            .mobile-nav{display:flex;}
         }
         /* LEAFLET */
         .custom-marker{background:none!important;border:none!important;}
@@ -196,18 +181,12 @@
                 <span class="dates">25 Apr – 6 Mag • Brian &amp; Federica</span>
             </div>
             <div class="navbar-nav">
-                <a href="#logica" class="nav-link">🧭 Logica</a>
                 <a href="#voli" class="nav-link">✈️ Voli</a>
                 <a href="#alloggi" class="nav-link">🏠 Alloggi</a>
-                <a href="#auto" class="nav-link">🚗 Auto</a>
-                <a href="#lavoro" class="nav-link">💻 Lavoro</a>
-                <a href="#spesa" class="nav-link">🛒 Spesa</a>
-                <a href="#meteo" class="nav-link">☀️ Meteo</a>
                 <a href="#attrazioni" class="nav-link">🎨 Attrazioni</a>
                 <a href="#itinerario" class="nav-link">📅 Itinerario</a>
                 <a href="#ristoranti" class="nav-link">🍴 Ristoranti</a>
                 <a href="#budget" class="nav-link">💰 Budget</a>
-                <a href="#checklist" class="nav-link">✅ Checklist</a>
                 <a href="#mappa" class="nav-link">🗺️ Mappa</a>
                 <a href="#gmaps" class="nav-link">📍 Maps</a>
                 <button class="theme-toggle" id="themeToggle" title="Cambia tema chiaro/scuro">
@@ -245,227 +224,779 @@
 
     <!-- MAIN -->
     <main>
+        <!-- HERO -->
         <div class="hero">
-            <h1>🌋 Lanzarote, primavera 2026 — Guida Completa</h1>
-            <p>Guida operativa per due persone con auto a noleggio, costruita per essere usata durante la vacanza: doppia base, giorni lavoro remoto protetti, itinerario modulare e decisioni già chiuse.</p>
-            <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem;">
-                <a href="#logica" class="btn btn-ghost">✅ Decisioni</a>
+            <h1>🌋 Guida Completa Lanzarote</h1>
+            <p>11 notti nell'isola vulcanica più affascinante delle Canarie. Scenari B e C ottimizzati, nessuna sveglia alle 4:00, ritorno comodo alle 15:15.</p>
+            <div style="display:flex;gap:.625rem;flex-wrap:wrap;margin-top:1.375rem;">
+                <a href="#voli" class="btn btn-ghost">✈️ Voli</a>
                 <a href="#alloggi" class="btn btn-ghost">🏠 Alloggi</a>
+                <a href="#auto" class="btn btn-ghost">🚗 Auto</a>
+                <a href="#meteo" class="btn btn-ghost">☀️ Meteo</a>
+                <a href="#attrazioni" class="btn btn-ghost">🎨 Attrazioni</a>
                 <a href="#itinerario" class="btn btn-ghost">📅 Itinerario</a>
-                <a href="#spesa" class="btn btn-ghost">🛒 Spesa</a>
-                <a href="#links" class="btn btn-ghost">🔗 Link utili</a>
+                <a href="#ristoranti" class="btn btn-ghost">🍴 Ristoranti</a>
+                <a href="#budget" class="btn btn-ghost">💰 Budget</a>
+                <a href="#mappa" class="btn btn-ghost">🗺️ Mappa</a>
             </div>
         </div>
 
-        <section id="logica">
-            <div class="section-header"><h2>✅ Decisioni già prese</h2><p>Punti chiusi: niente rumore, solo esecuzione.</p></div>
+        <!-- ===== VOLI ===== -->
+        <section id="voli">
+            <div class="section-header">
+                <h2>✈️ Come Arrivarci</h2>
+                <p>Due scenari validati — prezzi verificati il 24 marzo 2026</p>
+            </div>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <span class="card-badge badge-blue">SCENARIO B — Consigliato</span>
+                            <div class="card-title">easyJet Puro • 11 Notti</div>
+                            <div class="card-subtitle">25 Apr – 6 Mag • MXP ↔ ACE</div>
+                        </div>
+                        <div class="card-icon icon-blue"><i class="fas fa-plane"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <p style="margin-bottom:.75rem;"><strong>Andata:</strong> EJU3759 — MXP 17:25 → ACE 20:40, Sab 25 Apr</p>
+                        <p style="margin-bottom:.75rem;"><strong>Ritorno:</strong> EJU3760 — ACE 15:15 → MXP 20:05, Mer 6 Mag</p>
+                        <div class="price-tag" style="margin:.875rem 0;">€495 per 2 persone</div>
+                        <ul style="margin-top:.75rem;">
+                            <li><strong>Pro:</strong> stesso aeroporto A/R, 11 notti, no sveglia alle 4</li>
+                            <li><strong>Contro:</strong> €67 in più rispetto allo Scenario C</li>
+                        </ul>
+                        <div style="display:flex;gap:.5rem;margin-top:1rem;flex-wrap:wrap;">
+                            <a href="https://www.easyjet.com/en/cheap-flights/spain/lanzarote" target="_blank" rel="noopener noreferrer" class="btn"><i class="fas fa-ticket"></i> Prenota easyJet</a>
+                            <a href="https://www.easyjet.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">easyJet.com</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <span class="card-badge badge-teal">SCENARIO C — Economico</span>
+                            <div class="card-title">Ryanair + easyJet • 10 Notti</div>
+                            <div class="card-subtitle">26 Apr – 6 Mag • BGY → ACE / ACE → MXP</div>
+                        </div>
+                        <div class="card-icon icon-teal"><i class="fas fa-plane-departure"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <p style="margin-bottom:.75rem;"><strong>Andata:</strong> FR4001 — BGY 14:40 → ACE 17:50, Dom 26 Apr</p>
+                        <p style="margin-bottom:.75rem;"><strong>Ritorno:</strong> EJU3760 — ACE 15:15 → MXP 20:05, Mer 6 Mag</p>
+                        <div class="price-tag" style="margin:.875rem 0;">€428 per 2 persone</div>
+                        <ul style="margin-top:.75rem;">
+                            <li><strong>Pro:</strong> risparmio €67, ritorno comodo, 10 notti</li>
+                            <li><strong>Contro:</strong> aeroporti diversi (BGY andata, MXP ritorno)</li>
+                        </ul>
+                        <div style="display:flex;gap:.5rem;margin-top:1rem;flex-wrap:wrap;">
+                            <a href="https://www.ryanair.com/it/it/voli-economici/bergamo/lanzarote" target="_blank" rel="noopener noreferrer" class="btn btn-teal"><i class="fas fa-ticket"></i> Prenota Ryanair</a>
+                            <a href="https://www.easyjet.com/en/cheap-flights/lanzarote-arrecife/milan-malpensa" target="_blank" rel="noopener noreferrer" class="btn"><i class="fas fa-ticket"></i> Ritorno easyJet</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ALLOGGI ===== -->
+        <section id="alloggi">
+            <div class="section-header">
+                <h2>🏠 Dove Dormire</h2>
+                <p>Strategia "Metà e Metà" — comfort turistico + anima autentica dell'isola</p>
+            </div>
+            <div class="alert alert-info">
+                <i class="fas fa-lightbulb alert-icon" style="color:var(--accent-blue);"></i>
+                <div><strong>Strategia Consigliata:</strong> Prime 5 notti a Puerto del Carmen (arrivo facile, base per il sud), ultime 5 notti in zona autentica (nord/centro, accesso a grotte e La Graciosa).</div>
+            </div>
+
+            <h3 style="font-size:1.125rem;font-weight:600;color:var(--text-primary);margin:1.5rem 0 1rem;">🌊 Base Prima Metà — Puerto del Carmen / Sud</h3>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <span class="card-badge badge-orange">⭐ Top Rated 9.6/10</span>
+                            <div class="card-title">Club Oceano</div>
+                            <div class="card-subtitle">Puerto del Carmen • Aparthotel</div>
+                        </div>
+                        <div class="card-icon icon-orange"><i class="fas fa-hotel"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <p><strong>10 notti:</strong> €880 (€750 sito ufficiale) • 1.612 recensioni</p>
+                        <ul style="margin-top:.625rem;">
+                            <li>2 piscine infinity riscaldate + jacuzzi</li>
+                            <li>Cucina completa attrezzata</li>
+                            <li>Supermercato a 50 m, parcheggio incluso</li>
+                            <li>No AC (non serve ad aprile-maggio)</li>
+                        </ul>
+                        <div style="display:flex;gap:.5rem;margin-top:1rem;flex-wrap:wrap;">
+                            <a href="https://www.oceanclubholidays.com" target="_blank" rel="noopener noreferrer" class="btn btn-orange"><i class="fas fa-external-link-alt"></i> Sito Ufficiale</a>
+                            <a href="https://www.booking.com/hotel/es/club-oceano-lanzarote.it.html" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fas fa-bed"></i> Booking.com</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <span class="card-badge badge-purple">Rare Find 4.97/5</span>
+                            <div class="card-title">Casa Mery</div>
+                            <div class="card-subtitle">Tías • 5 min da Puerto del Carmen</div>
+                        </div>
+                        <div class="card-icon icon-blue"><i class="fas fa-house-user"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <p><strong>10 notti:</strong> €1.400 • 66 recensioni</p>
+                        <ul style="margin-top:.625rem;">
+                            <li>Piscina privata salata 3×6 m</li>
+                            <li>AC + 3 bagni (unica opzione con AC)</li>
+                            <li>Centro villaggio Tías, ristoranti a piedi</li>
+                        </ul>
+                        <div style="display:flex;gap:.5rem;margin-top:1rem;flex-wrap:wrap;">
+                            <a href="https://www.airbnb.com/tias-spain/stays" target="_blank" rel="noopener noreferrer" class="btn"><i class="fab fa-airbnb"></i> Cerca su Airbnb</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <span class="card-badge badge-purple">Top Pick 4.91/5</span>
+                            <div class="card-title">Villa Guime</div>
+                            <div class="card-subtitle">Güime • 4 km aeroporto, vista oceano</div>
+                        </div>
+                        <div class="card-icon icon-blue"><i class="fas fa-home"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <p><strong>10 notti:</strong> €1.451 • 4.91/5</p>
+                        <ul style="margin-top:.625rem;">
+                            <li>Piscina privata + vista oceano</li>
+                            <li>AC, ottima posizione centrale</li>
+                            <li>4 km dall'aeroporto di Arrecife</li>
+                        </ul>
+                        <div style="display:flex;gap:.5rem;margin-top:1rem;flex-wrap:wrap;">
+                            <a href="https://www.airbnb.com/s/Lanzarote--Spain/homes" target="_blank" rel="noopener noreferrer" class="btn"><i class="fab fa-airbnb"></i> Cerca su Airbnb</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="font-size:1.125rem;font-weight:600;color:var(--text-primary);margin:2rem 0 1rem;">🌋 Base Seconda Metà — Sud Autentico / Nord / Centro</h3>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <span class="card-badge badge-teal">Guest Favorite 4.93/5</span>
+                            <div class="card-title">Villa NaJoSa</div>
+                            <div class="card-subtitle">Las Breñas • Vista vulcani Timanfaya</div>
+                        </div>
+                        <div class="card-icon icon-teal"><i class="fas fa-home"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <p><strong>10 notti:</strong> €1.530 • 70 recensioni</p>
+                        <ul style="margin-top:.625rem;">
+                            <li>Piscina salata privata 10 m</li>
+                            <li>Vista oceano + vulcani Timanfaya</li>
+                            <li>Yaiza (villaggio più bello) a 5 min</li>
+                            <li>Papagayo 15 min, Timanfaya 15 min</li>
+                        </ul>
+                        <div style="display:flex;gap:.5rem;margin-top:1rem;flex-wrap:wrap;">
+                            <a href="https://www.airbnb.com/s/Lanzarote--Spain/homes" target="_blank" rel="noopener noreferrer" class="btn"><i class="fab fa-airbnb"></i> Cerca su Airbnb</a>
+                            <a href="https://www.vrbo.com/it-it" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">VRBO</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <span class="card-badge badge-teal">Budget Top 4.82/5</span>
+                            <div class="card-title">Finca Chibusque</div>
+                            <div class="card-subtitle">Tinajo • Casale storico XIX sec.</div>
+                        </div>
+                        <div class="card-icon icon-teal"><i class="fas fa-tree"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <p><strong>10 notti:</strong> €1.070 • 17 recensioni</p>
+                        <ul style="margin-top:.625rem;">
+                            <li>Loft in finca storica XIX secolo</li>
+                            <li>Piscina condivisa (6 loft)</li>
+                            <li>Architettura canaria autentica</li>
+                            <li>Miglior rapporto qualità/prezzo</li>
+                        </ul>
+                        <div style="display:flex;gap:.5rem;margin-top:1rem;flex-wrap:wrap;">
+                            <a href="https://www.airbnb.com/s/Tinajo--Spain/homes" target="_blank" rel="noopener noreferrer" class="btn"><i class="fab fa-airbnb"></i> Cerca su Airbnb</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <span class="card-badge badge-blue">Top Pick 5.0/5</span>
+                            <div class="card-title">Casa Lancelot</div>
+                            <div class="card-subtitle">Tinajo • Frigo rifornito all'arrivo</div>
+                        </div>
+                        <div class="card-icon icon-blue"><i class="fas fa-house-chimney"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <p><strong>10 notti:</strong> €1.425 • 5.0/5</p>
+                        <ul style="margin-top:.625rem;">
+                            <li>Frigo rifornito all'arrivo (host eccezionale)</li>
+                            <li>2 terrazze con vista mare e vulcani</li>
+                            <li>Vicino a Timanfaya e nord isola</li>
+                        </ul>
+                        <div style="display:flex;gap:.5rem;margin-top:1rem;flex-wrap:wrap;">
+                            <a href="https://www.airbnb.com/s/Tinajo--Spain/homes" target="_blank" rel="noopener noreferrer" class="btn"><i class="fab fa-airbnb"></i> Cerca su Airbnb</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <span class="card-badge badge-blue">Top Pick 5.0/5</span>
+                            <div class="card-title">Bungalow Arrieta</div>
+                            <div class="card-subtitle">Arrieta • Nord, vicino alle grotte</div>
+                        </div>
+                        <div class="card-icon icon-blue"><i class="fas fa-umbrella-beach"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <p><strong>10 notti:</strong> €1.257 • 5.0/5</p>
+                        <ul style="margin-top:.625rem;">
+                            <li>Terrazza con vista oceano</li>
+                            <li>2 piscine nella struttura</li>
+                            <li>Vicino a Cueva de los Verdes e Jameos</li>
+                            <li>Villaggio di pescatori autentico</li>
+                        </ul>
+                        <div style="display:flex;gap:.5rem;margin-top:1rem;flex-wrap:wrap;">
+                            <a href="https://www.airbnb.com/s/Arrieta--Spain/homes" target="_blank" rel="noopener noreferrer" class="btn"><i class="fab fa-airbnb"></i> Cerca su Airbnb</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== AUTO ===== -->
+        <section id="auto">
+            <div class="section-header">
+                <h2>🚗 Noleggio Auto</h2>
+                <p>Operatori locali: molto meno costosi delle catene internazionali</p>
+            </div>
+            <div class="alert alert-success">
+                <i class="fas fa-check-circle alert-icon" style="color:var(--accent-teal);"></i>
+                <div><strong>Prezzo reale 10–11 giorni:</strong> €120–220 con assicurazione completa zero franchigia. Prenotare 4–6 settimane prima. Benzina ~€1,25/litro (20% meno della penisola). 2° conducente e deposito cauzionale: GRATUITI con operatori locali.</div>
+            </div>
             <div class="info-box">
+                <h3>💡 Consigli Pratici</h3>
                 <ul>
-                    <li><span class="check">✓</span><span><strong>Due basi</strong>: prima metà sud/sud-ovest, seconda metà centro/centro-ovest/nord-est.</span></li>
-                    <li><span class="check">✓</span><span><strong>Remote work 27 e 28 aprile</strong>: 09:00–15:30/16:00 senza spostamenti.</span></li>
-                    <li><span class="check">✓</span><span><strong>Cambio base</strong>: 30 aprile (consigliato) oppure 1° maggio.</span></li>
-                    <li><span class="check">✓</span><span><strong>Cucina in alloggio</strong>: scelta non negoziabile.</span></li>
-                    <li><span class="check">✓</span><span><strong>Noches de Jameos</strong>: fuori piano, non coerente col tono del viaggio.</span></li>
-                    <li><span class="check">✓</span><span><strong>Auto</strong>: <a href="https://www.autoreisen.com/" target="_blank" rel="noopener noreferrer">AutoReisen</a> €150/11 giorni, da prenotare subito dopo i voli.</span></li>
+                    <li><span class="check">✓</span><span><strong>Locali vs catene:</strong> AutoReisen, CICAR, Cabrera Medina costano il 30–50% in meno di Hertz/Sixt/Europcar</span></li>
+                    <li><span class="check">✓</span><span><strong>Carburante:</strong> Pieno per pieno — ritirare e riconsegnare con serbatoio pieno</span></li>
+                    <li><span class="check">✓</span><span><strong>Benzina stimata:</strong> 800 km × €1,25/litro ≈ €70–80 totali</span></li>
+                    <li><span class="check">✓</span><span><strong>2° conducente:</strong> Gratuito con locali (€10–15/giorno con catene)</span></li>
+                    <li><span class="check">✓</span><span><strong>Deposito cauzionale:</strong> Zero con i tre operatori consigliati</span></li>
                 </ul>
             </div>
-            <div class="alert alert-info"><i class="fas fa-ranking-star alert-icon" style="color:var(--accent-blue);"></i><div><strong>Gerarchia priorità:</strong> 1) affidabilità alloggio nei giorni lavoro, 2) qualità doppia base, 3) spesa come infrastruttura, 4) itinerario modulare per vento/meteo/stanchezza.</div></div>
-        </section>
-
-        <section id="voli">
-            <div class="section-header"><h2>✈️ Scenari voli</h2><p>Entrambi validi: la qualità la fanno doppia base + gestione 27/28 aprile.</p></div>
-            <div class="cards-grid">
-                <div class="card"><div class="card-header"><div><span class="card-badge badge-blue">Scenario 1</span><div class="card-title">easyJet puro</div><div class="card-subtitle">25 Apr 17:25 → 20:40 / 6 Mag 15:15 → 20:05</div></div></div><div class="card-content"><ul><li>11 notti</li><li>~€495/2 persone</li><li>Massima comodità, stesso aeroporto A/R</li></ul></div></div>
-                <div class="card"><div class="card-header"><div><span class="card-badge badge-teal">Scenario 2</span><div class="card-title">Ryanair + easyJet</div><div class="card-subtitle">26 Apr 14:40 → 17:50 / 6 Mag 15:15 → 20:05</div></div></div><div class="card-content"><ul><li>10 notti</li><li>~€428/2 persone</li><li>Miglior rapporto prezzo/comfort</li></ul></div></div>
-            </div>
-        </section>
-
-        <section id="meteo">
-            <div class="section-header"><h2>☀️ Meteo, vento e calima</h2><p>Periodo giusto, con regole pratiche precise.</p></div>
             <div class="table-responsive">
                 <table>
-                    <thead><tr><th>Parametro (AEMET)</th><th>Aprile</th><th>Maggio</th></tr></thead>
+                    <thead><tr><th>Operatore</th><th>Prezzo ~10 gg</th><th>Copertura</th><th>Prenota</th></tr></thead>
                     <tbody>
-                        <tr><td>Temp. max media</td><td>23,5°C</td><td>24,6°C</td></tr>
-                        <tr><td>Temp. min media</td><td>15,7°C</td><td>16,8°C</td></tr>
-                        <tr><td>Temperatura mare</td><td>18–19°C</td><td>19–21°C</td></tr>
-                        <tr><td>Giorni pioggia</td><td>1,3</td><td>0,4</td></tr>
-                        <tr><td>Ore sole/giorno</td><td>8,5</td><td>9,5</td></tr>
-                        <tr><td>Vento medio</td><td>22,5 km/h NE</td><td>22,7 km/h NE</td></tr>
-                        <tr><td>Indice UV max</td><td>9</td><td>10</td></tr>
+                        <tr><td><strong>AutoReisen</strong></td><td>€100–180</td><td>Zero franchigia, 2° conducente gratis</td><td><a href="https://www.autoreisen.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">autoreisen.com</a></td></tr>
+                        <tr><td><strong>CICAR</strong></td><td>€120–230</td><td>Zero franchigia, 2° conducente gratis</td><td><a href="https://www.cicar.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">cicar.com</a></td></tr>
+                        <tr><td><strong>Cabrera Medina</strong></td><td>€150–250</td><td>Zero franchigia, 2° conducente gratis</td><td><a href="https://www.cabreramedina.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">cabreramedina.com</a></td></tr>
                     </tbody>
                 </table>
             </div>
-            <div class="cards-grid" style="margin-top:1rem;">
-                <div class="card"><div class="card-header"><div class="card-title">Vento alisei</div></div><div class="card-content"><ul><li>Papagayo e Playa Chica: più protette</li><li>Famara: paesaggio/surf, meno “telo statico”</li><li>Mirador del Río: raffiche sulla scogliera</li><li>La Graciosa: verificare mare/vento prima</li></ul></div></div>
-                <div class="card"><div class="card-header"><div class="card-title">Calima</div></div><div class="card-content"><p>Maggio ha severità bassa (DAI 0,56), ma tenere piano B.</p><ul><li>Cueva + Jameos</li><li>Fundación Manrique</li><li>MIAC</li><li>El Grifo / Rubicón / LagOmar</li></ul></div></div>
-            </div>
-            <div class="table-responsive" style="margin-top:1rem;"><table><thead><tr><th>Fonte</th><th>Link</th></tr></thead><tbody><tr><td>AEMET (dati ufficiali)</td><td><a href="https://www.aemet.es/es/serviciosclimaticos/datosclimatologicos/valoresclimatologicos?l=C029O&k=coo" target="_blank" rel="noopener noreferrer">Valori climatologici stazione ACE</a></td></tr><tr><td>Climatestotravel</td><td><a href="https://www.climatestotravel.com/climate/canary-islands/lanzarote" target="_blank" rel="noopener noreferrer">Clima Lanzarote</a></td></tr><tr><td>Weather2Travel</td><td><a href="https://www.weather2travel.com/lanzarote/climate/" target="_blank" rel="noopener noreferrer">Climate guide</a></td></tr><tr><td>Calima Canarias</td><td><a href="https://calimacanarias.com/en/lanzarote/" target="_blank" rel="noopener noreferrer">Monitor 5 giorni</a></td></tr><tr><td>SKIRON</td><td><a href="https://apalmet.es/calima/modeloskyron" target="_blank" rel="noopener noreferrer">Modello polvere</a></td></tr></tbody></table></div>
         </section>
 
-        <section id="alloggi">
-            <div class="section-header"><h2>🏠 Alloggi — shortlist completa e combinazioni</h2><p>Tutte le opzioni finali con lettura operativa.</p></div>
-            <h3 style="margin:0 0 .75rem;">Combinazioni consigliate</h3>
-            <div class="table-responsive"><table><thead><tr><th>Combo</th><th>Valutazione</th><th>Perché</th></tr></thead><tbody>
-                <tr><td><a href="https://www.nautilus-lanzarote.com/nautilus-lanzarote/" target="_blank" rel="noopener noreferrer">Nautilus</a> → <a href="https://www.booking.com/hotel/es/casa-lancelot.html" target="_blank" rel="noopener noreferrer">Casa Lancelot</a></td><td>Combinazione A (più solida)</td><td>Rischio basso e massima usabilità nei giorni lavoro</td></tr>
-                <tr><td><a href="https://www.villanajosa.com/" target="_blank" rel="noopener noreferrer">Villa NaJoSa</a> → Casa Lancelot</td><td>Combinazione B (più bella)</td><td>Alta qualità emotiva, richiede conferma seria remote work</td></tr>
-                <tr><td><a href="https://www.booking.com/hotel/es/villa-la-cancela-las-brenas.html" target="_blank" rel="noopener noreferrer">Casa La Cancela</a> → <a href="https://www.booking.com/hotel/es/casa-vitto.it.html" target="_blank" rel="noopener noreferrer">Casa Vitto</a></td><td>Combinazione C</td><td>Autentica, verificabile, equilibrata</td></tr>
-                <tr><td><a href="https://www.oceanclubholidays.com/rentals/apartment-puerto-del-carmen-club-oceano-1-bedroom-apts-151434.html" target="_blank" rel="noopener noreferrer">Club Oceano</a> → Casa Vitto</td><td>Combinazione D (prudente)</td><td>Difficile da far fallire</td></tr>
-            </tbody></table></div>
-
-            <h3 style="margin:1rem 0 .75rem;">Prima base (sud/sud-ovest)</h3>
+        <!-- ===== METEO ===== -->
+        <section id="meteo">
+            <div class="section-header">
+                <h2>☀️ Meteo Aprile–Maggio</h2>
+                <p>Il periodo perfetto — dati ufficiali AEMET (1981–2010)</p>
+            </div>
+            <div class="alert alert-success" style="margin-bottom:1.5rem;">
+                <i class="fas fa-check-circle alert-icon" style="color:var(--accent-teal);"></i>
+                <div><strong>Periodo Ottimale:</strong> Fine aprile–inizio maggio. Temperatura 23–25°C di giorno, 15–17°C di sera. Pioggia quasi inesistente. Sole forte — SPF 50 obbligatorio.</div>
+            </div>
             <div class="cards-grid">
-                <div class="card"><div class="card-header"><div class="card-title">Nautilus Lanzarote</div></div><div class="card-content"><p>Booking 8,5/10 · 626 recensioni.</p><ul><li>Remote work robusto</li><li>Matagorda più calma</li><li>Cucina/Wi‑Fi dichiarati</li></ul><p><a href="https://www.booking.com/hotel/es/nautilus-lanzarote-bungalows.html" target="_blank" rel="noopener noreferrer">Booking</a></p></div></div>
-                <div class="card"><div class="card-header"><div class="card-title">Club Oceano</div></div><div class="card-content"><p>Booking 8,7/10 · 433 recensioni.</p><ul><li>Logistica facilissima</li><li>Piscine + cucina + parcheggio</li><li>Chiedere conferma Wi‑Fi in appartamento</li></ul><p><a href="https://www.booking.com/hotel/es/club-oceano.html" target="_blank" rel="noopener noreferrer">Booking</a></p></div></div>
-                <div class="card"><div class="card-header"><div class="card-title">Villa NaJoSa</div></div><div class="card-content"><p>Airbnb 4,93/5 · 70 recensioni.</p><ul><li>Più bella e privata</li><li>Piscina salata 10 m</li><li>Serve disciplina su spesa/Wi‑Fi</li></ul><p><a href="https://www.villanajosa.com/" target="_blank" rel="noopener noreferrer">Sito ufficiale</a></p></div></div>
-                <div class="card"><div class="card-header"><div class="card-title">Villa Altamosa</div></div><div class="card-content"><p>Booking 9,8/10 · 29 recensioni.</p><ul><li>Misurabile e fortissima</li><li>Posizione Yaiza strategica</li><li>Piscina privata e parcheggio</li></ul><p><a href="https://www.booking.com/hotel/es/the-black-pepper.it.html" target="_blank" rel="noopener noreferrer">Booking</a></p></div></div>
+                <div class="card">
+                    <div class="card-header"><div><div class="card-title">🌡️ Temperature</div></div><div class="card-icon icon-orange"><i class="fas fa-temperature-high"></i></div></div>
+                    <div class="card-content">
+                        <ul>
+                            <li><strong>Max diurna:</strong> 23–25°C</li>
+                            <li><strong>Min notturna:</strong> 15–17°C (portare felpa)</li>
+                            <li><strong>Mare:</strong> 18–20°C (muta consigliata)</li>
+                            <li><strong>Pioggia:</strong> 0,4–1,3 giorni/mese</li>
+                            <li><strong>Sole:</strong> 8,5–9,5 ore/giorno</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><div><div class="card-title">💨 Vento Alisei</div></div><div class="card-icon icon-blue"><i class="fas fa-wind"></i></div></div>
+                    <div class="card-content">
+                        <p><strong>22–25 km/h da NE</strong> — costante ma non fastidioso</p>
+                        <ul style="margin-top:.625rem;">
+                            <li><strong>Protette:</strong> Papagayo, Playa Chica</li>
+                            <li><strong>Esposte:</strong> Famara, Las Conchas (surf)</li>
+                            <li>Più forte nel pomeriggio</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><div><div class="card-title">🌫️ Calima Sahariana</div></div><div class="card-icon icon-orange"><i class="fas fa-smog"></i></div></div>
+                    <div class="card-content">
+                        <p><strong style="color:var(--accent-teal);">Maggio: DAI 0.56 — indice più basso dell'anno</strong></p>
+                        <p style="margin-top:.5rem;">Piano B indoor se arriva calima:</p>
+                        <ul style="margin-top:.375rem;">
+                            <li>Cueva de los Verdes (18°C)</li>
+                            <li>Jameos del Agua (sottoterra)</li>
+                            <li>Fondazione Manrique</li>
+                            <li>Bodegas La Geria</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><div><div class="card-title">☀️ Protezione Solare</div></div><div class="card-icon icon-red"><i class="fas fa-sun"></i></div></div>
+                    <div class="card-content">
+                        <p><strong style="color:var(--accent-red);">Indice UV 9–10 (MOLTO ALTO)</strong></p>
+                        <ul style="margin-top:.625rem;">
+                            <li><strong>SPF 50+ obbligatorio</strong> — anche nuvoloso</li>
+                            <li>Riapplicare ogni 2 ore</li>
+                            <li>Cappello e occhiali: essenziali</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-
-            <h3 style="margin:1rem 0 .75rem;">Seconda base (centro/centro-ovest/nord-est)</h3>
-            <div class="cards-grid">
-                <div class="card"><div class="card-header"><div class="card-title">Casa Lancelot</div></div><div class="card-content"><p>Booking 9,8/10 · 37 recensioni.</p><ul><li>Elasticità geografica top</li><li>Frigo pieno all’arrivo</li><li>Base più intelligente</li></ul></div></div>
-                <div class="card"><div class="card-header"><div class="card-title">Casa Vitto</div></div><div class="card-content"><p>Booking 9,6/10 · 64 recensioni.</p><ul><li>Outdoor kitchen + piscina</li><li>Ottima su Famara/Teguise/Timanfaya</li></ul></div></div>
-                <div class="card"><div class="card-header"><div class="card-title">Casa Fenix / Casa El Quinto</div></div><div class="card-content"><ul><li><a href="https://www.booking.com/hotel/es/casa-fenix-canarias-lanzarote.en-gb.html" target="_blank" rel="noopener noreferrer">Casa Fenix</a>: 9,4/10</li><li><a href="https://www.booking.com/hotel/es/casa-el-quinto-tinguaton.it.html" target="_blank" rel="noopener noreferrer">Casa El Quinto</a>: 9,2/10</li><li>Alternative solide in stile finca</li></ul></div></div>
-                <div class="card"><div class="card-header"><div class="card-title">Playa Marina Eco (Mala)</div></div><div class="card-content"><p><a href="https://www.booking.com/hotel/es/playa-marina-eco-bungalow-mala.en-gb.html" target="_blank" rel="noopener noreferrer">Booking 9,1/10</a>.</p><ul><li>Migliore se scegliete nord-est marinaro</li><li>Meno elastica di Tinajo</li></ul></div></div>
+            <div class="table-responsive" style="margin-top:1.375rem;">
+                <table>
+                    <thead><tr><th>Parametro</th><th>Aprile</th><th>Maggio</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Temp. Max Media</strong></td><td>23,5°C</td><td>24,6°C</td></tr>
+                        <tr><td><strong>Temp. Min Media</strong></td><td>15,7°C</td><td>16,8°C</td></tr>
+                        <tr><td><strong>Temperatura Mare</strong></td><td>18–19°C</td><td>19–21°C</td></tr>
+                        <tr><td><strong>Giorni di Pioggia</strong></td><td>1,3</td><td>0,4</td></tr>
+                        <tr><td><strong>Ore di Sole/Giorno</strong></td><td>8,5</td><td>9,5</td></tr>
+                        <tr><td><strong>Vento Medio</strong></td><td>22,5 km/h (NE)</td><td>22,7 km/h (NE)</td></tr>
+                        <tr><td><strong>Indice UV Max</strong></td><td>9</td><td>10</td></tr>
+                        <tr><td><strong>Umidità Relativa</strong></td><td>66–68%</td><td>66–69%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div style="margin-top:1.75rem;">
+                <h3 style="font-size:1.0625rem;font-weight:600;margin-bottom:.875rem;color:var(--text-primary);">🌪️ Monitoraggio Calima in Tempo Reale</h3>
+                <div class="table-responsive">
+                    <table>
+                        <thead><tr><th>Strumento</th><th>Cosa Mostra</th><th>Link</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Windguru Lanzarote</strong></td><td>Vento, mare, UV — controllare 48h prima de La Graciosa</td><td><a href="https://www.windguru.cz/70" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Windguru →</a></td></tr>
+                            <tr><td><strong>AEMET Ufficiale</strong></td><td>Previsioni ufficiali + allerte colorate</td><td><a href="https://www.aemet.es/es/eltiempo/prediccion/municipios/arrecife-id35002" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">AEMET →</a></td></tr>
+                            <tr><td><strong>Calima Canarias</strong></td><td>Concentrazione polvere sahariana live</td><td><a href="https://calimacanarias.org" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Calima Live →</a></td></tr>
+                            <tr><td><strong>Windy.com</strong></td><td>Mappa vento + layer Dust aerosol</td><td><a href="https://www.windy.com/28.964/-13.552?28.678,-13.552,10" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Windy →</a></td></tr>
+                            <tr><td><strong>IQAir Arrecife</strong></td><td>PM10/PM2.5 qualità aria in tempo reale</td><td><a href="https://www.iqair.com/es/spain/canary-islands/arrecife" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">IQAir →</a></td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </section>
 
-        <section id="domande">
-            <div class="section-header"><h2>❓ Domande da fare agli host</h2><p>Copiarle quasi identiche è consigliato.</p></div>
-            <div class="info-box"><ul>
-                <li><span class="check">✓</span><span>Speed test recente e stabilità video-call per 2 persone?</span></li>
-                <li><span class="check">✓</span><span>Tavolo vero + 2 sedute comode + prese accessibili?</span></li>
-                <li><span class="check">✓</span><span>Segnale mobile backup e qualità Wi‑Fi dentro l’unità?</span></li>
-                <li><span class="check">✓</span><span>Check-in/out esatti e possibilità deposito bagagli giorno cambio?</span></li>
-                <li><span class="check">✓</span><span>Piscina riscaldata? Parcheggio semplice? Foto reali area lavoro?</span></li>
-            </ul></div>
-        </section>
-
-        <section id="lavoro">
-            <div class="section-header"><h2>💻 Giorni remote work (27–28 aprile)</h2><p>Blocco intoccabile: 09:00–15:30/16:00.</p></div>
-            <div class="cards-grid">
-                <div class="card"><div class="card-header"><div class="card-title">Struttura corretta</div></div><div class="card-content"><ul><li>Colazione + setup mattutino con margine</li><li>Lavoro in alloggio, pause brevi reali</li><li>Pranzo in casa già pianificato</li><li>Uscita solo dal tardo pomeriggio</li></ul></div></div>
-                <div class="card"><div class="card-header"><div class="card-title">Errori da evitare</div></div><div class="card-content"><ul><li>No “saltino” in auto in fascia lavoro</li><li>No escursioni lunghe post-lavoro</li><li>No serate distruttive il giorno prima di lavorare</li><li>No spesa grande al mattino</li></ul></div></div>
-            </div>
-        </section>
-
-        <section id="auto">
-            <div class="section-header"><h2>🚗 Auto — tema chiuso</h2><p>AutoReisen confermata, nessuna alternativa da discutere.</p></div>
-            <div class="alert alert-success"><i class="fas fa-check-circle alert-icon" style="color:var(--accent-teal);"></i><div><strong>AutoReisen:</strong> €150 / 11 giorni · zero excess insurance · no deposito · km illimitati · secondo guidatore gratuito · cancellazione gratuita · pieno/pieno.</div></div>
-            <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
-                <a class="btn" href="https://www.autoreisen.com/" target="_blank" rel="noopener noreferrer">Sito AutoReisen</a>
-                <a class="btn btn-secondary" href="https://www.autoreisen.com/car-hire/faq.php" target="_blank" rel="noopener noreferrer">FAQ</a>
-                <a class="btn btn-secondary" href="https://www.autoreisen.com/car-hire/terms.php" target="_blank" rel="noopener noreferrer">Termini</a>
-            </div>
-            <div class="alert alert-info" style="margin-top:.8rem;"><i class="fas fa-gas-pump alert-icon" style="color:var(--accent-blue);"></i><div><strong>Benzina stimata:</strong> €1,20–1,30/l. Per ~800 km: circa €70–80 totali.</div></div>
-        </section>
-
-        <section id="spesa">
-            <div class="section-header"><h2>🛒 Supermercati e strategia spesa</h2><p>La spesa è infrastruttura del viaggio.</p></div>
-            <div class="table-responsive"><table><thead><tr><th>Hub</th><th>Uso</th><th>Link</th></tr></thead><tbody>
-                <tr><td>HiperDino San Bartolomé</td><td>Spesa grossa arrivo/cambio base</td><td><a href="https://www.hiperdino.es/c9504/tiendas/index/detail/id/222/" target="_blank" rel="noopener noreferrer">Apri</a></td></tr>
-                <tr><td>Mercadona La Perla</td><td>Prima base PDC/Matagorda</td><td><a href="https://info.mercadona.es/en/supermarkets" target="_blank" rel="noopener noreferrer">Apri</a></td></tr>
-                <tr><td>Lidl Tías</td><td>Asse aeroporto → Tías</td><td><a href="https://www.lidl.es/s/es-ES/tiendas/tias-lanzarote/c-juan-carlos-i-39/" target="_blank" rel="noopener noreferrer">Apri</a></td></tr>
-                <tr><td>ALDI Yaiza + HD Rubicón</td><td>Prima base Las Breñas/Yaiza</td><td><a href="https://www.aldi.es/somos-aldi/conocenos/primera-persona/aldi-yaiza-playa-blanca.html" target="_blank" rel="noopener noreferrer">Apri</a></td></tr>
-                <tr><td>Simply La Vegueta</td><td>Top-up seconda base Tinajo</td><td><a href="https://www.tinajo.es/en/empresas/simply-la-vegueta-supermarket" target="_blank" rel="noopener noreferrer">Apri</a></td></tr>
-            </tbody></table></div>
-            <div class="alert alert-warning" style="margin-top:.8rem;"><i class="fas fa-triangle-exclamation alert-icon" style="color:var(--accent-orange);"></i><div><strong>Regola d’oro:</strong> spesa grossa all’ingresso di ogni base. Non improvvisare con mini-market nei giorni lavoro.</div></div>
-        </section>
-
+        <!-- ===== ATTRAZIONI ===== -->
         <section id="attrazioni">
-            <div class="section-header"><h2>🎟️ Prenotazioni e attrazioni a frizione alta</h2><p>Prenotare presto solo dove serve davvero.</p></div>
+            <div class="section-header">
+                <h2>🎨 Attrazioni CACT Manrique</h2>
+                <p>Il pass combinato NON esiste più — biglietti singoli obbligatori</p>
+            </div>
+            <div class="alert alert-warning">
+                <i class="fas fa-exclamation-triangle alert-icon" style="color:var(--accent-orange);"></i>
+                <div><strong>⚠️ Cueva de los Verdes:</strong> Prenotazione online OBBLIGATORIA con slot orario. Non esiste biglietteria fisica — senza prenotazione non si entra. Prenotare anche Timanfaya online.</div>
+            </div>
             <div class="cards-grid">
-                <div class="card"><div class="card-header"><div class="card-title">Priorità alta</div></div><div class="card-content"><ul><li><a href="https://ventaonline.cactlanzarote.com/en/tickets/montanas-del-fuego-timanfaya-ticket" target="_blank" rel="noopener noreferrer">Timanfaya ticket</a></li><li><a href="https://ventaonline.cactlanzarote.com/en/tickets/cueva-de-los-verdes-ticket" target="_blank" rel="noopener noreferrer">Cueva ticket</a></li><li>QR ticket già scaricati offline</li></ul></div></div>
-                <div class="card"><div class="card-header"><div class="card-title">Priorità media</div></div><div class="card-content"><ul><li><a href="https://ventaonline.cactlanzarote.com/en/tickets/jameos-del-agua-ticket" target="_blank" rel="noopener noreferrer">Jameos</a></li><li><a href="https://ventaonline.cactlanzarote.com/en/tickets/mirador-del-rio-ticket" target="_blank" rel="noopener noreferrer">Mirador del Río</a></li><li><a href="https://ventaonline.cactlanzarote.com/en/tickets/jardin-de-cactus-ticket" target="_blank" rel="noopener noreferrer">Jardín de Cactus</a></li></ul></div></div>
-                <div class="card"><div class="card-header"><div class="card-title">Flessibili</div></div><div class="card-content"><ul><li><a href="https://fcmanrique.org/en/inicio/" target="_blank" rel="noopener noreferrer">Fundación César Manrique</a></li><li><a href="https://www.lagomarlanzarote.com/" target="_blank" rel="noopener noreferrer">LagOmar</a></li><li><a href="https://lineasromero.com/en/ferry-lanzarote-la-graciosa" target="_blank" rel="noopener noreferrer">La Graciosa ferry</a> solo con mare buono</li><li><a href="https://underwatermuseumlanzarote.com/en/" target="_blank" rel="noopener noreferrer">Museo Atlántico</a></li></ul></div></div>
+                <div class="card">
+                    <div class="card-header"><div><div class="card-title">🌋 Timanfaya — Montañas del Fuego</div><div class="card-subtitle">€30/persona • 90 min</div></div></div>
+                    <div class="card-content">
+                        <p>Ruta de los Volcanes in bus + dimostrazioni geotermiche. Presentarsi entro le 13:00.</p>
+                        <div style="margin-top:.75rem;"><a href="https://ventaonline.cactlanzarote.com" target="_blank" rel="noopener noreferrer" class="btn btn-orange"><i class="fas fa-ticket"></i> Prenota Online</a></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><div><div class="card-title">🕳️ Cueva de los Verdes</div><div class="card-subtitle">€17/persona • 50 min</div></div></div>
+                    <div class="card-content">
+                        <p>Tubo lavico 6 km con illusione ottica finale. <strong>SLOT ORARIO OBBLIGATORIO.</strong></p>
+                        <div style="margin-top:.75rem;"><a href="https://ventaonline.cactlanzarote.com/es" target="_blank" rel="noopener noreferrer" class="btn"><i class="fas fa-ticket"></i> Prenota Slot</a></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><div><div class="card-title">🦀 Jameos del Agua</div><div class="card-subtitle">€15/persona • 1–2 ore</div></div></div>
+                    <div class="card-content">
+                        <p>Prima opera Manrique 1968. Granchi bianchi ciechi endemici, auditorium naturale, piscina del Re di Spagna.</p>
+                        <div style="margin-top:.75rem;"><a href="https://cactlanzarote.com/es/cact/jameos-del-agua/" target="_blank" rel="noopener noreferrer" class="btn btn-teal"><i class="fas fa-external-link-alt"></i> Info e Orari</a></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><div><div class="card-title">🎨 Fundación César Manrique</div><div class="card-subtitle">€10/persona • 1,5 ore</div></div></div>
+                    <div class="card-content">
+                        <p>Casa-studio del genio. 5 bolle vulcaniche sotterranee trasformate in stanze. Piscina turchese nel basalto nero.</p>
+                        <div style="margin-top:.75rem;"><a href="https://fcmanrique.org" target="_blank" rel="noopener noreferrer" class="btn btn-teal"><i class="fas fa-external-link-alt"></i> fcmanrique.org</a></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><div><div class="card-title">🔭 Mirador del Río</div><div class="card-subtitle">€8,50/persona • 45 min</div></div></div>
+                    <div class="card-content">
+                        <p>Belvedere Manrique a 479 m. Vista mozzafiato su La Graciosa. Parcheggio gratuito, no prenotazione.</p>
+                        <div style="margin-top:.75rem;"><a href="https://cactlanzarote.com/es/cact/mirador-del-rio/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fas fa-external-link-alt"></i> Info</a></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><div><div class="card-title">🌵 Jardín de Cactus</div><div class="card-subtitle">€9/persona • 1 ora</div></div></div>
+                    <div class="card-content">
+                        <p>4.500 cactus di 450 specie in cava restaurata da Manrique. Mulino a vento storico.</p>
+                        <div style="margin-top:.75rem;"><a href="https://cactlanzarote.com/es/cact/jardin-de-cactus/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fas fa-external-link-alt"></i> Info</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="alert alert-info" style="margin-top:1.375rem;">
+                <i class="fas fa-calculator alert-icon" style="color:var(--accent-blue);"></i>
+                <div><strong>Totale ingressi 2 persone:</strong> €189,40 (Timanfaya €60 + Cueva €34 + Jameos €30 + Fundación €20 + Mirador €17 + Jardín €18 + MIAC €10,40)</div>
+            </div>
+
+            <div style="margin-top:2.25rem;">
+                <h3 style="font-size:1.375rem;font-weight:700;margin-bottom:1rem;color:var(--text-primary);">🏖️ Altre Attrazioni e Attività</h3>
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-header"><div><div class="card-title">🟢 El Golfo — Lago Verde</div><div class="card-subtitle">Gratuito • 30 min</div></div></div>
+                        <div class="card-content"><p>Cratere vulcanico 1730 con lago color smeraldo. Spiaggia nera, rocce rosse. Foto spettacolare.</p></div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div><div class="card-title">🧂 Salinas del Janubio</div><div class="card-subtitle">Vista gratuita • 20 min</div></div></div>
+                        <div class="card-content"><p>Saline più grandi delle Canarie. Mosaico geometrico rosa e bianco visibile dalla strada.</p></div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div><div class="card-title">🏝️ La Graciosa — L'Ottava Isola</div><div class="card-subtitle">€29 A/R traghetto • Giornata intera</div></div></div>
+                        <div class="card-content">
+                            <p>Traghetto da Órzola 25 min. Playa Las Conchas, Francesa, Montaña Amarilla. Bici €10–20/gg.</p>
+                            <div style="margin-top:.75rem;"><a href="https://www.ferryhopper.com/en/ferry-operators/biosfera-express" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fas fa-ship"></i> Biosfera Express</a></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div><div class="card-title">🤿 Museo Atlántico</div><div class="card-subtitle">€65–148 • 2–3 ore</div></div></div>
+                        <div class="card-content">
+                            <p>Primo museo sottomarino Europa. 300 sculture a 12–14 m profondità. Discover Scuba €148, certificati €65.</p>
+                            <div style="margin-top:.75rem;"><a href="https://www.museoatlantico.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fas fa-external-link-alt"></i> Prenota</a></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div><div class="card-title">🏄 Surf a Famara</div><div class="card-subtitle">€50 lezione 2h/persona</div></div></div>
+                        <div class="card-content">
+                            <p>Calima Surf School. Spot mondiale. Tel: +34 928 52 86 85</p>
+                            <div style="margin-top:.75rem;"><a href="https://www.calimasurf.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fas fa-external-link-alt"></i> calimasurf.com</a></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div><div class="card-title">🚣 Kayak Papagayo</div><div class="card-subtitle">€30 tandem 2h</div></div></div>
+                        <div class="card-content"><p>Esplorazione calette di Papagayo dal mare. Snorkeling incluso. Acque calme protette.</p></div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div><div class="card-title">🐪 Giro in Dromedario</div><div class="card-subtitle">€11/persona • 20 min</div></div></div>
+                        <div class="card-content"><p>Echadero de los Camellos — uscita Timanfaya. Esperienza tipica canaria tra i vulcani.</p></div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div><div class="card-title">🌀 LagOmar</div><div class="card-subtitle">€6–10 • 1 ora</div></div></div>
+                        <div class="card-content">
+                            <p>Labirinto vulcanico Manrique a Nazaret. Leggenda: costruito con i guadagni di poker di Omar Sharif.</p>
+                            <div style="margin-top:.75rem;"><a href="https://www.lagomar.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fas fa-external-link-alt"></i> lagomar.com</a></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section id="gemme">
-            <div class="section-header"><h2>💎 Gemme locali (non solo cartolina)</h2><p>Luoghi veri da usare come valore aggiunto.</p></div>
-            <div class="cards-grid">
-                <div class="card"><div class="card-header"><div class="card-title">Haría</div></div><div class="card-content"><ul><li>Villaggio delle mille palme</li><li>Artigianato e mercato sabato</li></ul></div></div>
-                <div class="card"><div class="card-header"><div class="card-title">Teguise</div></div><div class="card-content"><ul><li>Via della ceramica + mercato domenica</li><li>Abbinare pranzo a El Risco / Palacio Ico</li></ul></div></div>
-                <div class="card"><div class="card-header"><div class="card-title">Arrecife</div></div><div class="card-content"><ul><li>Confraternita pescatori San Ginés</li><li>MIAC + porto + birrificio Nao</li></ul></div></div>
-                <div class="card"><div class="card-header"><div class="card-title">El Golfo / Janubio / Hervideros</div></div><div class="card-content"><ul><li>Tris perfetto in 1,5–2h</li><li>Fotografia e geologia top</li></ul></div></div>
-            </div>
-            <div class="cards-grid" style="margin-top:.9rem;">
-                <div class="card"><div class="card-header"><div class="card-title">I luoghi che contano davvero</div></div><div class="card-content"><ul><li><a href="https://cactlanzarote.com/en/centre/montanas-del-fuego/" target="_blank" rel="noopener noreferrer">Timanfaya</a> (cuore geologico)</li><li><a href="https://cactlanzarote.com/en/centre/cueva-de-los-verdes/" target="_blank" rel="noopener noreferrer">Cueva de los Verdes</a></li><li><a href="https://cactlanzarote.com/en/centre/jameos-del-agua/" target="_blank" rel="noopener noreferrer">Jameos del Agua</a></li><li><a href="https://cactlanzarote.com/en/centre/mirador-del-rio/" target="_blank" rel="noopener noreferrer">Mirador del Río</a></li></ul></div></div>
-                <div class="card"><div class="card-header"><div class="card-title">Attività acqua e outdoor</div></div><div class="card-content"><ul><li><a href="https://calimasurf.com/it" target="_blank" rel="noopener noreferrer">Calima Surf</a></li><li><a href="https://www.redstarsurf.com/it/" target="_blank" rel="noopener noreferrer">Red Star Surf</a></li><li><a href="https://www.kayaklanzarote.com/english/" target="_blank" rel="noopener noreferrer">Kayak Lanzarote</a></li><li><a href="https://yotomu.com/" target="_blank" rel="noopener noreferrer">Yotomu (La Graciosa)</a></li></ul></div></div>
-            </div>
-        </section>
-
-        <section id="ristoranti">
-            <div class="section-header"><h2>🍴 Ristoranti — pochi, giusti, usabili</h2><p>Un momento gastronomico forte al giorno basta.</p></div>
-            <div class="table-responsive"><table><thead><tr><th>Contesto</th><th>Scelte</th></tr></thead><tbody>
-                <tr><td>PDC / Matagorda</td><td><a href="https://www.tripadvisor.com/Restaurant_Review-g662290-d6818696-Reviews-Taberna_De_Nino_Pintxos-Puerto_Del_Carmen_Tias_Lanzarote_Canary_Islands.html" target="_blank" rel="noopener noreferrer">Taberna Niño Pintxos</a>, Lomo Alto, Mardeleva, Asian Home, La Carmencita, Lani’s</td></tr>
-                <tr><td>Sud / Playa Blanca</td><td><a href="https://www.lacocinadecolacho.com" target="_blank" rel="noopener noreferrer">La Cocina de Colacho</a>, Sergio, La Casa Roja</td></tr>
-                <tr><td>Teguise / Famara</td><td><a href="https://guide.michelin.com/us/en/canarias/famara/restaurant/el-risco" target="_blank" rel="noopener noreferrer">El Risco</a>, <a href="https://hotelpalacioico.com/en/restaurant/" target="_blank" rel="noopener noreferrer">Palacio Ico</a>, Ikarus, Costa Famara</td></tr>
-                <tr><td>Arrecife</td><td>Bar Andalucía 1960, Malecon</td></tr>
-            </tbody></table></div>
-        </section>
-
+        <!-- ===== ITINERARIO ===== -->
         <section id="itinerario">
-            <div class="section-header"><h2>📅 Itinerario operativo giorno per giorno</h2><p>Usabile davvero durante la vacanza.</p></div>
+            <div class="section-header">
+                <h2>📅 Itinerario Giorno per Giorno</h2>
+                <p>Ottimizzato per Scenario C (10 notti) — adattabile a Scenario B con +1 notte iniziale</p>
+            </div>
             <div class="timeline">
-                <div class="timeline-item"><div class="timeline-day">26 aprile — assestamento</div><div class="timeline-content"><p>Check-in, test Wi‑Fi/postazione lavoro, spesa grossa, cena semplice.</p></div></div>
-                <div class="timeline-item"><div class="timeline-day">27 aprile — remote work day 1</div><div class="timeline-content"><p>09:00–16:00 lavoro, pranzo in casa, uscita breve solo dopo le 16:30.</p></div></div>
-                <div class="timeline-item"><div class="timeline-day">28 aprile — remote work day 2</div><div class="timeline-content"><p>Replica intelligente. No pseudo-escursioni in fascia lavoro.</p></div></div>
-                <div class="timeline-item"><div class="timeline-day">29 aprile — primo giorno libero pieno</div><div class="timeline-content"><p>Blocco sud/sud-ovest (Papagayo o El Golfo+Janubio+Hervideros).</p></div></div>
-                <div class="timeline-item"><div class="timeline-day">30 aprile — cambio base consigliato</div><div class="timeline-content"><p>Check-out → Timanfaya presto → La Geria → spesa grossa San Bartolomé → check-in seconda base.</p></div></div>
-                <div class="timeline-item"><div class="timeline-day">1 maggio — festivo</div><div class="timeline-content"><p>Se già cambiato: giornata a ritmo medio-basso. Se cambio oggi: solo logistica e decompressione.</p></div></div>
-                <div class="timeline-item"><div class="timeline-day">2 maggio — nord</div><div class="timeline-content"><p>Opzione CACT nord (Cueva/Jameos/Mirador) oppure La Graciosa se mare buono.</p></div></div>
-                <div class="timeline-item"><div class="timeline-day">3 maggio — Teguise + Famara</div><div class="timeline-content"><p>Mercato mattina, pranzo forte, Famara pomeriggio.</p></div></div>
-                <div class="timeline-item"><div class="timeline-day">4 maggio — jolly culturale</div><div class="timeline-content"><p>Fundación/LagOmar/MIAC o ritorno nel posto preferito.</p></div></div>
-                <div class="timeline-item"><div class="timeline-day">5 maggio — finale elastico</div><div class="timeline-content"><p>Recuperi meteo, bodega, piscina, cena finale.</p></div></div>
-                <div class="timeline-item"><div class="timeline-day">6 maggio — rientro</div><div class="timeline-content"><p>Check-out ordinato, benzina prima riconsegna, aeroporto senza corse.</p></div></div>
+                <div class="timeline-item">
+                    <div class="timeline-day">Giorno 1 • Dom 26 Aprile</div>
+                    <div class="timeline-content">
+                        <h4>✈️ Arrivo e Primo Tramonto</h4>
+                        <p><strong>17:50</strong> Atterraggio Arrecife, ritiro auto (10 min)</p>
+                        <p><strong>18:30</strong> Check-in Puerto del Carmen</p>
+                        <p><strong>20:00</strong> Passeggiata lungomare (tramonto 20:15)</p>
+                        <p><strong>Cena:</strong> Taberna de Niño Pintxos (~€70/2) oppure Lomo Alto (steakhouse vista oceano)</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-day">Giorno 2 • Lun 27 Aprile</div>
+                    <div class="timeline-content">
+                        <h4>🏖️ Costa Sud — Papagayo, El Golfo, Saline</h4>
+                        <p><strong>09:40</strong> Spiagge di Papagayo (€3/persona, 5 calette turchesi)</p>
+                        <p><strong>13:00</strong> Pranzo Ristorante Sergio a Playa Blanca (pesce 4.8/5)</p>
+                        <p><strong>15:30</strong> Rientro via El Golfo (lago verde) + Salinas del Janubio</p>
+                        <p><strong>Sera:</strong> Mardeleva — churros de pescado sul porto vecchio</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-day">Giorno 3 • Mar 28 Aprile</div>
+                    <div class="timeline-content">
+                        <h4>🎨 César Manrique e Arrecife</h4>
+                        <p><strong>10:00</strong> Fundación César Manrique (€10, 1,5–2h)</p>
+                        <p><strong>12:00</strong> Giro ad Arrecife, Charco de San Ginés</p>
+                        <p><strong>13:00</strong> Pranzo Bar Andalucía 1960 (12 posti — prenotare)</p>
+                        <p><strong>14:30</strong> MIAC Castillo San José (€5,20)</p>
+                        <p><strong>Sera:</strong> Asian Home Restaurant (4.95/5)</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-day">Giorno 4 • Mer 29 Aprile</div>
+                    <div class="timeline-content">
+                        <h4>🕳️ Le Grotte e il Nord</h4>
+                        <p><strong>09:30</strong> Cueva de los Verdes (€17, slot prenotato)</p>
+                        <p><strong>10:40</strong> Jameos del Agua (€15)</p>
+                        <p><strong>13:25</strong> Mirador del Río (€8,50)</p>
+                        <p><strong>Sera:</strong> La Carmencita del Puerto (4.85/5 — <strong>PRENOTARE</strong> +34 928 29 11 69)</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-day">Giorno 5 • Gio 30 Aprile</div>
+                    <div class="timeline-content">
+                        <h4>🌋 Vulcani e Vini</h4>
+                        <p><strong>09:30</strong> Parco Nazionale Timanfaya (€30)</p>
+                        <p><strong>12:00</strong> Pranzo El Diablo (BBQ a 450°C geotermici!)</p>
+                        <p><strong>13:15</strong> Opzionale: giro dromedario (€11, 20 min)</p>
+                        <p><strong>14:30</strong> Bodegas La Geria — Rubicón (€1/calice) o El Grifo (Wine Lovers €50/2h)</p>
+                        <p><strong>⚠️ Fare scorta al Mercadona — domani tutto chiuso!</strong></p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-day">Giorno 6 • Ven 1 Maggio — 🎉 FESTIVO NAZIONALE</div>
+                    <div class="timeline-content">
+                        <h4>✨ Noches de Jameos del Agua</h4>
+                        <p><strong>Mattina:</strong> Relax piscina oppure Jardín de Cactus (€9 — chiude 16:30)</p>
+                        <p><strong>18:30</strong> Apertura Noches de Jameos del Agua</p>
+                        <p><strong>€98/persona</strong> — cena gourmet + concerto timple + DJ set fino a mezzanotte</p>
+                        <div style="margin-top:.75rem;"><a href="https://cactlanzarote.com/en/tickets/jameos-night-dinner-concert" target="_blank" rel="noopener noreferrer" class="btn btn-orange"><i class="fas fa-ticket"></i> Prenota Noches de Jameos</a></div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-day">Giorno 7 • Sab 2 Maggio</div>
+                    <div class="timeline-content">
+                        <h4>🏝️ La Graciosa — L'Ottava Isola</h4>
+                        <p><strong>08:30</strong> Traghetto Órzola → Caleta del Sebo (€29 A/R, 25 min)</p>
+                        <p><strong>09:00–16:00</strong> Playa Las Conchas (bici €10–20), Francesa, Montaña Amarilla</p>
+                        <p><strong>Pranzo:</strong> Pesce fresco a Caleta del Sebo (portare cash)</p>
+                        <p><strong>Piano B:</strong> Controllare Windguru 48h prima → se mare mosso: LagOmar o Fondazione Manrique</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-day">Giorno 8 • Dom 3 Maggio</div>
+                    <div class="timeline-content">
+                        <h4>🛍️ Teguise e Famara</h4>
+                        <p><strong>09:00–11:30</strong> Mercato di Teguise (400 bancarelle, musica folk)</p>
+                        <p><strong>13:00</strong> Pranzo <strong>El Risco</strong> Famara — <strong style="color:var(--accent-orange);">Michelin Bib Gourmand</strong> (<strong>PRENOTARE</strong> +34 928 52 85 50)</p>
+                        <p><strong>14:30</strong> Playa de Famara — passeggiata 7 km</p>
+                        <p><strong>Opzionale:</strong> Lezione surf Calima Surf (€50/2h)</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-day">Giorno 9 • Lun 4 Maggio</div>
+                    <div class="timeline-content">
+                        <h4>🌅 Giornata Libera</h4>
+                        <ul>
+                            <li>Relax in alloggio / piscina</li>
+                            <li>Seconda visita Papagayo o Famara</li>
+                            <li>Museo Atlántico sottomarino</li>
+                            <li>LagOmar (labirinto Manrique)</li>
+                            <li>Shopping a Puerto del Carmen</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-day">Giorno 10 • Mar 5 Maggio</div>
+                    <div class="timeline-content">
+                        <h4>🍽️ Relax e Cena Finale</h4>
+                        <p><strong>Mattina:</strong> Ultimi bagni, piscina, preparazione bagagli</p>
+                        <p><strong>Sera:</strong> <strong style="color:var(--accent-orange);">La Cocina de Colacho</strong> — Michelin Good Cooking 2026</p>
+                        <p>€95–105/persona, menu degustazione 8–10 portate, solo 8 tavoli</p>
+                        <p><strong style="color:var(--accent-red);">PRENOTARE: +34 928 51 96 91</strong> (chiuso Ven–Dom)</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-day">Giorno 11 • Mer 6 Maggio</div>
+                    <div class="timeline-content">
+                        <h4>🛫 Partenza</h4>
+                        <p><strong>09:00</strong> Ultima passeggiata + colazione + acquisti</p>
+                        <p><strong>11:00</strong> Check-out</p>
+                        <p><strong>12:30</strong> Riconsegna auto aeroporto (pieno per pieno)</p>
+                        <p><strong>15:15</strong> Decollo EJU3760 ACE → MXP</p>
+                        <p><strong>20:05</strong> Atterraggio Milano Malpensa 🏠</p>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section id="checklist">
-            <div class="section-header"><h2>✅ Checklist operative</h2><p>Arrivo, cambio base, ultima giornata.</p></div>
+        <!-- ===== RISTORANTI ===== -->
+        <section id="ristoranti">
+            <div class="section-header">
+                <h2>🍴 Ristoranti Imperdibili</h2>
+                <p>I migliori con prezzi, telefoni e orari aggiornati</p>
+            </div>
             <div class="cards-grid">
-                <div class="card"><div class="card-header"><div class="card-title">Arrivo prima base</div></div><div class="card-content"><ul><li>Foto auto a ritiro</li><li>Test Wi‑Fi/prese/tavolo</li><li>Spesa grossa completa</li><li>Piano 27/28 pronto</li></ul></div></div>
-                <div class="card"><div class="card-header"><div class="card-title">Cambio base</div></div><div class="card-content"><ul><li>Frigo alleggerito</li><li>Borsa “viva” separata</li><li>Spesa grossa dopo le tappe, non prima</li></ul></div></div>
-                <div class="card"><div class="card-header"><div class="card-title">Ultimo giorno</div></div><div class="card-content"><ul><li>Benzina prima riconsegna</li><li>Controllo prese/cassetti/frigo</li><li>Documenti auto + chiavi + acqua/snack</li></ul></div></div>
+                <div class="card">
+                    <div class="card-header">
+                        <div><span class="card-badge badge-orange">⭐ Michelin Good Cooking 2026</span><div class="card-title">La Cocina de Colacho</div><div class="card-subtitle">Playa Blanca • Cena Finale</div></div>
+                        <div class="card-icon icon-orange"><i class="fas fa-utensils"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <p><strong>€95–105/persona</strong> • Menu degustazione 8–10 portate</p>
+                        <p>Chef Colacho, orto proprio, solo 8 tavoli</p>
+                        <p style="margin-top:.5rem;"><strong style="color:var(--accent-red);">PRENOTAZIONE OBBLIGATORIA</strong></p>
+                        <p>📞 +34 928 51 96 91 / +34 676 76 38 14</p>
+                        <p>🕐 Lun–Gio 18:00–22:30 (chiuso Ven–Dom)</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div><span class="card-badge badge-orange">⭐ Michelin Bib Gourmand 2026</span><div class="card-title">El Risco</div><div class="card-subtitle">Famara • Pesce km0</div></div>
+                        <div class="card-icon icon-orange"><i class="fas fa-fish"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <p>Edificio Manrique, pesce fresco km0, vista Playa de Famara + La Graciosa</p>
+                        <p style="margin-top:.5rem;"><strong style="color:var(--accent-red);">PRENOTAZIONE OBBLIGATORIA</strong></p>
+                        <p>📞 +34 928 52 85 50</p>
+                        <p>🕐 Lun–Dom 13:00–22:00</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div><span class="card-badge badge-blue">4.95/5 • 1.412 rec.</span><div class="card-title">Asian Home Restaurant</div><div class="card-subtitle">Puerto del Carmen • #1</div></div>
+                        <div class="card-icon icon-blue"><i class="fas fa-bowl-rice"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <p>Sushi, curry thai, fusion asiatica • Gestione familiare</p>
+                        <p>€25–30/persona</p>
+                        <p>🕐 Mar–Dom 18:00–23:00 • Prenotazione consigliata</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div><span class="card-badge badge-teal">4.85/5 • 3° su 301</span><div class="card-title">La Carmencita del Puerto</div><div class="card-subtitle">PDC Matagorda • Tapas Canarie</div></div>
+                        <div class="card-icon icon-teal"><i class="fas fa-wine-glass"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <p>Tapas canarie autentiche, solo 12 tavoli • €25–35/persona con vino</p>
+                        <p style="margin-top:.5rem;"><strong style="color:var(--accent-red);">PRENOTAZIONE INDISPENSABILE</strong></p>
+                        <p>📞 +34 928 29 11 69</p>
+                        <p>🕐 Lun–Ven 19:00–23:00 (chiuso Sab–Dom)</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div><span class="card-badge badge-blue">4.75/5 • Autentico</span><div class="card-title">Bar Andalucía 1960</div><div class="card-subtitle">Arrecife • Charco de San Ginés</div></div>
+                        <div class="card-icon icon-blue"><i class="fas fa-cheese"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <p>Gestito da Massimo (italiano) • Tapas + pasta fresca fatta in casa</p>
+                        <p>Solo 12 posti — prenotazione obbligatoria</p>
+                        <p>🕐 Lun–Ven 12:00–15:00, 19:00–23:00</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div><span class="card-badge badge-red">🌋 Unico al Mondo</span><div class="card-title">El Diablo</div><div class="card-subtitle">Timanfaya • BBQ Geotermico</div></div>
+                        <div class="card-icon icon-red"><i class="fas fa-fire"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <p><strong>BBQ a 450°C geotermici</strong> — griglia 24/7 alimentata dal sottosuolo</p>
+                        <p>Pollo €17,50 • Entrecôte €22 • Pesce €21</p>
+                        <p style="margin-top:.5rem;"><strong>NO prenotazioni</strong> — coda ~15 min</p>
+                        <p>🕐 Lun–Dom 12:00–16:00 — accessibile col bus del parco</p>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section id="regole">
-            <div class="section-header"><h2>⛔ Cose da non fare</h2></div>
-            <div class="alert alert-warning"><i class="fas fa-ban alert-icon" style="color:var(--accent-orange);"></i><div>Non caricare 27/28 come giornate turistiche, non trasformare il cambio base in maratona, non rifare entrare Noches de Jameos, non pianificare doppio pasto forte nello stesso giorno.</div></div>
-            <div class="info-box"><h3>Alternative serali coerenti (Noches esclusa)</h3><ul><li><span class="check">✓</span><span>El Golfo al tramonto + cena semplice</span></li><li><span class="check">✓</span><span>Yaiza/Uga/La Geria con bodega vera</span></li><li><span class="check">✓</span><span>La Santa con passeggiata lato ovest</span></li><li><span class="check">✓</span><span>Arrieta/Punta Mujeres con pesce sul mare</span></li><li><span class="check">✓</span><span>Serata in casa fatta bene (vino + piscina)</span></li></ul></div>
-        </section>
-
-        <section id="budget">
-            <div class="section-header"><h2>💰 Budget e lettura onesta</h2><p>Controllare la spesa senza impoverire la vacanza.</p></div>
-            <div class="cards-grid">
-                <div class="card"><div class="card-header"><div class="card-title">Costi fissi principali</div></div><div class="card-content"><ul><li>Voli: €428–€495</li><li>AutoReisen: €150 / 11 giorni</li><li>Alloggi: dipende dalla combo scelta</li></ul></div></div>
-                <div class="card"><div class="card-header"><div class="card-title">Dove ottimizzare davvero</div></div><div class="card-content"><ul><li>Spesa grossa intelligente nelle due basi</li><li>Cucina per colazioni + alcune cene</li><li>Evitare “doppio pasto forte” nello stesso giorno</li><li>Poche prenotazioni premium ma giuste</li></ul></div></div>
-            </div>
-        </section>
-
-        <section id="links">
-            <div class="section-header"><h2>🔗 Link ufficiali utili (blocco unico)</h2><p>Tutti i riferimenti principali in un punto solo.</p></div>
-            <div class="table-responsive"><table><thead><tr><th>Categoria</th><th>Riferimenti</th></tr></thead><tbody>
-                <tr><td>Turismo e luoghi</td><td><a href="https://turismolanzarote.com/en/what-you-cant-miss-in-lanzarote/" target="_blank" rel="noopener noreferrer">Turismo Lanzarote</a> · <a href="https://turismolanzarote.com/en/beach/playas-de-papagayo-papagayo-beaches/" target="_blank" rel="noopener noreferrer">Papagayo</a> · <a href="https://turismolanzarote.com/en/playa/playa-de-famara-famara-beach/" target="_blank" rel="noopener noreferrer">Famara</a> · <a href="https://turismolanzarote.com/it/la-graciosa/" target="_blank" rel="noopener noreferrer">La Graciosa</a> · <a href="https://turismolanzarote.com/en/market/villa-de-teguise-market/" target="_blank" rel="noopener noreferrer">Mercato Teguise</a></td></tr>
-                <tr><td>CACT</td><td><a href="https://ventaonline.cactlanzarote.com/en/tickets-and-vouchers" target="_blank" rel="noopener noreferrer">Hub ticket CACT</a> · <a href="https://cactlanzarote.com/en/preguntas-frecuentes-cact-lanzarote/" target="_blank" rel="noopener noreferrer">FAQ</a> · <a href="https://cactlanzarote.com/en/menus/el-diablo-restaurant/" target="_blank" rel="noopener noreferrer">El Diablo menu</a></td></tr>
-                <tr><td>Cultura</td><td><a href="https://fcmanrique.org/en/inicio/" target="_blank" rel="noopener noreferrer">Fundación Manrique</a> · <a href="https://fcmanrique.org/en/casas-museo-visitas/" target="_blank" rel="noopener noreferrer">Visite FCM</a> · <a href="https://www.lagomarlanzarote.com/" target="_blank" rel="noopener noreferrer">LagOmar</a> · <a href="https://tickets.lagomarmuseum.com/" target="_blank" rel="noopener noreferrer">Ticket LagOmar</a> · <a href="https://underwatermuseumlanzarote.com/en/" target="_blank" rel="noopener noreferrer">Museo Atlántico</a></td></tr>
-                <tr><td>Traghetti e attività</td><td><a href="https://lineasromero.com/en/ferry-lanzarote-la-graciosa" target="_blank" rel="noopener noreferrer">Líneas Romero</a> · <a href="https://biosferaexpress.com/en/" target="_blank" rel="noopener noreferrer">Biosfera Express</a> · <a href="https://calimasurf.com/it" target="_blank" rel="noopener noreferrer">Calima Surf</a> · <a href="https://www.redstarsurf.com/it/" target="_blank" rel="noopener noreferrer">Red Star Surf</a> · <a href="https://www.kayaklanzarote.com/english/" target="_blank" rel="noopener noreferrer">Kayak Lanzarote</a></td></tr>
-                <tr><td>Bodegas</td><td><a href="https://www.bodegasrubicon.com" target="_blank" rel="noopener noreferrer">Rubicón</a> · <a href="https://www.elgrifo.com" target="_blank" rel="noopener noreferrer">El Grifo</a> · <a href="https://elgrifo.com/en/pages/experiencias" target="_blank" rel="noopener noreferrer">Esperienze El Grifo</a> · <a href="https://www.lageria.com/en/visitas-guiadas-wine-tours/" target="_blank" rel="noopener noreferrer">Bodega La Geria</a> · <a href="https://stratvs.com/en/" target="_blank" rel="noopener noreferrer">Stratvs</a></td></tr>
-                <tr><td>Spesa</td><td><a href="https://www.hiperdino.es/c9504/tiendas/index/detail/id/222/" target="_blank" rel="noopener noreferrer">HiperDino San Bartolomé</a> · <a href="https://www.hiperdino.es/c9494/tiendas/index/detail/id/314/" target="_blank" rel="noopener noreferrer">Open Mall Arrecife</a> · <a href="https://www.hiperdino.es/c9494/tiendas/index/detail/id/70/" target="_blank" rel="noopener noreferrer">HD Rubicón</a> · <a href="https://www.tinajo.es/en/empresas/timanajo-supermarket" target="_blank" rel="noopener noreferrer">Timanajo</a> · <a href="https://www.tinajo.es/en/empresas/unide-la-santa-supermercado" target="_blank" rel="noopener noreferrer">UNIDE La Santa</a></td></tr>
-            </tbody></table></div>
-        </section>
-
+        <!-- ===== MAPPA ===== -->
         <section id="mappa">
-            <div class="section-header"><h2>🗺️ Mappa interattiva</h2><p>Tutti i luoghi chiave: alloggi, spesa, attrazioni, ristoranti.</p></div>
-            <div class="alert alert-info"><i class="fas fa-shield-alt alert-icon" style="color:var(--accent-blue);"></i><div><strong>Privacy:</strong> geolocalizzazione usata solo localmente nel browser.</div></div>
+            <div class="section-header">
+                <h2>🗺️ Mappa Interattiva</h2>
+                <p>Tutti i luoghi georeferenziati — premi il tasto GPS 📍 in basso a destra per le distanze</p>
+            </div>
+            <div class="alert alert-info">
+                <i class="fas fa-shield-alt alert-icon" style="color:var(--accent-blue);"></i>
+                <div><strong>Privacy:</strong> La tua posizione è usata SOLO localmente nel browser. Zero tracking, zero server esterni.</div>
+            </div>
             <div id="mapContainer"></div>
         </section>
 
         <section id="gmaps">
-            <div class="section-header"><h2>📍 Directory Google Maps</h2><p>Apertura rapida dei luoghi da mobile.</p></div>
+            <div class="section-header">
+                <h2>📍 Google Maps</h2>
+                <p>Tutti i luoghi della guida con link rapidi apribili direttamente in Google Maps</p>
+            </div>
+            <div class="alert alert-info">
+                <i class="fas fa-map-location-dot alert-icon" style="color:var(--accent-blue);"></i>
+                <div><strong>Uso rapido:</strong> qui sotto trovi una directory completa generata dai luoghi presenti nella guida, utile soprattutto da mobile quando vuoi saltare direttamente da lettura a navigazione.</div>
+            </div>
             <div id="googleMapsDirectory" class="maps-directory"></div>
+        </section>
+
+        <!-- ===== BUDGET ===== -->
+        <section id="budget">
+            <div class="section-header">
+                <h2>💰 Budget Totale</h2>
+                <p>Riepilogo costi reali per 2 persone</p>
+            </div>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <div><span class="card-badge badge-teal">Scenario C — 10 Notti</span><div class="card-title">Ryanair + easyJet</div></div>
+                        <div class="card-icon icon-teal"><i class="fas fa-euro-sign"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="table-responsive">
+                            <table>
+                                <tbody>
+                                    <tr><td>Voli (BGY→ACE + ACE→MXP)</td><td style="text-align:right;"><strong>€428</strong></td></tr>
+                                    <tr><td>Alloggio 10 notti (Club Oceano)</td><td style="text-align:right;"><strong>€880</strong></td></tr>
+                                    <tr><td>Auto 10 giorni</td><td style="text-align:right;"><strong>€185</strong></td></tr>
+                                    <tr><td>Carburante ~800 km</td><td style="text-align:right;"><strong>€75</strong></td></tr>
+                                    <tr><td>Ingressi CACT (2 pers.)</td><td style="text-align:right;"><strong>€189</strong></td></tr>
+                                    <tr><td>Noches de Jameos (2 pers.)</td><td style="text-align:right;"><strong>€196</strong></td></tr>
+                                    <tr><td>Pasti 10 gg (€90/gg)</td><td style="text-align:right;"><strong>€900</strong></td></tr>
+                                    <tr><td>La Graciosa (traghetto + bici)</td><td style="text-align:right;"><strong>€88</strong></td></tr>
+                                    <tr><td>Attività extra (surf, kayak)</td><td style="text-align:right;"><strong>€160</strong></td></tr>
+                                    <tr><td>Contingenze 10%</td><td style="text-align:right;"><strong>€310</strong></td></tr>
+                                    <tr style="border-top:2px solid var(--accent-teal);font-weight:700;font-size:1.0625rem;">
+                                        <td>TOTALE</td><td style="text-align:right;color:var(--accent-teal);">€3.411</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div><span class="card-badge badge-blue">Scenario B — 11 Notti</span><div class="card-title">easyJet Puro</div></div>
+                        <div class="card-icon icon-blue"><i class="fas fa-euro-sign"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="table-responsive">
+                            <table>
+                                <tbody>
+                                    <tr><td>Voli easyJet A/R (MXP)</td><td style="text-align:right;"><strong>€495</strong></td></tr>
+                                    <tr><td>Alloggio 11 notti (Club Oceano)</td><td style="text-align:right;"><strong>€968</strong></td></tr>
+                                    <tr><td>Auto 11 giorni</td><td style="text-align:right;"><strong>€200</strong></td></tr>
+                                    <tr><td>Carburante</td><td style="text-align:right;"><strong>€80</strong></td></tr>
+                                    <tr><td>Ingressi CACT (2 pers.)</td><td style="text-align:right;"><strong>€189</strong></td></tr>
+                                    <tr><td>Noches de Jameos (2 pers.)</td><td style="text-align:right;"><strong>€196</strong></td></tr>
+                                    <tr><td>Pasti 11 gg (€90/gg)</td><td style="text-align:right;"><strong>€990</strong></td></tr>
+                                    <tr><td>La Graciosa</td><td style="text-align:right;"><strong>€88</strong></td></tr>
+                                    <tr><td>Attività extra</td><td style="text-align:right;"><strong>€160</strong></td></tr>
+                                    <tr><td>Contingenze 10%</td><td style="text-align:right;"><strong>€337</strong></td></tr>
+                                    <tr style="border-top:2px solid var(--accent-blue);font-weight:700;font-size:1.0625rem;">
+                                        <td>TOTALE</td><td style="text-align:right;color:var(--accent-blue);">€3.703</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
@@ -480,12 +1011,6 @@
         {nome:"Mardeleva",lat:28.9208,lng:-13.6615,cat:"ristorante",desc:"Churros de pescado. Terrazza porto vecchio. €20–30",orari:"Lun–Dom 12:00–23:00"},
         {nome:"El Diablo (Timanfaya)",lat:29.0326,lng:-13.7686,cat:"ristorante",desc:"BBQ vulcanico 450°C geotermici. NO prenotazioni",orari:"Lun–Dom 12:00–16:00"},
         {nome:"Ristorante Sergio",lat:28.8618,lng:-13.8310,cat:"ristorante",desc:"Pesce creativo Playa Blanca. 4.85/5",orari:"Mar–Dom 13:00–23:00"},
-        {nome:"Palacio Ico",lat:29.0596,lng:-13.5609,cat:"ristorante",desc:"Teguise storico. Cena/pranzo raffinato, da prenotare",orari:"Mer–Dom 13:00–23:00"},
-        {nome:"Lani’s Gourmet",lat:28.9218,lng:-13.6531,cat:"ristorante",desc:"Esperienza premium fronte mare a Puerto del Carmen",orari:"Lun–Dom 18:30–23:00"},
-        {nome:"Ikarus",lat:29.1133,lng:-13.5529,cat:"ristorante",desc:"Famara, cucina curata con vista oceano",orari:"Lun–Dom 13:00–22:30"},
-        {nome:"Costa Famara",lat:29.1140,lng:-13.5536,cat:"ristorante",desc:"Pranzo vista spiaggia, ideale dopo Teguise",orari:"Lun–Dom 12:30–22:00"},
-        {nome:"Dunas de Famara",lat:29.1138,lng:-13.5530,cat:"ristorante",desc:"Locale sul fronte Famara, perfetto per giorno vento",orari:"Lun–Dom 13:00–22:00"},
-        {nome:"Malecon",lat:28.9616,lng:-13.5489,cat:"ristorante",desc:"Arrecife, ottimo in giornata urbana/culturale",orari:"Mar–Dom 13:00–23:00"},
         {nome:"Parco Nazionale Timanfaya",lat:29.0224,lng:-13.7930,cat:"attrazione",desc:"Montañas del Fuego €30. Ruta de los Volcanes in bus",orari:"09:30–17:00",link:"https://ventaonline.cactlanzarote.com"},
         {nome:"Cueva de los Verdes",lat:29.1611,lng:-13.4389,cat:"attrazione",desc:"€17. Tubo lavico + illusione ottica. SLOT ORARIO OBBLIGATORIO",orari:"09:30–16:15",link:"https://cactlanzarote.com"},
         {nome:"Jameos del Agua",lat:29.1572,lng:-13.4305,cat:"attrazione",desc:"€15. Opera Manrique 1968. Granchi bianchi ciechi",orari:"10:00–18:00"},
@@ -494,7 +1019,6 @@
         {nome:"Jardín de Cactus",lat:29.1188,lng:-13.4645,cat:"attrazione",desc:"€9. 4.500 cactus 450 specie. Mulino storico",orari:"10:00–16:30"},
         {nome:"MIAC Castillo San José",lat:28.9528,lng:-13.5358,cat:"attrazione",desc:"€5.20. Arte contemporanea in castello settecentesco",orari:"11:00–18:00"},
         {nome:"LagOmar",lat:29.0208,lng:-13.5825,cat:"attrazione",desc:"€6–10. Labirinto vulcanico Manrique",orari:"10:00–18:00",link:"https://www.lagomar.com"},
-        {nome:"Casa Museo del Campesino",lat:29.0017,lng:-13.6348,cat:"attrazione",desc:"Spazio culturale manriquiano, perfetto in giornata morbida",orari:"10:00–18:00"},
         {nome:"El Golfo – Lago Verde",lat:28.9767,lng:-13.8277,cat:"attrazione",desc:"Gratuito. Cratere con lago smeraldo. Spiaggia nera",orari:"Sempre"},
         {nome:"Salinas del Janubio",lat:28.9385,lng:-13.8018,cat:"attrazione",desc:"Gratuito. Saline più grandi Canarie. Vista dalla strada",orari:"Sempre"},
         {nome:"Museo Atlántico",lat:28.8590,lng:-13.8290,cat:"attrazione",desc:"€65–148. Primo museo sottomarino Europa. 300 sculture",orari:"Solo su prenotazione",link:"https://www.museoatlantico.com"},
@@ -505,8 +1029,6 @@
         {nome:"Mercadona Puerto del Carmen",lat:28.9240,lng:-13.6555,cat:"supermercato",desc:"⚠️ Chiuso 1 maggio (festivo). Fare scorta il 30 aprile",orari:"Lun–Sab 09:00–21:30"},
         {nome:"HiperDino Arrecife",lat:28.9545,lng:-13.5525,cat:"supermercato",desc:"Catena canaria locale. Ampia scelta",orari:"Lun–Sab 09:00–22:00, Dom 09:00–15:00"},
         {nome:"Spar PDC Matagorda",lat:28.9252,lng:-13.6538,cat:"supermercato",desc:"Vicino Club Oceano. Aperto anche festivi",orari:"Lun–Dom 08:00–22:00"},
-        {nome:"Unide Tinajo",lat:29.0666,lng:-13.6750,cat:"supermercato",desc:"Riferimento pratico per seconda base a Tinajo",orari:"Lun–Sab 09:00–21:00"},
-        {nome:"Macour Supermercado Arrieta",lat:29.1360,lng:-13.4654,cat:"supermercato",desc:"Top-up quotidiani rapidi in zona Arrieta",orari:"Lun–Dom 09:00–21:00"},
         {nome:"Bodega El Grifo",lat:29.0082,lng:-13.6428,cat:"bodega",desc:"Cantina più antica Canarie 1775. Wine Lovers €50/2h",orari:"Lun–Ven 10:00–17:15",link:"https://elgrifo.com"},
         {nome:"Bodegas Rubicón",lat:29.0095,lng:-13.6515,cat:"bodega",desc:"Ingresso gratuito, degustazione €1/calice",orari:"Lun–Dom 10:00–18:00"},
         {nome:"Bodega La Geria",lat:29.0105,lng:-13.6485,cat:"bodega",desc:"Tour 3 vini €15. Ben organizzata",orari:"Lun–Dom 10:00–18:00"},
@@ -525,20 +1047,13 @@
 
     const CAT_ICONS = {ristorante:'🍴',attrazione:'🎨',spiaggia:'🏖️',supermercato:'🛒',bodega:'🍷',mercato:'🛍️',trasporto:'✈️',alloggio:'🏨',colazione:'☕'};
     const CATEGORY_LABELS = {ristorante:'Ristoranti e locali',attrazione:'Attrazioni',spiaggia:'Spiagge',supermercato:'Supermercati',bodega:'Bodegas',mercato:'Mercati',trasporto:'Trasporti',alloggio:'Alloggi',colazione:'Colazioni e bakery'};
-          const googleMapsUrl = (lat,lng,nome='') => `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+    const googleMapsUrl = (lat,lng,nome='') => `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
     const getIcon = c => CAT_ICONS[c] || '📍';
-    const escapeHtml = (value='') => String(value)
-        .replace(/&/g,'&amp;')
-        .replace(/</g,'&lt;')
-        .replace(/>/g,'&gt;')
-        .replace(/"/g,'&quot;')
-        .replace(/'/g,'&#39;');
 
     let map=null,userMarker=null,userPos=null,watchId=null,geoActive=false,currentFilter='all',toastTmr=null;
 
     document.addEventListener('DOMContentLoaded',()=>{
         initMap(); initEvents(); populateMap();
-        renderGoogleMapsDirectory();
         const saved=localStorage.getItem('lztheme');
         if(saved) setTheme(saved);
         else if(window.matchMedia('(prefers-color-scheme:dark)').matches) setTheme('dark');
@@ -564,14 +1079,11 @@
             const icon=L.divIcon({html:`<div class="marker-emoji">${getIcon(p.cat)}</div>`,className:'custom-marker',iconSize:[32,32],iconAnchor:[16,28]});
             const m=L.marker([p.lat,p.lng],{icon}).addTo(map);
             let pop=`<div style="min-width:200px;font-family:Inter,sans-serif;">
-                <strong style="font-size:13px;">${escapeHtml(p.nome)}</strong><br>
-                <small style="color:#718096;text-transform:capitalize;">${escapeHtml(p.cat)}</small>
-                <p style="margin:6px 0 0;font-size:12px;color:#4a5568;">${escapeHtml(p.desc)}</p>`;
-            if(p.orari) pop+=`<p style="font-size:11px;color:#718096;margin:4px 0 0;">🕐 ${escapeHtml(p.orari)}</p>`;
-            if(p.tel){
-                const phoneHref = `tel:${String(p.tel).replace(/[^+\d]/g,'')}`;
-                pop+=`<p style="font-size:11px;color:#3b82f6;margin:4px 0 0;">📞 <a href="${phoneHref}">${escapeHtml(p.tel)}</a></p>`;
-            }
+                <strong style="font-size:13px;">${p.nome}</strong><br>
+                <small style="color:#718096;text-transform:capitalize;">${p.cat}</small>
+                <p style="margin:6px 0 0;font-size:12px;color:#4a5568;">${p.desc}</p>`;
+            if(p.orari) pop+=`<p style="font-size:11px;color:#718096;margin:4px 0 0;">🕐 ${p.orari}</p>`;
+            if(p.tel)   pop+=`<p style="font-size:11px;color:#3b82f6;margin:4px 0 0;">📞 <a href="tel:${p.tel}">${p.tel}</a></p>`;
             if(p.link)  pop+=`<p style="margin:6px 0 0;"><a href="${p.link}" target="_blank" rel="noopener noreferrer" style="font-size:11px;color:#3b82f6;">🔗 Sito →</a></p>`;
             pop+=`<p style="margin:6px 0 0;"><a href="${googleMapsUrl(p.lat,p.lng,p.nome)}" target="_blank" rel="noopener noreferrer" style="font-size:11px;color:#14b8a6;">📍 Google Maps →</a></p>`;
             pop+=`</div>`;
@@ -659,11 +1171,11 @@
             const wm=Math.round((p.dist/5)*60),cm=Math.round((p.dist/50)*60);
             return `<div class="nearby-place">
                 <div class="nearby-place-header">
-                    <div class="nearby-place-name">${getIcon(p.cat)} ${escapeHtml(p.nome)}</div>
+                    <div class="nearby-place-name">${getIcon(p.cat)} ${p.nome}</div>
                     <div class="nearby-distance">${p.dist.toFixed(2)} km</div>
                 </div>
-                <p class="nearby-place-desc">${escapeHtml(p.desc)}</p>
-                ${p.orari?`<p style="font-size:.8rem;color:var(--text-muted);margin-bottom:.5rem;">🕐 ${escapeHtml(p.orari)}</p>`:''}
+                <p class="nearby-place-desc">${p.desc}</p>
+                ${p.orari?`<p style="font-size:.8rem;color:var(--text-muted);margin-bottom:.5rem;">🕐 ${p.orari}</p>`:''}
                 <div style="display:flex;gap:.75rem;margin-bottom:.625rem;font-size:.8rem;color:var(--text-secondary);">
                     <span>🚶 ${wm} min</span><span>🚗 ${cm} min</span>
                 </div>
@@ -696,8 +1208,8 @@
                     ${group.items.map(p => `
                         <a class="maps-link" href="${googleMapsUrl(p.lat,p.lng,p.nome)}" target="_blank" rel="noopener noreferrer">
                             <span>
-                                <strong>${escapeHtml(p.nome)}</strong>
-                                <small>${escapeHtml(p.desc)}</small>
+                                <strong>${p.nome}</strong>
+                                <small>${p.desc}</small>
                             </span>
                             <span>Apri</span>
                         </a>
@@ -727,12 +1239,11 @@
     }
     </script>
     <nav class="mobile-nav" aria-label="Navigazione mobile">
-        <a href="#logica"><i class="fas fa-compass"></i><span>Logica</span></a>
-        <a href="#alloggi"><i class="fas fa-house"></i><span>Basi</span></a>
+        <a href="#voli"><i class="fas fa-plane"></i><span>Voli</span></a>
         <a href="#itinerario"><i class="fas fa-calendar-days"></i><span>Piano</span></a>
-        <a href="#lavoro"><i class="fas fa-laptop"></i><span>Lavoro</span></a>
+        <a href="#ristoranti"><i class="fas fa-utensils"></i><span>Cibo</span></a>
         <a href="#mappa"><i class="fas fa-map"></i><span>Mappa</span></a>
-        <a href="#checklist"><i class="fas fa-list-check"></i><span>Check</span></a>
+        <a href="#gmaps"><i class="fas fa-location-dot"></i><span>Maps</span></a>
     </nav>
 </body>
 </html>
