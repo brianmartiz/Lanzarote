@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="it">
 <head>
 <meta charset="UTF-8">
@@ -263,6 +264,38 @@
   }
 
   .menu-toggle:hover { background: var(--accent-dark); }
+
+  .back-to-top {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 25;
+    box-shadow: var(--shadow-md);
+    font-size: 1.3em;
+    font-family: var(--font-sans);
+    transition: background 0.2s, transform 0.2s, opacity 0.3s;
+    opacity: 0;
+  }
+
+  .back-to-top.visible {
+    display: flex;
+    opacity: 1;
+  }
+
+  .back-to-top:hover {
+    background: var(--accent-dark);
+    transform: translateY(-2px);
+  }
 
   .menu-overlay {
     display: none;
@@ -722,6 +755,7 @@
     p { orphans: 3; widows: 3; }
   }
 </style>
+
 </head>
 <body>
 
@@ -733,9 +767,11 @@
   <nav aria-label="Indice del viaggio">
     <ul>
       <li><a href="#prologo">Prologo</a></li>
+      <li><a href="#cruscotto-operativo">🧭 Cruscotto operativo</a></li>
       <li><a href="#capitolo-i-il-quadro-essenziale">I · Il quadro essenziale</a></li>
+      <li><a href="#capitolo-vi-le-tre-decisioni-chiave">II · Le tre decisioni chiave</a></li>
       <li>
-        <a href="#capitolo-ii-litinerario-giorno-per-giorno">II · Itinerario giorno per giorno</a>
+        <a href="#capitolo-ii-litinerario-giorno-per-giorno">III · Itinerario giorno per giorno</a>
         <ul class="submenu">
       <li><a href="#sabato-25-aprile-latterraggio"><span class="submenu-date">Sab 25 apr</span><span class="submenu-title">L'atterraggio</span></a></li>
       <li><a href="#domenica-26-aprile-il-mercato-di-teguise-e-la-valle-delle-palme"><span class="submenu-date">Dom 26 apr</span><span class="submenu-title">Il mercato di Teguise e la valle delle palme</span></a></li>
@@ -751,11 +787,27 @@
       <li><a href="#mercoledi-6-maggio-il-rientro"><span class="submenu-date">Mer 6 mag</span><span class="submenu-title">Il rientro</span></a></li>
         </ul>
       </li>
-      <li><a href="#capitolo-iii-approfondimenti-e-scelte">III · Approfondimenti e scelte</a></li>
-      <li><a href="#capitolo-iv-consigli-logistici-concreti">IV · Consigli logistici</a></li>
-      <li><a href="#capitolo-v-i-rischi-e-le-risposte">V · Rischi e risposte</a></li>
-      <li><a href="#capitolo-vi-le-tre-decisioni-chiave">VI · Le tre decisioni chiave</a></li>
-      <li><a href="#appendice-contatti-operativi">Appendice · Contatti</a></li>
+      <li>
+        <a href="#capitolo-iii-approfondimenti-e-scelte">IV · Approfondimenti e scelte</a>
+        <ul class="submenu">
+          <li><a href="#manrique-per-architetti-e-no"><span class="submenu-title">Manrique, per architetti e no</span></a></li>
+          <li><a href="#la-gastronomia-autentica-il-filo-conduttore"><span class="submenu-title">La gastronomia autentica</span></a></li>
+          <li><a href="#le-bodegas-della-geria-cosa-bere-dove-e-perche"><span class="submenu-title">Le bodegas della Geria</span></a></li>
+          <li><a href="#le-cinque-gemme-non-turistiche"><span class="submenu-title">Le cinque gemme non-turistiche</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#capitolo-iv-consigli-logistici-concreti">V · Consigli logistici</a>
+        <ul class="submenu">
+          <li><a href="#il-bagaglio-cosa-portare-cosa-comprare-sul-posto-cosa-lasciare-a-casa"><span class="submenu-title">Il bagaglio</span></a></li>
+          <li><a href="#le-prenotazioni-da-fare-questa-settimana"><span class="submenu-title">Prenotazioni</span></a></li>
+          <li><a href="#il-lavoro-da-remoto-senza-stress"><span class="submenu-title">Lavoro da remoto</span></a></li>
+          <li><a href="#calima-vento-aemet-come-leggere-il-tempo"><span class="submenu-title">Calima, vento, AEMET</span></a></li>
+        </ul>
+      </li>
+      <li><a href="#capitolo-v-i-rischi-e-le-risposte">VI · Rischi e risposte</a></li>
+      <li><a href="#appendice-contatti-operativi">📞 Appendice · Contatti</a></li>
+      <li><a href="#appendice-calendario-prenotazioni">📅 Appendice · Calendario prenotazioni</a></li>
       <li><a href="#epilogo">Epilogo</a></li>
     </ul>
   </nav>
@@ -765,7 +817,9 @@
 </aside>
 
 <button class="menu-toggle" id="menuToggle" aria-label="Apri indice" aria-controls="sidebar">☰</button>
+
 <div class="menu-overlay" id="menuOverlay"></div>
+<button class="back-to-top" id="backToTop" aria-label="Torna in alto" title="Torna al cruscotto">↑</button>
 
 <main class="content">
 <div class="content-inner">
@@ -783,6 +837,158 @@
 <p>Ora si parte. La guida è pensata per essere letta tutta una volta, prima di partire, per capire la forma del viaggio; poi, la sera di ogni giornata, riletta solo nella sezione della giornata successiva, per entrare nel dettaglio pratico. In fondo trovate un'appendice con tutti i contatti telefonici e gli indirizzi, da tenere a portata quando serve una conferma last-minute.</p>
 <p>Buona lettura. E buon viaggio.</p>
 <hr>
+<h1 id="cruscotto-operativo">🧭 Cruscotto operativo</h1>
+<blockquote>
+<p><em>Una pagina sola con tutto quello che serve sapere prima di partire. Da consultare al volo per orientarsi.</em></p>
+</blockquote>
+<h2 id="vincoli-temporali-fissi-non-spostabili">Vincoli temporali fissi (non spostabili)</h2>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Quando</th>
+<th>Cosa</th>
+<th>Dove</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sab 25 apr 17:25-20:40</strong></td>
+<td>Volo EJU3759</td>
+<td>MXP → ACE</td>
+<td>Cabin only, 1 trolley + 2 personal items</td>
+</tr>
+<tr>
+<td><strong>Lun 27 + Mar 28 09:00-15:30</strong></td>
+<td>Lavoro remoto</td>
+<td>Cactus, PdC</td>
+<td>Wi-Fi da testare il 25 sera</td>
+</tr>
+<tr>
+<td><strong>Mer 29 apr 16:00-18:00</strong></td>
+<td>Webinar Federica</td>
+<td>Cactus, PdC</td>
+<td>Vincolo critico: traghetto ritorno 13:30 consigliato</td>
+</tr>
+<tr>
+<td><strong>Dom 3 mag 09:30-12:30</strong></td>
+<td>Ruta Tremesana</td>
+<td>Plaza de los Remedios, Yaiza</td>
+<td>Permiso 3210653005 — passaporto obbligatorio</td>
+</tr>
+<tr>
+<td><strong>Mer 6 mag 15:15-20:05</strong></td>
+<td>Volo EJU3760</td>
+<td>ACE → MXP</td>
+<td>Riconsegna auto AutoReisen entro 13:15</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="le-4-prenotazioni-urgenti-prima-della-partenza">Le 4 prenotazioni urgenti (prima della partenza)</h2>
+<ol>
+<li><strong>Tacande Haría — domenica 26 pranzo</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJA5iqxqKhSAwRY3zXq80aHWQ" class="map-link" target="_blank" rel="noopener" aria-label="Apri Tacande su Google Maps" title="Apri Tacande su Google Maps">📍</a> · tel. +34 928 83 51 17 · prenota subito</li>
+<li><strong>Cueva de los Verdes — venerdì 1° maggio slot 12:00</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJXxCKHs6jSAwR-Zejg89khEM" class="map-link" target="_blank" rel="noopener" aria-label="Apri Cueva de los Verdes su Google Maps" title="Apri Cueva de los Verdes su Google Maps">📍</a> · <code><a href="https://ventaonline.cactlanzarote.com" class="contact-link url-link" target="_blank" rel="noopener noreferrer">ventaonline.cactlanzarote.com</a></code> · 17€/persona</li>
+<li><strong>Bodegas Rubicón — giovedì 30 pranzo</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJq6qqquo7RgwRTLmQguQaJOE" class="map-link" target="_blank" rel="noopener" aria-label="Apri Bodegas Rubicón su Google Maps" title="Apri Bodegas Rubicón su Google Maps">📍</a> · tel. +34 928 17 37 08</li>
+<li><strong>Una cena Michelin</strong> (decisione, vedi Capitolo II "Le tre decisioni"):<br />
+ - Lilium Arrecife — martedì 28 sera · +34 928 52 49 78<br />
+ - La Cocina de Colacho — lunedì 4 sera · +34 928 51 96 91 (8-10 tavoli, prenotare per primo)<br />
+ - El Risco Famara — sabato 2 o martedì 5 sera · +34 928 52 85 50</li>
+</ol>
+<h2 id="le-3-decisioni-che-definiscono-il-viaggio">Le 3 decisioni che definiscono il viaggio</h2>
+<p>Da prendere <strong>prima di leggere i giorni</strong>: ogni giornata è scritta in funzione di queste tre risposte. Vedi Capitolo II.</p>
+<ol>
+<li><strong>Noches de Jameos sì o no</strong> — venerdì 1° maggio sera, 55-100€/persona</li>
+<li><strong>Surf sì o no</strong> — sabato 2 maggio mattina (NON mercoledì 6, è il rientro)</li>
+<li><strong>Cene importanti: 0, 1 o 2</strong> — mai 3, sposterebbe il focus del viaggio</li>
+</ol>
+<h2 id="numeri-di-emergenza">Numeri di emergenza</h2>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Servizio</th>
+<th>Numero</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Emergenza generale (UE)</td>
+<td><strong>112</strong></td>
+</tr>
+<tr>
+<td>OAPN (Tremesana, conferme)</td>
+<td><strong>+34 928 11 80 42</strong></td>
+</tr>
+<tr>
+<td>AutoReisen (auto)</td>
+<td>Ufficio in terminal aeroporto</td>
+</tr>
+<tr>
+<td>Casa Lancelot (host)</td>
+<td>Vedere conferma booking</td>
+</tr>
+<tr>
+<td>Cactus PdC (host)</td>
+<td>Vedere conferma booking</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="giorni-festivi-e-chiusure-critiche">Giorni "festivi" e chiusure critiche</h2>
+<ul>
+<li><strong>1° maggio (Día del Trabajador)</strong>: Saramago chiuso, Decathlon chiuso, El Pichón Punta Mujeres chiuso, molti negozi chiusi → spesa fatta giovedì 30 pomeriggio</li>
+<li><strong>Domeniche</strong>: Los Bermejos chiusa, Lilium chiuso, Salinas visite guidate non disponibili</li>
+<li><strong>Lunedì</strong>: Saramago Tías chiusa la mattina, Lilium chiuso, Kamezí chiuso, Teleclub chiuso</li>
+<li><strong>Martedì</strong>: El Chupadero chiuso, Casa Enriqueta La Graciosa chiusa</li>
+<li><strong>Mercoledì</strong>: El Chupadero chiuso, Casa Enriqueta La Graciosa chiusa, Bodegas Rubicón fino alle 20</li>
+</ul>
+<h2 id="costi-indicativi-per-persona">Costi indicativi per persona</h2>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Voce</th>
+<th>Stima</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cene tascabili (Teleclub, Cofradía, casa)</td>
+<td>20-30 €/cena</td>
+</tr>
+<tr>
+<td>Cene importanti (Lilium / Colacho / El Risco)</td>
+<td>45-95 €/cena</td>
+</tr>
+<tr>
+<td>Pranzi medi (Tacande, Rubicón, El Pichón)</td>
+<td>25-45 €/pranzo</td>
+</tr>
+<tr>
+<td>Biglietti CACT singolo</td>
+<td>9-17 €</td>
+</tr>
+<tr>
+<td>Cantina (degustazione media)</td>
+<td>15-30 €</td>
+</tr>
+<tr>
+<td>Tremesana</td>
+<td>gratuito</td>
+</tr>
+<tr>
+<td>Carburante 11 giorni</td>
+<td>~80-100 € totali (auto piccola)</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="link-operativi-rapidi">Link operativi rapidi</h2>
+<ul>
+<li><strong>AEMET Lanzarote</strong> — <code><a href="https://www.aemet.es/eltiempo/prediccion/avisos?p=351" class="contact-link url-link" target="_blank" rel="noopener noreferrer">aemet.es/eltiempo/prediccion/avisos?p=351</a></code></li>
+<li><strong>CACT prenotazioni</strong> — <code><a href="https://ventaonline.cactlanzarote.com" class="contact-link url-link" target="_blank" rel="noopener noreferrer">ventaonline.cactlanzarote.com</a></code></li>
+<li><strong>Tremesana conferma</strong> — <code><a href="https://www.reservasparquesnacionales.es" class="contact-link url-link" target="_blank" rel="noopener noreferrer">reservasparquesnacionales.es</a></code></li>
+<li><strong>El Grifo</strong> — <code><a href="https://www.elgrifo.com" class="contact-link url-link" target="_blank" rel="noopener noreferrer">elgrifo.com</a></code></li>
+<li><strong>Salinas Janubio</strong> — <code><a href="https://www.salinasdejanubio.com" class="contact-link url-link" target="_blank" rel="noopener noreferrer">salinasdejanubio.com</a></code></li>
+<li><strong>Líneas Romero (Graciosa)</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJ-9zANJ6mSAwRV_J-f3a1wWY" class="map-link" target="_blank" rel="noopener" aria-label="Apri Líneas Romero su Google Maps" title="Apri Líneas Romero su Google Maps">📍</a> — <code><a href="https://www.lineasromero.com" class="contact-link url-link" target="_blank" rel="noopener noreferrer">lineasromero.com</a></code></li>
+</ul>
+<hr>
 <h1 id="capitolo-i-il-quadro-essenziale" class="chapter"><span class="chapter-label">Capitolo I</span><span class="chapter-name">Il quadro essenziale</span></h1>
 <h2 id="i-numeri-del-viaggio">I numeri del viaggio</h2>
 <p><strong>Voli</strong> — All'andata, sabato 25 aprile, easyJet EJU3759, Milano Malpensa 17:25 → Arrecife 20:40. Al ritorno, mercoledì 6 maggio, easyJet EJU3760, Arrecife 15:15 → Milano Malpensa 20:05. Durata media del volo poco sotto le quattro ore e mezza, senza scali.</p>
@@ -791,7 +997,7 @@
 <p><strong>Bagagli</strong> — due <em>personal items</em> sotto il sedile (45 × 36 × 20 cm ciascuno) e un trolley cabina in cappelliera easyJet (56 × 45 × 25 cm, max 15 kg), nessun bagaglio in stiva. Si viaggia leggeri; nel capitolo sulla logistica trovate la lista di cosa portare e cosa comprare sul posto per alleggerire ulteriormente.</p>
 <p><strong>Vincoli rigidi</strong> — lunedì 27 e martedì 28 aprile, lavoro da remoto dalle 09:00 alle 15:30 (o al massimo alle 16:00), dall'appartamento Cactus. Domenica 3 maggio, tour Tremesana dalle 09:30 alle 12:30, punto di ritrovo Plaza de los Remedios a Yaiza, <em>permiso</em> numero 3210653005 a nome di Federica, calzature chiuse sportive obbligatorie pena esclusione dal tour, guida in spagnolo.</p>
 <h2 id="il-clima-brevemente">Il clima, brevemente</h2>
-<p>Dal 25 aprile al 6 maggio siete nella finestra climatica migliore dell'anno sull'isola. Medie diurne tra i ventidue e i venticinque gradi, notturne tra i quindici e i diciotto; Tinajo, essendo nell'entroterra, è uno o due gradi più fresca di Puerto del Carmen nelle ore notturne — Federica gradirà una felpa per la sera in terrazza a Casa Lancelot. Pioggia quasi inesistente, meno di un giorno al mese, cinque-sette millimetri totali. Sole forte: indice ultravioletto tra il nove e il dieci, protezione cinquanta non negoziabile. Mare sui diciannove-venti gradi a Famara, bagno possibile ma breve senza muta. Ore di luce: alba intorno alle 07:15 a fine aprile, tramonto circa 20:30; a inizio maggio, alba alle 07:05 e tramonto verso le 20:35. Luce fino ben oltre le otto di sera — sfruttatela per i miradores.</p>
+<p>Dal 25 aprile al 6 maggio siete nella finestra climatica migliore dell'anno sull'isola. Medie diurne tra i <strong>ventidue e i venticinque gradi</strong>, notturne tra i <strong>tredici e i diciassette</strong> (con vento costante 20-25 km/h la sensazione termica scende a 10-12 di sera); Tinajo, essendo nell'entroterra, è due o tre gradi più fresca di Puerto del Carmen nelle ore notturne — <strong>a Casa Lancelot in terrazza alle 21 con vento, senza un pile vero e una giacca antivento, un freddoloso soffre</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJR3nuPWciRgwRK8_e52dRsJQ" class="map-link" target="_blank" rel="noopener" aria-label="Apri Casa Lancelot su Google Maps" title="Apri Casa Lancelot su Google Maps">📍</a>. La sezione bagaglio del capitolo IV spiega il sistema a strati. Pioggia quasi inesistente, meno di un giorno al mese, cinque-sette millimetri totali. Sole forte: indice ultravioletto tra il nove e il dieci, protezione cinquanta non negoziabile. Mare sui diciannove-venti gradi a Famara, bagno possibile ma breve senza muta. Ore di luce: alba intorno alle 07:15 a fine aprile, tramonto circa 20:30; a inizio maggio, alba alle 07:05 e tramonto verso le 20:35. Luce fino ben oltre le otto di sera — sfruttatela per i miradores.</p>
 <p>Il vento è la costante dell'isola. Alisei da nord-est, tipicamente tra i dodici e i venticinque nodi (ventidue-quarantasei chilometri orari), con punte di quaranta-sessanta nei giorni peggiori, soprattutto nel nord e nell'ovest. La regola operativa è semplice: <strong>il mattino è quasi sempre più calmo del pomeriggio</strong>. Per questo il surf a Famara, l'escursione al Mirador del Río, il trekking alla Caldera Blanca e ogni attività esposta vanno pianificate al mattino presto — idealmente prima delle undici.</p>
 <p>Il rischio meteo serio in primavera è la <strong>calima</strong>, vento sahariano che porta polvere in sospensione, alza le temperature di tre-cinque gradi e abbassa la visibilità anche sotto i tre chilometri. Dura tipicamente dai due ai cinque giorni, e negli ultimi anni gli episodi di maggio sono aumentati: ci sono stati eventi rilevanti nel 2023, 2024 e 2025. L'AEMET emette avvisi gialli, arancioni o rossi con ventiquattro-quarantotto ore di anticipo sul portale <code><a href="https://www.aemet.es/en/eltiempo/prediccion/avisos?k=coo&amp;p=351&amp;l=659101" class="contact-link url-link" target="_blank" rel="noopener noreferrer">aemet.es/en/eltiempo/prediccion/avisos?k=coo&p=351&l=659101</a></code> — da tenere come pagina fissa sul telefono. La risposta alla calima è semplice: nei giorni peggiori si va sotto terra (Cueva de los Verdes, Jameos del Agua) o dentro l'architettura di Manrique (Fondazione Tahíche, LagOmar) o nelle cantine al chiuso. Il <em>jolly calima</em>, cioè la giornata che potete spostare in qualunque momento del viaggio se il tempo gira, è descritto più avanti.</p>
 <h2 id="strade-parcheggi-carburante">Strade, parcheggi, carburante</h2>
@@ -805,7 +1011,14 @@
 <p>Voli 495 euro in due, auto 150, alloggi già coperti dal budget iniziale. Le voci che si aggiungono con questa guida: ingressi ai Centros de Arte, Cultura y Turismo (CACT) per circa 190 euro in due, scegliendo tra Timanfaya (60 in due), Cueva de los Verdes (34 in due), Jameos del Agua (34 in due), combinato Fondazione Manrique Tahíche+Haría (34 in due, con sconto rispetto ai singoli €20+20), Mirador del Río (18 in due), Jardín de Cactus (18 in due), MIAC (11 in due) — non li farete tutti; scegliete quelli che davvero corrispondono alle vostre giornate. Traghetto e biciclette per La Graciosa, intorno ai 90 euro in due. Le eventuali cene importanti prenotate — Colacho, Risco, Lilium o Kamezí — possono pesare tra i 200 e i 400 euro a seconda delle scelte. Il grosso delle spese quotidiane è spesa al supermercato (colazione, pranzo lavorativo, cene a Tinajo) più uno o due pranzi al giorno in locali di paese (pulpo, lapas, arroz caldoso, intorno ai 25-30 euro a testa con vino). Totale viaggio credibile, <strong>tra i 3.400 e i 3.700 euro in due</strong>, tutto compreso.</p>
 <hr>
 <h1 id="capitolo-ii-litinerario-giorno-per-giorno" class="chapter"><span class="chapter-label">Capitolo II</span><span class="chapter-name">L'itinerario, giorno per giorno</span></h1>
+<blockquote>
+<p>💡 <strong>Prima di leggere i giorni, fissate le tre decisioni del viaggio</strong>: Noches de Jameos sì/no, surf sì/no, cene importanti 0-1-2. Sono nel Capitolo VI ("Le tre decisioni chiave"). Le giornate qui sotto sono scritte assumendo che abbiate deciso. Se cambiate idea su una di queste, rileggete la giornata corrispondente.</p>
+</blockquote>
 <h2 id="sabato-25-aprile-latterraggio" class="day"><span class="day-date">Sabato 25 aprile</span><span class="day-name">L'atterraggio</span></h2>
+<blockquote>
+<p>⏱️ <strong>Sintesi</strong>: Volo 17:25-20:40 · Atterraggio + auto + HiperDino entro 22:00 · Cena leggera o Cofradía se in ritardo · A letto presto.<br />
+<strong>Critico</strong>: spesa al <strong>HiperDino Express Juan Carlos I</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJxeyOd5clRgwRTFE_UordiVw" class="map-link" target="_blank" rel="noopener" aria-label="Apri HiperDino Express Juan Carlos I su Google Maps" title="Apri HiperDino Express Juan Carlos I su Google Maps">📍</a> entro le 22:00 (chiusura). Lista preparata a Milano.</p>
+</blockquote>
 <p>Il viaggio parte ma, di fatto, non conta come giornata. Volo pomeridiano, arrivo ad Arrecife alle 20:40 se puntuale — ma tenete presente che questa tratta ha un ritardo medio storico di venticinque minuti e puntualità sotto il 40%, quindi lo scenario realistico è un arrivo tra le 20:40 e le 21:15. Ritiro auto all'ufficio AutoReisen dentro il terminal (siete cabin-only, zero attesa bagagli). Dall'aeroporto a Puerto del Carmen sono dieci-quindici minuti di guida.</p>
 <p><strong>Il nodo pratico della sera è la spesa</strong>, non la doccia. E attenzione: <strong>la cronologia realistica è più stretta di quanto sembri</strong>. Dopo l'atterraggio contate 5-10 minuti per scendere dall'aereo e arrivare in sala, 15-25 minuti per il ritiro auto AutoReisen con contratto e foto del mezzo (niente attesa bagagli perché siete cabin-only, ma la parte di firma c'è comunque), e 10-15 minuti di guida fino a Puerto del Carmen. <strong>Atterraggio puntuale alle 20:40 significa HiperDino tra le 21:25 e le 21:45</strong> — cioè 15-35 minuti utili prima della chiusura alle 22:00. Non è "tranquillo": è una finestra stretta.</p>
 <p>Due supermercati sono aperti fino alle 22:00 sette giorni su sette: <strong>HiperDino Express Juan Carlos I</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJxeyOd5clRgwRTFE_UordiVw" class="map-link" target="_blank" rel="noopener" aria-label="Apri HiperDino Express Juan Carlos I su Google Maps" title="Apri HiperDino Express Juan Carlos I su Google Maps">📍</a> (Calle Juan Carlos I 1, Tías) e <strong>HiperDino Express La Peñita</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJwSEbrOglRgwR_trziqP_MAQ" class="map-link" target="_blank" rel="noopener" aria-label="Apri HiperDino Express La Peñita su Google Maps" title="Apri HiperDino Express La Peñita su Google Maps">📍</a> (via Chalana, dentro gli Apartamentos Playa Club). <strong>Per la sera dell'arrivo, la fermata utile è solo HiperDino Express Juan Carlos I</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJxeyOd5clRgwRTFE_UordiVw" class="map-link" target="_blank" rel="noopener" aria-label="Apri HiperDino Express Juan Carlos I su Google Maps" title="Apri HiperDino Express Juan Carlos I su Google Maps">📍</a>: è a quattrocento metri da Cactus ed è letteralmente sul percorso in arrivo dall'aeroporto; La Peñita invece è più a sud di Cactus e vi costringerebbe a una deviazione. Programmate la fermata al Juan Carlos I <strong>prima</strong> del check-in all'appartamento, non dopo.</p>
@@ -814,6 +1027,10 @@
 <p class="callout callout-plan-c"><strong>Piano C se anche la cucina di La Tiñosa è chiusa</strong>: (a) uno dei locali aperti fino a tardi sulla Avenida de las Playas per una pizza o un piatto veloce; (b) la mossa dei viaggiatori esperti — <strong>portate dall'Italia in cabina un "kit di emergenza cena"</strong>: cracker, formaggio stagionato confezionato, salame, due barrette, cioccolato, un paio di mele. Pesa 500 grammi, occupa il fondo dello zainetto, ed è la polizza contro qualunque scenario notturno (tempesta, ritardo volo, chiusure). La prima spesa si fa domenica mattina: al Mercadillo di Teguise comprerete comunque già una parte di frutta, formaggi e vino, e integrerete al rientro passando dall'HiperDino. A letto presto comunque: domani l'isola inizia davvero, e il primo giorno pieno è anche il più denso.</p>
 <p>Se invece siete arrivati puntuali e avete fatto la spesa in tempo, cena leggera a casa o — se vi regge la voglia — comunque Cofradía.</p>
 <h2 id="domenica-26-aprile-il-mercato-di-teguise-e-la-valle-delle-palme" class="day"><span class="day-date">Domenica 26 aprile</span><span class="day-name">Il mercato di Teguise e la valle delle palme</span></h2>
+<blockquote>
+<p>⏱️ <strong>Sintesi</strong>: 09:00 partenza · 09:30-11:00 Mercadillo Teguise · 11:30 Casa-Museo Manrique Haría · 13:00 pranzo Tacande (formale, no Mirador) <strong>OPPURE</strong> Puerta Verde (rapido + Mirador 14:30-16:30) · cena leggera a casa.<br />
+<strong>Decisione del giorno</strong>: Tacande Michelin (no Mirador oggi) o Puerta Verde rapido (sì Mirador). Non entrambi.</p>
+</blockquote>
 <p>Domenica è giorno di <strong>Mercadillo de Teguise</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJbSCuT10hRgwRIhb3fyqIjtA" class="map-link" target="_blank" rel="noopener" aria-label="Apri Mercadillo de Teguise su Google Maps" title="Apri Mercadillo de Teguise su Google Maps">📍</a>, l'istituzione dei mercati dell'isola: oltre quattrocento bancarelle nella Plaza de la Constitución e nelle strade circostanti, dalle 9:00 alle 14:00. La parte migliore sono le prime due ore, quando i turisti non sono ancora arrivati e si trovano ceramica di artigiani locali, cestería di palma, formaggi delle caprerías del nord, vino dell'isola, miele, mermeladas di fichi, e musica folk dal vivo. Parcheggi intorno al perimetro del centro storico, due euro per la giornata — arrivate entro le 9:30 per trovare posto senza camminare troppo. Portate contanti: molti banchi non accettano carta.</p>
 <p>Verso le undici risalite in auto, e in una trentina di minuti siete a <strong>Haría</strong>, nel cuore della valle delle mille palme — un paesaggio verde che sembra un altro pianeta rispetto al sud dell'isola. Qui è nata l'ultima casa di César Manrique, la <strong>Casa-Museo</strong> in cui visse gli ultimi quattro anni della sua vita, dal 1988 alla morte nel 1992. È più intima della Fondazione di Tahíche, meno spettacolare, più vera: lo studio con i pennelli, il giardino con le piante che curava personalmente, la stanza da letto. Apertura tutti i giorni dalle 10:30 alle 17:30 (biglietteria chiude alle 17:00), biglietto singolo 10 euro, combinato con Tahíche 17 euro (lo sconto vale solo se farete anche Tahíche in un altro giorno — nel vostro caso, martedì 28 pomeriggio). Prevedete 45-60 minuti di visita.</p>
 <p>Pranzo a Haría — e <strong>qui va fatta una scelta esplicita, non rimandata</strong>. Il rischio reale di questa giornata è stipare troppe cose senza margine: Mercadillo + Casa-Museo + pranzo + Mirador sono otto-nove ore piene con 115 km di guida. Se il pranzo sfora, il Mirador del Río chiude all'ultima entrata delle 16:40 e salta. Due varianti onesti:</p>
@@ -824,6 +1041,10 @@
 <p class="callout callout-plan-b"><strong>Piano B se il vento è forte o arriva calima</strong>: saltate il Mirador del Río (troppo esposto) e spostate nel pomeriggio la <strong>Fondazione César Manrique Tahíche</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJPeg5Z6kgRgwRnXPRtoq8Eig" class="map-link" target="_blank" rel="noopener" aria-label="Apri Fondazione César Manrique su Google Maps" title="Apri Fondazione César Manrique su Google Maps">📍</a> (10:00-17:30, biglietteria 17:00, biglietto 10 euro) e/o il <strong>Museo LagOmar</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJ18InAYYgRgwRPIJnQmyvi6g" class="map-link" target="_blank" rel="noopener" aria-label="Apri Museo LagOmar su Google Maps" title="Apri Museo LagOmar su Google Maps">📍</a> a Nazaret (10:00-18:00, biglietto 6 euro), entrambi ambienti incassati e protetti dal vento. Se anticipate la Fondazione a oggi, il martedì 28 pomeriggio resta libero per altre visite.</p>
 <p class="callout callout-solo"><strong>Finestra da soli</strong>: il momento naturale è <strong>tra Mercadillo e Casa-Museo Manrique</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJHa68r1agSAwR1XPS6Cpqmxc" class="map-link" target="_blank" rel="noopener" aria-label="Apri Casa-Museo Manrique su Google Maps" title="Apri Casa-Museo Manrique su Google Maps">📍</a>. A Teguise verso le 11:00, uno si infila in una delle caffetterie sulla plaza della Constitución per venti minuti di caffè e silenzio, l'altro gira ancora le bancarelle. Ci si ritrova all'auto alle 11:30 per partire verso Haría. Il pomeriggio dopo pranzo è invece troppo stretto per funzionare da finestra reale (uno spiraglio di 15-20 minuti non è una pausa, è solo una sigaretta).</p>
 <h2 id="lunedi-27-aprile-il-primo-giorno-di-lavoro-remoto" class="day"><span class="day-date">Lunedì 27 aprile</span><span class="day-name">Il primo giorno di lavoro remoto</span></h2>
+<blockquote>
+<p>⏱️ <strong>Sintesi</strong>: Lavoro 09:00-15:30 · Pomeriggio: Fondazione Manrique Tahíche <strong>raccomandato</strong> (15:30-17:30, 2h piene) <strong>OPPURE</strong> Safari Diving snorkeling <strong>OPPURE</strong> slow lungomare · Cena: casa, Cofradía, Asian Home.<br />
+<strong>Mossa intelligente</strong>: la Fondazione fatta oggi libera il martedì pomeriggio per Saramago + Charco S. Ginés + Lilium senza corsa.</p>
+</blockquote>
 <p>La regola d'oro dei due giorni di lavoro è non trasformarli in uno stress da recupero al mercoledì. Sveglia alle 07:30, colazione alle 08:15, setup delle postazioni alle 08:45, primo blocco <em>deep work</em> dalle 09:00 alle 11:00, pausa piscina breve fino alle 11:30, secondo blocco fino alle 13:30, pranzo leggero a casa fino alle 14:30, chiusure e invii fino alle 15:30 o al massimo alle 16:00. Dopo, passeggiata o spostamento breve — mai escursioni lunghe. Il focus è arrivare a mercoledì 29 riposati, non esausti. La sera del 25 avete già fatto un primo test Wi-Fi in due punti dell'appartamento; se la velocità fosse sotto gli standard, scrivere subito all'host e tenere l'hotspot pronto per il mattino dopo. Una ciabatta multipresa è utile.</p>
 <p>Caffè o pranzo rapido alla pasticceria locale su Calle Reina Sofía; spesa del giorno al <strong>SuperDino</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJg3TaG5glRgwRDdBMtPxFZ5I" class="map-link" target="_blank" rel="noopener" aria-label="Apri SuperDino su Google Maps" title="Apri SuperDino su Google Maps">📍</a> di Calle Reina Sofía 30 (aperto tutti i giorni 8:00-22:00). Nel pomeriggio, dalle 16:00 alle 20:00, c'è una finestra di 4 ore che può essere lenta o attiva a seconda dell'umore: passeggiata a <strong>La Tiñosa</strong> e al porto vecchio (dieci-quindici minuti a piedi da Cactus), bagno veloce a <strong>Playa Chica</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJCQFJLJclRgwRUpnB0tDg9wQ" class="map-link" target="_blank" rel="noopener" aria-label="Apri Playa Chica su Google Maps" title="Apri Playa Chica su Google Maps">📍</a> (quattordici minuti a piedi), aperitivo sulla Avenida al tramonto. Un avvertimento sull'acqua: a fine aprile la temperatura dell'Atlantico qui è sui diciotto-diciannove gradi, quindi senza muta si sta in acqua al massimo una decina di minuti. Playa Chica è effettivamente la baia di snorkeling migliore di Lanzarote per pesce e visibilità — frangiflutti chiuso, fondali due-dieci metri — ma per apprezzarla davvero serve una muta e almeno mezz'ora d'acqua. Se vi prende la voglia, <strong>Safari Diving Lanzarote</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJa6mgMJclRgwRP5oPMZi_zTs" class="map-link" target="_blank" rel="noopener" aria-label="Apri Safari Diving Lanzarote su Google Maps" title="Apri Safari Diving Lanzarote su Google Maps">📍</a> è sulla spiaggia stessa (Paseo de la Barilla 4, aperto lun-sab 9:30-17:30, chiuso domenica): noleggiano attrezzatura o propongono snorkeling guidato a trentanove euro a persona con muta inclusa. <strong>Lunedì pomeriggio alle 16:30-18:00 è in realtà il momento ideale per questo</strong>: Safari Diving è aperto, voi avete appena chiuso il laptop, l'acqua è a portata di mano. Prenotate chiamando la mattina stessa.</p>
 <p><strong>Scelta strategica del pomeriggio — leggere con attenzione</strong>. Il lunedì pomeriggio è il momento operativamente migliore per fare la <strong>Fondazione César Manrique Tahíche</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJPeg5Z6kgRgwRnXPRtoq8Eig" class="map-link" target="_blank" rel="noopener" aria-label="Apri Fondazione César Manrique su Google Maps" title="Apri Fondazione César Manrique su Google Maps">📍</a> (l'opera più importante dell'intera architettura dell'isola, a cui Federica dedicherebbe volentieri due ore). Il motivo è matematico: se la sposti al martedì, la sequenza "lavoro fino 15:30 + partire + 20-25 min di guida + visita" ti lascia 30-40 minuti effettivi in Fondazione perché la biglietteria chiude alle 17:00. Se invece <strong>oggi chiudi il lavoro un po' prima (pranzo rapido + ultimi invii entro le 14:30)</strong>, alle 15:00 sei in auto, alle 15:25-15:30 sei a Tahíche, e hai <strong>due ore piene di visita</strong> fino alle 17:30. La Fondazione merita questa scelta. Il martedì poi avrai il pomeriggio leggero per Saramago + Charco de San Ginés + Lilium senza corsa. Questo è il modo in cui un viaggiatore esperto organizza la settimana. Dettagli della Fondazione (biglietto 10 euro, combinato con Haría 17 euro) nella giornata di martedì.</p>
@@ -831,6 +1052,10 @@
 <p>Cena: se avete già fatto <strong>Cofradía La Tiñosa</strong> sabato sera, stasera <strong>cena a casa</strong> con la spesa fatta al mattino a SuperDino (pesce fresco dalla pescheria del supermercato — spigola o gallo a 12-15€/kg, papas arrugadas con mojo, insalata, un bicchiere di vino canario). È il modo più coerente con Cactus, che ha cucina completa. Se invece Cofradía non l'avete ancora provato, <strong>stasera è la sera</strong> — prenotate in giornata chiamando alle 10:30 (+34 660 43 35 78). Terza via: <strong>Asian Home</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJfdo8R-InRgwRXCmnqH443u8" class="map-link" target="_blank" rel="noopener" aria-label="Apri Asian Home su Google Maps" title="Apri Asian Home su Google Maps">📍</a> su Avenida de las Playas 99, rating 4,9 su Google, cucina asiatica-sushi fusion, spesa 25-30€, aperto tutti i giorni fino alle 23:30 — scelta giusta se siete stanchi e volete qualcosa di diverso.</p>
 <p class="callout callout-solo"><strong>Finestra da soli</strong>: dalle 18:00 alle 19:30 è naturale separarsi — uno corre lungo la Avenida de las Playas, l'altro si ferma a un aperitivo a La Tiñosa. Ci si ritrova per cena.</p>
 <h2 id="martedi-28-aprile-secondo-giorno-di-lavoro-pomeriggio-letterario-ad-arrecife" class="day"><span class="day-date">Martedì 28 aprile</span><span class="day-name">Secondo giorno di lavoro + pomeriggio letterario ad Arrecife</span></h2>
+<blockquote>
+<p>⏱️ <strong>Sintesi</strong>: Lavoro 09:00-15:30 · 16:00 Saramago Tías (60 min) · 17:00-19:30 Charco de San Ginés Arrecife · 20:00 cena Lilium (Bib Gourmand Michelin).<br />
+<strong>Mossa logistica</strong>: NON tornate a Cactus tra Saramago e Lilium — restate ad Arrecife. Outfit "un po' curato" già dal mattino.</p>
+</blockquote>
 <p>Stessa routine di lavoro del lunedì. Il pomeriggio, però, dipende dalla scelta strategica che avete fatto ieri. Due scenari:</p>
 <p><strong>Se lunedì pomeriggio avete fatto la Fondazione Manrique</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJPeg5Z6kgRgwRnXPRtoq8Eig" class="map-link" target="_blank" rel="noopener" aria-label="Apri Fondazione Manrique su Google Maps" title="Apri Fondazione Manrique su Google Maps">📍</a>: oggi il pomeriggio è più leggero ed è dedicato a due tappe facili — <strong>Casa-Museo Saramago a Tías</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJDWI-ucwlRgwRdoAdK4Ld5ss" class="map-link" target="_blank" rel="noopener" aria-label="Apri Casa-Museo Saramago su Google Maps" title="Apri Casa-Museo Saramago su Google Maps">📍</a> e <strong>Charco de San Ginés ad Arrecife</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJ21D9dH8nRgwRI8Y2iC4tW6Y" class="map-link" target="_blank" rel="noopener" aria-label="Apri Charco de San Ginés su Google Maps" title="Apri Charco de San Ginés su Google Maps">📍</a>, coronato dalla cena <strong>Lilium</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJhwtqJnYnRgwRcJYB2qoNhFo" class="map-link" target="_blank" rel="noopener" aria-label="Apri Lilium su Google Maps" title="Apri Lilium su Google Maps">📍</a>. Sequenza operativa consigliata:</p>
 <ul>
@@ -848,6 +1073,10 @@
 <p>Se la cena Michelin vi sembra eccessiva per un martedì dopo una giornata lavorativa, <strong>Asian Home</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJfdo8R-InRgwRXCmnqH443u8" class="map-link" target="_blank" rel="noopener" aria-label="Apri Asian Home su Google Maps" title="Apri Asian Home su Google Maps">📍</a> a Puerto del Carmen (Avenida de las Playas 99, Local 15) ha un'ottima cucina cinese-asiatica-sushi fusion, rating altissimo (4,9 su Google), aperto tutti i giorni dalle 12:00 alle 23:30, spesa 25-30 euro. Ma Lilium è una delle cinque gemme del viaggio e spostarlo è complesso: se salta oggi, la sola altra finestra utile è martedì 5 maggio.</p>
 <p class="callout callout-plan-b"><strong>Piano B se vento o calima</strong>: in entrambi gli scenari, Saramago resta indoor e sicuro. Se anche la Fondazione Tahíche era in programma, non c'è dramma: la Fondazione ha corte interna ma l'architettura è tutta sotterranea, funziona anche con vento. Il vero rischio calima è piuttosto il <strong>Charco de San Ginés all'aperto</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJ21D9dH8nRgwRI8Y2iC4tW6Y" class="map-link" target="_blank" rel="noopener" aria-label="Apri Charco de San Ginés su Google Maps" title="Apri Charco de San Ginés su Google Maps">📍</a>: in quel caso, saltatelo e andate direttamente da Saramago a cena Lilium (tra le 18:00 e le 20:00 potete aspettare in un caffè della Marina).</p>
 <h2 id="mercoledi-29-aprile-la-graciosa-in-bicicletta" class="day"><span class="day-date">Mercoledì 29 aprile</span><span class="day-name">La Graciosa in bicicletta</span></h2>
+<blockquote>
+<p>⏱️ <strong>Sintesi</strong>: 07:30 partenza Cactus · 08:00 Órzola · 08:30 traghetto Líneas Romero · 09:00 Caleta de Sebo, bici + spiagge nord · 12:00 rientro Caleta · 12:15 pranzo veloce <strong>Casa Chano</strong> · <strong>13:30 traghetto ritorno raccomandato</strong> · 14:40 Cactus · 16:00 webinar Federica.<br />
+<strong>Critico</strong>: <strong>traghetto 13:30 (non 14:30)</strong> per dare 80 minuti di margine al webinar. Il 14:30 lascia solo 15 minuti, troppo rischioso.</p>
+</blockquote>
 <p><strong>Vincolo del giorno</strong>: Federica ha un webinar di lavoro dalle 16:00 alle 18:00, da seguire da Cactus. Il giorno La Graciosa si comprime in una forbice netta — ma è ancora pienamente godibile se si parte presto e si punta al traghetto di ritorno delle 14:30 con Líneas Romero. Sveglia alle 06:30, in auto alle 06:45.</p>
 <p>È il giorno dell'isola dentro l'isola. <strong>La Graciosa</strong>, ottava isola delle Canarie, ufficialmente riconosciuta tale solo nel 2018, ventinove chilometri quadrati, meno di settecento abitanti, zero strade asfaltate: solo piste di sabbia e terra, pescatori, silenzio. Ci si va in traghetto da <strong>Órzola</strong>, circa quarantacinque minuti di auto da Puerto del Carmen. Arrivo a Órzola entro le 07:30, traghetto delle <strong>08:00 con Biosfera Express</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJ-9zANJ6mSAwRV_J-f3a1wWY" class="map-link" target="_blank" rel="noopener" aria-label="Apri Biosfera Express su Google Maps" title="Apri Biosfera Express su Google Maps">📍</a> (venticinque minuti di navigazione, il vento di mattina è più calmo), sbarco a <strong>Caleta de Sebo</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJU2OlkAOnSAwRcI_PdPZAAwo" class="map-link" target="_blank" rel="noopener" aria-label="Apri Caleta de Sebo su Google Maps" title="Apri Caleta de Sebo su Google Maps">📍</a> alle 08:25. Biglietto andata 16 euro a persona a tratta, andata-ritorno 29 euro. Orari attivi ad aprile: partenze da Órzola 08:00, 09:00, 10:30, 11:30, 13:00, 16:30, 17:30, 18:30 con Biosfera, più le frequenze aggiuntive di Líneas Romero. Prenotazione non obbligatoria ma consigliata online sul sito delle compagnie (<code><a href="https://www.biosferaexpress.com" class="contact-link url-link" target="_blank" rel="noopener noreferrer">biosferaexpress.com</a></code> o <code><a href="https://www.lineasromero.com" class="contact-link url-link" target="_blank" rel="noopener noreferrer">lineasromero.com</a></code>), specialmente per il ritorno delle 14:30.</p>
 <p>Al porto di Caleta de Sebo ci sono diversi operatori di noleggio bici. <strong>Per chi non è allenato, l'elettrica cambia la giornata</strong>: alcuni tratti di sabbia molle costringono i non-ciclisti a scendere e spingere. L'operatore più affidabile secondo recensioni e orari compatibili è <strong>Pedalea La Graciosa</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJBz6mPK2nSAwRfIt81RgYGBo" class="map-link" target="_blank" rel="noopener" aria-label="Apri Pedalea La Graciosa su Google Maps" title="Apri Pedalea La Graciosa su Google Maps">📍</a> in C. Margarona 11 (a 3 minuti dal molo), aperto dalle 8:30 alle 14:00, telefono +34 659 46 01 84 — prenotabile anche via Civitatis. Alternative: <strong>Bicis La Graciosa</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJAwkfdQSnSAwRS2h0nxfUFuQ" class="map-link" target="_blank" rel="noopener" aria-label="Apri Bicis La Graciosa su Google Maps" title="Apri Bicis La Graciosa su Google Maps">📍</a> (C. Fragua 15, telefono +34 680 56 30 08) e <strong>El Mar Safari Bike</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJ8Y4RTLSnSAwRADoiIeeLEGk" class="map-link" target="_blank" rel="noopener" aria-label="Apri El Mar Safari Bike su Google Maps" title="Apri El Mar Safari Bike su Google Maps">📍</a> (C. Las Sirenas 110). Noleggio circa 10-15 euro al giorno per una mountain bike, 20-25 per un'elettrica o fat bike. Casco sempre incluso.</p>
@@ -864,6 +1093,10 @@
 <p class="callout callout-solo"><strong>Finestra da soli</strong>: a Caleta de Sebo la mattina è naturalissimo separarsi per un'ora. Uno resta in spiaggia a Playa Francesa, l'altro pedala ancora un tratto verso l'Amarilla, o al contrario. Ritrovo al molo per il pranzo.</p>
 <p class="callout callout-plan-b"><strong>Piano B se il mare è grosso e i traghetti sono cancellati</strong> (succede con vento nord-est oltre i venticinque-trenta nodi; in tal caso saperlo la sera prima consultando l'app del ferry): la giornata diventa un giorno di recupero in zona Puerto del Carmen. Mattinata lenta a casa o passeggiata lungo il fronte mare di Playa Grande fino al porto vecchio, pranzo a La Tiñosa, pomeriggio libero fino al webinar. Non duplichiamo Jameos/Cueva/Jardín qui perché sono già programmati per venerdì 1 maggio — meglio un giorno leggero.</p>
 <h2 id="giovedi-30-aprile-il-cambio-base-attraverso-la-geria" class="day"><span class="day-date">Giovedì 30 aprile</span><span class="day-name">Il cambio base attraverso La Geria</span></h2>
+<blockquote>
+<p>⏱️ <strong>Sintesi</strong>: Check-out Cactus · 10:30 (variante anticipata) <strong>o</strong> 11:30 (variante calma) Bodegas El Grifo · 12:30-14:30 pranzo Bodegas Rubicón · 15:00 spesa HiperDino San Bartolomé · 15:45 check-in Casa Lancelot · 17:30 Enramado Teguise · cena casa o Teleclub Mancha Blanca.<br />
+<strong>Decisione del giorno</strong>: scegli "mattina anticipata" o "con calma" — non entrambi. <strong>Los Bermejos NON oggi</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJuQ45h1cmRgwRMJFIEvZcSLk" class="map-link" target="_blank" rel="noopener" aria-label="Apri Los Bermejos su Google Maps" title="Apri Los Bermejos su Google Maps">📍</a> (spostato a martedì 5). Spesa grossa OGGI: domani è festivo.</p>
+</blockquote>
 <p>La giornata a cerniera del viaggio. <strong>Una scelta operativa da fare subito</strong>: il MD precedente aveva una contraddizione — diceva "check-out con calma entro le 11:00" e "alle 10:30 siete a El Grifo". Queste due cose sono fisicamente incompatibili (San Bartolomé dista 18-22 min di guida da Puerto del Carmen). Scegliete una variante tra le due:</p>
 <p><strong>Variante "mattina anticipata"</strong>: sveglia 8:00, colazione al <strong>Banana Café</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJTTTeFKwlRgwRIAey6cVMl8k" class="map-link" target="_blank" rel="noopener" aria-label="Apri Banana Café su Google Maps" title="Apri Banana Café su Google Maps">📍</a> sulla Avenida del Varadero (apre alle 9:00, a pochi passi dal porto vecchio) 9:00-9:30, check-out Cactus 9:30-10:00 (foto appartamento, carico auto), partenza 10:00, <strong>El Grifo 10:30</strong>. Visita e museo 10:30-12:00. Pranzo Rubicón 12:30-14:30. Pomeriggio riposo + check-in + Enramado. È la variante più "densa" al mattino ma regala un pomeriggio vero di riposo.</p>
 <p><strong>Variante "con calma"</strong>: sveglia 9:00, colazione Banana Café 9:45-10:30, check-out Cactus 10:30-11:00, partenza 11:00, <strong>El Grifo 11:30</strong>. Visita 11:30-12:45. Pranzo Rubicón 13:00-14:30. Pomeriggio direttamente a Teguise per spesa e Enramado. Più leggera ma senza buchi di riposo.</p>
@@ -879,6 +1112,10 @@
 <p class="callout callout-plan-b"><strong>Piano B se vento/calima</strong>: saltate l'Enramado (che è all'aperto) e mettete al suo posto la <strong>Casa-Museo del Campesino a Mozaga</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJZ9QaVjIhRgwR3mpD9nzKTvM" class="map-link" target="_blank" rel="noopener" aria-label="Apri Casa-Museo del Campesino su Google Maps" title="Apri Casa-Museo del Campesino su Google Maps">📍</a>, ingresso gratuito, altro intervento di Manrique, con un ristorante interno (<strong>Taberna del Campesino</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJZ9QaVjIhRgwR3mpD9nzKTvM" class="map-link" target="_blank" rel="noopener" aria-label="Apri Taberna del Campesino su Google Maps" title="Apri Taberna del Campesino su Google Maps">📍</a>, telefono +34 928 52 01 36) aperto tutti i giorni dalle 12:00 alle 16:00 che serve una cucina canaria molto autentica a 14-22 euro per piatto — coniglio, sancocho, cabra compuesta. Totalmente al coperto.</p>
 <p class="callout callout-solo"><strong>Finestra da soli</strong>: alle bodegas il wine bar è il luogo naturale per staccare — uno chiacchiera al banco con lo staff, l'altro si cammina per venti minuti tra i vigneti.</p>
 <h2 id="venerdi-1-maggio-manrique-del-nord-nella-giornata-festiva" class="day"><span class="day-date">Venerdì 1° maggio</span><span class="day-name">Manrique del nord nella giornata festiva</span></h2>
+<blockquote>
+<p>⏱️ <strong>Sintesi</strong>: 09:00 partenza · 10:00 Jardín de Cactus Guatiza · 12:00 Cueva de los Verdes (slot prenotato) · 13:30 pranzo Arrieta (NON Pichón, chiuso festivo) · pomeriggio: scelta <strong>Noches de Jameos</strong> (no visita diurna) <strong>o</strong> <strong>visita diurna Jameos 15:00-17:00</strong> + cena casa.<br />
+<strong>Decisione del giorno</strong>: Noches de Jameos sì o no. <strong>Slot Cueva 12:00 (non 11:00)</strong>: matematicamente troppo stretto col Jardín. <strong>El Pichón Punta Mujeres CHIUSO oggi (festivo)</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJq-qTJCiiSAwRndZdGN4UEbw" class="map-link" target="_blank" rel="noopener" aria-label="Apri Punta Mujeres su Google Maps" title="Apri Punta Mujeres su Google Maps">📍</a>.</p>
+</blockquote>
 <p>Il 1° maggio in Spagna è festivo (Día del Trabajador). Una cosa è sicura: <strong>i Centros de Arte, Cultura y Turismo e la Fondazione Manrique sono aperti</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJPeg5Z6kgRgwRnXPRtoq8Eig" class="map-link" target="_blank" rel="noopener" aria-label="Apri Fondazione Manrique su Google Maps" title="Apri Fondazione Manrique su Google Maps">📍</a> — la loro politica dichiarata è "aperti tutti i giorni dell'anno salvo il 1° gennaio". Sono invece chiusi (con ogni probabilità) Decathlon, Mercadona, Los Bermejos, Vega de Yuco, e alcune cantine. I supermercati HiperDino Express turistici aprono con orari ridotti. La Casa-Museo Saramago chiude al pubblico. Questa è la giornata in cui avete <strong>già fatto la spesa ieri</strong>, e in cui scegliete un itinerario dentro l'architettura.</p>
 <p class="callout callout-plan-a"><strong>Piano A</strong>: sveglia alle 07:30, partenza alle 08:30. <strong>Jardín de Cactus</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJOVaqaT2fSAwRb6j6gikJmxs" class="map-link" target="_blank" rel="noopener" aria-label="Apri Jardín de Cactus su Google Maps" title="Apri Jardín de Cactus su Google Maps">📍</a> a Guatiza (biglietto 9 euro, apertura dalle 10:00 alle 16:45, ma arrivare verso le 09:45 significa avere il posto praticamente vuoto all'apertura). È forse il Manrique più lirico — una cava di sabbia riconvertita in giardino con circa 4.500 esemplari di 450 specie di cactus, pareti di pietra vulcanica, un mulino bianco sul crinale, e il celebre <em>cactus gigante</em> di metallo verniciato di Manrique all'ingresso. Mezz'ora-un'ora di visita.</p>
 <p>Ripartite verso la costa nord. Il ritrovo operativo è alla <strong>Cueva de los Verdes</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJXxCKHs6jSAwR-Zejg89khEM" class="map-link" target="_blank" rel="noopener" aria-label="Apri Cueva de los Verdes su Google Maps" title="Apri Cueva de los Verdes su Google Maps">📍</a> per lo slot delle <strong>12:00</strong> (prenotato online, 17 euro) — <strong>non 11:00 come suggerito in alcune fonti: se uscite dal Jardín de Cactus alle 10:45-11:00 siete alla Cueva alle 11:30, e una slot alle 11:00 non regge matematicamente</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJOVaqaT2fSAwRb6j6gikJmxs" class="map-link" target="_blank" rel="noopener" aria-label="Apri Jardín de Cactus su Google Maps" title="Apri Jardín de Cactus su Google Maps">📍</a>. Un'ora di visita in un tubo lavico formatosi 5.000 anni fa durante l'eruzione del vulcano della Corona, quando la lava si raffreddò all'esterno mentre dentro scorreva ancora.</p>
@@ -895,6 +1132,10 @@
 <p class="callout callout-plan-b"><strong>Piano B se calima forte con polvere</strong>: saltate il Jardín de Cactus (esterno, esposto) e sostituitelo con <strong>Museo LagOmar a Nazaret</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJ18InAYYgRgwRPIJnQmyvi6g" class="map-link" target="_blank" rel="noopener" aria-label="Apri Museo LagOmar su Google Maps" title="Apri Museo LagOmar su Google Maps">📍</a>, la casa progettata da Jesús Soto su impianto ispirato a César Manrique in un'antica cantera; secondo la leggenda più diffusa Omar Sharif la comprò nel 1973 durante le riprese de <em>La isla misteriosa</em> e la perse poche ore dopo in una partita di bridge contro il suo agente immobiliare (che era campione europeo del gioco). Lo stesso Sharif smentì poi la storia in un'intervista, ma la leggenda è ormai parte del patrimonio turistico dell'isola. Piscine incassate nelle bolle laviche, un museo piccolo, un ristorante aperto da martedì a sabato dalle 13:00 alle 22:30. Ambiente riparatissimo, perfetto nei giorni di vento. Museo aperto 10:00-18:00, 6 euro (5€ turisti, 2€ residenti secondo fonti locali — verificate in loco).</p>
 <p class="callout callout-solo"><strong>Finestra da soli</strong>: tra le 14 e le 15 a Punta Mujeres — passeggiata lenta sulle piscine naturali mentre l'altro finisce caffè al bar del paese.</p>
 <h2 id="sabato-2-maggio-mercato-autentico-di-haria-e-pomeriggio-libero" class="day"><span class="day-date">Sabato 2 maggio</span><span class="day-name">Mercato autentico di Haría e pomeriggio libero</span></h2>
+<blockquote>
+<p>⏱️ <strong>Sintesi</strong>: 09:00-11:00 surf Famara (opz., Calima/Red Star) · 11:30 Mercadillo Haría + Taller Artesanía · 13:00 pranzo Puerta Verde · pomeriggio riposo (se surf) <strong>OPPURE</strong> Mirador del Río + piscine Punta Mujeres (se no surf) · cena Puerta Verde, El Risco Famara, o casa.<br />
+<strong>Regola</strong>: se surf sì → <strong>Mirador no oggi</strong>. Surf + Tacande Michelin + Mirador = troppo per una giornata.</p>
+</blockquote>
 <p class="callout callout-option"><strong>Opzione surf mattutina (se lo fate, è il giorno giusto)</strong>. Se c'è una mattina in cui tentare il surf ha senso, è questa: giornata volutamente aperta, nessuna pressione, margine per recuperare in caso di imprevisti e soprattutto giorni ancora a disposizione dopo, non prima del volo di ritorno. Famara è didatticamente uno dei posti migliori al mondo per i principianti assoluti: l'acqua è intorno ai 19,6 gradi a inizio maggio (muta 3/2 mm fornita dalla scuola), si impara dove si tocca con i piedi, la softboard da 8-9 piedi galleggia come un materasso. La finestra oraria è 09:00-11:00, prima che gli alisei del pomeriggio rovinino le onde. Due scuole serie, entrambe sicure. <strong>Calima Surf School</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJLYOMj-ofRgwRE1qDXriSoRQ" class="map-link" target="_blank" rel="noopener" aria-label="Apri Calima Surf School su Google Maps" title="Apri Calima Surf School su Google Maps">📍</a> (Avenida El Marinero 13, telefono e WhatsApp <strong>+34 626 91 33 69</strong>, linea fissa <strong>+34 928 52 85 28</strong>, email <code><a href="mailto:info@calimasurf.com" class="contact-link email-link">info@calimasurf.com</a></code>) — operativa dal 1996 come prima scuola di surf in Spagna, istruttori certificati dalla British Surfing Association, multilingua inclusi italiano, spagnolo, inglese, francese, tedesco. Corsi di iniziazione da 50 euro a persona per 2 ore, pacchetti più lunghi a costo incrementale. Prenotazione fino a 20-30 ore prima. Raccomandata per chi preferisce un istruttore in italiano. <strong>Red Star Surf &amp; Yoga</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJjR4_j-ofRgwRzPTnrU00oa0" class="map-link" target="_blank" rel="noopener" aria-label="Apri Red Star Surf su Google Maps" title="Apri Red Star Surf su Google Maps">📍</a> (Avenida El Marinero 9, telefono <strong>+34 928 52 88 08</strong>, WhatsApp <strong><a href="tel:+34648745447" class="contact-link phone-link">+34 648 745 447</a></strong>, email <code><a href="mailto:info@redstarsurf.com" class="contact-link email-link">info@redstarsurf.com</a></code>) — rating 4,8 su Google con 443 recensioni, istruttori ISA certificati, uno dei maestri (Maui) parla italiano, gruppi piccoli. Stesso range di prezzo. <strong>Fate solo due ore, non quattro</strong>: basta e avanza per capire se la cosa vi prende. Conferma via WhatsApp la sera di giovedì 30 aprile.</p>
 <p>Dopo il surf — doccia alla scuola, asciugacapelli dalla borsa, una brioche e caffè al chiringuito di Famara — risalite verso Haría per le 11:30-12:00. Il mercato di Haría è l'opposto di quello di Teguise: piccolo, locale, ancora frequentato soprattutto dai residenti del nord. Ogni sabato, dalle 10:00 alle 14:30, in <strong>Plaza León y Castillo</strong>. Cestería di palma e <em>junco</em>, ceramica nera, formaggi di capra, pane nero di Haría, mermeladas di fichi e di <em>tunos</em> (fichi d'india), miele, e qualche banco di artigianato d'autore.</p>
 <p>A cinque minuti a piedi dal mercato, un indirizzo che nessuna guida turistica generica cita: il <strong>Taller de Artesanía 'Reinaldo Dorta Déniz'</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJOed2GgChSAwR-94NXrS2wDE" class="map-link" target="_blank" rel="noopener" aria-label="Apri Taller de Artesanía 'Reinaldo Dorta Déniz' su Google Maps" title="Apri Taller de Artesanía 'Reinaldo Dorta Déniz' su Google Maps">📍</a>, in Calle Barranco de Tenesía (accanto al Mercado de Abastos di Haría). Non è un negozio, è una casa municipale dove gli artigiani del comune lavorano dal vivo, a turno — cestería di palma e <em>junco</em>, ceramica, rosetas, bordados, piccoli strumenti tradizionali. Secondo il sito ufficiale del Ayuntamiento di Haría l'orario è lunedì-sabato 10:00-13:30 + 16:00-19:00 (lunedì pomeriggio chiuso, domenica chiuso); Google Places indica invece martedì-sabato 9:00-14:00 senza apertura pomeridiana. In entrambe le versioni la <strong>mattina del sabato è sempre aperta</strong>: andateci ora, il resto è discutibile. Ingresso libero. Zero turisti organizzati. È la prima delle cinque gemme del viaggio, e vale venti minuti.</p>
@@ -903,6 +1144,10 @@
 <p><strong>Se invece avete saltato il surf</strong>, il pomeriggio è libero per le cose che non sono entrate finora: <strong>Mirador del Río</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJnYrNvYKnSAwRBWfbcYZ5fBw" class="map-link" target="_blank" rel="noopener" aria-label="Apri Mirador del Río su Google Maps" title="Apri Mirador del Río su Google Maps">📍</a> (se non fatto il 26, biglietto 9 euro, 10:00-17:00, ultimo ingresso 16:40), piscine naturali Punta Mujeres, o Caletón Blanco.</p>
 <p>Cena del sabato: <strong>La Puerta Verde a Haría</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJqVRc7v-gSAwRQHT1wLwxky8" class="map-link" target="_blank" rel="noopener" aria-label="Apri La Puerta Verde su Google Maps" title="Apri La Puerta Verde su Google Maps">📍</a> (verificate apertura in giornata), oppure <strong>El Risco Famara</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJg7QhJsAfRgwRJV7dTY5QLbI" class="map-link" target="_blank" rel="noopener" aria-label="Apri El Risco su Google Maps" title="Apri El Risco su Google Maps">📍</a> (Bib Gourmand Michelin 2026, Caleta de Famara, aperto tutti i giorni 13-21:30, telefono <strong>+34 928 52 85 50</strong>, prenotare 48 ore prima, 45-55 euro a persona, cucina di pesce e mercato con vista tramonto su La Graciosa), oppure semplicemente a casa. Se siete reduci dalla Noches de Jameos di venerdì sera, cena in casa è la scelta saggia.</p>
 <h2 id="domenica-3-maggio-il-giorno-della-tremesana" class="day"><span class="day-date">Domenica 3 maggio</span><span class="day-name">Il giorno della Tremesana</span></h2>
+<blockquote>
+<p>⏱️ <strong>Sintesi</strong>: 08:30 partenza · <strong>09:30 Plaza de los Remedios Yaiza — Tremesana</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJYZQGVZI7RgwRvdb29pF00Vg" class="map-link" target="_blank" rel="noopener" aria-label="Apri Plaza de los Remedios su Google Maps" title="Apri Plaza de los Remedios su Google Maps">📍</a> (3h, gratuita, passaporto obbligatorio, permiso 3210653005) · 13:00 pranzo Teleclub Mancha Blanca · pomeriggio: <strong>default = riposo totale</strong> in piscina · cena casa.<br />
+<strong>Critico</strong>: passaporto. Cancellazioni meteo: telefonare OAPN +34 928 11 80 42. Teguise pomeridiano = solo se energia residua, è opzionale non default.</p>
+</blockquote>
 <p>Questa è la giornata chiave. Tutto ruota intorno alle 09:30 del mattino, quando dovete essere in piedi sulla Plaza de los Remedios di Yaiza, davanti all'Iglesia de Nuestra Señora de los Remedios, con scarpe chiuse sportive (sneakers robuste bastano, non servono scarponi), cappello, almeno 1,5 litri d'acqua a testa, crema solare 50, e il vostro permiso 3210653005 pronto. La guida controlla nome e cognome.</p>
 <p>Partenza da Tinajo alle 08:40 per essere in loco alle 09:15 con margine sicurezza — Yaiza è a venticinque chilometri, trenta minuti d'auto, parcheggio gratuito in superficie domenica. La <strong>Ruta Tremesana</strong> è un sentiero di tre chilometri (le fonti divergono tra 3 e 3,5 — prevale il dato OAPN ufficiale di tre chilometri), percorso in circa tre ore con molte soste esplicative. Massimo otto partecipanti, guida in spagnolo. Si cammina piano, non c'è salita impegnativa: la fatica è il sole, il vento e l'esposizione continua. Si vedono il <strong>Volcán de Tremesana</strong>, la <strong>Cueva del Pastor</strong> (un piccolo rifugio di pastori del XVIII secolo), il vulcano <strong>Montaña Hernández</strong>, un <em>pasero de higos</em> (antica struttura per essiccare i fichi), colate di <strong>lava cordata</strong> (<em>pahoehoe</em>), e i primi colonizzatori del territorio vulcanico, i licheni <em>Stereocaulon vesuvianum</em> che iniziano, molto lentamente, a riformare suolo. È l'interno nascosto del Parco Nazionale di Timanfaya, quello che chi fa la normale Ruta de los Volcanes in bus non vedrà mai. Le foto sono permesse; i droni, no.</p>
 <p>Rientro a Yaiza alle 12:30 circa, stanchi ma attivati. <strong>Se il tour venisse cancellato per allerta meteo</strong> (raro ma possibile; OAPN chiama il numero indicato nel permiso la sera prima), il ripiego naturale è la <strong>Ruta del Volcán del Cuervo</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJje0WD30jRgwRZhMmyQJf1Ps" class="map-link" target="_blank" rel="noopener" aria-label="Apri Volcán del Cuervo su Google Maps" title="Apri Volcán del Cuervo su Google Maps">📍</a>, che parte dal parking sulla <strong>LZ-56 al km 4,5</strong> (strada Tinguatón-Mancha Blanca), è libera e senza permessi, 2,3 km circolari di camminata pianeggiante in circa un'ora, con accesso all'interno del cratere del primo vulcano dell'eruzione di Timanfaya del 1730. In combinazione, un pranzo autentico e un pomeriggio a Teguise. In alternativa al Cuervo, la <strong>Caldera Blanca</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJp8uJQfsiRgwRsdkqgfldtDA" class="map-link" target="_blank" rel="noopener" aria-label="Apri Caldera Blanca su Google Maps" title="Apri Caldera Blanca su Google Maps">📍</a> può anticiparsi da martedì 5 a domenica 3 — ma è un trekking di 10 chilometri, e probabilmente oggi non è il giorno giusto per tentarlo.</p>
@@ -910,6 +1155,10 @@
 <p><strong>Opzione extra, solo se avete energia inaspettata</strong>: Brian, se dopo un riposo di 2 ore sente di volersi muovere ancora, può prendere l'auto e andare a <strong>Teguise</strong> da solo (45 minuti per la LZ-30) per vedere il <strong>Día de la Cruz</strong> nella sua giornata culminante: le quattordici <em>cruces</em> lignee del casco storico decorate con fiori, una tradizione recuperata nel 2001 che risale al <strong>Convento de la Veracruz del XVII secolo</strong> (fonte: Cronista Oficial di Teguise, Francisco Hernández). Gratuito, visibile tutto il giorno. Può entrare alla <strong>Iglesia de Nuestra Señora de Guadalupe</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJo56U1WUgRgwRqD4UKUMtGYE" class="map-link" target="_blank" rel="noopener" aria-label="Apri Iglesia de Nuestra Señora de Guadalupe su Google Maps" title="Apri Iglesia de Nuestra Señora de Guadalupe su Google Maps">📍</a> (ingresso alla chiesa con museo annesso circa 4 euro — sempre verificare in loco). <strong>Attenzione al Palacio Spínola / Casa-Museo del Timple</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJgXUZxmUgRgwRYkGQtgfEIvE" class="map-link" target="_blank" rel="noopener" aria-label="Apri Palacio Spínola / Casa-Museo del Timple su Google Maps" title="Apri Palacio Spínola / Casa-Museo del Timple su Google Maps">📍</a>: apre <strong>tutti i giorni 9:00-15:00</strong>, quindi di pomeriggio chiuso: se Brian vuole vederlo deve arrivare entro le 14:30 — il che rende l'uscita pomeridiana difficile da combinare col pranzo. <strong>Questa è una visita da fare in un altro giorno, non incastrarla dopo Tremesana</strong>. In ogni caso, per Teguise domenicale basta la passeggiata nelle stradine con le case bianche. Rientro a Tinajo per le 18:00. Il <strong>Gulliver Tapas Bar</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJPcksjWAiRgwRXKTGNTOHeu4" class="map-link" target="_blank" rel="noopener" aria-label="Apri Gulliver su Google Maps" title="Apri Gulliver su Google Maps">📍</a> (Av. de los Volcanes 20, Tinajo — <strong>nota: è a Tinajo non a Mancha Blanca</strong>) purtroppo <strong>è chiuso il sabato e la domenica</strong>, quindi per oggi non è opzione. Il <strong>Teleclub</strong> resta aperto se arrivate entro le 17:30-17:45 (chiusura 18:00 la domenica), oppure cena a casa — scelta largamente preferibile.</p>
 <p><strong>Sia chiaro</strong>: rinunciare a Teguise oggi non vuol dire rinunciare a Teguise del viaggio. Lì ci siete stati al mercato domenica 26 e all'Enramado giovedì 30; per un occhio di architetto, il valore di Teguise si assorbe nei due passaggi precedenti, non in una terza visita stanca. <strong>La scelta saggia oggi è il riposo</strong>.</p>
 <h2 id="lunedi-4-maggio-il-sud-selvaggio-e-le-piscine-protette" class="day"><span class="day-date">Lunedì 4 maggio</span><span class="day-name">Il sud selvaggio e le piscine protette</span></h2>
+<blockquote>
+<p>⏱️ <strong>Sintesi</strong>: 08:00 partenza · 08:30 Salinas de Janubio · 10:00 Los Hervideros · 11:30 El Golfo · 13:00 pranzo Casa Torano o Tato Santana · pomeriggio dipende dallo scenario · sera: opzionalmente <strong>La Cocina de Colacho</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJzwsAT8gwRgwRd69aYYo_3G4" class="map-link" target="_blank" rel="noopener" aria-label="Apri La Cocina de Colacho su Google Maps" title="Apri La Cocina de Colacho su Google Maps">📍</a> (Castillo de Águila, 18:30-22:00).<br />
+<strong>Decisione del giorno</strong>: <strong>3 scenari</strong>. A = sud completo + Papagayo + cena casa. B = sud + Playa Blanca + Colacho sera. C = solo mattina + riposo. Non mescolare. Per Colacho: pilota sobrio per il rientro Tinajo.</p>
+</blockquote>
 <p>Oggi si scende verso l'estremo sud, la parte dell'isola dove il paesaggio cambia scala: le saline, le scogliere laviche, le spiagge protette. <strong>Scelta strategica iniziale</strong>: la cena di oggi è <strong>La Cocina de Colacho a Castillo de Águila</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJzwsAT8gwRgwRd69aYYo_3G4" class="map-link" target="_blank" rel="noopener" aria-label="Apri La Cocina de Colacho su Google Maps" title="Apri La Cocina de Colacho su Google Maps">📍</a>, una delle esperienze più forti del viaggio — ma richiede che il pomeriggio non vi lasci stanchi e con l'auto lontana da Playa Blanca. Tre scenari puliti, sceglietene uno:</p>
 <p><strong>Scenario A — "Sud completo, Colacho no"</strong>: giornata piena nel sud (Salinas + Hervideros + El Golfo + pranzo + Papagayo pomeriggio), rientro Tinajo per le 18:00, cena a casa con calma o al Teleclub. È il giorno "natura" pieno, con il sud esplorato a fondo.</p>
 <p><strong>Scenario B — "Colacho sera, sud leggero"</strong>: mattinata sud (Salinas + Hervideros + El Golfo + pranzo Casa Torano), pomeriggio <strong>a Playa Blanca</strong> (a 10 minuti da Castillo de Águila) per una siesta in una caletta o caffè sul lungomare, poi <strong>cena Colacho alle 18:30-21:30</strong> con rientro a Tinajo alle 22:00-22:15. <strong>Importante per la cena</strong>: uno dei due non beve vini (è il pilota per il rientro notturno di 45 minuti), oppure il ristorante può chiamare un taxi per il rientro (tariffa Playa Blanca-Tinajo circa 35-45 euro). Il giorno dopo è Caldera Blanca, vi serve testa lucida.</p>
@@ -927,6 +1176,10 @@
 <p><strong>Se lo scenario B — La Cocina de Colacho</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJzwsAT8gwRgwRd69aYYo_3G4" class="map-link" target="_blank" rel="noopener" aria-label="Apri La Cocina de Colacho su Google Maps" title="Apri La Cocina de Colacho su Google Maps">📍</a>: menu degustazione unico di nove-dieci portate a <strong>95 euro a persona</strong> (menu base, verificato sul sito ufficiale e conferme dirette di visitatori; l'abbinamento vini è extra e porta il conto attorno ai 115-120 euro a testa complessivi). Aperta solo da <strong>lunedì a giovedì sera, 18:00-22:00</strong>, otto-dieci tavoli totali (circa 30 coperti), prenotazione obbligatoria al <strong>+34 928 51 96 91</strong> o <strong>+34 676 76 38 14</strong>, email <code><a href="mailto:reservas@lacocinadecolacho.com" class="contact-link email-link">reservas@lacocinadecolacho.com</a></code>. Chef <strong>Nicolás Machín</strong> detto "Colacho", la moglie Anabel in sala, ambiente familiare e design pulito. Cucina canaria contemporanea con orto proprio, <strong>inclusa nella Guida Michelin 2026 come "Selected"</strong> (non stella né Bib Gourmand: è la segnalazione di ingresso nella guida, che però resta un riconoscimento serio). È il posto dove mettere un soldo in più e avere un'esperienza memorabile, più coerente di Kamezí con il vostro profilo. Kamezí è la <strong>1 Stella Michelin 2026</strong> dell'isola (chef Rubén Cuesta al Kamezí Boutique Villas di Playa Blanca, menu unico con due opzioni di abbinamento) ma si allontana dal concetto "autenticità" che state cercando e ha costi significativamente più alti. Lunedì Kamezí è chiuso, quindi oggi la scelta naturale è comunque Colacho.</p>
 <p class="callout callout-solo"><strong>Finestra da soli</strong>: nello Scenario A, dalle 15 alle 17 tra Los Charcones e Papagayo è facile separarsi (uno in caletta, l'altro al <strong>Mirador de Los Volcanes sopra Yaiza/El Golfo</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJY5oIeM8_RgwRQqVbyhQbb7U" class="map-link" target="_blank" rel="noopener" aria-label="Apri Mirador de Los Volcanes su Google Maps" title="Apri Mirador de Los Volcanes su Google Maps">📍</a> per la vista su La Geria dall'alto). Nello Scenario B, la finestra è a Playa Blanca tra le 15 e le 17 (uno in spiaggia, l'altro in un caffè). Nello Scenario C, non serve: la piscina di casa è già una finestra condivisa che ognuno può godere a modo suo.</p>
 <h2 id="martedi-5-maggio-caldera-blanca-e-le-bodegas" class="day"><span class="day-date">Martedì 5 maggio</span><span class="day-name">Caldera Blanca e le bodegas</span></h2>
+<blockquote>
+<p>⏱️ <strong>Sintesi</strong>: 07:30 partenza Casa Lancelot · 08:00-12:00 trekking <strong>Caldera Blanca</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJp8uJQfsiRgwRsdkqgfldtDA" class="map-link" target="_blank" rel="noopener" aria-label="Apri Caldera Blanca su Google Maps" title="Apri Caldera Blanca su Google Maps">📍</a> (10 km circolari, 3-4h) · 12:30 pranzo Taberna del Campesino Mozaga · 14:15-15:00 Bodega Los Bermejos (tienda + 2 calici, no tour completo) · 15:00-19:00 riposo Casa Lancelot · cena Teleclub o casa.<br />
+<strong>Realismo</strong>: dopo 10 km di trekking, El Risco Famara la sera è ambizioso (rientro notturno 40 min). El Chupadero <strong>chiuso oggi</strong>.</p>
+</blockquote>
 <p>Il penultimo giorno ha un cuore fisico e uno enologico. La mattina si cammina nel cratere più largo dell'isola, il pomeriggio si torna nella Geria per quello che non si è ancora visto.</p>
 <p><strong>Caldera Blanca</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJp8uJQfsiRgwRsdkqgfldtDA" class="map-link" target="_blank" rel="noopener" aria-label="Apri Caldera Blanca su Google Maps" title="Apri Caldera Blanca su Google Maps">📍</a> è uno dei vulcani più antichi di Lanzarote (le fonti divergono: alcune parlano di circa 5.000 anni per il cono attuale, altre di fino a 2 milioni di anni per la formazione originale — in ogni caso molto anteriore alle eruzioni storiche del 1730-1736), diametro del cratere di 1,2 chilometri (il più largo dell'isola), quota 458 metri. È sopravvissuto come <em>kipuka</em> (localmente chiamato <em>islote</em>), cioè come isolotto preservato, alle colate del 1730-1736 che lo hanno circondato senza inghiottirlo. Il sentiero parte da Mancha Blanca, da un parcheggio lungo la strada che porta a Timanfaya (circa 1,5 km a nord del Centro de Visitantes del Parco sulla LZ-67), cinque minuti d'auto da Casa Lancelot, vicino alla chiesa della Virgen de los Dolores — patrona dell'isola, venerata come "Virgen de los Volcanes" dopo due eventi miracolosi: nel 1736 la lava dell'eruzione di Timanfaya si sarebbe fermata durante una processione organizzata da un francescano, e nel 1824 il vulcano della Capellanía del Clérigo Duarte si spegnerebbe durante un'altra processione della stessa immagine.</p>
 <p>Percorso circolare di circa dieci chilometri, tre-quattro ore a ritmo tranquillo, difficoltà media (la distanza e il terreno pietroso di <em>malpaís</em> nella prima parte, poi una salita finale al bordo del cratere). <strong>Nessun permesso richiesto</strong> — il vulcano è nel Parque Natural de los Volcanes, zona cuscinetto, non dentro il Parco Nazionale. Si passa prima da <strong>La Caldereta</strong>, cono minore a ferro di cavallo con antichi <em>corrales</em> in pietra secca, poi si sale sul bordo di Caldera Blanca per la vista sulle Montañas del Fuego sottostanti — una delle viste più belle dell'isola. Nessuna ombra, nessuna fontana, copertura mobile intermittente. Obbligatori: scarpe robuste, almeno due litri d'acqua a testa, cappello con laccetto sottogola, crema solare, giacca antivento. <strong>Partenza alle 07:30</strong> per evitare sole e vento del pomeriggio.</p>
@@ -941,6 +1194,10 @@
 <p><strong>Opzione scartata</strong> — <strong>Lilium Arrecife</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJhwtqJnYnRgwRcJYB2qoNhFo" class="map-link" target="_blank" rel="noopener" aria-label="Apri Lilium su Google Maps" title="Apri Lilium su Google Maps">📍</a> lo avete già fatto il 28 aprile (se avete seguito il piano). Se non lo avete fatto, <strong>questa è l'ultima occasione utile del viaggio per un'esperienza Michelin</strong> (mercoledì 6 è il rientro). Ma anche Lilium è ad Arrecife, 35 km da Tinajo, con rientro notturno.</p>
 <p class="callout callout-solo"><strong>Finestra da soli</strong>: post-trek, ciascuno si gestisce doccia e caffè nei tempi propri. E un'ora in solitaria al wine bar di Los Bermejos o leggendo in terrazza a Casa Lancelot, senza la pressione di parlare, può essere la pausa giusta.</p>
 <h2 id="mercoledi-6-maggio-il-rientro" class="day"><span class="day-date">Mercoledì 6 maggio</span><span class="day-name">Il rientro</span></h2>
+<blockquote>
+<p>⏱️ <strong>Sintesi</strong>: Mattina lenta (piscina Casa Lancelot) <strong>o</strong> ultima visita (Saramago/Fondazione, lungo LZ-2) · 12:00 pranzo veloce Playa Honda · 12:50 CEPSA per benzina · 13:15 riconsegna AutoReisen · <strong>15:15 volo EJU3760 → Malpensa 20:05</strong>.<br />
+<strong>Critico</strong>: NO Punta Mujeres / Jardín Cactus oggi (geograficamente opposti, deviazione 30+ km). Riconsegna 2h prima del volo.</p>
+</blockquote>
 <p>Ultimo giorno, volo pomeridiano alle 15:15. Mattina volutamente scarica: il giorno del rientro non è mai il momento per sorprese o sperimentazioni. Qualsiasi attività fisica impegnativa, qualsiasi spostamento che dipenda da terzi (traghetti, scuole, mezzi esterni) è un rischio senza margine — se qualcosa va storto, vi ritrovate a rincorrere il volo senza alternative.</p>
 <p><strong>Mattina slow, due scenari a bassissimo costo operativo</strong>. </p>
 <p><strong>Scenario "riposo puro"</strong>: piscina a Casa Lancelot, caffè lungo, valigie con calma, nessuna fretta. Scelta saggia se dopo 11 giorni siete a pezzi.</p>
@@ -972,8 +1229,8 @@
 <p>Le <strong>trappole da evitare</strong>, in ordine di potenziale danno:</p>
 <p><strong>Ristorante El Diablo dentro il Timanfaya</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJ848J6709RgwRBdnDXJq7Xi0" class="map-link" target="_blank" rel="noopener" aria-label="Apri Ristorante El Diablo su Google Maps" title="Apri Ristorante El Diablo su Google Maps">📍</a>. Non pranzate lì. L'architettura di Manrique del 1970 e la parrilla geotermica a 400-500 gradi sono pezzi di storia mondiale del design — da vedere, anche solo per cinque minuti al bar con un caffè da due euro, entrando al parco per la Ruta de los Volcanes in bus. Il cibo, invece, è da catering standardizzato per pullman: pollo spesso tiepido, porzioni da mensa, carta ampia ma mediocre. Il prezzo del menu in sé non è scandaloso (mezzo pollo 17,50 euro, entrecot 22, calice di Malvasía 5,50), ma per sedervi avete già pagato sessanta euro di biglietti parco. La critica gastronomica spagnola seria — El Comidista, Gastronosfera, La Provincia, Canarias7 — ignora il locale da decenni: il silenzio è il verdetto. Andate a vederlo come museo, non come ristorante.</p>
 <p><strong>Bodega La Geria (ristorante e walk-in)</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJ4VTNmLkkRgwR-JQxhgafScQ" class="map-link" target="_blank" rel="noopener" aria-label="Apri Bodega La Geria su Google Maps" title="Apri Bodega La Geria su Google Maps">📍</a>. È la cantina più fotografata dell'isola, con i pullman che si alternano in continuazione. La passeggiata nei vigneti vale i trenta minuti, il wine bar ha senso per un calice al volo, ma la degustazione guidata è turistica e il ristorante non è serio. Se volete una cantina "iconica", andate a <strong>Rubicón</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJq6qqquo7RgwRTLmQguQaJOE" class="map-link" target="_blank" rel="noopener" aria-label="Apri Rubicón su Google Maps" title="Apri Rubicón su Google Maps">📍</a> per il ristorante e a <strong>Los Bermejos</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJuQ45h1cmRgwRMJFIEvZcSLk" class="map-link" target="_blank" rel="noopener" aria-label="Apri Los Bermejos su Google Maps" title="Apri Los Bermejos su Google Maps">📍</a> o <strong>El Grifo</strong> per il vino.</p>
-<p><strong>Charco de los Clicos a El Golfo</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJGat6XKw-RgwR3lr-E6hHOz8" class="map-link" target="_blank" rel="noopener" aria-label="Apri Charco de los Clicos su Google Maps" title="Apri Charco de los Clicos su Google Maps">📍</a>. Chiuso dal 2019 per instabilità delle scogliere e tutela della riserva naturale. Si vede solo dal mirador a cinque minuti dal parcheggio. Non c'è accesso diretto alla laguna verde — le foto che vedete sui social di persone in riva sono vecchie.</p>
-<p><strong>Salinas de Janubio per visita guidata domenicale</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJRWYVH3c5RgwRqP4As2LXDZo" class="map-link" target="_blank" rel="noopener" aria-label="Apri Salinas de Janubio su Google Maps" title="Apri Salinas de Janubio su Google Maps">📍</a>. La visita con degustazione del fior di sale è solo lunedì-venerdì alle 12:30. La domenica resta accessibile la terrazza panoramica (bellissima) e la spiaggia di ciottoli neri (non balneabile). Non pianificate la guida la domenica — salvate le vostre mosse per la terrazza libera.</p>
+<p><strong>Charco de los Clicos a El Golfo</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJGat6XKw-RgwR3lr-E6hHOz8" class="map-link" target="_blank" rel="noopener" aria-label="Apri Charco de los Clicos su Google Maps" title="Apri Charco de los Clicos su Google Maps">📍</a>. Riserva Naturale protetta: l'accesso diretto alla laguna è da tempo interdetto per instabilità delle scogliere e tutela ambientale. Si vede solo dal mirador a cinque minuti dal parcheggio. Le foto in riva che girano sui social sono di archivio.</p>
+<p><strong>Salinas de Janubio per visita guidata domenicale</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJRWYVH3c5RgwRqP4As2LXDZo" class="map-link" target="_blank" rel="noopener" aria-label="Apri Salinas de Janubio su Google Maps" title="Apri Salinas de Janubio su Google Maps">📍</a>. Le visite guidate con degustazione di sale e vino si fanno solo nei giorni feriali, in fasce orarie variabili (più fonti indicano slot tra 10:00 e 14:00 lunedì-venerdì, prenotazione su <code><a href="https://www.salinasdejanubio.com" class="contact-link url-link" target="_blank" rel="noopener noreferrer">salinasdejanubio.com</a></code> o tel. +34 928 80 43 98). La domenica resta accessibile la terrazza panoramica (bellissima) e la spiaggia di ciottoli neri (non balneabile). Non pianificate la guida la domenica — salvate la mossa per la terrazza libera.</p>
 <p><strong>Stratvs / El Aljibe del Obispo</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJLdSE258lRgwRcOhtnlL9EGE" class="map-link" target="_blank" rel="noopener" aria-label="Apri El Aljibe del Obispo su Google Maps" title="Apri El Aljibe del Obispo su Google Maps">📍</a>. La cantina-ristorante di Yaiza, Stratvs, è commerciale di lusso; il ristorante El Aljibe aveva chiuso e la data di riapertura 2026 era, al momento della ricerca, incerta. Verificare all'ultimo su Instagram <code>@elaljibedelobispo</code>.</p>
 <p><strong>La Era a Yaiza</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJvTXrLhA7RgwRZ-pZmHhuxqo" class="map-link" target="_blank" rel="noopener" aria-label="Apri La Era su Google Maps" title="Apri La Era su Google Maps">📍</a>. Ristorante ristrutturato da Manrique nel 1968: il contenitore è un sogno d'archivio, ma il cibo è calato molto (Gastroranking 6,14). Si va per l'architettura, non per il piatto.</p>
 <p>I <strong>posti seri</strong>, invece, sono pochi ma centrati. In ordine di menzione nel vostro itinerario:</p>
@@ -981,13 +1238,13 @@
 <p><strong>Tacande a Haría</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJA5iqxqKhSAwRY3zXq80aHWQ" class="map-link" target="_blank" rel="noopener" aria-label="Apri Tacande su Google Maps" title="Apri Tacande su Google Maps">📍</a> (domenica 26 pranzo), Raccomandato Michelin 2026, cucina canaria contemporanea, ~45 euro, telefono <strong>+34 928 83 51 17</strong>, Plaza del Castillo 5.</p>
 <p><strong>Lilium ad Arrecife</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJhwtqJnYnRgwRcJYB2qoNhFo" class="map-link" target="_blank" rel="noopener" aria-label="Apri Lilium su Google Maps" title="Apri Lilium su Google Maps">📍</a> (martedì 28 sera, se scegliete la Michelin qui), Bib Gourmand Michelin 2026, chef Orlando Ortega, 40-55 euro, telefono <strong><a href="tel:+34928524978" class="contact-link phone-link">+34 928 524 978</a></strong>.</p>
 <p><strong>Enriqueta Casa de Comidas a Caleta de Sebo, La Graciosa</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJ5X7RCgSnSAwRkt1Xiadh_d8" class="map-link" target="_blank" rel="noopener" aria-label="Apri Enriqueta Casa de Comidas su Google Maps" title="Apri Enriqueta Casa de Comidas su Google Maps">📍</a> (mercoledì 29 pranzo), pulpo, arroz caldoso, pesce fresco, niente prenotazioni — <strong>chiusa martedì e mercoledì</strong>, quindi nel vostro caso non è utilizzabile: alternative valide in loco Rosa's La Lía (apre alle 13), Casa Chano, Girasol, El Veril.</p>
-<p><strong>Bar La Piscina "El Pichón" a Punta Mujeres</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJIXoNMCiiSAwRcSe1rdrv_cU" class="map-link" target="_blank" rel="noopener" aria-label="Apri Bar La Piscina su Google Maps" title="Apri Bar La Piscina su Google Maps">📍</a> (venerdì 1° maggio pranzo), Solete Repsol, nessun telefono, solo pranzi feriali, presentarsi alle 12:30, pesce fresco a dieci metri dalle piscine naturali. Una delle cinque gemme. <strong>Attenzione: aperto solo nei giorni feriali — il 1° maggio è festivo, da verificare prima di andare.</strong> Se chiuso, alternativa: Teleclub Mancha Blanca nel rientro.</p>
-<p><strong>Bodegas Rubicón a La Geria</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJq6qqquo7RgwRTLmQguQaJOE" class="map-link" target="_blank" rel="noopener" aria-label="Apri Bodegas Rubicón su Google Maps" title="Apri Bodegas Rubicón su Google Maps">📍</a> (ristorante interno, giovedì 30 aprile pranzo), cucina canaria tradizionale, terrazza sotto eucalipti centenari, prezzi chiari esposti, aperto tutti i giorni 10:00-18:00, telefono <strong>+34 928 17 37 08</strong>. La scelta principale per il pranzo nella zona vitivinicola.</p>
+<p><strong>Bar La Piscina "El Pichón" a Punta Mujeres</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJIXoNMCiiSAwRcSe1rdrv_cU" class="map-link" target="_blank" rel="noopener" aria-label="Apri Bar La Piscina su Google Maps" title="Apri Bar La Piscina su Google Maps">📍</a> — Solete Repsol, no telefono, no prenotazioni, <strong>solo pranzi feriali, chiuso festivi</strong>. <strong>Quindi venerdì 1° maggio (Día del Trabajador) è chiuso</strong>: alternative valide quel giorno a Punta Mujeres/Arrieta sono <strong>La Casa de La Playa Arrieta</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJ0dHNMu2hSAwRqzWFHgM8Kjw" class="map-link" target="_blank" rel="noopener" aria-label="Apri La Casa de La Playa su Google Maps" title="Apri La Casa de La Playa su Google Maps">📍</a>, <strong>La Azotea de Arrieta</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJNdF8cMahSAwRvwetcgCNqfI" class="map-link" target="_blank" rel="noopener" aria-label="Apri La Azotea de Arrieta su Google Maps" title="Apri La Azotea de Arrieta su Google Maps">📍</a> (panoramica), <strong>El Charcón Arrieta</strong>. Per gli altri giorni feriali del viaggio (sabato 2 mattina dopo surf, mercoledì 6 al rientro), El Pichón è una delle gemme: presentarsi alle 12:30, aspettare un tavolo, mangiare pesce a dieci metri dalle piscine naturali. Manu l'aveva azzeccato.</p>
+<p><strong>Bodegas Rubicón a La Geria</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJq6qqquo7RgwRTLmQguQaJOE" class="map-link" target="_blank" rel="noopener" aria-label="Apri Bodegas Rubicón su Google Maps" title="Apri Bodegas Rubicón su Google Maps">📍</a> (ristorante interno, giovedì 30 aprile pranzo), cucina canaria tradizionale, terrazza sotto eucalipti centenari, prezzi chiari esposti, aperto <strong>tutti i giorni 10:00-23:00 (mercoledì 10:00-20:00)</strong>, telefono <strong>+34 928 17 37 08</strong>. La scelta principale per il pranzo nella zona vitivinicola.</p>
 <p><em>Alternativa con cautela</em>: <strong>Bodega de Uga a Uga</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJ40-fGSM7RgwRUrTCtgU3xHQ" class="map-link" target="_blank" rel="noopener" aria-label="Apri Bodega de Uga su Google Maps" title="Apri Bodega de Uga su Google Maps">📍</a> — cucina di mercato eccellente ma <strong>senza menu scritto né prezzi esposti</strong>, molte recensioni segnalano prezzi imprevisti (100-140 euro per due). Se ci volete provare, chiedete il prezzo di ogni piatto prima di ordinare. Martedì-sabato 13-18, telefono <strong>+34 928 83 01 47</strong>, prenotazione obbligatoria.</p>
 <p><strong>Teleclub Mancha Blanca</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJvwQdX_kiRgwRZ6xT8ex4Fec" class="map-link" target="_blank" rel="noopener" aria-label="Apri Teleclub Mancha Blanca su Google Maps" title="Apri Teleclub Mancha Blanca su Google Maps">📍</a> a Mancha Blanca (giovedì 30 aprile sera, o domenica 3 pranzo), cucina casareccia, pulpo e croquetas da recensioni locali "da altro mondo", 15-25 euro, telefono <strong><a href="tel:+34636151288" class="contact-link phone-link">+34 636 151 288</a></strong>.</p>
-<p><strong>El Chupadero a La Geria</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJiSc9xLgkRgwRIOxEqTRqT4s" class="map-link" target="_blank" rel="noopener" aria-label="Apri El Chupadero su Google Maps" title="Apri El Chupadero su Google Maps">📍</a> (martedì 5 tramonto), wine bar/tapas in una vecchia azienda agricola, vista vigneti, martedì-domenica 13-22/23, chiuso lunedì, telefono <strong><a href="tel:+34928173365" class="contact-link phone-link">+34 928 173 365</a></strong>. Quattro stelle e mezza di autenticità, zero turismo organizzato.</p>
+<p><strong>El Chupadero a La Geria</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJiSc9xLgkRgwRIOxEqTRqT4s" class="map-link" target="_blank" rel="noopener" aria-label="Apri El Chupadero su Google Maps" title="Apri El Chupadero su Google Maps">📍</a> (consigliato per venerdì 1° o giovedì 30 pomeriggio — <strong>NON martedì 5: chiuso</strong>), wine bar/tapas in una vecchia azienda agricola, vista vigneti, <strong>aperto mer-sab 13:00-21:00, chiuso domenica, lunedì e martedì</strong> (Google Places verificato). Quattro stelle e mezza di autenticità, zero turismo organizzato. Telefono non verificato; presentatevi al banco.</p>
 <p><strong>El Risco a Famara</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJg7QhJsAfRgwRJV7dTY5QLbI" class="map-link" target="_blank" rel="noopener" aria-label="Apri El Risco su Google Maps" title="Apri El Risco su Google Maps">📍</a> (sabato 2 o martedì 5 sera), Bib Gourmand Michelin 2026, pesce di mercato, vista su La Graciosa, 45-55 euro, telefono <strong>+34 928 52 85 50</strong>.</p>
-<p><strong>La Cocina de Colacho a Playa Blanca</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJzwsAT8gwRgwRd69aYYo_3G4" class="map-link" target="_blank" rel="noopener" aria-label="Apri La Cocina de Colacho su Google Maps" title="Apri La Cocina de Colacho su Google Maps">📍</a> (lunedì 4 sera, se scegliete la Michelin qui), menu degustazione unico 95 euro, chef Colacho, Michelin Good Cooking, aperto solo lun-gio sera, otto tavoli, telefoni <strong><a href="tel:+34928519691" class="contact-link phone-link">+34 928 519 691</a></strong> e <strong><a href="tel:+34676763814" class="contact-link phone-link">+34 676 763 814</a></strong>.</p>
+<p><strong>La Cocina de Colacho a Castillo de Águila (Playa Blanca)</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJzwsAT8gwRgwRd69aYYo_3G4" class="map-link" target="_blank" rel="noopener" aria-label="Apri La Cocina de Colacho su Google Maps" title="Apri La Cocina de Colacho su Google Maps">📍</a> (lunedì 4 sera, se scegliete la Michelin qui), menu degustazione unico 95 euro (115-120€ con abbinamento vini), chef Nicolás Machín "Colacho", <strong>inclusa nella Guida Michelin 2026 come "Selected"</strong>, aperto solo lun-gio sera 18:00-22:00, otto-dieci tavoli, telefoni <strong>+34 928 51 96 91</strong> e <strong>+34 676 76 38 14</strong>.</p>
 <p><strong>Taberna del Campesino a Mozaga</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJZ9QaVjIhRgwR3mpD9nzKTvM" class="map-link" target="_blank" rel="noopener" aria-label="Apri Taberna del Campesino su Google Maps" title="Apri Taberna del Campesino su Google Maps">📍</a> (martedì 5 pranzo), 14-22 euro per piatto, coniglio e sancocho e cabra.</p>
 <p><strong>Casa Torano e Costa Azul "Tato Santana" a El Golfo</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJSfeo2a0-RgwR1jMXX84F3Hg" class="map-link" target="_blank" rel="noopener" aria-label="Apri Casa Torano su Google Maps" title="Apri Casa Torano su Google Maps">📍</a> (lunedì 4 pranzo), pesce del giorno, 35-50 euro.</p>
 <p>Aggiungete, per curiosità: <strong>La Bodega de Santiago a Yaiza</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJG1L1qhM7RgwRGiAp5MNBdP8" class="map-link" target="_blank" rel="noopener" aria-label="Apri La Bodega de Santiago su Google Maps" title="Apri La Bodega de Santiago su Google Maps">📍</a> (Solete Repsol, alternative al Chupadero la domenica), <strong>La Casa Roja a El Golfo</strong>, <strong>La Puerta Verde e El Rincón de Quino a Haría</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJE9zUb1WgSAwRXhr-3_OqmkA" class="map-link" target="_blank" rel="noopener" aria-label="Apri El Rincón de Quino su Google Maps" title="Apri El Rincón de Quino su Google Maps">📍</a> (cucina informale di paese).</p>
@@ -995,15 +1252,15 @@
 <p>Il vino di Lanzarote è <em>sui generis</em>. La Malvasía Volcánica ne è la regina, bianco minerale vulcanico con acidità alta; seguono il Listán Blanco, il Moscatel d'Alessandria (anche nella versione dolce e nella versione <em>skin contact</em> come orange wine), il Listán Negro e il Tinto. Non cercate corposità da rossi continentali: qui la qualità è in precisione, sale, frutto e salinità.</p>
 <p><strong>Bodegas El Grifo</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJdbRyB-QjRgwR6pTHSUwrejw" class="map-link" target="_blank" rel="noopener" aria-label="Apri Bodegas El Grifo su Google Maps" title="Apri Bodegas El Grifo su Google Maps">📍</a> (giovedì 30 aprile mattina) — la più antica delle Canarie, fondata nel 1775. Museo del vino (gratuito), audioguida self-guided a 15 euro con due calici inclusi, wine bar con tapas, tienda aperta tutti i giorni 10:30-20:00. La bottiglia Manu-raccomandata è l'<strong>Orange Wine</strong> Moscatel 2024 skin contact (24-30 euro in cantina, quasi sempre sold out online). Non automaticamente in degustazione: chiedetela. Email <code><a href="mailto:museo@elgrifo.com" class="contact-link email-link">museo@elgrifo.com</a></code> per esperienze premium.</p>
 <p><strong>Bodega Los Bermejos</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJuQ45h1cmRgwRMJFIEvZcSLk" class="map-link" target="_blank" rel="noopener" aria-label="Apri Bodega Los Bermejos su Google Maps" title="Apri Bodega Los Bermejos su Google Maps">📍</a> (giovedì 30 aprile o martedì 5 pomeriggio) — la cantina di riferimento per autenticità e vini da gastronomia. Lunedì-venerdì 8-15, prenotazione tour online <code><a href="https://www.losbermejos.com/reservas" class="contact-link url-link" target="_blank" rel="noopener noreferrer">losbermejos.com/reservas</a></code>, degustazione 15-25 euro. Malvasía Naturalmente Dulce celebrata dalla critica spagnola.</p>
-<p><strong>Bodegas Rubicón</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJq6qqquo7RgwRTLmQguQaJOE" class="map-link" target="_blank" rel="noopener" aria-label="Apri Bodegas Rubicón su Google Maps" title="Apri Bodegas Rubicón su Google Maps">📍</a> (30 aprile pranzo) — tour guidato 15 euro, wine bar aperto tutti i giorni 10-18, ristorante affidabile, atmosfera meno turistica di La Geria ma più accessibile di Los Bermejos.</p>
-<p><strong>El Chupadero</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJiSc9xLgkRgwRIOxEqTRqT4s" class="map-link" target="_blank" rel="noopener" aria-label="Apri El Chupadero su Google Maps" title="Apri El Chupadero su Google Maps">📍</a> (5 maggio tramonto) — wine bar/tapas, quattro stelle e mezza di autenticità, vista vigneti, martedì-domenica 13-22/23, chiuso lunedì, telefono <strong><a href="tel:+34928173365" class="contact-link phone-link">+34 928 173 365</a></strong>.</p>
+<p><strong>Bodegas Rubicón</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJq6qqquo7RgwRTLmQguQaJOE" class="map-link" target="_blank" rel="noopener" aria-label="Apri Bodegas Rubicón su Google Maps" title="Apri Bodegas Rubicón su Google Maps">📍</a> (30 aprile pranzo) — tour guidato 15 euro, wine bar e ristorante in cortijo del XVII secolo (proprietà acquisita nel 1979 dalla famiglia López Figueras), aperto tutti i giorni 10:00-23:00 (mercoledì 10:00-20:00), atmosfera meno turistica di La Geria ma più accessibile di Los Bermejos.</p>
+<p><strong>El Chupadero</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJiSc9xLgkRgwRIOxEqTRqT4s" class="map-link" target="_blank" rel="noopener" aria-label="Apri El Chupadero su Google Maps" title="Apri El Chupadero su Google Maps">📍</a> (consigliato venerdì 1° o giovedì 30 pomeriggio) — wine bar/tapas, autenticità alta, vista vigneti, <strong>mer-sab 13:00-21:00, chiuso dom-lun-mar</strong> (verificato Google Places). No telefono affidabile pubblicato; presentarsi al banco.</p>
 <p><strong>Puro Rofe</strong> (Conil, Tías) — il culto assoluto per chi insegue i vini naturali. Rayco Fernández e Carmelo Peña, fermentazioni spontanee, 8-15.000 bottiglie totali annue, 93 punti Wine Advocate, prima entrata al Consejo Regulador DO Lanzarote dopo anni. Ma <strong>non è enoturismo plug-and-play</strong>: "no somos una bodega souvenir". Solo su appuntamento via DM Instagram <code>@purorofe</code>, 10-14 giorni prima, risposta probabilmente solo in spagnolo. Se Rayco risponde, è l'esperienza più autentica di Lanzarote.</p>
-<p>Combinazione vincente se il 30 aprile va liscio: <strong>mattina a El Grifo con audioguida + Orange Wine alla carta nel wine bar</strong>, <strong>pranzo in terrazza a Bodegas Rubicón</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJq6qqquo7RgwRTLmQguQaJOE" class="map-link" target="_blank" rel="noopener" aria-label="Apri Bodegas Rubicón su Google Maps" title="Apri Bodegas Rubicón su Google Maps">📍</a> (cortijo del XVI secolo, menu con prezzi chiari), <strong>eventuale breve tappa a Los Bermejos</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJuQ45h1cmRgwRMJFIEvZcSLk" class="map-link" target="_blank" rel="noopener" aria-label="Apri Los Bermejos su Google Maps" title="Apri Los Bermejos su Google Maps">📍</a> se siete passati presto da El Grifo, <strong>aperitivo/tramonto a El Chupadero</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJiSc9xLgkRgwRIOxEqTRqT4s" class="map-link" target="_blank" rel="noopener" aria-label="Apri El Chupadero su Google Maps" title="Apri El Chupadero su Google Maps">📍</a> (martedì 5 maggio). Quattro cantine in due giorni, quaranta euro a testa in totale, zero pullman addosso.</p>
+<p>Combinazione vincente se il 30 aprile va liscio: <strong>mattina a El Grifo con audioguida + Orange Wine alla carta nel wine bar</strong>, <strong>pranzo in terrazza a Bodegas Rubicón</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJq6qqquo7RgwRTLmQguQaJOE" class="map-link" target="_blank" rel="noopener" aria-label="Apri Bodegas Rubicón su Google Maps" title="Apri Bodegas Rubicón su Google Maps">📍</a> (cortijo del XVII secolo, menu con prezzi chiari), <strong>eventuale aperitivo/tramonto a El Chupadero</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJiSc9xLgkRgwRIOxEqTRqT4s" class="map-link" target="_blank" rel="noopener" aria-label="Apri El Chupadero su Google Maps" title="Apri El Chupadero su Google Maps">📍</a> lo stesso giovedì 30 nel pomeriggio (mer-sab aperto). Per Los Bermejos il consiglio è spostarlo a martedì 5 maggio, in cui passate naturalmente da La Florida dopo la Caldera Blanca. Tre cantine in due giorni, quaranta euro a testa in totale, zero pullman addosso.</p>
 <h2 id="le-cinque-gemme-non-turistiche">Le cinque gemme non-turistiche</h2>
 <p>Queste non le trovate nelle guide generiche. Sono state verificate una per una.</p>
 <p><strong>Taller de Artesanía 'Reinaldo Dorta Déniz' a Haría</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJOed2GgChSAwR-94NXrS2wDE" class="map-link" target="_blank" rel="noopener" aria-label="Apri Taller de Artesanía 'Reinaldo Dorta Déniz' su Google Maps" title="Apri Taller de Artesanía 'Reinaldo Dorta Déniz' su Google Maps">📍</a> (sabato 2 maggio mattina) — non è un negozio, è una casa tradizionale dove quattordici artigiani del municipio lavorano dal vivo: cestería di palma e <em>junco</em> con Esther Romero, ceramica con Aquilino Rodríguez, rosetas, bordados. Lunedì-sabato 10:00-13:30 e 16:00-19:00, lunedì pomeriggio chiuso. Ingresso libero. A cinquanta metri dalla Plaza León y Castillo.</p>
 <p><strong>Enramado delle Cruces a Teguise</strong> (giovedì 30 aprile 17:30) — i residenti addobbano con fiori le quattordici <em>cruces</em> del casco storico in preparazione del Día de la Cruz. Nessuna guida turistica lo indica come esperienza, perché non è pensato per turisti: proprio per questo è perfetto. Gratuito, mezz'ora di tempo, di rientro verso Tinajo.</p>
-<p><strong>Bar La Piscina "El Pichón" di Punta Mujeres</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJIXoNMCiiSAwRcSe1rdrv_cU" class="map-link" target="_blank" rel="noopener" aria-label="Apri Bar La Piscina su Google Maps" title="Apri Bar La Piscina su Google Maps">📍</a> (venerdì 1° maggio pranzo) — Solete Guida Repsol, niente telefono, niente prenotazioni, solo pranzi feriali. Presentatevi alle 12:30, aspettate un tavolo, mangiate pesce fresco a dieci metri dalle piscine naturali. Manu l'aveva azzeccato: è uno dei pranzi del viaggio.</p>
+<p><strong>Bar La Piscina "El Pichón" di Punta Mujeres</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJIXoNMCiiSAwRcSe1rdrv_cU" class="map-link" target="_blank" rel="noopener" aria-label="Apri Bar La Piscina su Google Maps" title="Apri Bar La Piscina su Google Maps">📍</a> (sabato 2 maggio dopo surf, oppure mercoledì 6 al rientro — <strong>NON il 1° maggio: festivo, chiuso</strong>) — Solete Guida Repsol, niente telefono, niente prenotazioni, solo pranzi feriali. Presentatevi alle 12:30, aspettate un tavolo, mangiate pesce fresco a dieci metri dalle piscine naturali. Manu l'aveva azzeccato: è uno dei pranzi del viaggio.</p>
 <p><strong>Femés e il Mirador di San Marcial</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJm_EHp2A6RgwRaoSkgigdVjE" class="map-link" target="_blank" rel="noopener" aria-label="Apri Mirador di San Marcial su Google Maps" title="Apri Mirador di San Marcial su Google Maps">📍</a> (lunedì 4 maggio deviazione pomeridiana) — villaggio alto sopra Playa Blanca, chiesa del patrono storico dell'isola (San Marcial de Rubicón, dal Quattrocento), due <em>casas de comida</em> tradizionali, vista su Fuerteventura e sull'Isla de Lobos. Zero pullman turistici. Deviazione di quarantacinque minuti nel ritorno da Papagayo.</p>
 <p><strong>Mercadillo agrícola di San Bartolomé</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJw7OMjuwnRgwRSvsoas5Hn8M" class="map-link" target="_blank" rel="noopener" aria-label="Apri Mercadillo agrícola di San Bartolomé su Google Maps" title="Apri Mercadillo agrícola di San Bartolomé su Google Maps">📍</a> (domenica 3 maggio, prima domenica del mese) — 10:00-14:00, produttori locali, musica dal vivo, animazione. Meno noto di Teguise, più autentico. Se Brian sale a Teguise da solo nel pomeriggio della Tremesana, può fermarsi qui venti minuti mentre risale: San Bartolomé è a cinque minuti d'auto da Tinajo.</p>
 <hr>
@@ -1021,8 +1278,11 @@
 <p><strong>Strategia pratica consigliata</strong>:<br />
 - <strong>Trolley (max 14 kg, 1 kg di margine per sicurezza al gate)</strong>: tutti gli abiti di entrambi (~10-11 kg), ciabatte da doccia, toilette condivisa, cavi, caricabatterie, ciabatta multipresa.<br />
 - <strong>Personal item Federica</strong> (~3-4 kg): laptop lavoro, cuffie, libro/Kindle, medicinali personali, documenti, costume + 1 t-shirt di scorta (emergenza bagaglio smarrito).<br />
-- <strong>Personal item Brian</strong> (~4-5 kg): laptop lavoro + pile sottile indossato/vicino, antivento (vestito o legato alla tracolla dello zaino), 1 t-shirt di scorta, cuffie, powerbank.</p>
-<p><strong>Trucco del viaggiatore</strong>: all'aeroporto indossate entrambi le scarpe più ingombranti (sneakers da trekking) + pile + antivento a tracolla. Non pesano sul trolley. A Lanzarote te li levi subito sull'aereo e li metti nel personal item per lo sbarco.</p>
+- <strong>Personal item Brian</strong> (~4-5 kg): laptop lavoro + pile sottile indossato/vicino, antivento (vestito o legato alla tracolla dello zaino), 1 t-shirt di scorta, cuffie, <strong>powerbank (obbligatoriamente nel personal item, MAI nel trolley</strong> — regola aviazione per le batterie al litio: se il trolley viene imbarcato in stiva all'ultimo minuto, il powerbank deve restare con voi in cabina).</p>
+<p><strong>🎒 LA MOSSA CHE SALVA 1-2 KG AL TROLLEY — leggere con attenzione</strong>:<br />
+All'aeroporto <strong>indossate entrambi</strong>: sneakers da trekking (le più pesanti), pantaloni lunghi, t-shirt + maglia a maniche lunghe + pile + antivento. Sembra eccesso ma in volo ve li togliete e li mettete nel personal item. Questi capi pesano 2-2,5 kg totali — toglierli dal trolley è la differenza tra 14,8 kg e 12,3 kg al check-in. <strong>Non è un trucco per risparmiare: è l'unico modo realistico di stare sotto i 15 kg con un corredo per il freddoloso.</strong></p>
+<p><strong>Regola liquidi cabina — non dimenticare</strong>:<br />
+Siete cabin-only, quindi vale la regola dei <strong>contenitori max 100 ml ciascuno, tutti dentro una singola busta trasparente richiudibile da massimo 1 litro</strong> (una per persona). Questo vincola: crema solare piccola, doposole, struccante, crema viso, stick labbra, burrocacao, gel mani, profumo, detersivo viaggio, dentifricio. Il doposole va nel formato 100 ml (non 200), il detersivo da lavaggio in mini-flaconcino 50 ml. La crema solare grande si compra in loco a Lanzarote. <strong>La busta si prepara separata e la si tira fuori al controllo sicurezza</strong>: averla già pronta risparmia 5 minuti di coda.</p>
 <h3 id="il-clima-reale-del-viaggio-base-di-calcolo">Il clima reale del viaggio — base di calcolo</h3>
 <p>Prima di fare la lista, la realtà che conta: <strong>Lanzarote fine aprile - primi di maggio non è il Mediterraneo in estate</strong>. Le temperature reali:</p>
 <ul>
@@ -1047,7 +1307,7 @@
 <li><strong>1 giacca antivento leggera con cappuccio</strong> a testa — <strong>non negoziabile</strong>. Peso: ~250 g. È quella che vi salva al Mirador, alla Tremesana, a Famara, in cima alla Caldera Blanca. Basta un guscio leggero tipo windproof, non serve impermeabile (piove sotto il 5%).</li>
 <li><strong>Biancheria per 6 giorni</strong> a testa (si lava a metà viaggio).</li>
 <li><strong>Costume</strong> (1 a testa) + <strong>1 costume di ricambio per Brian</strong> se fate snorkeling (mettere un costume bagnato addosso a un freddoloso il giorno dopo è tortura).</li>
-<li><strong>Pigiama leggero</strong> (Federica) + <strong>pigiama leggermente più caldo o tuta leggera come pigiama</strong> (Brian: a Casa Lancelot le coperte potrebbero non bastare; se serve chiedete all'host via messaggio di lasciare un plaid in più sul letto).</li>
+<li><strong>Pigiama leggero</strong> (Federica) + <strong>per Brian: niente pigiama dedicato</strong>. La maglia tecnica a maniche lunghe + i pantaloni lunghi tecnici della lista sopra funzionano benissimo come pigiama caldo, eviti un capo dedicato (~400 g risparmiati). Se l'host di Casa Lancelot conferma che c'è una coperta aggiuntiva sul letto, questo basta. Se non c'è, aggiungi 1 pile leggero alla notte e stai al caldo senza problemi.</li>
 </ul>
 <p><strong>Accessori anti-vento — il dettaglio che fa la differenza</strong></p>
 <ul>
@@ -1059,7 +1319,7 @@
 <p><strong>Calze — attenzione, vera lacuna del MD originale</strong></p>
 <ul>
 <li><strong>4 paia di calze sportive tecniche</strong> a testa (per camminate, sneakers, attività). Brian ne porta 5.</li>
-<li><strong>2 paia di calze merino leggere</strong> (tipo Smartwool o Decathlon Forclaz Merino) a testa, per serate fresche, trekking mattutino, e per chi dorme a Casa Lancelot con piedi freddi (è comunissimo nella stagione). <strong>Questo è il singolo oggetto più sottovalutato per un freddoloso</strong>: calze sbagliate = notte fredda a letto anche sotto le coperte. Peso: ~60 g a paio.</li>
+<li><strong>Per le notti fresche a Casa Lancelot e le serate in terrazza</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJR3nuPWciRgwRK8_e52dRsJQ" class="map-link" target="_blank" rel="noopener" aria-label="Apri Casa Lancelot su Google Maps" title="Apri Casa Lancelot su Google Maps">📍</a>: Federica porta <strong>1 paio di calze merino leggere</strong> (Smartwool Hike Light o Forclaz Merino), Brian porta <strong>1 paio merino midweight</strong> (più spesso, solo per dormire e stare a casa la sera) + <strong>1 paio merino leggero</strong> (per trekking mattutino). Per Brian le calze giuste a letto sono il singolo oggetto più sottovalutato: calze sbagliate = piedi freddi sotto le coperte e sonno interrotto, anche a 14 °C esterni.</li>
 <li><strong>Ciabatte da doccia</strong> (infradito di gomma) per gli appartamenti: Cactus non sempre le fornisce.</li>
 </ul>
 <p><strong>Scarpe</strong></p>
@@ -1077,8 +1337,8 @@
 </ul>
 <p><strong>Trekking — kit specifico per Tremesana e Caldera Blanca</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJp8uJQfsiRgwRsdkqgfldtDA" class="map-link" target="_blank" rel="noopener" aria-label="Apri Caldera Blanca su Google Maps" title="Apri Caldera Blanca su Google Maps">📍</a></p>
 <ul>
-<li><strong>Zainetto 15-20 litri</strong> a testa (si può comprare al Decathlon Arrecife se non l'avete, ma portarne uno leggero da 250 g vi dà autonomia dal giorno 1; potete usarlo anche come personal item easyJet se rientra nelle misure 45 × 36 × 20).</li>
-<li><strong>Borraccia</strong> da almeno 1 litro a testa, preferibilmente 2 (o una borraccia + una bottiglia d'acqua comprata al supermercato per la Tremesana).</li>
+<li><strong>Zainetto 15-20 litri</strong> a testa — <strong>nota importante</strong>: un buon zaino da 20 L spesso rientra nelle misure 45 × 36 × 20 cm del personal item easyJet, quindi <strong>è probabilmente il vostro personal item, non un oggetto in più</strong>. Verificate le misure del vostro zaino prima di partire (alcuni modelli come Osprey Talon 22 sforano di 1-2 cm in altezza e andrebbero svuotati prima del gate). Se non avete uno zaino adatto, ne trovate uno leggero (250 g) al Decathlon Arrecife.</li>
+<li><strong>Borraccia da 1 litro a testa</strong> (1 a persona, non 2) + comprate al mattino del trekking <strong>una bottiglia d'acqua da 0,5-1 L al supermercato</strong> che butterete a fine camminata. Totale acqua trekking: 1,5-2 L a testa, che è il minimo per Tremesana (3h al sole) e Caldera Blanca (4-5h).</li>
 <li><strong>Barrette energetiche</strong> (3-4 a testa), frutta secca, un paio di mele: costano care sull'isola, portatele da Milano.</li>
 <li><strong>Buff + cappello + occhiali</strong>: sono già in lista sopra, ma ricordati di metterli nello zainetto il giorno prima del trekking, non cercarli la mattina alle 6:30.</li>
 </ul>
@@ -1088,6 +1348,7 @@
 <li><strong>Powerbank</strong> (uno a testa) + cavi: Casa Lancelot in giardino non sempre ha prese vicine.</li>
 <li><strong>Ciabatta multipresa italiana</strong>: con due laptop + due telefoni + eventuale smartwatch, l'unica presa di una scrivania non basta. L'adattatore italiano funziona: presa F/C identica a quella spagnola.</li>
 <li><strong>Cuffie con cancellazione rumore</strong> (per webinar Federica mercoledì 29: rumore delle cicale, vento, vicini di Cactus).</li>
+<li><strong>Sleeve imbottita o custodia laptop</strong> (entrambi): i personal items vanno sotto il sedile e ci si cammina sopra in fila d'imbarco — il laptop nudo nello zaino è a rischio. Una sleeve sottile (50 g) fa la differenza tra "arrivo sereno" e "schermo crepato al check-in cliente".</li>
 </ul>
 <p><strong>Extra che sembrano ovvi ma si dimenticano</strong></p>
 <ul>
@@ -1096,6 +1357,23 @@
 <li><strong>Mini-bottiglietta di detersivo neutro</strong> per lavaggio a mano in appartamento (costumi, calze tecniche, biancheria tra una lavatrice e l'altra).</li>
 <li><strong>Sacchetto stagno</strong> o sacchetto impermeabile (1-2 litri) per mettere il costume bagnato, vestiti sporchi, telefono in spiaggia.</li>
 </ul>
+<p><strong>Kit medicinali — da non lasciare a casa</strong> (in un sacchetto da 200 g massimo nel trolley, non nella busta liquidi)</p>
+<ul>
+<li><strong>Paracetamolo</strong> + <strong>ibuprofene</strong> (mal di testa, dolori muscolari post-trekking)</li>
+<li><strong>Antistaminico</strong> (se uno dei due è allergico a polvere/polline: la calima sahariana alza drasticamente gli allergeni)</li>
+<li><strong>Imodium o antidiarroico</strong> (cambio alimentazione, acqua diversa)</li>
+<li><strong>Cerotti elastici</strong> e cerotti per vesciche (Compeed) — la Caldera Blanca con scarpe nuove = vesciche garantite</li>
+<li><strong>Disinfettante tascabile</strong> (Bactine o analogo, salviette)</li>
+<li><strong>Gel mani</strong> (100 ml, nella busta liquidi)</li>
+<li><strong>Prescrizioni personali</strong> (mai separare dall'imbarco: se esistono, nel personal item con prescrizione medica cartacea per la dogana)</li>
+<li><strong>Eventuale ansiolitico o similare</strong> se uno dei due soffre il volo</li>
+</ul>
+<p><strong>Checklist toilette condivisa (30 secondi prima di chiudere il trolley)</strong></p>
+<p>Spazzolino × 2, dentifricio (viaggio 75 ml), filo interdentale, deodorante, sapone solido o doccia 100 ml, shampoo 100 ml (se l'host non lo fornisce — chiedete stasera via messaggio), rasoio + schiuma da barba 75 ml, pinzetta, forbicine (nel trolley, non nel personal item: le lame in cabina sono limitate), tamponi/salvaslip, crema viso giorno e notte 50 ml ciascuna, struccante 100 ml, spazzola o pettine, eventuali lenti a contatto con liquido di conservazione.</p>
+<p><strong>Messaggi da mandare all'host stasera (entrambe le case)</strong></p>
+<p>Prima di chiudere la valigia vale 2 minuti inviare un messaggio a Cactus e a Casa Lancelot:<br />
+- <em>"Hola, ¿el apartamento/casa incluye toallas, secador de pelo, detergente de lavadora y jabón de ducha? ¿Y en Casa Lancelot, una manta extra en la cama para mi compañero que es friolero? Muchas gracias."</em></p>
+<p>Se la risposta conferma tutto, risparmi: salviette doccia (400 g), asciugacapelli (se ne avete uno piccolo in trolley — ma quasi tutte le case offrono il proprio), detersivo lavatrice (400 g), sapone (100 g). Se la risposta è negativa, sai cosa comprare al primo HiperDino (2-3 euro per sapone + shampoo economici) invece di portarlo da casa.</p>
 <hr>
 <h3 id="cosa-comprare-sul-posto-non-portare-dallitalia-risparmia-peso-al-trolley">Cosa comprare sul posto (non portare dall'Italia, risparmia peso al trolley)</h3>
 <ul>
@@ -1138,13 +1416,13 @@
 <p>Tutto questo aggiunge al massimo 700-800 g al trolley condiviso rispetto alla versione standard. Sono dentro il limite dei 15 kg se il resto è dimensionato bene. <strong>Ogni grammo è giustificato dal clima reale</strong>.</p>
 <h2 id="le-prenotazioni-da-fare-questa-settimana">Le prenotazioni da fare questa settimana</h2>
 <p>Tre prenotazioni sono urgenti, cioè da fare entro tre-quattro giorni dalla partenza (o adesso). Una quarta è "quasi urgente", le altre sono gestibili in loco o via email.</p>
-<p><strong>Uno — Cueva de los Verdes</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJXxCKHs6jSAwR-Zejg89khEM" class="map-link" target="_blank" rel="noopener" aria-label="Apri Cueva de los Verdes su Google Maps" title="Apri Cueva de los Verdes su Google Maps">📍</a>, slot online obbligatorio su <code><a href="https://ventaonline.cactlanzarote.com" class="contact-link url-link" target="_blank" rel="noopener noreferrer">ventaonline.cactlanzarote.com</a></code>. Prenotate per <strong>venerdì 1° maggio alle 11:00</strong>, oppure per <strong>mercoledì 29 aprile alle 10:30</strong> come piano B di La Graciosa (il biglietto è rimborsabile fino a 24 ore prima della visita). Diciassette euro a persona. Usate lo stesso sistema per bloccare anche <strong>Jameos del Agua</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJgVp54cqjSAwRylE3Lpfj4TA" class="map-link" target="_blank" rel="noopener" aria-label="Apri Jameos del Agua su Google Maps" title="Apri Jameos del Agua su Google Maps">📍</a> diurno dello stesso giorno, comodo per il venerdì 1° maggio.</p>
-<p><strong>Due — una cena importante</strong>. Se volete giocare la carta Michelin, scegliete e prenotate ora. Le opzioni in ordine di coerenza con il vostro profilo: <strong>La Cocina de Colacho</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJzwsAT8gwRgwRd69aYYo_3G4" class="map-link" target="_blank" rel="noopener" aria-label="Apri La Cocina de Colacho su Google Maps" title="Apri La Cocina de Colacho su Google Maps">📍</a> lunedì 4 sera (<a href="tel:+34928519691" class="contact-link phone-link">+34 928 519 691</a> o <a href="tel:+34676763814" class="contact-link phone-link">+34 676 763 814</a>), <strong>El Risco Famara</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJg7QhJsAfRgwRJV7dTY5QLbI" class="map-link" target="_blank" rel="noopener" aria-label="Apri El Risco su Google Maps" title="Apri El Risco su Google Maps">📍</a> martedì 5 sera (+34 928 52 85 50), <strong>Lilium Arrecife</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJhwtqJnYnRgwRcJYB2qoNhFo" class="map-link" target="_blank" rel="noopener" aria-label="Apri Lilium su Google Maps" title="Apri Lilium su Google Maps">📍</a> martedì 28 sera (<a href="tel:+34928524978" class="contact-link phone-link">+34 928 524 978</a>), <strong>Kamezí</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJRzXdykQ3RgwRZtjTAuju0fY" class="map-link" target="_blank" rel="noopener" aria-label="Apri Kamezí su Google Maps" title="Apri Kamezí su Google Maps">📍</a> una sera a scelta mar-sab (<a href="tel:+34626873695" class="contact-link phone-link">+34 626 873 695</a>). Colacho è la più stretta in disponibilità — se è questa la vostra scelta, prenotate per primo. Il viaggio funziona bene anche con una sola di queste. Se ne volete due, la combinazione intelligente è Lilium (infrasettimanale, vicino ad Arrecife) + Colacho (sul versante sud, lunedì 4). Se volete solo una e diversa dal Michelin, <strong>El Risco Famara</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJg7QhJsAfRgwRJV7dTY5QLbI" class="map-link" target="_blank" rel="noopener" aria-label="Apri El Risco su Google Maps" title="Apri El Risco su Google Maps">📍</a> è la più coerente col profilo e con la posizione del martedì 5.</p>
-<p><strong>Tre — Bodegas Rubicón</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJq6qqquo7RgwRTLmQguQaJOE" class="map-link" target="_blank" rel="noopener" aria-label="Apri Bodegas Rubicón su Google Maps" title="Apri Bodegas Rubicón su Google Maps">📍</a> al telefono <strong>+34 928 17 37 08</strong> per il pranzo di giovedì 30 aprile. Non è strettamente obbligatoria ma il 30 aprile cade nel ponte del 1° maggio (Día del Trabajador), quindi è un giovedì più affollato del solito, con turisti in transito: prenotare una terrazza esterna all'ora di pranzo è sensato. Aperto tutti i giorni 10:00-18:00.</p>
-<p><strong>Quattro — Tacande Haría</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJA5iqxqKhSAwRY3zXq80aHWQ" class="map-link" target="_blank" rel="noopener" aria-label="Apri Tacande su Google Maps" title="Apri Tacande su Google Maps">📍</a> per domenica 26 aprile pranzo, al <strong><a href="tel:+34928835117" class="contact-link phone-link">+34 928 835 117</a></strong> o via form <code><a href="https://www.restaurantetacande.com/reserva/" class="contact-link url-link" target="_blank" rel="noopener noreferrer">restaurantetacande.com/reserva/</a></code>. Entro giovedì 23 aprile.</p>
+<p><strong>Uno — Cueva de los Verdes</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJXxCKHs6jSAwR-Zejg89khEM" class="map-link" target="_blank" rel="noopener" aria-label="Apri Cueva de los Verdes su Google Maps" title="Apri Cueva de los Verdes su Google Maps">📍</a>, slot online obbligatorio su <code><a href="https://ventaonline.cactlanzarote.com" class="contact-link url-link" target="_blank" rel="noopener noreferrer">ventaonline.cactlanzarote.com</a></code>. Prenotate per <strong>venerdì 1° maggio alle 12:00</strong> (slot più tardo per dare margine al Jardín de Cactus mattutino, lo slot delle 11:00 è matematicamente teso), oppure per <strong>mercoledì 29 aprile alle 10:30</strong> come piano B di La Graciosa (il biglietto è rimborsabile fino a 24 ore prima della visita). Diciassette euro a persona. Usate lo stesso sistema per bloccare anche <strong>Jameos del Agua</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJgVp54cqjSAwRylE3Lpfj4TA" class="map-link" target="_blank" rel="noopener" aria-label="Apri Jameos del Agua su Google Maps" title="Apri Jameos del Agua su Google Maps">📍</a> dello stesso giorno se scegliete la visita diurna invece della Noches.</p>
+<p><strong>Due — una cena importante</strong>. Se volete giocare la carta Michelin, scegliete e prenotate ora. Le opzioni in ordine di coerenza con il vostro profilo: <strong>La Cocina de Colacho</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJzwsAT8gwRgwRd69aYYo_3G4" class="map-link" target="_blank" rel="noopener" aria-label="Apri La Cocina de Colacho su Google Maps" title="Apri La Cocina de Colacho su Google Maps">📍</a> lunedì 4 sera (+34 928 51 96 91 o +34 676 76 38 14), <strong>El Risco Famara</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJg7QhJsAfRgwRJV7dTY5QLbI" class="map-link" target="_blank" rel="noopener" aria-label="Apri El Risco su Google Maps" title="Apri El Risco su Google Maps">📍</a> sabato 2 o martedì 5 sera (+34 928 52 85 50), <strong>Lilium Arrecife</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJhwtqJnYnRgwRcJYB2qoNhFo" class="map-link" target="_blank" rel="noopener" aria-label="Apri Lilium su Google Maps" title="Apri Lilium su Google Maps">📍</a> martedì 28 sera (+34 928 52 49 78), <strong>Kamezí</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJRzXdykQ3RgwRZtjTAuju0fY" class="map-link" target="_blank" rel="noopener" aria-label="Apri Kamezí su Google Maps" title="Apri Kamezí su Google Maps">📍</a> martedì-sabato sera (+34 626 87 36 95). Colacho è la più stretta in disponibilità (8-10 tavoli totali) — se è questa la vostra scelta, prenotate per primo. Il viaggio funziona bene anche con una sola di queste. Se ne volete due, la combinazione intelligente è Lilium (martedì 28, ad Arrecife) + Colacho (lunedì 4, sul versante sud). Se volete solo una e diversa dal Michelin Selected/Stella, <strong>El Risco Famara</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJg7QhJsAfRgwRJV7dTY5QLbI" class="map-link" target="_blank" rel="noopener" aria-label="Apri El Risco su Google Maps" title="Apri El Risco su Google Maps">📍</a> è la più coerente col profilo e con la posizione del sabato 2 o del martedì 5.</p>
+<p><strong>Tre — Bodegas Rubicón</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJq6qqquo7RgwRTLmQguQaJOE" class="map-link" target="_blank" rel="noopener" aria-label="Apri Bodegas Rubicón su Google Maps" title="Apri Bodegas Rubicón su Google Maps">📍</a> al telefono <strong>+34 928 17 37 08</strong> per il pranzo di giovedì 30 aprile. Non strettamente obbligatoria ma il 30 aprile cade nel ponte del 1° maggio (Día del Trabajador), quindi è un giovedì più affollato del solito, con turisti in transito: prenotare una terrazza esterna all'ora di pranzo è sensato. Aperto tutti i giorni 10:00-23:00 (mercoledì fino alle 20:00).</p>
+<p><strong>Quattro — Tacande Haría</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJA5iqxqKhSAwRY3zXq80aHWQ" class="map-link" target="_blank" rel="noopener" aria-label="Apri Tacande su Google Maps" title="Apri Tacande su Google Maps">📍</a> per domenica 26 aprile pranzo, al <strong>+34 928 83 51 17</strong> o via form <code><a href="https://www.restaurantetacande.com/reserva/" class="contact-link url-link" target="_blank" rel="noopener noreferrer">restaurantetacande.com/reserva/</a></code>. Da prenotare <strong>immediatamente se non già fatto</strong>: domenica è il primo giorno pieno e nei festivi della tarda primavera Tacande riempie velocemente.</p>
 <p>Opzionali ma intelligenti se ci si pensa adesso:</p>
-<p><strong>Red Star Surf o Calima Surf</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJjR4_j-ofRgwRzPTnrU00oa0" class="map-link" target="_blank" rel="noopener" aria-label="Apri Red Star Surf su Google Maps" title="Apri Red Star Surf su Google Maps">📍</a> per una lezione (ipotizziamo martedì 5 o mercoledì 6, due ore), WhatsApp Red Star <a href="tel:+34648745447" class="contact-link phone-link">+34 648 745 447</a> o Calima <a href="tel:+34626913369" class="contact-link phone-link">+34 626 913 369</a>, con 24-48 ore di anticipo bastano.</p>
-<p><strong>Bodega de Uga</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJ40-fGSM7RgwRUrTCtgU3xHQ" class="map-link" target="_blank" rel="noopener" aria-label="Apri Bodega de Uga su Google Maps" title="Apri Bodega de Uga su Google Maps">📍</a> — solo se avete scelto di provarla nonostante l'avvertenza sui prezzi non esposti (vedi capitolo giovedì 30 o appendice ristoranti). Telefono <strong>+34 928 83 01 47</strong>, martedì-sabato 13-18.</p>
+<p><strong>Red Star Surf o Calima Surf</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJjR4_j-ofRgwRzPTnrU00oa0" class="map-link" target="_blank" rel="noopener" aria-label="Apri Red Star Surf su Google Maps" title="Apri Red Star Surf su Google Maps">📍</a> per una lezione (il giorno giusto è <strong>sabato 2 maggio mattina, non mercoledì 6</strong> che è giorno di rientro), WhatsApp Red Star +34 928 52 88 08 o Calima +34 626 91 33 69, con 24-48 ore di anticipo bastano.</p>
+<p><strong>Bodega de Uga</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJ40-fGSM7RgwRUrTCtgU3xHQ" class="map-link" target="_blank" rel="noopener" aria-label="Apri Bodega de Uga su Google Maps" title="Apri Bodega de Uga su Google Maps">📍</a> — solo se avete scelto di provarla nonostante l'avvertenza sui prezzi non esposti (vedi capitolo III gastronomia). Telefono <strong>+34 928 83 01 47</strong>, martedì-sabato 13-18.</p>
 <p><strong>Noches de Jameos</strong> se decidete di farla (principalmente venerdì 1° maggio secondo il sito ufficiale CACT 2026), prenotazione online su <code><a href="https://ventaonline.cactlanzarote.com" class="contact-link url-link" target="_blank" rel="noopener noreferrer">ventaonline.cactlanzarote.com</a></code> o <code><a href="https://www.cactlanzarote.com/tickets/cena-concierto-jameos/" class="contact-link url-link" target="_blank" rel="noopener noreferrer">cactlanzarote.com/tickets/cena-concierto-jameos/</a></code>.</p>
 <p><strong>Biglietti traghetto Líneas Romero o Biosfera Express</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJ-9zANJ6mSAwRV_J-f3a1wWY" class="map-link" target="_blank" rel="noopener" aria-label="Apri Biosfera Express su Google Maps" title="Apri Biosfera Express su Google Maps">📍</a> per La Graciosa del 29 aprile e noleggio bici (prima scelta: El Mar Safari Bike o Bicis La Graciosa, telefono 680 563 008), prenotazione via sito o WhatsApp una settimana prima.</p>
 <p><strong>Email preliminari utili</strong>: a <code><a href="mailto:museo@elgrifo.com" class="contact-link email-link">museo@elgrifo.com</a></code> due giorni prima del 30 aprile per confermare se l'Orange Wine è disponibile in degustazione (alcune settimane è esaurito); a <code><a href="mailto:fcm@fcmanrique.org" class="contact-link email-link">fcm@fcmanrique.org</a></code> con una settimana d'anticipo se Federica vuole accesso alla biblioteca della Fondazione.</p>
@@ -1157,7 +1435,7 @@
 <hr>
 <h1 id="capitolo-v-i-rischi-e-le-risposte" class="chapter"><span class="chapter-label">Capitolo V</span><span class="chapter-name">I rischi e le risposte</span></h1>
 <p>Vale la pena fissare per iscritto i rischi che avete identificato voi stessi e le contromisure presenti nel piano.</p>
-<p><strong>"Una guida allucinata ci manda in posti chiusi o inventati"</strong>. Il piano è costruito incrociando siti ufficiali e guide riconosciute. I giorni critici sono già gestiti: 1° maggio festivo (CACT e FCM aperti, Saramago e Decathlon chiusi), domeniche per Saramago (chiusa) e Los Bermejos (chiusa), lunedì per Chupadero (chiuso). Le tre prenotazioni urgenti sono la spina dorsale: se quelle reggono, l'ossatura regge.</p>
+<p><strong>"Una guida allucinata ci manda in posti chiusi o inventati"</strong>. Il piano è costruito incrociando siti ufficiali e guide riconosciute. I giorni critici sono già gestiti: 1° maggio festivo (CACT e FCM aperti, Saramago e Decathlon chiusi, El Pichón Punta Mujeres chiuso), domeniche per Los Bermejos (chiusa), El Chupadero chiuso domenica/lunedì/martedì. Le tre prenotazioni urgenti sono la spina dorsale: se quelle reggono, l'ossatura regge.</p>
 <p><strong>"Maltempo senza piano B"</strong>. Ogni giorno dell'itinerario ha esplicitamente un Piano B (calima o vento forte) e, se serve, un Piano C (rientro e relax). Il <em>jolly calima</em> — sequenza Cueva + Jameos + LagOmar + Fondazione — è spendibile in qualunque giornata con 24 ore di preavviso. Il traghetto per La Graciosa è coperto dal piano B del 29 aprile che non spreca la giornata.</p>
 <p><strong>"Mancanza di tempo da soli"</strong>. Esplicitato in ogni giornata: pomeriggio di Haría il 26 (caffetteria e passeggiata), sera del 27 (La Tiñosa o corsa), sera del 28 (Arrecife Charco de San Ginés), Caleta de Sebo il 29 (una spiaggia vs pedalare), 3 maggio (la finestra più larga, dopo Tremesana: Federica riposa, Brian sale a Teguise), 4 maggio (tra Los Charcones e Papagayo). L'altra via naturale è sfruttare le soste wine bar o caffetteria, che prevedono separazione fluida senza pianificazione.</p>
 <p><strong>"Folla turistica molesta"</strong>. La primavera pre-maggio è bassa stagione. I punti più critici sono il Timanfaya (fate la vostra Tremesana alle 09:30 quando i bus ancora non arrivano), la Cueva de los Verdes (slot orari risolvono), il Mercadillo di Teguise (andate alle 09:00). Le cantine turistiche (La Geria, Stratvs) le saltate a favore di Los Bermejos, Rubicón con misura, El Chupadero.</p>
@@ -1188,22 +1466,22 @@
 <tbody>
 <tr>
 <td>CACT Lanzarote (centralino unico)</td>
-<td><strong><a href="tel:+34928848484" class="contact-link phone-link">+34 928 848 484</a></strong></td>
+<td><strong>+34 928 84 84 84</strong></td>
 <td>Jardín Cactus, Cueva Verdes, Jameos Agua, Mirador Río, MIAC, Campesino, El Diablo. Lun-ven 8-15.</td>
 </tr>
 <tr>
 <td>Fundación César Manrique (Tahíche + Haría)</td>
-<td><strong><a href="tel:+34928843138" class="contact-link phone-link">+34 928 843 138</a></strong></td>
+<td><strong>+34 928 84 31 38</strong></td>
 <td><code><a href="mailto:fcm@fcmanrique.org" class="contact-link email-link">fcm@fcmanrique.org</a></code></td>
 </tr>
 <tr>
 <td>Casa-Museo Saramago Tías</td>
-<td><strong><a href="tel:+34928596087" class="contact-link phone-link">+34 928 596 087</a></strong></td>
+<td><strong>+34 928 59 60 87</strong></td>
 <td>Calle Los Topes 1</td>
 </tr>
 <tr>
 <td>Organismo Autónomo Parques Nacionales (OAPN)</td>
-<td><strong><a href="tel:+34928118042" class="contact-link phone-link">+34 928 118 042</a></strong></td>
+<td><strong>+34 928 11 80 42</strong></td>
 <td>Per conferme Tremesana</td>
 </tr>
 <tr>
@@ -1214,86 +1492,91 @@
 <tr>
 <td>Bodegas Rubicón</td>
 <td><strong>+34 928 17 37 08</strong></td>
-<td>Ristorante + cantina, tutti i giorni 10-18</td>
+<td>Ristorante + cantina, tutti i giorni 10:00-23:00 (mer 10-20)</td>
 </tr>
 <tr>
 <td>Bodega Los Bermejos</td>
 <td><strong>+34 928 52 24 63</strong></td>
-<td>Prenotazione <code><a href="https://www.losbermejos.com/reservas" class="contact-link url-link" target="_blank" rel="noopener noreferrer">losbermejos.com/reservas</a></code></td>
-</tr>
-<tr>
-<td>Bodega La Geria</td>
-<td><a href="tel:+34928173178" class="contact-link phone-link">+34 928 173 178</a></td>
-<td></td>
+<td>Lun-ven 8-15, prenotazione <code><a href="https://www.losbermejos.com/reservas" class="contact-link url-link" target="_blank" rel="noopener noreferrer">losbermejos.com/reservas</a></code></td>
 </tr>
 <tr>
 <td>Bodega de Uga</td>
 <td><strong>+34 928 83 01 47</strong></td>
-<td>⚠️ Attenzione: no menu scritto, prezzi non esposti. Chiedere sempre i prezzi prima di ordinare. Mar-sab 13-18</td>
+<td>⚠️ No menu scritto, prezzi non esposti. Chiedere prezzi prima di ordinare. Mar-sab 13-18</td>
 </tr>
 <tr>
 <td>El Chupadero</td>
-<td><strong><a href="tel:+34928173365" class="contact-link phone-link">+34 928 173 365</a></strong></td>
-<td>Mar-dom 13-22, chiuso lun</td>
+<td>—</td>
+<td>Mer-sab 13-21, chiuso dom/lun/mar. Presentarsi al banco, no telefono pubblicato verificato</td>
 </tr>
 <tr>
 <td>Salinas de Janubio</td>
-<td><a href="tel:+34928804398" class="contact-link phone-link">+34 928 804 398</a></td>
-<td>Visita guidata solo lun-ven 12:30</td>
+<td><strong>+34 928 80 43 98</strong></td>
+<td>Visita guidata lun-ven, slot variabili 10-14, prenotaz. <code><a href="https://www.salinasdejanubio.com" class="contact-link url-link" target="_blank" rel="noopener noreferrer">salinasdejanubio.com</a></code></td>
 </tr>
 <tr>
 <td>Tacande Haría</td>
-<td><strong><a href="tel:+34928835117" class="contact-link phone-link">+34 928 835 117</a></strong></td>
+<td><strong>+34 928 83 51 17</strong></td>
 <td><code><a href="https://www.restaurantetacande.com/reserva/" class="contact-link url-link" target="_blank" rel="noopener noreferrer">restaurantetacande.com/reserva/</a></code></td>
+</tr>
+<tr>
+<td>La Puerta Verde Haría</td>
+<td><strong>+34 928 83 53 50</strong></td>
+<td>Tutti i giorni 13-21</td>
 </tr>
 <tr>
 <td>El Risco Famara</td>
 <td><strong>+34 928 52 85 50</strong></td>
-<td>Bib Gourmand Michelin</td>
+<td>Bib Gourmand Michelin. Tutti i giorni 13:00-21:30</td>
 </tr>
 <tr>
 <td>Lilium Arrecife</td>
-<td><strong><a href="tel:+34928524978" class="contact-link phone-link">+34 928 524 978</a></strong></td>
-<td>Bib Gourmand Michelin</td>
+<td><strong>+34 928 52 49 78</strong></td>
+<td>Bib Gourmand Michelin. Mar-gio 13:30-16 + 20-22:30, ven-sab fino 23. Chiuso lun e dom</td>
 </tr>
 <tr>
 <td>La Cocina de Colacho</td>
-<td><strong><a href="tel:+34928519691" class="contact-link phone-link">+34 928 519 691</a></strong> / <strong><a href="tel:+34676763814" class="contact-link phone-link">+34 676 763 814</a></strong></td>
-<td><code><a href="mailto:reservas@lacocinadecolacho.com" class="contact-link email-link">reservas@lacocinadecolacho.com</a></code></td>
+<td><strong>+34 928 51 96 91</strong> / <strong>+34 676 76 38 14</strong></td>
+<td><code><a href="mailto:reservas@lacocinadecolacho.com" class="contact-link email-link">reservas@lacocinadecolacho.com</a></code>. Lun-gio 18-22, otto tavoli</td>
 </tr>
 <tr>
 <td>Kamezí</td>
-<td><strong><a href="tel:+34626873695" class="contact-link phone-link">+34 626 873 695</a></strong></td>
-<td>Unica stella Michelin dell'isola</td>
+<td><strong>+34 626 87 36 95</strong></td>
+<td>1 stella Michelin 2026. Chiuso lunedì</td>
+</tr>
+<tr>
+<td>Cook in Lanzarote (Uga)</td>
+<td><strong>+34 928 83 62 74</strong></td>
+<td><code><a href="https://www.cookinlanzarote.com" class="contact-link url-link" target="_blank" rel="noopener noreferrer">cookinlanzarote.com</a></code>, corsi 29-119€</td>
 </tr>
 <tr>
 <td>Teleclub Mancha Blanca</td>
-<td><strong><a href="tel:+34636151288" class="contact-link phone-link">+34 636 151 288</a></strong></td>
-<td></td>
+<td><strong>+34 636 15 12 88</strong></td>
+<td>Mar-sab 13-22, dom chiude 18:00, chiuso lun</td>
 </tr>
 <tr>
 <td>Cofradía de Pescadores La Tiñosa</td>
-<td>—</td>
-<td>Prenotare in giornata, Solete Repsol</td>
+<td><strong>+34 660 43 35 78</strong></td>
+<td>Solete Repsol, prenotare in giornata</td>
 </tr>
 <tr>
 <td>Bar La Piscina El Pichón Punta Mujeres</td>
-<td><strong>Nessun telefono</strong></td>
-<td>Presentarsi 12:30</td>
+<td>—</td>
+<td>Nessun telefono. Solo feriali, presentarsi 12:30. Chiuso 1° maggio</td>
 </tr>
 <tr>
-<td>Enriqueta Casa de Comidas La Graciosa</td>
+<td>Casa Chano La Graciosa</td>
 <td>—</td>
-<td>Non prende prenotazioni, chiuso mer</td>
+<td>Aperto dalle 7:30, no prenotazioni</td>
 </tr>
 <tr>
 <td>Calima Surf School</td>
-<td><strong><a href="tel:+34626913369" class="contact-link phone-link">+34 626 913 369</a></strong></td>
+<td><strong>+34 626 91 33 69</strong></td>
 <td><code><a href="https://www.calimasurf.com" class="contact-link url-link" target="_blank" rel="noopener noreferrer">calimasurf.com</a></code> — italofoni</td>
 </tr>
 <tr>
 <td>Red Star Surf &amp; Yoga</td>
-<td><strong><a href="tel:+34648745447" class="contact-link phone-link">+34 648 745 447</a></strong> (WhatsApp)</td>
+<td><strong>+34 928 52 88 08</strong></td>
 <td><code><a href="mailto:info@redstarsurf.com" class="contact-link email-link">info@redstarsurf.com</a></code></td>
 </tr>
 <tr>
@@ -1303,8 +1586,8 @@
 </tr>
 <tr>
 <td>Decathlon Arrecife</td>
-<td><strong><a href="tel:+34928804780" class="contact-link phone-link">+34 928 804 780</a></strong></td>
-<td>Polígono Argana Baja, chiuso 1° maggio</td>
+<td><strong>+34 928 80 47 80</strong></td>
+<td>Polígono Argana Baja, lun-sab 9-22, chiuso 1° maggio</td>
 </tr>
 <tr>
 <td>Líneas Marítimas Romero</td>
@@ -1318,11 +1601,181 @@
 </tr>
 <tr>
 <td>Palacio Spínola Teguise</td>
-<td><a href="tel:+34928845181" class="contact-link phone-link">+34 928 845 181</a></td>
-<td>Per conferma orari domenicali</td>
+<td><strong>+34 928 84 51 81</strong></td>
+<td>Tutti i giorni 9-15</td>
+</tr>
+<tr>
+<td>Safari Diving Lanzarote</td>
+<td>—</td>
+<td>Paseo de la Barilla 4. Lun-sab 9:30-17:30</td>
 </tr>
 </tbody>
 </table></div>
+<hr>
+<h1 id="appendice-calendario-prenotazioni">Appendice · Calendario prenotazioni</h1>
+<blockquote>
+<p><em>Una vista temporale di cosa va prenotato e quando. Le prenotazioni urgenti sono tutte da fare PRIMA della partenza, le altre in viaggio.</em></p>
+</blockquote>
+<h2 id="prima-della-partenza-questa-settimana">🔴 Prima della partenza (questa settimana)</h2>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Quando</th>
+<th>Cosa</th>
+<th>Come</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Subito</strong></td>
+<td>Tacande Haría — domenica 26 pranzo</td>
+<td>tel <strong>+34 928 83 51 17</strong> o <code><a href="https://www.restaurantetacande.com/reserva/" class="contact-link url-link" target="_blank" rel="noopener noreferrer">restaurantetacande.com/reserva/</a></code></td>
+</tr>
+<tr>
+<td><strong>Subito</strong></td>
+<td>Cueva de los Verdes — venerdì 1° maggio slot <strong>12:00</strong></td>
+<td><code><a href="https://ventaonline.cactlanzarote.com" class="contact-link url-link" target="_blank" rel="noopener noreferrer">ventaonline.cactlanzarote.com</a></code> (17€/persona)</td>
+</tr>
+<tr>
+<td><strong>Subito</strong></td>
+<td>Bodegas Rubicón — giovedì 30 pranzo</td>
+<td>tel <strong>+34 928 17 37 08</strong></td>
+</tr>
+<tr>
+<td><strong>Subito</strong></td>
+<td>Cena Michelin scelta (1 o 2):</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>• La Cocina de Colacho — lun 4 sera</td>
+<td>tel <strong>+34 928 51 96 91</strong> o <strong>+34 676 76 38 14</strong> (8-10 tavoli, prenotare per primo)</td>
+</tr>
+<tr>
+<td></td>
+<td>• Lilium Arrecife — mar 28 sera</td>
+<td>tel <strong>+34 928 52 49 78</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>• El Risco Famara — sab 2 o mar 5 sera</td>
+<td>tel <strong>+34 928 52 85 50</strong></td>
+</tr>
+<tr>
+<td><strong>Entro venerdì 24</strong></td>
+<td>Traghetto La Graciosa — mer 29 (andata 8:30, ritorno <strong>13:30</strong>)</td>
+<td><code><a href="https://www.lineasromero.com" class="contact-link url-link" target="_blank" rel="noopener noreferrer">lineasromero.com</a></code> o <code><a href="https://www.biosferaexpress.com" class="contact-link url-link" target="_blank" rel="noopener noreferrer">biosferaexpress.com</a></code></td>
+</tr>
+<tr>
+<td><strong>Entro venerdì 24</strong></td>
+<td>Bici La Graciosa — mer 29 mattino</td>
+<td>WhatsApp Bicis La Graciosa <strong>+34 680 56 30 08</strong></td>
+</tr>
+<tr>
+<td><strong>Opzionale</strong></td>
+<td>Surf Famara — sab 2 mattino (9-11)</td>
+<td>WhatsApp Calima <strong>+34 626 91 33 69</strong> o Red Star <strong>+34 928 52 88 08</strong></td>
+</tr>
+<tr>
+<td><strong>Opzionale</strong></td>
+<td>Noches de Jameos — ven 1° maggio sera</td>
+<td><code><a href="https://www.cactlanzarote.com/tickets/cena-concierto-jameos/" class="contact-link url-link" target="_blank" rel="noopener noreferrer">cactlanzarote.com/tickets/cena-concierto-jameos/</a></code></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="email-preliminari-utili-ma-non-urgenti">🟡 Email preliminari (utili ma non urgenti)</h2>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Quando</th>
+<th>Cosa</th>
+<th>A chi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Stasera</strong></td>
+<td>Conferma servizi appartamento (asciugamani, sapone, detersivo, coperta extra Casa Lancelot)</td>
+<td>Booking host</td>
+</tr>
+<tr>
+<td><strong>2 giorni prima del 30 apr</strong></td>
+<td>Disponibilità Orange Wine in degustazione</td>
+<td><code><a href="mailto:museo@elgrifo.com" class="contact-link email-link">museo@elgrifo.com</a></code></td>
+</tr>
+<tr>
+<td><strong>1 settimana prima del 28 apr</strong></td>
+<td>Accesso biblioteca Fondazione Manrique (per Federica)</td>
+<td><code><a href="mailto:fcm@fcmanrique.org" class="contact-link email-link">fcm@fcmanrique.org</a></code></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="in-viaggio-chiamate-del-giorno-o-del-giorno-prima">🟢 In viaggio (chiamate del giorno o del giorno prima)</h2>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Giorno</th>
+<th>Chiamare per</th>
+<th>Numero</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sab 25 sera</strong></td>
+<td>Cofradía La Tiñosa (se cena tardi)</td>
+<td><strong>+34 660 43 35 78</strong></td>
+</tr>
+<tr>
+<td><strong>Lun 27 mattina</strong></td>
+<td>Safari Diving Lanzarote (se snorkeling pomeriggio)</td>
+<td>telefono diretto al locale, paseo de la Barilla 4</td>
+</tr>
+<tr>
+<td><strong>Mer 29 mattina</strong></td>
+<td>Conferma traghetto Líneas Romero ritorno</td>
+<td><code><a href="https://www.lineasromero.com" class="contact-link url-link" target="_blank" rel="noopener noreferrer">lineasromero.com</a></code></td>
+</tr>
+<tr>
+<td><strong>Gio 30 mattina</strong></td>
+<td>Tacande non già prenotata? Posti?</td>
+<td><strong>+34 928 83 51 17</strong></td>
+</tr>
+<tr>
+<td><strong>Sab 2 sera o dom 3 sera</strong></td>
+<td>Conferma OAPN per Tremesana del 3 maggio</td>
+<td><strong>+34 928 11 80 42</strong></td>
+</tr>
+<tr>
+<td><strong>Lun 4 mattina</strong></td>
+<td>Conferma Colacho (se prenotato): orario, allergie</td>
+<td><strong>+34 928 51 96 91</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="verifiche-del-giorno-prima">⚠️ Verifiche del giorno prima</h2>
+<ul>
+<li><strong>Mer 29 sera</strong>: stato meteo per Tremesana del 3 maggio (AEMET avvisi)</li>
+<li><strong>Sab 2 sera</strong>: AEMET per Tremesana — se avviso arancione/rosso, valutare ripiego (Volcán del Cuervo)</li>
+<li><strong>Mar 5 sera</strong>: stato vento per Caldera Blanca (over 35 km/h sconsiglia, ripiega su Cuervo)</li>
+<li><strong>Mar 5 sera</strong>: <code><a href="https://www.windy.com" class="contact-link url-link" target="_blank" rel="noopener noreferrer">windy.com</a></code> per Los Charcones del 4 (se swell &gt; 1.5m da NNW, sostituire con Papagayo)</li>
+</ul>
+<h2 id="lista-di-controllo-finale-prima-di-milano">📝 Lista di controllo finale (prima di Milano)</h2>
+<ul>
+<li>[ ] 4 prenotazioni urgenti confermate</li>
+<li>[ ] Decisione Noches de Jameos presa</li>
+<li>[ ] Decisione surf presa</li>
+<li>[ ] Decisione 0/1/2 cene importanti presa</li>
+<li>[ ] Passaporto (per check-in Tremesana)</li>
+<li>[ ] Tessera sanitaria europea</li>
+<li>[ ] Patente</li>
+<li>[ ] Conferma host Cactus + Casa Lancelot inviate</li>
+<li>[ ] Bagaglio pesato sotto 14 kg trolley</li>
+<li>[ ] Busta liquidi pronta (max 100 ml × contenitore, 1 L totale)</li>
+<li>[ ] Lista spesa scritta per HiperDino sabato sera</li>
+<li>[ ] Powerbank carico</li>
+<li>[ ] App AEMET, CACT, Líneas Romero scaricate</li>
+<li>[ ] Numero di emergenza Anabel (host) salvato</li>
+</ul>
 <hr>
 <h1 id="epilogo" class="chapter chapter-single"><span class="chapter-name">Epilogo</span></h1>
 <p>Si torna diversi, non perché siete cambiati, ma perché avete riposato nel posto giusto.</p>
